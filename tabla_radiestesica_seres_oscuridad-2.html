@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla Radiestésica — Seres de Oscuridad · El Ser Uno</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --negro:     #0a0a0f;
+    --profundo:  #0f0f1a;
+    --medio:     #1a1a2e;
+    --panel:     #141420;
+    --borde:     #2a2a45;
+    --oro:       #c9a84c;
+    --oro-tenue: #8a6a2a;
+    --violeta:   #7b5ea7;
+    --violeta-c: #a07ed4;
+    --blanco:    #e8e4d8;
+    --gris:      #9090a0;
+    --rojo:      #c0392b;
+    --naranja:   #d4622a;
+    --amarillo:  #c9a84c;
+    --verde:     #2e8b57;
+    --azul:      #3a6f8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(180deg, #000000 0%, var(--profundo) 100%);
+    border-bottom: 1px solid var(--oro-tenue);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(123,94,167,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sigil {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--violeta-c);
+    text-shadow: 0 0 30px rgba(160,126,212,0.6);
+  }
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--oro);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  header p {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    color: var(--gris);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* LAYOUT */
+  .contenedor {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* SECCIONES */
+  .seccion {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .seccion-titulo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oro);
+    padding: 0.85rem 1.4rem;
+    background: rgba(201,168,76,0.06);
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .seccion-titulo span { font-size: 1rem; }
+  .seccion-cuerpo { padding: 1.4rem; }
+
+  /* CAMPOS */
+  .campo-grupo {
+    margin-bottom: 1.4rem;
+  }
+  .campo-grupo:last-child { margin-bottom: 0; }
+  label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--violeta-c);
+    margin-bottom: 0.5rem;
+  }
+  input[type="text"], textarea, select {
+    width: 100%;
+    background: var(--medio);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    color: var(--blanco);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 0.6rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: var(--violeta);
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  select option { background: var(--medio); }
+
+  /* GRILLAS DE OPCIONES */
+  .opciones-grid {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .opciones-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .opciones-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .opcion-btn {
+    background: var(--medio);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    color: var(--gris);
+    cursor: pointer;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    transition: all 0.18s;
+    line-height: 1.3;
+  }
+  .opcion-btn:hover { border-color: var(--violeta); color: var(--blanco); }
+  .opcion-btn.activo {
+    background: rgba(123,94,167,0.2);
+    border-color: var(--violeta-c);
+    color: var(--blanco);
+  }
+  .opcion-btn .codigo {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--oro-tenue);
+    margin-bottom: 0.15rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ESCALA DESLIZANTE */
+  .escala-wrap {
+    margin-top: 0.3rem;
+  }
+  .escala-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--gris);
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 0.3rem;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--violeta);
+    cursor: pointer;
+  }
+  .escala-valor {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--oro);
+    margin-top: 0.3rem;
+  }
+
+  /* BOVIS DISPLAY */
+  .bovis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .bovis-campo {
+    background: var(--medio);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+  }
+  .bovis-campo label { color: var(--gris); font-size: 0.65rem; margin-bottom: 0.3rem; }
+  .bovis-campo input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--borde);
+    border-radius: 0;
+    padding: 0.2rem 0;
+    font-size: 1.2rem;
+    color: var(--oro);
+    font-family: 'Space Mono', monospace;
+  }
+  .bovis-campo input:focus { border-bottom-color: var(--violeta); }
+
+  /* RESULTADO */
+  #resultado {
+    display: none;
+    background: linear-gradient(135deg, var(--profundo) 0%, #0d0d20 100%);
+    border: 1px solid var(--violeta);
+    border-radius: 2px;
+    margin-top: 2rem;
+    overflow: hidden;
+  }
+  .resultado-header {
+    background: rgba(123,94,167,0.15);
+    border-bottom: 1px solid var(--violeta);
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nivel-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid currentColor;
+  }
+  .resultado-header-texto h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+  }
+  .resultado-header-texto p {
+    font-style: italic;
+    color: var(--gris);
+    font-size: 0.9rem;
+  }
+  .resultado-cuerpo { padding: 1.4rem; }
+  .resultado-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .dato-resultado {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+  }
+  .dato-resultado .etiq {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .dato-resultado .val {
+    font-size: 1rem;
+    color: var(--blanco);
+  }
+  .protocolo-box {
+    background: rgba(201,168,76,0.05);
+    border: 1px solid var(--oro-tenue);
+    border-radius: 2px;
+    padding: 1.2rem;
+    margin-top: 1rem;
+  }
+  .protocolo-box h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 0.8rem;
+  }
+  .paso-protocolo {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 0.7rem;
+    align-items: flex-start;
+  }
+  .paso-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--oro-tenue);
+    min-width: 28px;
+    padding-top: 0.1rem;
+  }
+  .paso-texto { font-size: 0.95rem; color: var(--blanco); line-height: 1.45; }
+  .advertencia {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid rgba(192,57,43,0.4);
+    border-radius: 2px;
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+    color: #e07060;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  /* BOTONES */
+  .btn-fila {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primario {
+    background: var(--violeta);
+    color: var(--blanco);
+  }
+  .btn-primario:hover { background: var(--violeta-c); }
+  .btn-secundario {
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: var(--gris);
+  }
+  .btn-secundario:hover { border-color: var(--oro); color: var(--oro); }
+  .btn-dorado {
+    background: transparent;
+    border: 1px solid var(--oro-tenue);
+    color: var(--oro);
+  }
+  .btn-dorado:hover { background: rgba(201,168,76,0.1); }
+
+  /* HISTORIAL */
+  #historial-lista { list-style: none; }
+  .historial-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: 0.88rem;
+    gap: 1rem;
+  }
+  .historial-item:last-child { border-bottom: none; }
+  .hist-fecha { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--gris); }
+  .hist-tipo { color: var(--blanco); }
+  .hist-nivel {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+  }
+  .hist-vacío { color: var(--gris); font-style: italic; font-size: 0.9rem; }
+
+  /* TABLA IMPRIMIBLE */
+  #tabla-imprimible { display: none; }
+  @media print {
+    body { background: white; color: black; }
+    header, .btn-fila, #resultado, #seccion-historial { display: none !important; }
+    #tabla-imprimible {
+      display: block !important;
+      font-family: 'Crimson Pro', serif;
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .opciones-grid.col3 { grid-template-columns: 1fr 1fr; }
+    .resultado-grid { grid-template-columns: 1fr; }
+    .bovis-grid { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.1rem; }
+  }
+
+  /* SEPARADOR */
+  .sep {
+    border: none;
+    border-top: 1px solid var(--borde);
+    margin: 1.2rem 0;
+  }
+
+  /* NOTA EPISTEMICA */
+  .nota {
+    background: rgba(123,94,167,0.07);
+    border-left: 3px solid var(--violeta);
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--gris);
+    margin-bottom: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="sigil">✦ ⊕ ✦</div>
+  <h1>Tabla Radiestésica de Seres de Oscuridad</h1>
+  <p>Basada en los principios de El Ser Uno &nbsp;·&nbsp; Uso con péndulo o intuición entrenada</p>
+</header>
+
+<div class="contenedor">
+
+  <div class="nota">
+    Esta tabla es un instrumento de trabajo construido sobre los principios cosmológicos de <em>El Ser Uno</em>. No reemplaza el discernimiento del operador ni la guía de los Hermanos Mayores. Úsala como apoyo radiestésico, no como diagnóstico absoluto.
+  </div>
+
+  <!-- DATOS DE SESIÓN -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Datos de la Sesión</div>
+    <div class="seccion-cuerpo">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+        <div class="campo-grupo">
+          <label>Fecha</label>
+          <input type="text" id="fecha" placeholder="dd/mm/aaaa">
+        </div>
+        <div class="campo-grupo">
+          <label>Tipo de consulta</label>
+          <select id="tipo-consulta">
+            <option value="">— Seleccionar —</option>
+            <option>Persona / consultante</option>
+            <option>Autodiagnóstico</option>
+            <option>Espacio / lugar</option>
+            <option>Línea ancestral</option>
+          </select>
+        </div>
+        <div class="campo-grupo">
+          <label>Referencia (iniciales o lugar)</label>
+          <input type="text" id="referencia" placeholder="Ej: M.L. / Casa norte">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLE 1: TIPO E IDENTIDAD -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Variable 1 — Tipo e Identidad del Ser</div>
+    <div class="seccion-cuerpo">
+      <label>Señala con el péndulo la categoría que recibe mayor respuesta</label>
+      <div class="opciones-grid col2" style="margin-top:0.5rem;" id="v1-grid">
+
+        <button class="opcion-btn" data-v1="residuo">
+          <span class="codigo">D-1</span>
+          Residuo / Sombra etérica<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Sin consciencia. Resto de cuerpo astral desintegrado.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="larva">
+          <span class="codigo">D-2</span>
+          Larva / Parásito energético<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Forma-pensamiento densa. Se adhiere a vibración compatible.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="elemental">
+          <span class="codigo">D-3</span>
+          Elemental corrompido<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Elemental de tierra/agua/fuego/aire distorsionado por energía densa.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="egregor">
+          <span class="codigo">D-4</span>
+          Egregor negativo<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Creado colectivamente. Se alimenta del grupo que lo generó.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="desencarnado">
+          <span class="codigo">D-5</span>
+          Ser humano desencarnado<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Alma atrapada en plano astral bajo por apego, odio o trauma.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="entidad">
+          <span class="codigo">D-6</span>
+          Entidad astral inteligente<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Ser con intención y voluntad propia. Alta capacidad de manipulación.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="arconte-menor">
+          <span class="codigo">D-7</span>
+          Arconte de rango menor<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Opera desde 4.º plano denso. Tiene conocimiento de las leyes universales.</small>
+        </button>
+
+        <button class="opcion-btn" data-v1="arconte-mayor">
+          <span class="codigo">D-8 / D-9</span>
+          Arconte superior / Señor de la Sombra<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Máxima jerarquía oscura. Acción colectiva y planetaria.</small>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLE 2: PELIGROSIDAD -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Variable 2 — Nivel de Peligrosidad para Intervenir</div>
+    <div class="seccion-cuerpo">
+      <label>¿Qué resistencia opone el ser ante la Luz? Pendula sobre la escala</label>
+      <div class="opciones-grid col3" style="margin-top:0.5rem;" id="v2-grid">
+
+        <button class="opcion-btn" data-v2="P1" style="border-left:3px solid var(--verde)">
+          <span class="codigo" style="color:var(--verde)">P-1 · MÍNIMO</span>
+          Nula resistencia<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Cualquier operador con intención clara puede actuar.</small>
+        </button>
+
+        <button class="opcion-btn" data-v2="P2" style="border-left:3px solid var(--azul)">
+          <span class="codigo" style="color:var(--azul)">P-2 · BAJO</span>
+          Resistencia débil<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Sanador con práctica. Invocación básica suficiente.</small>
+        </button>
+
+        <button class="opcion-btn" data-v2="P3" style="border-left:3px solid var(--amarillo)">
+          <span class="codigo" style="color:var(--amarillo)">P-3 · MEDIO</span>
+          Resistencia activa<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Sanador avanzado. Requiere protección previa sólida.</small>
+        </button>
+
+        <button class="opcion-btn" data-v2="P4" style="border-left:3px solid var(--naranja)">
+          <span class="codigo" style="color:var(--naranja)">P-4 · ALTO</span>
+          Resistencia inteligente<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Maestro sanador. El ser puede contraatacar si hay fisura en aura.</small>
+        </button>
+
+        <button class="opcion-btn" data-v2="P5" style="border-left:3px solid var(--rojo)">
+          <span class="codigo" style="color:var(--rojo)">P-5 · EXTREMO</span>
+          Resistencia máxima<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Solo con invocación a Hermanos Mayores y Jerarquía de Luz.</small>
+        </button>
+
+        <button class="opcion-btn" data-v2="P0" style="border-left:3px solid var(--gris)">
+          <span class="codigo">P-0 · INCIERTO</span>
+          No determinado<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Péndulo no responde con claridad. Requiere segunda medición.</small>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLE 3: ANCLAJE -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Variable 3 — Grado de Anclaje</div>
+    <div class="seccion-cuerpo">
+      <label>¿Con qué profundidad está adherido a la persona o espacio?</label>
+      <div class="opciones-grid col3" style="margin-top:0.5rem;" id="v3-grid">
+
+        <button class="opcion-btn" data-v3="A1">
+          <span class="codigo">A-1 · SUPERFICIAL</span>
+          Adherencia reciente<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Horas o días. No ha penetrado cuerpos sutiles interiores.</small>
+        </button>
+
+        <button class="opcion-btn" data-v3="A2">
+          <span class="codigo">A-2 · ADHERIDO</span>
+          En cuerpo etérico<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Semanas/meses. Afecta energía vital y estados físicos.</small>
+        </button>
+
+        <button class="opcion-btn" data-v3="A3">
+          <span class="codigo">A-3 · ANCLADO</span>
+          En cuerpo astral<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Años. Influye emociones, sueños y relaciones.</small>
+        </button>
+
+        <button class="opcion-btn" data-v3="A4">
+          <span class="codigo">A-4 · IMPLANTADO</span>
+          En cuerpo mental<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Distorsiona pensamientos, creencias y percepción de la realidad.</small>
+        </button>
+
+        <button class="opcion-btn" data-v3="A5">
+          <span class="codigo">A-5 · FUSIONADO</span>
+          En cuerpo causal<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Varias vidas o herencia lineal. Requiere trabajo kármico profundo.</small>
+        </button>
+
+        <button class="opcion-btn" data-v3="A6">
+          <span class="codigo">A-6 · LINEAL</span>
+          En línea ancestral<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Transmitido por herencia familiar. Afecta al árbol genealógico.</small>
+        </button>
+
+      </div>
+
+      <div class="sep"></div>
+      <label>Tiempo estimado de presencia (péndulo sobre números)</label>
+      <div class="escala-wrap">
+        <div class="escala-labels">
+          <span>Horas</span><span>Días</span><span>Semanas</span><span>Meses</span><span>Años</span><span>Vidas</span>
+        </div>
+        <input type="range" id="tiempo-presencia" min="1" max="6" value="1" step="1">
+        <div class="escala-valor" id="tiempo-texto">Horas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLE 4: PUERTA DE ENTRADA -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Variable 4 — Puerta de Entrada / Origen</div>
+    <div class="seccion-cuerpo">
+      <label>¿Por qué apertura accedió el ser? (puede haber más de una)</label>
+      <div class="opciones-grid col2" style="margin-top:0.5rem;" id="v4-grid">
+
+        <button class="opcion-btn" data-v4="trauma">
+          <span class="codigo">PE-1</span>
+          Trauma emocional no resuelto<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Duelo, abandono, shock, abuso.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="adiccion">
+          <span class="codigo">PE-2</span>
+          Adicción o sustancias<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Alcohol, drogas, compulsiones severas.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="sexual">
+          <span class="codigo">PE-3</span>
+          Transmisión sexual / cord etérica<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Relación íntima con portador de entidad.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="ritual">
+          <span class="codigo">PE-4</span>
+          Ritual o invocación inconsciente<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Juegos de table, ouija, ceremonias sin protección.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="lugar">
+          <span class="codigo">PE-5</span>
+          Contaminación de lugar<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Casa, hospital, cementerio, zona geopática.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="enviado">
+          <span class="codigo">PE-6</span>
+          Enviado por tercero<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Brujería, envidia cargada, trabajo negro consciente.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="karma">
+          <span class="codigo">PE-7</span>
+          Contrato kármico / herencia<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Patrón activo desde otras encarnaciones o línea familiar.</small>
+        </button>
+
+        <button class="opcion-btn" data-v4="debilidad">
+          <span class="codigo">PE-8</span>
+          Debilidad en aura / corazas rotas<br>
+          <small style="color:var(--gris); font-size:0.8rem;">Fisura en cuerpos sutiles por enfermedad, depresión o agotamiento.</small>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIABLE 5: BOVIS -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Variable 5 — Medición Bovis</div>
+    <div class="seccion-cuerpo">
+      <div class="bovis-grid">
+        <div class="bovis-campo">
+          <label>Bovis del espacio o persona (actual)</label>
+          <input type="number" id="bovis-actual" placeholder="Ej: 4200">
+        </div>
+        <div class="bovis-campo">
+          <label>Bovis estimado del ser detectado</label>
+          <input type="number" id="bovis-ser" placeholder="Ej: -45000">
+        </div>
+      </div>
+      <div style="margin-top:1rem;">
+        <label>Observaciones de la medición</label>
+        <textarea id="obs-bovis" placeholder="Describe la respuesta del péndulo, variaciones, zonas afectadas..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTAS -->
+  <div class="seccion">
+    <div class="seccion-titulo"><span>◈</span> Notas del Operador</div>
+    <div class="seccion-cuerpo">
+      <textarea id="notas" placeholder="Observaciones adicionales, sensaciones durante la medición, mensajes recibidos en intuición..." style="min-height:90px;"></textarea>
+    </div>
+  </div>
+
+  <!-- BOTONES -->
+  <div class="btn-fila">
+    <button class="btn btn-primario" onclick="generarDiagnostico()">◈ Generar Diagnóstico y Protocolo</button>
+    <button class="btn btn-dorado" onclick="imprimirTabla()">⊕ Versión Imprimible</button>
+    <button class="btn btn-secundario" onclick="limpiarFormulario()">↺ Nueva Sesión</button>
+  </div>
+
+  <!-- RESULTADO -->
+  <div id="resultado">
+    <div class="resultado-header">
+      <div class="nivel-badge" id="badge-nivel">—</div>
+      <div class="resultado-header-texto">
+        <h2 id="res-titulo">Diagnóstico Energético</h2>
+        <p id="res-subtitulo"></p>
+      </div>
+    </div>
+    <div class="resultado-cuerpo">
+      <div class="resultado-grid">
+        <div class="dato-resultado">
+          <span class="etiq">Tipo de ser</span>
+          <span class="val" id="res-tipo">—</span>
+        </div>
+        <div class="dato-resultado">
+          <span class="etiq">Peligrosidad operativa</span>
+          <span class="val" id="res-peligro">—</span>
+        </div>
+        <div class="dato-resultado">
+          <span class="etiq">Anclaje</span>
+          <span class="val" id="res-anclaje">—</span>
+        </div>
+        <div class="dato-resultado">
+          <span class="etiq">Tiempo de presencia</span>
+          <span class="val" id="res-tiempo">—</span>
+        </div>
+        <div class="dato-resultado">
+          <span class="etiq">Puerta de entrada</span>
+          <span class="val" id="res-puerta">—</span>
+        </div>
+        <div class="dato-resultado">
+          <span class="etiq">Bovis del ser</span>
+          <span class="val" id="res-bovis">—</span>
+        </div>
+      </div>
+
+      <div class="protocolo-box" id="protocolo-box">
+        <h3>⊕ Protocolo de Extracción Recomendado</h3>
+        <div id="protocolo-pasos"></div>
+      </div>
+
+      <div class="advertencia" id="advertencia-res" style="display:none;"></div>
+
+      <div class="btn-fila">
+        <button class="btn btn-dorado" onclick="guardarEnHistorial()">✦ Guardar en Historial</button>
+        <button class="btn btn-secundario" onclick="imprimirTabla()">⊕ Imprimir esta sesión</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL -->
+  <div class="seccion" id="seccion-historial" style="margin-top:2rem;">
+    <div class="seccion-titulo"><span>◈</span> Historial de Sesiones</div>
+    <div class="seccion-cuerpo">
+      <ul id="historial-lista">
+        <li class="hist-vacío">No hay sesiones guardadas aún.</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- fin contenedor -->
+
+<!-- TABLA IMPRIMIBLE (solo al imprimir) -->
+<div id="tabla-imprimible">
+  <h1 style="font-family:'Cinzel',serif; text-align:center; margin-bottom:1rem;">
+    Tabla Radiestésica — Seres de Oscuridad · El Ser Uno
+  </h1>
+  <div id="contenido-impresion"></div>
+</div>
+
+<script>
+// ---- Estado ----
+let selecciones = { v1: null, v2: null, v3: null, v4: [] };
+let historial = JSON.parse(localStorage.getItem('radiestesia_historial') || '[]');
+
+// ---- Init ----
+document.getElementById('fecha').value = new Date().toLocaleDateString('es-ES');
+
+// ---- Botones de opción ----
+document.querySelectorAll('[data-v1]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-v1]').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    selecciones.v1 = btn.dataset.v1;
+  });
+});
+
+document.querySelectorAll('[data-v2]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-v2]').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    selecciones.v2 = btn.dataset.v2;
+  });
+});
+
+document.querySelectorAll('[data-v3]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-v3]').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+    selecciones.v3 = btn.dataset.v3;
+  });
+});
+
+// V4 multiselección
+document.querySelectorAll('[data-v4]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.v4;
+    if (selecciones.v4.includes(val)) {
+      selecciones.v4 = selecciones.v4.filter(v => v !== val);
+      btn.classList.remove('activo');
+    } else {
+      selecciones.v4.push(val);
+      btn.classList.add('activo');
+    }
+  });
+});
+
+// Tiempo slider
+const tiempoLabels = ['Horas','Días','Semanas','Meses','Años','Vidas'];
+document.getElementById('tiempo-presencia').addEventListener('input', function() {
+  document.getElementById('tiempo-texto').textContent = tiempoLabels[this.value - 1];
+});
+
+// ---- Datos ----
+const TIPOS = {
+  residuo: 'Residuo / Sombra etérica (D-1)',
+  larva: 'Larva / Parásito energético (D-2)',
+  elemental: 'Elemental corrompido (D-3)',
+  egregor: 'Egregor negativo (D-4)',
+  desencarnado: 'Ser humano desencarnado (D-5)',
+  entidad: 'Entidad astral inteligente (D-6)',
+  'arconte-menor': 'Arconte de rango menor (D-7)',
+  'arconte-mayor': 'Arconte superior / Señor de la Sombra (D-8/9)'
+};
+
+const PELIGROS = {
+  P0: 'P-0 · No determinado',
+  P1: 'P-1 · Mínimo — cualquier operador',
+  P2: 'P-2 · Bajo — sanador con práctica',
+  P3: 'P-3 · Medio — sanador avanzado',
+  P4: 'P-4 · Alto — maestro sanador',
+  P5: 'P-5 · Extremo — requiere Jerarquía de Luz'
+};
+
+const ANCLAJES = {
+  A1: 'A-1 · Superficial (horas/días)',
+  A2: 'A-2 · Adherido en cuerpo etérico',
+  A3: 'A-3 · Anclado en cuerpo astral',
+  A4: 'A-4 · Implantado en cuerpo mental',
+  A5: 'A-5 · Fusionado en cuerpo causal',
+  A6: 'A-6 · Lineal / ancestral'
+};
+
+const PUERTAS = {
+  trauma: 'Trauma emocional (PE-1)',
+  adiccion: 'Adicción / sustancias (PE-2)',
+  sexual: 'Transmisión sexual (PE-3)',
+  ritual: 'Ritual inconsciente (PE-4)',
+  lugar: 'Contaminación de lugar (PE-5)',
+  enviado: 'Enviado por tercero (PE-6)',
+  karma: 'Contrato kármico (PE-7)',
+  debilidad: 'Debilidad en aura (PE-8)'
+};
+
+const PROTOCOLOS = {
+  residuo: [
+    'Invocar Llama Violeta de Saint Germain durante 3 minutos.',
+    'Barrer el espacio o cuerpo etérico con intención de dispersión.',
+    'Elevar el Bovis del espacio con copal o sándalo.',
+    'Sellar con Luz Dorada visualizada en esfera alrededor del ser o espacio.'
+  ],
+  larva: [
+    'Proteger al operador con escudo de Luz Dorada antes de actuar.',
+    'Invocar Llama Violeta y Rayo Azul de protección.',
+    'Ordenar a la larva que se disuelva en Luz bajo autoridad del Logos Planetario.',
+    'Sellar el punto de anclaje con cuarzo transparente programado.',
+    'Incienso de copal o mirra para elevar vibración del espacio.'
+  ],
+  elemental: [
+    'Invocar al Señor de los Elementales correspondiente (tierra/agua/fuego/aire).',
+    'Solicitar que el elemental sea devuelto a su reino y purificado.',
+    'Aplicar Llama Violeta en el espacio afectado.',
+    'Usar agua con sal marina en los cuatro rincones del espacio.',
+    'Colocar turmalina negra en los puntos cardinales.'
+  ],
+  egregor: [
+    'Identificar el grupo que lo generó y realizar desconexión energética.',
+    'Invocar Arcángel Miguel para corte de cuerdas colectivas.',
+    'Decreto de desintegración del egregor en nombre del Cristo Cósmico.',
+    'Trabajo con Llama Violeta extendido (mínimo 7 días consecutivos).',
+    'Recomendar que el consultante revise sus asociaciones y vínculos grupales.'
+  ],
+  desencarnado: [
+    'Hablar internamente con el ser, reconocer su presencia con compasión.',
+    'Invocar guías y ángeles del ser desencarnado para conducirlo a su plano.',
+    'Solicitar al Logos Planetario que se encargue de su evolución.',
+    'Aplicar Llama Violeta para liberar el anclaje emocional.',
+    'Rezar o enviar luz por el alma del ser desencarnado durante 3 días.'
+  ],
+  entidad: [
+    'Protección máxima del operador antes de iniciar: escudo en todos los cuerpos sutiles.',
+    'Invocar al Cristo Cósmico y Hermanos Mayores como autoridad superior.',
+    'Ordenar a la entidad que cese toda actividad y se entregue a la Luz.',
+    'Corte de cuerdas con Arcángel Miguel en todos los puntos de anclaje.',
+    'Reclamación de fragmentos de alma robados.',
+    'Revisión de la puerta de entrada y cierre de la vulnerabilidad.',
+    'Seguimiento a los 7, 14 y 21 días con nueva medición Bovis.'
+  ],
+  'arconte-menor': [
+    '⚠ No intervenir sin protección de Jerarquía de Luz completamente establecida.',
+    'Invocar al Logos Planetario, Hermanos Mayores y Cristo Cósmico.',
+    'Establecer campo de Luz Dorada de 12 capas alrededor del operador y consultante.',
+    'Usar decreto específico de desanclaje arcóntico bajo autoridad cósmica.',
+    'Corte de cuerdas, implantes etéricos y contratos kármicos en todos los planos.',
+    'Sellado con Llama Violeta extendida y Rayo Crístico.',
+    'Asignar custodios de luz permanentes al espacio o persona.',
+    'Sesiones de consolidación a los 21 días y 3 meses.'
+  ],
+  'arconte-mayor': [
+    '🔴 NIVEL EXTREMO: Requiere operador de vibración muy elevada y respaldo de Jerarquía.',
+    'Invocar al Consejo de los Doce, Logos Solar y Hermanos Mayores de mayor rango.',
+    'No actuar en solitario. Trabajo grupal de operadores de alta vibración.',
+    'Rituales de protección previos de mínimo 3 días antes de la intervención.',
+    'Decreto colectivo bajo autoridad del Padre-Madre Creador.',
+    'Trabajo continuo de 40 días para asegurar extracción completa.',
+    'Monitoreo Bovis semanal durante 3 meses posteriores.'
+  ]
+};
+
+// ---- Generar Diagnóstico ----
+function generarDiagnostico() {
+  const tiempoIdx = parseInt(document.getElementById('tiempo-presencia').value) - 1;
+  const tiempoTexto = tiempoLabels[tiempoIdx];
+  const bovisActual = document.getElementById('bovis-actual').value;
+  const brevisSer = document.getElementById('bovis-ser').value;
+
+  // Llenar resultado
+  document.getElementById('res-tipo').textContent = selecciones.v1 ? TIPOS[selecciones.v1] : 'No especificado';
+  document.getElementById('res-peligro').textContent = selecciones.v2 ? PELIGROS[selecciones.v2] : 'No especificado';
+  document.getElementById('res-anclaje').textContent = selecciones.v3 ? ANCLAJES[selecciones.v3] : 'No especificado';
+  document.getElementById('res-tiempo').textContent = tiempoTexto;
+  document.getElementById('res-puerta').textContent = selecciones.v4.length > 0
+    ? selecciones.v4.map(v => PUERTAS[v]).join(' · ')
+    : 'No especificado';
+  document.getElementById('res-bovis').textContent = brevisSer ? brevisSer + ' Bovis' : 'No medido';
+
+  // Badge
+  const nivel = selecciones.v1 || 'residuo';
+  const badges = {
+    residuo: { txt: 'D1', color: '#2e8b57' },
+    larva: { txt: 'D2', color: '#3a6f8a' },
+    elemental: { txt: 'D3', color: '#5a6a3a' },
+    egregor: { txt: 'D4', color: '#8a7a2a' },
+    desencarnado: { txt: 'D5', color: '#c9a84c' },
+    entidad: { txt: 'D6', color: '#d4622a' },
+    'arconte-menor': { txt: 'D7', color: '#c0392b' },
+    'arconte-mayor': { txt: 'D9', color: '#7b1010' }
+  };
+  const b = badges[nivel] || { txt: '?', color: '#666' };
+  const badge = document.getElementById('badge-nivel');
+  badge.textContent = b.txt;
+  badge.style.color = b.color;
+  badge.style.borderColor = b.color;
+
+  document.getElementById('res-titulo').textContent = selecciones.v1 ? TIPOS[selecciones.v1] : 'Diagnóstico Energético';
+  document.getElementById('res-subtitulo').textContent =
+    `Sesión: ${document.getElementById('fecha').value} · ${document.getElementById('referencia').value || 'Sin referencia'}`;
+
+  // Protocolo
+  const pasos = PROTOCOLOS[nivel] || PROTOCOLOS['residuo'];
+  const pasosHTML = pasos.map((p, i) => `
+    <div class="paso-protocolo">
+      <span class="paso-num">0${i+1}</span>
+      <span class="paso-texto">${p}</span>
+    </div>
+  `).join('');
+  document.getElementById('protocolo-pasos').innerHTML = pasosHTML;
+
+  // Advertencia para niveles altos
+  const adv = document.getElementById('advertencia-res');
+  if (['arconte-menor', 'arconte-mayor', 'entidad'].includes(nivel)) {
+    adv.style.display = 'block';
+    adv.textContent = nivel === 'arconte-mayor'
+      ? 'Nivel de máxima densidad detectado. No intervenir sin respaldo de Jerarquía de Luz y protocolos de triple sellado previos. Considerar trabajo grupal.'
+      : 'Este nivel requiere que el operador tenga su vibración Bovis personal por encima de 25.000 y protección activa antes de iniciar la extracción.';
+  } else {
+    adv.style.display = 'none';
+  }
+
+  document.getElementById('resultado').style.display = 'block';
+  document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ---- Guardar historial ----
+function guardarEnHistorial() {
+  const entry = {
+    fecha: document.getElementById('fecha').value,
+    ref: document.getElementById('referencia').value || 'S/R',
+    tipo: selecciones.v1 ? TIPOS[selecciones.v1] : '—',
+    peligro: selecciones.v2 || '—',
+    anclaje: selecciones.v3 || '—',
+    bovis: document.getElementById('bovis-ser').value || '—',
+    notas: document.getElementById('notas').value
+  };
+  historial.unshift(entry);
+  localStorage.setItem('radiestesia_historial', JSON.stringify(historial));
+  renderHistorial();
+}
+
+function renderHistorial() {
+  const lista = document.getElementById('historial-lista');
+  if (historial.length === 0) {
+    lista.innerHTML = '<li class="hist-vacío">No hay sesiones guardadas aún.</li>';
+    return;
+  }
+  lista.innerHTML = historial.slice(0, 10).map(e => `
+    <li class="historial-item">
+      <span class="hist-fecha">${e.fecha}</span>
+      <span class="hist-tipo">${e.ref} · ${e.tipo}</span>
+      <span class="hist-nivel" style="background:rgba(123,94,167,0.15); color:var(--violeta-c);">${e.peligro}</span>
+    </li>
+  `).join('');
+}
+renderHistorial();
+
+// ---- Limpiar ----
+function limpiarFormulario() {
+  selecciones = { v1: null, v2: null, v3: null, v4: [] };
+  document.querySelectorAll('.opcion-btn').forEach(b => b.classList.remove('activo'));
+  document.getElementById('tiempo-presencia').value = 1;
+  document.getElementById('tiempo-texto').textContent = 'Horas';
+  document.getElementById('bovis-actual').value = '';
+  document.getElementById('bovis-ser').value = '';
+  document.getElementById('obs-bovis').value = '';
+  document.getElementById('notas').value = '';
+  document.getElementById('referencia').value = '';
+  document.getElementById('tipo-consulta').value = '';
+  document.getElementById('resultado').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ---- Imprimir ----
+function imprimirTabla() {
+  const tiempoIdx = parseInt(document.getElementById('tiempo-presencia').value) - 1;
+  const contenido = `
+    <table border="1" cellpadding="8" style="width:100%; border-collapse:collapse; font-family:serif;">
+      <tr><th colspan="2" style="background:#eee; font-size:1.1rem;">SESIÓN RADIESTÉSICA — EL SER UNO</th></tr>
+      <tr><td><strong>Fecha</strong></td><td>${document.getElementById('fecha').value}</td></tr>
+      <tr><td><strong>Consulta</strong></td><td>${document.getElementById('tipo-consulta').value || '—'}</td></tr>
+      <tr><td><strong>Referencia</strong></td><td>${document.getElementById('referencia').value || '—'}</td></tr>
+      <tr><td><strong>Tipo de ser</strong></td><td>${selecciones.v1 ? TIPOS[selecciones.v1] : '—'}</td></tr>
+      <tr><td><strong>Peligrosidad</strong></td><td>${selecciones.v2 ? PELIGROS[selecciones.v2] : '—'}</td></tr>
+      <tr><td><strong>Anclaje</strong></td><td>${selecciones.v3 ? ANCLAJES[selecciones.v3] : '—'}</td></tr>
+      <tr><td><strong>Tiempo de presencia</strong></td><td>${tiempoLabels[tiempoIdx]}</td></tr>
+      <tr><td><strong>Puerta de entrada</strong></td><td>${selecciones.v4.map(v => PUERTAS[v]).join(', ') || '—'}</td></tr>
+      <tr><td><strong>Bovis espacio/persona</strong></td><td>${document.getElementById('bovis-actual').value || '—'}</td></tr>
+      <tr><td><strong>Bovis del ser</strong></td><td>${document.getElementById('bovis-ser').value || '—'}</td></tr>
+      <tr><td><strong>Observaciones Bovis</strong></td><td>${document.getElementById('obs-bovis').value || '—'}</td></tr>
+      <tr><td><strong>Notas del operador</strong></td><td>${document.getElementById('notas').value || '—'}</td></tr>
+    </table>
+    ${selecciones.v1 ? `
+    <br>
+    <h3 style="font-family:serif;">Protocolo de Extracción</h3>
+    <ol style="font-family:serif; line-height:1.8;">
+      ${(PROTOCOLOS[selecciones.v1] || []).map(p => `<li>${p}</li>`).join('')}
+    </ol>` : ''}
+    <br>
+    <p style="font-size:0.8rem; color:#666; font-style:italic;">
+      Esta tabla es un instrumento de trabajo basado en los principios de El Ser Uno. 
+      Elaborado como apoyo radiestésico para uso del operador calificado.
+    </p>
+  `;
+  document.getElementById('contenido-impresion').innerHTML = contenido;
+  window.print();
+}
+</script>
+</body>
+</html>
