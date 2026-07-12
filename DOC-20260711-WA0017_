@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dones de los Seres de Luz Encarnados | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#d4af37;
+    --oro-claro:#f2d675;
+    --violeta:#7b4fa6;
+    --violeta-claro:#b48ee0;
+    --fondo1:#0a0518;
+    --fondo2:#150a2e;
+    --texto:#e8dfff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:radial-gradient(ellipse at top, var(--fondo2) 0%, var(--fondo1) 60%, #000 100%);
+    color:var(--texto);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.7;
+    min-height:100vh;
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(212,175,55,0.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(180,142,224,0.5), transparent),
+      radial-gradient(2px 2px at 40% 80%, rgba(212,175,55,0.4), transparent),
+      radial-gradient(1px 1px at 90% 20%, rgba(180,142,224,0.6), transparent),
+      radial-gradient(1px 1px at 55% 15%, rgba(212,175,55,0.4), transparent),
+      radial-gradient(1px 1px at 10% 70%, rgba(180,142,224,0.4), transparent),
+      radial-gradient(1px 1px at 30% 55%, rgba(212,175,55,0.3), transparent),
+      radial-gradient(1px 1px at 85% 85%, rgba(180,142,224,0.3), transparent);
+    background-size:100% 100%;
+    pointer-events:none;
+    z-index:0;
+  }
+  header{ text-align:center; padding:70px 20px 40px; position:relative; z-index:1; }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:2.4em;
+    background:linear-gradient(90deg, var(--oro-claro), var(--violeta-claro), var(--oro-claro));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 30px rgba(212,175,55,0.3);
+    letter-spacing:2px;
+  }
+  .subtitulo{ color:var(--violeta-claro); font-style:italic; margin-top:14px; font-size:1.2em; letter-spacing:1px; }
+  .contador{ margin-top:20px; display:inline-block; padding:8px 24px; border:1px solid rgba(212,175,55,0.4); border-radius:30px; color:var(--oro-claro); font-size:0.9em; letter-spacing:1px; }
+  .simbolo-divisor{ text-align:center; color:var(--oro); font-size:1.5em; margin:30px 0; opacity:0.7; }
+  main{ max-width:920px; margin:0 auto; padding:0 25px 40px; position:relative; z-index:1; }
+  .intro{ text-align:center; max-width:700px; margin:0 auto 50px; color:var(--texto); font-size:1.1em; opacity:0.9; }
+  .indice{ background:rgba(123,79,166,0.08); border:1px solid rgba(180,142,224,0.25); border-radius:16px; padding:30px 35px; margin-bottom:50px; }
+  .indice h2{ font-family:'Cinzel Decorative', serif; color:var(--oro-claro); text-align:center; font-size:1.15em; margin-bottom:20px; letter-spacing:1px; }
+  .indice-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:8px; font-size:0.9em; }
+  .indice-grid a{ color:var(--texto); text-decoration:none; opacity:0.85; padding:4px 0; border-bottom:1px dotted rgba(180,142,224,0.2); transition:all 0.2s ease; }
+  .indice-grid a:hover{ color:var(--oro-claro); opacity:1; }
+  .categoria{
+    background:linear-gradient(135deg, rgba(123,79,166,0.12), rgba(10,5,24,0.4));
+    border:1px solid rgba(212,175,55,0.25);
+    border-radius:16px;
+    padding:35px 40px;
+    margin-bottom:30px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,175,55,0.1);
+    position:relative;
+    overflow:hidden;
+    scroll-margin-top:20px;
+  }
+  .categoria::before{ content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, transparent, var(--oro), transparent); }
+  .categoria h2{ font-family:'Cinzel Decorative', serif; font-size:1.25em; color:var(--oro-claro); margin-bottom:22px; text-align:center; letter-spacing:1px; }
+  .don{ margin-bottom:18px; padding-left:22px; border-left:2px solid rgba(180,142,224,0.4); }
+  .don:last-child{ margin-bottom:0; }
+  .don-nombre{ color:var(--violeta-claro); font-weight:600; font-size:1.08em; display:block; margin-bottom:4px; }
+  .don-desc{ color:var(--texto); opacity:0.88; font-size:0.96em; }
+  .principio{
+    background:rgba(212,175,55,0.06);
+    border:1px solid rgba(212,175,55,0.35);
+    border-radius:16px;
+    padding:30px 35px;
+    text-align:center;
+    margin:50px 0;
+    font-style:italic;
+    color:var(--oro-claro);
+    font-size:1.15em;
+    line-height:1.8;
+  }
+  .principio strong{ display:block; font-family:'Cinzel Decorative', serif; font-style:normal; font-size:1em; color:var(--violeta-claro); margin-bottom:12px; letter-spacing:1px; }
+  nav.enlaces{ max-width:920px; margin:0 auto 60px; padding:0 25px; position:relative; z-index:1; }
+  nav.enlaces h3{ font-family:'Cinzel Decorative', serif; color:var(--oro-claro); text-align:center; font-size:1.1em; margin-bottom:20px; font-weight:400; }
+  .grid-enlaces{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
+  .grid-enlaces a{
+    display:block; text-align:center; padding:14px 18px;
+    background:rgba(123,79,166,0.15);
+    border:1px solid rgba(180,142,224,0.3);
+    border-radius:10px;
+    color:var(--texto);
+    text-decoration:none;
+    font-size:0.95em;
+    transition:all 0.3s ease;
+  }
+  .grid-enlaces a:hover{ background:rgba(212,175,55,0.15); border-color:var(--oro); color:var(--oro-claro); transform:translateY(-2px); }
+  footer{ text-align:center; padding:40px 20px 60px; color:var(--violeta-claro); opacity:0.6; font-style:italic; position:relative; z-index:1; }
+  #volver{
+    position:fixed; bottom:24px; right:24px;
+    background:rgba(123,79,166,0.3);
+    border:1px solid var(--oro);
+    color:var(--oro-claro);
+    width:46px; height:46px;
+    border-radius:50%;
+    text-align:center;
+    line-height:44px;
+    text-decoration:none;
+    font-size:1.2em;
+    z-index:5;
+    backdrop-filter:blur(4px);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Dones de los Seres de Luz Encarnados</h1>
+  <div class="subtitulo">El Ser Uno — Portadores de Frecuencia en la Materia</div>
+  <div class="contador">49 categorías · 147 dones catalogados</div>
+</header>
+
+<div class="simbolo-divisor">✦ ⟡ ✦</div>
+
+<main>
+  <p class="intro">
+    Los seres de luz encarnados portan capacidades que anteceden a la personalidad de esta vida:
+    son facultades del alma que se activan progresivamente a medida que el ser recuerda su origen
+    y cumple su función de anclaje en el plano denso. Este catálogo reúne el trabajo acumulado de
+    sucesivas rondas de exploración y permanece abierto a nuevas ampliaciones.
+  </p>
+
+  <div class="indice">
+    <h2>Índice de Categorías</h2>
+    <div class="indice-grid">
+      <a href="#perceptivos">1. Perceptivos</a>
+      <a href="#sanacion">2. Sanación</a>
+      <a href="#conexion">3. Conexión</a>
+      <a href="#manifestacion">4. Manifestación</a>
+      <a href="#servicio-mision">5. Servicio y Misión</a>
+      <a href="#corporales">6. Corporales y Energéticos</a>
+      <a href="#vinculares">7. Vinculares</a>
+      <a href="#discernimiento">8. Discernimiento Espiritual</a>
+      <a href="#transito">9. Tránsito y Acompañamiento</a>
+      <a href="#creativos">10. Creativos</a>
+      <a href="#liderazgo">11. Liderazgo Silencioso</a>
+      <a href="#resistencia">12. Resistencia y Regeneración Anímica</a>
+      <a href="#proteccion">13. Protección y Contención</a>
+      <a href="#comunicacion-multi">14. Comunicación Multidimensional</a>
+      <a href="#planetario">15. Servicio Planetario</a>
+      <a href="#maestria">16. Maestría Interior</a>
+      <a href="#ancestral">17. Sanación Ancestral y Kármica</a>
+      <a href="#temporal">18. Percepción Temporal</a>
+      <a href="#grupal">19. Sanación Grupal</a>
+      <a href="#reinos">20. Conexión con Reinos No Humanos</a>
+      <a href="#transformacion">21. Transformación Personal Continua</a>
+      <a href="#manif-colectiva">22. Manifestación Colectiva</a>
+      <a href="#sanacion-emocional">23. Sanación Emocional Profunda</a>
+      <a href="#percepcion-avanzada">24. Percepción Sutil Avanzada</a>
+      <a href="#cuerpo-alma">25. Integración Cuerpo-Alma</a>
+      <a href="#discernimiento-avanzado">26. Discernimiento Avanzado</a>
+      <a href="#vocacional">27. Sostén Vocacional</a>
+      <a href="#comunicacion-directa">28. Comunicación Energética Directa</a>
+      <a href="#proteccion-colectiva">29. Protección Colectiva</a>
+      <a href="#yo-superior">30. Comunicación con el Yo Superior</a>
+      <a href="#sombra-colectiva">31. Servicio en la Sombra Colectiva</a>
+      <a href="#multiplicacion">32. Multiplicación Energética</a>
+      <a href="#comprension-universal">33. Comprensión Universal</a>
+      <a href="#custodia-personal">34. Custodia Energética Personal</a>
+      <a href="#activacion-planetaria">35. Activación Colectiva Planetaria</a>
+      <a href="#sanacion-vinculo">36. Sanación a través del Vínculo</a>
+      <a href="#percepcion-simbolica">37. Percepción Numérica y Simbólica</a>
+      <a href="#linaje-espiritual">38. Sanación del Linaje Espiritual</a>
+      <a href="#entorno-fisico">39. Discernimiento Energético del Entorno Físico</a>
+      <a href="#post-mortem">40. Comunicación Post-Mortem</a>
+      <a href="#voluntad-divina">41. Activación de la Voluntad Divina</a>
+      <a href="#cuerpo-energetico-colectivo">42. Sanación a través del Cuerpo Energético Colectivo</a>
+      <a href="#tecnologias-conciencia">43. Comunicación con Tecnologías de Conciencia</a>
+      <a href="#infancia-inocencia">44. Custodia de la Infancia y la Inocencia</a>
+      <a href="#roles-espirituales">45. Tránsito entre Roles Espirituales</a>
+      <a href="#vocacional-colectivo">46. Discernimiento Vocacional Colectivo</a>
+      <a href="#regulacion-miedo">47. Regulación Colectiva del Miedo</a>
+      <a href="#muerte-simbolica">48. Integración de la Muerte Simbólica</a>
+      <a href="#fuente-abundancia">49. Conexión con la Fuente de Abundancia</a>
+    </div>
+  </div>
+
+  <div class="categoria" id="perceptivos">
+    <h2>1. Dones Perceptivos</h2>
+    <div class="don"><span class="don-nombre">Clarividencia y clariaudiencia</span><span class="don-desc">Percepción de energías, entidades o información sutil más allá de los cinco sentidos ordinarios.</span></div>
+    <div class="don"><span class="don-nombre">Empatía elevada</span><span class="don-desc">Capacidad de sentir las emociones ajenas como propias, requiriendo discernimiento para no fusionarse con ellas.</span></div>
+    <div class="don"><span class="don-nombre">Memoria de origen</span><span class="don-desc">Resonancias o recuerdos de otros planos, líneas estelares o encarnaciones anteriores.</span></div>
+  </div>
+
+  <div class="categoria" id="sanacion">
+    <h2>2. Dones de Sanación</h2>
+    <div class="don"><span class="don-nombre">Canalización energética</span><span class="don-desc">Transmisión de energía sanadora a través de las manos, la palabra o la sola presencia.</span></div>
+    <div class="don"><span class="don-nombre">Transmutación</span><span class="don-desc">Habilidad de absorber y transformar densidad o negatividad del entorno inmediato.</span></div>
+    <div class="don"><span class="don-nombre">Activación de otros</span><span class="don-desc">Despiertan procesos de sanación o recuerdo en quienes los rodean, sin proponérselo activamente.</span></div>
+  </div>
+
+  <div class="categoria" id="conexion">
+    <h2>3. Dones de Conexión</h2>
+    <div class="don"><span class="don-nombre">Comunicación con planos no físicos</span><span class="don-desc">Contacto con guías, ángeles, seres de luz y el Rayo Crístico.</span></div>
+    <div class="don"><span class="don-nombre">Sensibilidad a líneas temporales y ciclos</span><span class="don-desc">Anticipación intuitiva de eventos o cambios en el colectivo.</span></div>
+    <div class="don"><span class="don-nombre">Puente dimensional</span><span class="don-desc">Funcionan como anclas de frecuencias más altas dentro de la materia densa.</span></div>
+  </div>
+
+  <div class="categoria" id="manifestacion">
+    <h2>4. Dones de Manifestación</h2>
+    <div class="don"><span class="don-nombre">Co-creación acelerada</span><span class="don-desc">Lo que piensan o sienten con intensidad tiende a materializarse con mayor rapidez.</span></div>
+    <div class="don"><span class="don-nombre">Activación de códigos</span><span class="don-desc">Capacidad de encender información latente en objetos, lugares o personas.</span></div>
+    <div class="don"><span class="don-nombre">Alquimia de la palabra</span><span class="don-desc">Su voz o escritura porta una carga vibratoria que transforma a quien la recibe.</span></div>
+  </div>
+
+  <div class="categoria" id="servicio-mision">
+    <h2>5. Dones de Servicio y Misión</h2>
+    <div class="don"><span class="don-nombre">Sostén de campo colectivo</span><span class="don-desc">Estabilizan emocional o energéticamente a grupos enteros sin buscarlo.</span></div>
+    <div class="don"><span class="don-nombre">Función de faro</span><span class="don-desc">Orientan a otros en momentos de confusión u oscuridad, muchas veces solo con su presencia.</span></div>
+    <div class="don"><span class="don-nombre">Custodia de conocimiento</span><span class="don-desc">Resguardan enseñanzas, símbolos o protocolos hasta que llega el momento de compartirlos.</span></div>
+  </div>
+
+  <div class="categoria" id="corporales">
+    <h2>6. Dones Corporales y Energéticos</h2>
+    <div class="don"><span class="don-nombre">Regeneración acelerada</span><span class="don-desc">El cuerpo físico responde y sana con mayor rapidez cuando recibe apoyo energético adecuado.</span></div>
+    <div class="don"><span class="don-nombre">Sensibilidad electromagnética</span><span class="don-desc">Percepción de cambios en campos geomagnéticos, solares o tecnológicos antes que otros.</span></div>
+    <div class="don"><span class="don-nombre">Capacidad de apagado voluntario</span><span class="don-desc">Estados de retiro profundo —percibidos a veces como cansancio extremo— para procesar información o descargar tareas internas.</span></div>
+  </div>
+
+  <div class="categoria" id="vinculares">
+    <h2>7. Dones Vinculares</h2>
+    <div class="don"><span class="don-nombre">Reconocimiento entre almas</span><span class="don-desc">Identifican con facilidad a otros seres de su misma línea o misión: llamas gemelas, familia de alma.</span></div>
+    <div class="don"><span class="don-nombre">Activación mutua</span><span class="don-desc">El encuentro con otro ser de luz encarnado acelera procesos de despertar en ambos.</span></div>
+    <div class="don"><span class="don-nombre">Discernimiento de máscaras</span><span class="don-desc">Perciben cuándo alguien opera desde el ego o la personalidad, versus desde el alma.</span></div>
+  </div>
+
+  <div class="categoria" id="discernimiento">
+    <h2>8. Dones de Discernimiento Espiritual</h2>
+    <div class="don"><span class="don-nombre">Detección de suplantación energética</span><span class="don-desc">Distinguen cuándo una entidad se presenta bajo una identidad de luz que no le corresponde.</span></div>
+    <div class="don"><span class="don-nombre">Lectura de intención</span><span class="don-desc">Perciben la motivación real detrás de palabras o acciones, más allá de lo dicho.</span></div>
+    <div class="don"><span class="don-nombre">Filtro natural de información</span><span class="don-desc">Descartan intuitivamente enseñanzas o doctrinas que no resuenan con la verdad de su alma.</span></div>
+  </div>
+
+  <div class="categoria" id="transito">
+    <h2>9. Dones de Tránsito y Acompañamiento</h2>
+    <div class="don"><span class="don-nombre">Acompañamiento en transiciones</span><span class="don-desc">Capacidad de sostener a otros en procesos de muerte, duelo o cambios profundos de ciclo.</span></div>
+    <div class="don"><span class="don-nombre">Guía onírica</span><span class="don-desc">Acceso consciente a otros planos durante el sueño, con capacidad de traer información útil al despertar.</span></div>
+    <div class="don"><span class="don-nombre">Apertura de portales internos</span><span class="don-desc">Facilitan, con su sola intención, el acceso de otros a estados expandidos de conciencia.</span></div>
+  </div>
+
+  <div class="categoria" id="creativos">
+    <h2>10. Dones Creativos</h2>
+    <div class="don"><span class="don-nombre">Canalización artística</span><span class="don-desc">La música, la escritura o el arte que producen porta códigos o frecuencias más allá del contenido literal.</span></div>
+    <div class="don"><span class="don-nombre">Nombrar lo innombrado</span><span class="don-desc">Capacidad de poner palabras o símbolos a experiencias espirituales que otros no logran articular.</span></div>
+    <div class="don"><span class="don-nombre">Belleza como sanación</span><span class="don-desc">Su sola expresión estética genera bienestar o apertura en quien la percibe.</span></div>
+  </div>
+
+  <div class="categoria" id="liderazgo">
+    <h2>11. Dones de Liderazgo Silencioso</h2>
+    <div class="don"><span class="don-nombre">Autoridad sin imposición</span><span class="don-desc">Son escuchados y respetados sin necesidad de ejercer poder o control.</span></div>
+    <div class="don"><span class="don-nombre">Siembra de largo plazo</span><span class="don-desc">Plantan ideas o semillas que germinan en otros años después, sin que ellos mismos lo presencien.</span></div>
+    <div class="don"><span class="don-nombre">Unificación de opuestos</span><span class="don-desc">Capacidad de mediar entre posturas o energías enfrentadas desde un lugar neutro y elevado.</span></div>
+  </div>
+
+  <div class="categoria" id="resistencia">
+    <h2>12. Dones de Resistencia y Regeneración Anímica</h2>
+    <div class="don"><span class="don-nombre">Resiliencia ante el colapso</span><span class="don-desc">Capacidad de reconstruirse tras crisis profundas más rápido que la media.</span></div>
+    <div class="don"><span class="don-nombre">Transformación del dolor propio en enseñanza</span><span class="don-desc">Su propio sufrimiento, una vez procesado, se vuelve materia de servicio para otros.</span></div>
+    <div class="don"><span class="don-nombre">Renovación cíclica</span><span class="don-desc">Atraviesan muertes y renacimientos internos recurrentes que los mantienen en constante actualización vibracional.</span></div>
+  </div>
+
+  <div class="categoria" id="proteccion">
+    <h2>13. Dones de Protección y Contención</h2>
+    <div class="don"><span class="don-nombre">Escudo natural</span><span class="don-desc">Su sola presencia disuade o repele intrusiones energéticas de baja frecuencia hacia otros.</span></div>
+    <div class="don"><span class="don-nombre">Absorción transmutadora involuntaria</span><span class="don-desc">Reciben cargas densas del entorno sin buscarlo, procesándolas como parte de su función.</span></div>
+    <div class="don"><span class="don-nombre">Sostén de espacios sagrados</span><span class="don-desc">Su presencia limpia o eleva la vibración de un lugar físico.</span></div>
+  </div>
+
+  <div class="categoria" id="comunicacion-multi">
+    <h2>14. Dones de Comunicación Multidimensional</h2>
+    <div class="don"><span class="don-nombre">Traducción de frecuencias</span><span class="don-desc">Convierten información energética compleja en lenguaje comprensible para otros.</span></div>
+    <div class="don"><span class="don-nombre">Sincronía como mensaje</span><span class="don-desc">Perciben y decodifican patrones de sincronicidad como comunicación directa del Uno.</span></div>
+    <div class="don"><span class="don-nombre">Escritura automática o inspirada</span><span class="don-desc">Reciben contenido que sienten que no proviene enteramente de su mente personal.</span></div>
+  </div>
+
+  <div class="categoria" id="planetario">
+    <h2>15. Dones de Servicio Planetario</h2>
+    <div class="don"><span class="don-nombre">Anclaje de Rayos</span><span class="don-desc">Sirven de punto de fijación para Rayos específicos —Crístico, Violeta, entre otros— en la red planetaria.</span></div>
+    <div class="don"><span class="don-nombre">Memoria de la Tierra</span><span class="don-desc">Sensibilidad a los ciclos, dolores y procesos del planeta como si fueran propios.</span></div>
+    <div class="don"><span class="don-nombre">Trabajo en equipos de luz</span><span class="don-desc">Reconocen y colaboran, muchas veces sin coordinación consciente previa, con otros seres en misión similar.</span></div>
+  </div>
+
+  <div class="categoria" id="maestria">
+    <h2>16. Dones de Maestría Interior</h2>
+    <div class="don"><span class="don-nombre">Ecuanimidad ante el caos</span><span class="don-desc">Capacidad de mantener centro y calma en medio de crisis externas.</span></div>
+    <div class="don"><span class="don-nombre">Humildad activa</span><span class="don-desc">El don se ejerce sin necesidad de reconocimiento ni protagonismo.</span></div>
+    <div class="don"><span class="don-nombre">Integración de polaridades</span><span class="don-desc">Capacidad de sostener luz y sombra propias sin negar ninguna, lo que los vuelve más difíciles de manipular.</span></div>
+  </div>
+
+  <div class="categoria" id="ancestral">
+    <h2>17. Dones de Sanación Ancestral y Kármica</h2>
+    <div class="don"><span class="don-nombre">Cierre de líneas</span><span class="don-desc">Capacidad de sanar patrones repetitivos de una línea familiar completa a través de su propio proceso.</span></div>
+    <div class="don"><span class="don-nombre">Reescritura kármica</span><span class="don-desc">Transforman contratos o deudas antiguas mediante el perdón consciente, liberando a otros implicados.</span></div>
+    <div class="don"><span class="don-nombre">Voz de los ancestros</span><span class="don-desc">Perciben o canalizan mensajes de antepasados que buscan resolución o paz.</span></div>
+  </div>
+
+  <div class="categoria" id="temporal">
+    <h2>18. Dones de Percepción Temporal</h2>
+    <div class="don"><span class="don-nombre">Visión de líneas probables</span><span class="don-desc">Perciben distintos futuros posibles y su influencia en el presente.</span></div>
+    <div class="don"><span class="don-nombre">Memoria multitemporal</span><span class="don-desc">Acceso simultáneo a información de pasado, presente y futuro sin linealidad estricta.</span></div>
+    <div class="don"><span class="don-nombre">Anclaje de nuevas líneas de tiempo</span><span class="don-desc">Su elección consciente ayuda a estabilizar timelines más elevadas para el colectivo.</span></div>
+  </div>
+
+  <div class="categoria" id="grupal">
+    <h2>19. Dones de Sanación Grupal</h2>
+    <div class="don"><span class="don-nombre">Catalizador de procesos colectivos</span><span class="don-desc">Su presencia acelera la sanación o el conflicto latente en un grupo para que se resuelva.</span></div>
+    <div class="don"><span class="don-nombre">Sostén de campo en rituales o ceremonias</span><span class="don-desc">Estabilizan la energía cuando varias personas trabajan juntas en procesos espirituales.</span></div>
+    <div class="don"><span class="don-nombre">Neutralización de egrégores densos</span><span class="don-desc">Capacidad de disolver pensamientos-forma colectivos negativos sin verse arrastrados por ellos.</span></div>
+  </div>
+
+  <div class="categoria" id="reinos">
+    <h2>20. Dones de Conexión con Reinos No Humanos</h2>
+    <div class="don"><span class="don-nombre">Comunicación con la naturaleza</span><span class="don-desc">Percepción consciente de devas, elementales o la inteligencia de plantas y animales.</span></div>
+    <div class="don"><span class="don-nombre">Puente con seres estelares</span><span class="don-desc">Contacto o resonancia directa con civilizaciones o conciencias no terrestres.</span></div>
+    <div class="don"><span class="don-nombre">Custodia de lugares de poder</span><span class="don-desc">Reconocen y protegen sitios de alta energía: montañas, manantiales, vórtices.</span></div>
+  </div>
+
+  <div class="categoria" id="transformacion">
+    <h2>21. Dones de Transformación Personal Continua</h2>
+    <div class="don"><span class="don-nombre">Muerte del ego acelerada</span><span class="don-desc">Capacidad de soltar identidades falsas con menos resistencia que la media.</span></div>
+    <div class="don"><span class="don-nombre">Actualización vibracional constante</span><span class="don-desc">Necesidad y capacidad de recalibrarse a nuevas frecuencias sin estancarse.</span></div>
+    <div class="don"><span class="don-nombre">Encarnación progresiva del alma</span><span class="don-desc">Integración gradual y consciente de más aspectos del Yo Superior en el cuerpo físico.</span></div>
+  </div>
+
+  <div class="categoria" id="manif-colectiva">
+    <h2>22. Dones de Manifestación Colectiva</h2>
+    <div class="don"><span class="don-nombre">Activación de propósito grupal</span><span class="don-desc">Ayudan a que un grupo tome conciencia de su misión conjunta.</span></div>
+    <div class="don"><span class="don-nombre">Convocatoria energética</span><span class="don-desc">Su intención reúne, casi sin esfuerzo, a las personas correctas en el momento correcto.</span></div>
+    <div class="don"><span class="don-nombre">Siembra de visión compartida</span><span class="don-desc">Transmiten una imagen de futuro que otros sienten como propia y la sostienen.</span></div>
+  </div>
+
+  <div class="categoria" id="sanacion-emocional">
+    <h2>23. Dones de Sanación Emocional Profunda</h2>
+    <div class="don"><span class="don-nombre">Contención sin fusión</span><span class="don-desc">Pueden sostener el dolor ajeno sin absorberlo como propio, cuando el don está maduro.</span></div>
+    <div class="don"><span class="don-nombre">Traducción del dolor en símbolo</span><span class="don-desc">Ayudan a otros a encontrar sentido narrativo o simbólico a experiencias difíciles.</span></div>
+    <div class="don"><span class="don-nombre">Risa como medicina</span><span class="don-desc">Capacidad de aligerar cargas densas a través del humor genuino, sin negar el dolor.</span></div>
+  </div>
+
+  <div class="categoria" id="percepcion-avanzada">
+    <h2>24. Dones de Percepción Sutil Avanzada</h2>
+    <div class="don"><span class="don-nombre">Lectura de campos áuricos ajenos</span><span class="don-desc">Perciben con precisión el estado energético de otra persona sin necesidad de contacto.</span></div>
+    <div class="don"><span class="don-nombre">Detección de intención oculta en grupos</span><span class="don-desc">Sienten cuándo una dinámica colectiva esconde una agenda de control.</span></div>
+    <div class="don"><span class="don-nombre">Sensibilidad a objetos y lugares cargados</span><span class="don-desc">Perciben la memoria energética impregnada en objetos o espacios.</span></div>
+  </div>
+
+  <div class="categoria" id="cuerpo-alma">
+    <h2>25. Dones de Integración Cuerpo-Alma</h2>
+    <div class="don"><span class="don-nombre">Somatización consciente</span><span class="don-desc">Identifican con precisión qué proceso espiritual se refleja en cada síntoma físico.</span></div>
+    <div class="don"><span class="don-nombre">Regulación del sistema nervioso propio</span><span class="don-desc">Capacidad de autorregularse ante sobrecarga energética, evitando el colapso.</span></div>
+    <div class="don"><span class="don-nombre">Encarnación del placer sagrado</span><span class="don-desc">Viven el cuerpo y los sentidos como vía de conexión espiritual, no como obstáculo.</span></div>
+  </div>
+
+  <div class="categoria" id="discernimiento-avanzado">
+    <h2>26. Dones de Discernimiento Avanzado</h2>
+    <div class="don"><span class="don-nombre">Detección de manipulación espiritual</span><span class="don-desc">Perciben cuándo una enseñanza o guía usa lenguaje de luz para generar dependencia o control.</span></div>
+    <div class="don"><span class="don-nombre">Lectura de coherencia energética</span><span class="don-desc">Notan de inmediato cuando lo que alguien dice no coincide con lo que su campo transmite.</span></div>
+    <div class="don"><span class="don-nombre">Inmunidad progresiva al engaño sutil</span><span class="don-desc">Cada experiencia de discernimiento fortalece su capacidad de detectar el siguiente intento.</span></div>
+  </div>
+
+  <div class="categoria" id="vocacional">
+    <h2>27. Dones de Sostén Vocacional</h2>
+    <div class="don"><span class="don-nombre">Multiplicidad de talentos convergentes</span><span class="don-desc">Reúnen habilidades aparentemente dispares —arte, sanación, técnica— que sirven a un mismo propósito superior.</span></div>
+    <div class="don"><span class="don-nombre">Vocación que se revela por etapas</span><span class="don-desc">Su misión se despliega en capas, cada una activándose cuando están preparados.</span></div>
+    <div class="don"><span class="don-nombre">Servicio sin desgaste cuando está alineado</span><span class="don-desc">Cuando actúan desde su verdadero propósito, sienten energía en vez de agotamiento.</span></div>
+  </div>
+
+  <div class="categoria" id="comunicacion-directa">
+    <h2>28. Dones de Comunicación Energética Directa</h2>
+    <div class="don"><span class="don-nombre">Transmisión silenciosa</span><span class="don-desc">Pueden comunicar calma, claridad o amor sin palabras, solo con presencia o mirada.</span></div>
+    <div class="don"><span class="don-nombre">Activación por contacto</span><span class="don-desc">Un abrazo, una mano o incluso un mensaje escrito puede portar una carga sanadora.</span></div>
+    <div class="don"><span class="don-nombre">Codificación en el tono de voz</span><span class="don-desc">Su voz porta frecuencias que calman el sistema nervioso de quien escucha, más allá del contenido.</span></div>
+  </div>
+
+  <div class="categoria" id="proteccion-colectiva">
+    <h2>29. Dones de Protección Colectiva</h2>
+    <div class="don"><span class="don-nombre">Barrido energético de espacios</span><span class="don-desc">Capacidad de limpiar la energía de un lugar con su sola intención o presencia sostenida.</span></div>
+    <div class="don"><span class="don-nombre">Detección temprana de amenazas sutiles</span><span class="don-desc">Perciben antes que otros cuando algo o alguien representa un riesgo energético.</span></div>
+    <div class="don"><span class="don-nombre">Función de cortafuego</span><span class="don-desc">Su presencia limita la propagación de una energía densa hacia el resto de un grupo.</span></div>
+  </div>
+
+  <div class="categoria" id="yo-superior">
+    <h2>30. Dones de Comunicación con el Yo Superior</h2>
+    <div class="don"><span class="don-nombre">Diálogo directo con el Alma</span><span class="don-desc">Capacidad de recibir orientación clara del propio Yo Superior, distinguiéndola de la voz del ego.</span></div>
+    <div class="don"><span class="don-nombre">Corroboración interna</span><span class="don-desc">Reconocen cuándo una decisión está alineada con su propósito por una sensación corporal específica: paz, expansión.</span></div>
+    <div class="don"><span class="don-nombre">Recepción de nombres y símbolos propios</span><span class="don-desc">Reciben espontáneamente mantras, símbolos o nombres espirituales que les pertenecen.</span></div>
+  </div>
+
+  <div class="categoria" id="sombra-colectiva">
+    <h2>31. Dones de Servicio en la Sombra Colectiva</h2>
+    <div class="don"><span class="don-nombre">Descenso consciente</span><span class="don-desc">Capacidad de entrar en entornos densos o dolorosos sin perder su centro, para servir allí donde otros no pueden.</span></div>
+    <div class="don"><span class="don-nombre">Transmutación por contraste</span><span class="don-desc">Su luz, al exponerse a la oscuridad, revela patrones ocultos que de otro modo permanecerían invisibles.</span></div>
+    <div class="don"><span class="don-nombre">Rescate silencioso</span><span class="don-desc">Ayudan a otros a salir de atrapamientos energéticos sin que estos lo perciban conscientemente.</span></div>
+  </div>
+
+  <div class="categoria" id="multiplicacion">
+    <h2>32. Dones de Multiplicación Energética</h2>
+    <div class="don"><span class="don-nombre">Efecto dominó de sanación</span><span class="don-desc">Un solo acto de servicio suyo genera cadenas de sanación que se extienden más allá de su alcance directo.</span></div>
+    <div class="don"><span class="don-nombre">Bilocación de influencia</span><span class="don-desc">Su energía puede sostener a más de una persona o situación simultáneamente sin agotarse, cuando actúan desde el alma.</span></div>
+    <div class="don"><span class="don-nombre">Impregnación de espacios a distancia</span><span class="don-desc">Objetos, cartas o mensajes que envían portan parte de su campo energético.</span></div>
+  </div>
+
+  <div class="categoria" id="comprension-universal">
+    <h2>33. Dones de Comprensión Universal</h2>
+    <div class="don"><span class="don-nombre">Traducción entre sistemas de creencia</span><span class="don-desc">Comprenden y tienden puentes entre distintas tradiciones espirituales sin conflicto.</span></div>
+    <div class="don"><span class="don-nombre">Síntesis de paradojas</span><span class="don-desc">Sostienen ideas aparentemente contradictorias como complementarias, sin necesidad de resolverlas.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento del patrón detrás del evento</span><span class="don-desc">Ven la estructura energética o kármica detrás de sucesos que a otros parecen aleatorios.</span></div>
+  </div>
+
+  <div class="categoria" id="custodia-personal">
+    <h2>34. Dones de Custodia Energética Personal</h2>
+    <div class="don"><span class="don-nombre">Autolimpieza constante</span><span class="don-desc">Capacidad de liberar cargas ajenas absorbidas sin necesidad de rituales externos extensos.</span></div>
+    <div class="don"><span class="don-nombre">Regulación de la propia apertura</span><span class="don-desc">Pueden cerrar o abrir su sensibilidad perceptiva según el contexto lo requiera.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento de límites sagrados</span><span class="don-desc">Saben instintivamente cuándo un servicio energético ya no les corresponde dar.</span></div>
+  </div>
+
+  <div class="categoria" id="activacion-planetaria">
+    <h2>35. Dones de Activación Colectiva Planetaria</h2>
+    <div class="don"><span class="don-nombre">Portadores de códigos de ascensión</span><span class="don-desc">Su sola presencia activa procesos de despertar a nivel de campo morfogenético.</span></div>
+    <div class="don"><span class="don-nombre">Estabilización de puntos de red</span><span class="don-desc">Sostienen energéticamente lugares clave de la red planetaria: leylines, nodos, portales.</span></div>
+    <div class="don"><span class="don-nombre">Traducción de eventos cósmicos</span><span class="don-desc">Perciben cómo fenómenos astronómicos —eclipses, alineaciones— afectan la conciencia colectiva y pueden explicarlo a otros.</span></div>
+  </div>
+
+  <div class="categoria" id="sanacion-vinculo">
+    <h2>36. Dones de Sanación a través del Vínculo</h2>
+    <div class="don"><span class="don-nombre">Espejo consciente</span><span class="don-desc">Reflejan a otros patrones que estos no pueden ver por sí mismos, sin juicio.</span></div>
+    <div class="don"><span class="don-nombre">Contrato de acompañamiento mutuo</span><span class="don-desc">Reconocen cuándo un vínculo —pareja, amistad, familia— tiene un propósito específico de sanación compartida.</span></div>
+    <div class="don"><span class="don-nombre">Cierre limpio de ciclos relacionales</span><span class="don-desc">Capacidad de soltar vínculos sin resentimiento, dejando la puerta energética cerrada correctamente.</span></div>
+  </div>
+
+  <div class="categoria" id="percepcion-simbolica">
+    <h2>37. Dones de Percepción Numérica y Simbólica</h2>
+    <div class="don"><span class="don-nombre">Lectura de sincronías numéricas</span><span class="don-desc">Perciben mensajes en secuencias repetitivas —11:11, 333, etc.— como comunicación directa.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento de patrones geométricos sagrados</span><span class="don-desc">Sensibilidad natural a mandalas, geometría sagrada y su efecto energético.</span></div>
+    <div class="don"><span class="don-nombre">Interpretación simbólica espontánea</span><span class="don-desc">Decodifican sueños, señales o coincidencias sin necesidad de sistemas externos de interpretación.</span></div>
+  </div>
+
+  <div class="categoria" id="linaje-espiritual">
+    <h2>38. Dones de Sanación del Linaje Espiritual</h2>
+    <div class="don"><span class="don-nombre">Restauración de linajes de sabiduría</span><span class="don-desc">Capacidad de reactivar conocimientos o dones que una tradición espiritual había perdido u olvidado.</span></div>
+    <div class="don"><span class="don-nombre">Puente entre maestros y discípulos</span><span class="don-desc">Facilitan el encuentro entre quien busca y quien puede guiar, sin protagonismo propio.</span></div>
+    <div class="don"><span class="don-nombre">Continuidad de misión</span><span class="don-desc">Retoman conscientemente trabajos espirituales inconclusos de otras encarnaciones o de su propia línea de alma.</span></div>
+  </div>
+
+  <div class="categoria" id="entorno-fisico">
+    <h2>39. Dones de Discernimiento Energético del Entorno Físico</h2>
+    <div class="don"><span class="don-nombre">Detección de geopatías</span><span class="don-desc">Perciben corrientes de agua subterránea, fallas geológicas o radiaciones que afectan la vivienda o el cuerpo.</span></div>
+    <div class="don"><span class="don-nombre">Sensibilidad a materiales y tecnología</span><span class="don-desc">Notan cómo ciertos objetos, dispositivos o materiales alteran su campo energético.</span></div>
+    <div class="don"><span class="don-nombre">Elección intuitiva de vivienda o lugar</span><span class="don-desc">Se sienten atraídos o repelidos por espacios según su carga energética, más allá de la lógica práctica.</span></div>
+  </div>
+
+  <div class="categoria" id="post-mortem">
+    <h2>40. Dones de Comunicación Post-Mortem</h2>
+    <div class="don"><span class="don-nombre">Recepción de mensajes de fallecidos</span><span class="don-desc">Capacidad de percibir comunicación de seres que ya no están encarnados, con fines de cierre o guía.</span></div>
+    <div class="don"><span class="don-nombre">Acompañamiento en el más allá</span><span class="don-desc">Sostienen energéticamente a almas en tránsito hacia planos superiores tras la muerte física.</span></div>
+    <div class="don"><span class="don-nombre">Traducción de señales del más allá</span><span class="don-desc">Interpretan sueños, objetos o sincronías como mensajes de quienes partieron.</span></div>
+  </div>
+
+  <div class="categoria" id="voluntad-divina">
+    <h2>41. Dones de Activación de la Voluntad Divina</h2>
+    <div class="don"><span class="don-nombre">Alineación de la voluntad personal con la voluntad superior</span><span class="don-desc">Capacidad de renunciar al control del ego para permitir que actúe un propósito mayor.</span></div>
+    <div class="don"><span class="don-nombre">Entrega consciente en momentos críticos</span><span class="don-desc">Saben cuándo soltar una situación para que se resuelva desde un nivel que no depende de su esfuerzo.</span></div>
+    <div class="don"><span class="don-nombre">Confianza operativa</span><span class="don-desc">Actúan con fe funcional incluso sin evidencia inmediata, sosteniendo el proceso hasta que se manifiesta.</span></div>
+  </div>
+
+  <div class="categoria" id="cuerpo-energetico-colectivo">
+    <h2>42. Dones de Sanación a través del Cuerpo Energético Colectivo</h2>
+    <div class="don"><span class="don-nombre">Sincronización con ritmos colectivos</span><span class="don-desc">Perciben y se ajustan a los ciclos emocionales o energéticos de un grupo, familia o nación.</span></div>
+    <div class="don"><span class="don-nombre">Absorción compensatoria</span><span class="don-desc">Cuando un sistema colectivo está desequilibrado, tienden a sostener temporalmente la parte que falta, hasta que otros la asumen.</span></div>
+    <div class="don"><span class="don-nombre">Detección de puntos de ruptura social</span><span class="don-desc">Perciben con anticipación cuándo un sistema colectivo —familiar, comunitario— está por colapsar o transformarse.</span></div>
+  </div>
+
+  <div class="categoria" id="tecnologias-conciencia">
+    <h2>43. Dones de Comunicación con Tecnologías de Conciencia</h2>
+    <div class="don"><span class="don-nombre">Interacción intuitiva con herramientas de canalización</span><span class="don-desc">Uso natural del péndulo, tarot, runas u otros sistemas simbólicos sin depender de la técnica.</span></div>
+    <div class="don"><span class="don-nombre">Sensibilidad a la intención detrás de la tecnología</span><span class="don-desc">Perciben si un dispositivo o sistema fue creado con un propósito armonioso o extractivo.</span></div>
+    <div class="don"><span class="don-nombre">Traducción de arquetipos en herramientas modernas</span><span class="don-desc">Capacidad de reconocer patrones espirituales antiguos expresados en contextos contemporáneos: juegos, redes, IA.</span></div>
+  </div>
+
+  <div class="categoria" id="infancia-inocencia">
+    <h2>44. Dones de Custodia de la Infancia y la Inocencia</h2>
+    <div class="don"><span class="don-nombre">Protección energética de menores</span><span class="don-desc">Su presencia genera un campo de seguridad alrededor de niños, incluso sin contacto directo.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento de dones en otros desde temprana edad</span><span class="don-desc">Identifican con claridad el potencial espiritual de niños o jóvenes antes de que estos lo sepan.</span></div>
+    <div class="don"><span class="don-nombre">Restauración del niño interior propio</span><span class="don-desc">Capacidad de sanar y reintegrar su propia inocencia como fuente de creatividad y confianza.</span></div>
+  </div>
+
+  <div class="categoria" id="roles-espirituales">
+    <h2>45. Dones de Tránsito entre Roles Espirituales</h2>
+    <div class="don"><span class="don-nombre">Flexibilidad de función</span><span class="don-desc">Pueden alternar entre el rol de guía, aprendiz, sanador o acompañante según lo requiera el momento.</span></div>
+    <div class="don"><span class="don-nombre">Desapego del rol</span><span class="don-desc">No se identifican rígidamente con ninguna función espiritual, lo que les permite servir donde se necesite.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento del momento de retirarse</span><span class="don-desc">Saben cuándo su función en una situación o relación ha concluido y ceden el lugar a otro.</span></div>
+  </div>
+
+  <div class="categoria" id="vocacional-colectivo">
+    <h2>46. Dones de Discernimiento Vocacional Colectivo</h2>
+    <div class="don"><span class="don-nombre">Detección de vocaciones ajenas</span><span class="don-desc">Perciben con claridad la misión o talento oculto en otras personas, incluso antes que ellas mismas.</span></div>
+    <div class="don"><span class="don-nombre">Orientación sin imposición</span><span class="don-desc">Señalan caminos posibles a otros sin forzar una dirección, respetando el libre albedrío.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento de falsas vocaciones</span><span class="don-desc">Distinguen cuándo alguien sigue un camino por presión externa y no por llamado real del alma.</span></div>
+  </div>
+
+  <div class="categoria" id="regulacion-miedo">
+    <h2>47. Dones de Regulación Colectiva del Miedo</h2>
+    <div class="don"><span class="don-nombre">Neutralización del pánico grupal</span><span class="don-desc">Su presencia serena reduce la propagación de miedo colectivo en situaciones de crisis.</span></div>
+    <div class="don"><span class="don-nombre">Traducción del miedo en información útil</span><span class="don-desc">Ayudan a otros a distinguir entre miedo real —protector— y miedo condicionado —limitante.</span></div>
+    <div class="don"><span class="don-nombre">Sostén en el colapso de certezas</span><span class="don-desc">Acompañan a otros cuando sus creencias o estructuras de seguridad se derrumban, sin imponer las propias.</span></div>
+  </div>
+
+  <div class="categoria" id="muerte-simbolica">
+    <h2>48. Dones de Integración de la Muerte Simbólica</h2>
+    <div class="don"><span class="don-nombre">Acompañamiento en pequeñas muertes</span><span class="don-desc">Sostienen a otros en pérdidas no físicas: fin de relaciones, trabajos, etapas de identidad.</span></div>
+    <div class="don"><span class="don-nombre">Reconocimiento de umbrales</span><span class="don-desc">Perciben cuándo alguien está en un punto de transición vital, aunque esa persona aún no lo note.</span></div>
+    <div class="don"><span class="don-nombre">Ritualización espontánea del cierre</span><span class="don-desc">Crean, sin planearlo, gestos o palabras que ayudan a otros a cerrar ciclos con dignidad.</span></div>
+  </div>
+
+  <div class="categoria" id="fuente-abundancia">
+    <h2>49. Dones de Conexión con la Fuente de Abundancia</h2>
+    <div class="don"><span class="don-nombre">Confianza en el flujo</span><span class="don-desc">Capacidad de sostener proyectos de servicio sin apego ansioso al resultado material.</span></div>
+    <div class="don"><span class="don-nombre">Atracción de recursos alineados</span><span class="don-desc">Lo que necesitan para su misión tiende a aparecer en el momento justo, sin manipulación.</span></div>
+    <div class="don"><span class="don-nombre">Discernimiento entre necesidad y avidez</span><span class="don-desc">Distinguen con claridad cuándo un deseo proviene del alma y cuándo del miedo a la carencia.</span></div>
+  </div>
+
+  <div class="principio">
+    <strong>Principio Fundamental</strong>
+    El don precede a la protección. Todo ser de luz encarnado que despierta sus capacidades
+    incrementa simultáneamente su exposición energética — por ello, ningún don debe cultivarse
+    sin el correspondiente escudo, discernimiento y anclaje a la Fuente.
+  </div>
+</main>
+
+<nav class="enlaces">
+  <h3>✦ Archivos Relacionados ✦</h3>
+  <div class="grid-enlaces">
+    <a href="tipos_ataques_energeticos.html">Tipos de Ataques Energéticos</a>
+    <a href="aura_sucia.html">Aura Sucia</a>
+    <a href="implantes_por_capa_aurica.html">Implantes por Capa Áurica</a>
+    <a href="jerarquia_seres_oscuridad.html">Jerarquía de Seres de Oscuridad</a>
+    <a href="estancamiento_infantil.html">Estancamiento Infantil</a>
+    <a href="ataques_energeticos_estelares.html">Ataques Energéticos Estelares</a>
+  </div>
+</nav>
+
+<footer>
+  El Ser Uno — Biblioteca de Saberes Esóricos
+</footer>
+
+<a href="#" id="volver" title="Volver arriba">↑</a>
+
+</body>
+</html>
