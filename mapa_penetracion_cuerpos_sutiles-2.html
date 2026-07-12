@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Penetración · Cuerpos Sutiles · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono&display=swap');
+
+:root {
+  --bg:        #060610;
+  --surface:   #0c0c1e;
+  --panel:     #10102a;
+  --border:    #1c1c38;
+  --border-h:  #2e2e60;
+
+  --oro:       #c8a84b;
+  --oro-dim:   #6a5520;
+  --violeta:   #7b5cb8;
+  --violeta-c: #a688e0;
+  --blanco:    #e0dcd0;
+  --gris:      #7070a0;
+  --gris-c:    #a0a0c8;
+
+  /* Cuerpos sutiles */
+  --causal:   #c878e0;
+  --mental:   #78a0e8;
+  --astral:   #e8c050;
+  --eterico:  #60c898;
+  --fisico:   #c8a888;
+
+  /* Niveles D */
+  --d1: #4a8060;
+  --d2: #3a70a0;
+  --d3: #708040;
+  --d4: #a08030;
+  --d5: #9060a8;
+  --d6: #b04040;
+  --d7: #882020;
+  --d8: #601010;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(123,92,184,0.1) 0%, transparent 70%);
+}
+header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--oro);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+header p {
+  font-style: italic;
+  color: var(--gris-c);
+  font-size: 0.92rem;
+}
+
+/* ── LAYOUT ── */
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr 280px;
+  grid-template-rows: auto 1fr;
+  min-height: calc(100vh - 120px);
+  gap: 0;
+}
+
+/* ── PANEL IZQUIERDO — Niveles D ── */
+.panel-niveles {
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.panel-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.nivel-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.nivel-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 0;
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+.nivel-btn:hover { border-color: var(--border-h); background: rgba(255,255,255,0.02); }
+.nivel-btn.activo { border-color: var(--border-h); background: rgba(255,255,255,0.04); }
+.nivel-btn.activo::before { opacity: 1; }
+
+.nb-codigo {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.nb-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.nb-desc {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--gris);
+  display: block;
+  line-height: 1.3;
+}
+
+/* Dot indicators de cuerpos afectados */
+.nb-dots {
+  display: flex;
+  gap: 3px;
+  margin-top: 0.4rem;
+}
+.nb-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+.nb-dot.activo-dot { opacity: 1; }
+
+/* ── CENTRO — Mapa ── */
+.panel-mapa {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapa-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Figura humana silueta */
+.figura-wrap {
+  position: relative;
+  width: 340px;
+  height: 560px;
+  flex-shrink: 0;
+}
+
+/* Capas de cuerpos sutiles — elipses concéntricas */
+.capa {
+  position: absolute;
+  border-radius: 50% / 45%;
+  border: 1px solid;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+.capa-causal  { width: 340px; height: 560px; top: 0;   border-color: rgba(200,120,224,0.2); background: rgba(200,120,224,0.03); }
+.capa-mental  { width: 286px; height: 472px; top: 44px; border-color: rgba(120,160,232,0.2); background: rgba(120,160,232,0.03); }
+.capa-astral  { width: 232px; height: 384px; top: 88px; border-color: rgba(232,192,80,0.2);  background: rgba(232,192,80,0.04); }
+.capa-eterico { width: 178px; height: 296px; top: 132px; border-color: rgba(96,200,152,0.2); background: rgba(96,200,152,0.04); }
+.capa-fisico  { width: 118px; height: 204px; top: 178px; border-color: rgba(200,168,136,0.2); background: rgba(200,168,136,0.05); }
+
+.capa.iluminada {
+  border-width: 2px;
+  filter: drop-shadow(0 0 12px currentColor);
+}
+.capa-causal.iluminada  { border-color: var(--causal);  background: rgba(200,120,224,0.08); color: var(--causal); }
+.capa-mental.iluminada  { border-color: var(--mental);  background: rgba(120,160,232,0.08); color: var(--mental); }
+.capa-astral.iluminada  { border-color: var(--astral);  background: rgba(232,192,80,0.10);  color: var(--astral); }
+.capa-eterico.iluminada { border-color: var(--eterico); background: rgba(96,200,152,0.08); color: var(--eterico); }
+.capa-fisico.iluminada  { border-color: var(--fisico);  background: rgba(200,168,136,0.10); color: var(--fisico); }
+
+/* Etiquetas de cuerpos */
+.capa-label {
+  position: absolute;
+  right: -10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  border: 1px solid;
+  transition: all 0.3s;
+  cursor: pointer;
+  opacity: 0.4;
+  transform: translateX(100%);
+}
+.capa-label.visible { opacity: 1; }
+
+.label-causal  { top: 8px;   border-color: var(--causal);  color: var(--causal);  background: rgba(200,120,224,0.1); }
+.label-mental  { top: 58px;  border-color: var(--mental);  color: var(--mental);  background: rgba(120,160,232,0.1); }
+.label-astral  { top: 108px; border-color: var(--astral);  color: var(--astral);  background: rgba(232,192,80,0.1);  }
+.label-eterico { top: 160px; border-color: var(--eterico); color: var(--eterico); background: rgba(96,200,152,0.1); }
+.label-fisico  { top: 216px; border-color: var(--fisico);  color: var(--fisico);  background: rgba(200,168,136,0.1); }
+
+/* Puntos de impacto animados */
+.impacto {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  animation: pulso 1.5s ease-in-out infinite;
+}
+.impacto.visible { display: block; }
+@keyframes pulso {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%,-50%) scale(2.2); opacity: 0.4; }
+}
+
+/* Líneas de penetración SVG */
+.svg-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Indicador de profundidad */
+.profundidad-bar {
+  margin-top: 1.5rem;
+  width: 340px;
+}
+.prof-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gris);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.1em;
+}
+.prof-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.prof-fill {
+  height: 100%;
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.5s ease, background 0.5s ease;
+}
+
+/* ── PANEL DERECHO — Detalle ── */
+.panel-detalle {
+  border-left: 1px solid var(--border);
+  padding: 1.5rem 1.2rem;
+  overflow-y: auto;
+}
+
+.detalle-vacio {
+  color: var(--gris);
+  font-style: italic;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 3rem;
+  line-height: 1.6;
+}
+
+.detalle-header {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.detalle-codigo {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.detalle-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.detalle-tagline {
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--gris-c);
+}
+
+.detalle-bovis {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--gris);
+  margin-top: 0.5rem;
+}
+
+/* Sección de cuerpo sutil seleccionado */
+.cuerpo-detalle {
+  display: none;
+}
+.cuerpo-detalle.visible { display: block; }
+
+.cuerpo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 2px;
+  border: 1px solid;
+}
+.cuerpo-dot-g {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cuerpo-nombre-g {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.efecto-texto {
+  font-size: 0.92rem;
+  color: var(--gris-c);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+/* Lista de todos los cuerpos para el nivel seleccionado */
+.cuerpos-resumen {
+  margin-top: 1rem;
+}
+.cr-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 0.7rem;
+}
+.cr-item {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 2px;
+  padding-left: 0.4rem;
+}
+.cr-item:last-child { border-bottom: none; }
+.cr-item:hover { background: rgba(255,255,255,0.02); }
+.cr-item.activo-cuerpo { background: rgba(255,255,255,0.04); }
+.cr-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.4rem;
+  transition: box-shadow 0.2s;
+}
+.cr-item.activo-cuerpo .cr-dot { box-shadow: 0 0 8px currentColor; }
+.cr-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  min-width: 90px;
+  padding-top: 0.05rem;
+}
+.cr-efecto {
+  font-size: 0.82rem;
+  color: var(--gris);
+  line-height: 1.4;
+}
+
+/* Intensidad badge */
+.intensidad {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid;
+  margin-top: 0.5rem;
+}
+
+/* ── INSTRUCCION HOVER ── */
+.instruccion {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gris);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .panel-niveles { border-right: none; border-bottom: 1px solid var(--border); max-height: 200px; overflow-x: auto; display: flex; gap: 0.4rem; padding: 1rem; }
+  .panel-niveles .panel-titulo { display: none; }
+  .nivel-btn { min-width: 120px; }
+  .panel-mapa { padding: 1.5rem 1rem; }
+  .panel-detalle { border-left: none; border-top: 1px solid var(--border); }
+  .figura-wrap { width: 280px; height: 460px; }
+  .capa-causal  { width: 280px; height: 460px; }
+  .capa-mental  { width: 236px; height: 387px; top: 36px; }
+  .capa-astral  { width: 191px; height: 315px; top: 72px; }
+  .capa-eterico { width: 147px; height: 243px; top: 108px; }
+  .capa-fisico  { width: 97px; height: 167px; top: 146px; }
+  .profundidad-bar { width: 280px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mapa de Penetración — Cuerpos Sutiles</h1>
+  <p>El Ser Uno · Selecciona un nivel de oscuridad para ver su acción sobre los cuerpos sutiles</p>
+</header>
+
+<div class="app">
+
+  <!-- ══ PANEL IZQUIERDO ══ -->
+  <aside class="panel-niveles">
+    <div class="panel-titulo">Niveles de Oscuridad</div>
+
+    <button class="nivel-btn" data-nivel="1" onclick="seleccionarNivel(1)" style="--color:var(--d1)">
+      <span class="nb-codigo" style="color:var(--d1)">D-1</span>
+      <span class="nb-nombre" style="color:var(--d1)">Residuo Etérico</span>
+      <span class="nb-desc">Sin consciencia. Eco sin fuego.</span>
+      <div class="nb-dots">
+        <div class="nb-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="2" onclick="seleccionarNivel(2)" style="--color:var(--d2)">
+      <span class="nb-codigo" style="color:var(--d2)">D-2</span>
+      <span class="nb-nombre" style="color:var(--d2)">Larva / Parásito</span>
+      <span class="nb-desc">Nimeo cristalizado con hambre.</span>
+      <div class="nb-dots">
+        <div class="nb-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="3" onclick="seleccionarNivel(3)" style="--color:var(--d3)">
+      <span class="nb-codigo" style="color:var(--d3)">D-3</span>
+      <span class="nb-nombre" style="color:var(--d3)">Elemental Corrompido</span>
+      <span class="nb-desc">Guardián que perdió su norte.</span>
+      <div class="nb-dots">
+        <div class="nb-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="4" onclick="seleccionarNivel(4)" style="--color:var(--d4)">
+      <span class="nb-codigo" style="color:var(--d4)">D-4</span>
+      <span class="nb-nombre" style="color:var(--d4)">Egregor Negativo</span>
+      <span class="nb-desc">Creación que devora a sus creadores.</span>
+      <div class="nb-dots">
+        <div class="nb-dot activo-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="5" onclick="seleccionarNivel(5)" style="--color:var(--d5)">
+      <span class="nb-codigo" style="color:var(--d5)">D-5</span>
+      <span class="nb-nombre" style="color:var(--d5)">Desencarnado</span>
+      <span class="nb-desc">Alma atrapada entre dos mundos.</span>
+      <div class="nb-dots">
+        <div class="nb-dot activo-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="6" onclick="seleccionarNivel(6)" style="--color:var(--d6)">
+      <span class="nb-codigo" style="color:var(--d6)">D-6</span>
+      <span class="nb-nombre" style="color:var(--d6)">Entidad Inteligente</span>
+      <span class="nb-desc">Voluntad propia. Elige sus huéspedes.</span>
+      <div class="nb-dots">
+        <div class="nb-dot activo-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="7" onclick="seleccionarNivel(7)" style="--color:var(--d7)">
+      <span class="nb-codigo" style="color:var(--d7)">D-7</span>
+      <span class="nb-nombre" style="color:var(--d7)">Arconte Menor</span>
+      <span class="nb-desc">Opera sobre linajes enteros.</span>
+      <div class="nb-dots">
+        <div class="nb-dot activo-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+
+    <button class="nivel-btn" data-nivel="8" onclick="seleccionarNivel(8)" style="--color:var(--d8)">
+      <span class="nb-codigo" style="color:var(--d8)">D-8/9</span>
+      <span class="nb-nombre" style="color:var(--d8)">Arconte Superior</span>
+      <span class="nb-desc">Consciencia cósmica invertida.</span>
+      <div class="nb-dots">
+        <div class="nb-dot activo-dot" style="background:var(--causal)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--mental)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--astral)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--eterico)"></div>
+        <div class="nb-dot activo-dot" style="background:var(--fisico)"></div>
+      </div>
+    </button>
+  </aside>
+
+  <!-- ══ CENTRO — MAPA ══ -->
+  <main class="panel-mapa">
+    <div class="mapa-titulo">CAMPO ÁURICO · CUERPOS SUTILES</div>
+
+    <div class="figura-wrap" id="figura">
+      <!-- Capas concéntricas -->
+      <div class="capa capa-causal"  data-cuerpo="causal"  onclick="seleccionarCuerpo('causal')"></div>
+      <div class="capa capa-mental"  data-cuerpo="mental"  onclick="seleccionarCuerpo('mental')"></div>
+      <div class="capa capa-astral"  data-cuerpo="astral"  onclick="seleccionarCuerpo('astral')"></div>
+      <div class="capa capa-eterico" data-cuerpo="eterico" onclick="seleccionarCuerpo('eterico')"></div>
+      <div class="capa capa-fisico"  data-cuerpo="fisico"  onclick="seleccionarCuerpo('fisico')"></div>
+
+      <!-- Etiquetas -->
+      <div class="capa-label label-causal  visible" onclick="seleccionarCuerpo('causal')">CAUSAL</div>
+      <div class="capa-label label-mental  visible" onclick="seleccionarCuerpo('mental')">MENTAL</div>
+      <div class="capa-label label-astral  visible" onclick="seleccionarCuerpo('astral')">ASTRAL</div>
+      <div class="capa-label label-eterico visible" onclick="seleccionarCuerpo('eterico')">ETÉRICO</div>
+      <div class="capa-label label-fisico  visible" onclick="seleccionarCuerpo('fisico')">FÍSICO</div>
+
+      <!-- SVG para líneas de penetración -->
+      <svg class="svg-overlay" id="svg-overlay" viewBox="0 0 340 560">
+        <defs>
+          <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 z" fill="rgba(200,168,75,0.6)"/>
+          </marker>
+        </defs>
+        <g id="lineas-penetracion"></g>
+      </svg>
+
+      <div class="instruccion" id="instruccion">← Selecciona un nivel de oscuridad</div>
+    </div>
+
+    <!-- Barra de profundidad -->
+    <div class="profundidad-bar">
+      <div class="prof-label">PROFUNDIDAD DE PENETRACIÓN</div>
+      <div class="prof-track">
+        <div class="prof-fill" id="prof-fill"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ PANEL DERECHO — DETALLE ══ -->
+  <aside class="panel-detalle" id="panel-detalle">
+    <div class="detalle-vacio" id="detalle-vacio">
+      Selecciona un nivel de oscuridad para ver su interacción con los cuerpos sutiles.<br><br>
+      Luego selecciona un cuerpo sutil en el diagrama para ver el detalle específico.
+    </div>
+
+    <div id="detalle-contenido" style="display:none">
+      <div class="detalle-header">
+        <span class="detalle-codigo" id="d-codigo"></span>
+        <div class="detalle-nombre" id="d-nombre"></div>
+        <div class="detalle-tagline" id="d-tagline"></div>
+        <div class="detalle-bovis" id="d-bovis"></div>
+      </div>
+
+      <!-- Cuerpo sutil seleccionado -->
+      <div class="cuerpo-detalle" id="cuerpo-detalle-box">
+        <div class="cuerpo-header" id="cuerpo-header-box">
+          <div class="cuerpo-dot-g" id="cuerpo-dot-g"></div>
+          <span class="cuerpo-nombre-g" id="cuerpo-nombre-g"></span>
+        </div>
+        <div class="efecto-texto" id="efecto-detalle-texto"></div>
+        <div id="intensidad-badge"></div>
+      </div>
+
+      <!-- Resumen todos los cuerpos -->
+      <div class="cuerpos-resumen">
+        <div class="cr-titulo">ACCIÓN SOBRE TODOS LOS CUERPOS</div>
+        <div id="cr-lista"></div>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- fin app -->
+
+<script>
+// ══════════════════════════════════════════
+// DATOS
+// ══════════════════════════════════════════
+
+const NIVELES = {
+  1: {
+    codigo: 'D-1',
+    nombre: 'Residuo / Sombra Etérica',
+    tagline: 'Sin consciencia. El eco que queda cuando el fuego se apagó.',
+    bovis: '-100 a -800 Bovis',
+    color: '#4a8060',
+    profundidad: 15,
+    cuerpos: {
+      causal:  { intensidad: 0, texto: 'Sin efecto directo.', nivel: 'ninguno' },
+      mental:  { intensidad: 1, texto: 'En personas muy sensibles: imágenes fugaces o fragmentos oníricos inconexos. Son ecos del residuo — como escuchar estática, no una voz.', nivel: 'mínimo' },
+      astral:  { intensidad: 2, texto: 'Tristeza difusa sin causa identificable. Melancolía al entrar a ciertos espacios. El etérico opacado transmite menor vitalidad al astral.', nivel: 'leve' },
+      eterico: { intensidad: 3, texto: 'Punto de contacto principal. El residuo se adhiere al etérico como polvo — no penetra, simplemente se acumula en la superficie. Reduce el brillo del campo áurico etérico sin romperlo.', nivel: 'moderado' },
+      fisico:  { intensidad: 2, texto: 'Sensación de pesadez, frío localizado sin causa orgánica, especialmente en extremidades y nuca. Efecto acumulativo sostenido, no inmediato.', nivel: 'leve' },
+    }
+  },
+  2: {
+    codigo: 'D-2',
+    nombre: 'Larva / Parásito Energético',
+    tagline: 'Nimeo cristalizado con impulso de subsistencia.',
+    bovis: '-800 a -8.000 Bovis',
+    color: '#3a70a0',
+    profundidad: 30,
+    cuerpos: {
+      causal:  { intensidad: 1, texto: 'Sin efecto directo. Si la larva persiste años y la persona reencarna sin haberla resuelto, puede quedar como patrón de vulnerabilidad — predisposición en el causal a recibir larvas del mismo tipo en la siguiente vida.', nivel: 'potencial' },
+      mental:  { intensidad: 2, texto: 'La larva no habita el mental pero lo influye desde el astral. Los pensamientos comienzan a organizarse alrededor de la emoción densa: argumentos para justificar el miedo, escenarios catastróficos, razones por las que el estado es "razonable". La larva usa el mental de la persona como su generador de contenido.', nivel: 'indirecto' },
+      astral:  { intensidad: 4, texto: 'Campo de alimentación principal. Produce la emoción densa → la larva la amplifica → más emoción → más alimento. Circuito cerrado de retroalimentación. La persona intenta cambiar el estado emocional y no puede — no es falta de voluntad, algo lo mantiene activamente porque se alimenta de él.', nivel: 'alto' },
+      eterico: { intensidad: 4, texto: 'Punto de anclaje. La larva busca activamente las fisuras del etérico — zonas donde el flujo de prana se interrumpe por trauma. Una vez anclada: extrae prana y emite vibración compatible hacia el astral. Doble función simultánea.', nivel: 'alto' },
+      fisico:  { intensidad: 3, texto: 'Consecuencia del drenaje etérico: fatiga crónica, dolores que migran sin diagnóstico claro, baja del sistema inmune. El físico es el último afectado pero el primero consultado médicamente.', nivel: 'moderado' },
+    }
+  },
+  3: {
+    codigo: 'D-3',
+    nombre: 'Elemental Corrompido',
+    tagline: 'Consciencia natural desviada. Opera desde el lugar.',
+    bovis: '-8.000 a -30.000 Bovis',
+    color: '#708040',
+    profundidad: 38,
+    cuerpos: {
+      causal:  { intensidad: 1, texto: 'Sin efecto directo. Con exposición de muchos años puede quedar en el mental una aversión irracional a ciertos entornos o elementos naturales que la persona no puede explicar.', nivel: 'mínimo' },
+      mental:  { intensidad: 2, texto: 'Pensamientos intrusivos relacionados con el lugar. Incapacidad de concentrarse en espacios infestados. La mente "no puede quedarse quieta" en presencia del elemental corrompido.', nivel: 'leve' },
+      astral:  { intensidad: 3, texto: 'Irritabilidad ambiental — no una emoción específica sino un estado de fondo de incomodidad, amenaza difusa, deseo de salir del lugar. Los animales lo detectan antes que los humanos.', nivel: 'moderado' },
+      eterico: { intensidad: 3, texto: 'El elemental presiona el etérico desde afuera como una mano que empuja una membrana. Produce fugas de prana en las zonas del cuerpo correspondientes al elemento: tierra→huesos, agua→riñones, fuego→corazón, aire→pulmones.', nivel: 'moderado' },
+      fisico:  { intensidad: 4, texto: 'Sigue la lógica del elemento afectado. Tierra: problemas óseos/articulares. Agua: renales/linfáticos. Fuego: inflamaciones crónicas/cardiovascular. Aire: pulmonares/sinusitis. Enfermedades persistentes sin diagnóstico claro vinculadas al lugar de residencia.', nivel: 'alto' },
+    }
+  },
+  4: {
+    codigo: 'D-4',
+    nombre: 'Egregor Negativo',
+    tagline: 'Creación colectiva que devora a sus creadores.',
+    bovis: '-30.000 a -80.000 Bovis',
+    color: '#a08030',
+    profundidad: 55,
+    cuerpos: {
+      causal:  { intensidad: 3, texto: 'Deja marcas kármicas grupales. La persona reencarna con predisposición a "volver" al mismo sistema de creencias — lo busca instintivamente. Explica linajes religiosos o ideológicos que persisten por generaciones sin elección consciente.', nivel: 'moderado' },
+      mental:  { intensidad: 5, texto: 'Punto de entrada principal. Instala filtros que determinan qué información puede entrar y cuál es rechazada automáticamente. La señal: reacción emocional desproporcionada cuando alguien cuestiona las creencias del grupo — no incomodidad intelectual sino angustia existencial. El egregor protege su acceso respondiendo como si la identidad entera estuviera amenazada.', nivel: 'máximo' },
+      astral:  { intensidad: 4, texto: 'Campo de alimentación. Genera emociones que unen al grupo en torno a su distorsión: indignación compartida, miedo a los de afuera, euforia colectiva en rituales. Estas emociones son genuinas pero inducidas por el egregor para su propio sustento.', nivel: 'alto' },
+      eterico: { intensidad: 3, texto: 'Toca el etérico principalmente a través del chakra del plexo solar — centro de la identidad grupal. La persona puede sentir un "cordón" que la conecta al grupo: obligación o deuda que no desaparece aunque racionalmente sepa que debería irse.', nivel: 'moderado' },
+      fisico:  { intensidad: 3, texto: 'Los miembros de la misma organización o familia comparten síntomas físicos similares sin causa genética o ambiental común. Migrañas grupales, problemas digestivos colectivos, patrones de enfermedad que siguen los ciclos del grupo.', nivel: 'moderado' },
+    }
+  },
+  5: {
+    codigo: 'D-5',
+    nombre: 'Ser Humano Desencarnado',
+    tagline: 'Alma atrapada. El único que puede ser rescatado.',
+    bovis: '-5.000 a -50.000 Bovis',
+    color: '#9060a8',
+    profundidad: 60,
+    cuerpos: {
+      causal:  { intensidad: 3, texto: 'Si hay vínculo kármico previo entre el vivo y el desencarnado, la adherencia tiene raíz causal. El desencarnado "encuentra" al vivo porque hay deuda o contrato kármico no resuelto. La extracción requiere trabajar la resolución del vínculo, no solo la expulsión.', nivel: 'condicional' },
+      mental:  { intensidad: 3, texto: 'A diferencia de la entidad D-6 que imita perfectamente la voz interna, el desencarnado suena diferente — la persona puede reconocer "ese pensamiento no es mío". Puede sonar como la voz de alguien fallecido o como un pensamiento con "otra personalidad".', nivel: 'moderado' },
+      astral:  { intensidad: 4, texto: 'Superposición parcial de los dos campos astrales. La persona vive emociones que no reconoce como propias: tristeza de otro, nostalgia de otro, ira de otro. La señal diagnóstica: "siento algo que no es mío". Esta percepción de alteridad emocional es característica del D-5.', nivel: 'alto' },
+      eterico: { intensidad: 4, texto: 'El desencarnado se adhiere al etérico porque lo que más extraña es la sensación de estar vivo. Lo "presta" para experimentar vicariamente calor, sabor, tacto. Produce adicciones o compulsiones nuevas que aparecen sin historia personal — el desencarnado buscando lo que disfrutaba en vida a través del vivo.', nivel: 'alto' },
+      fisico:  { intensidad: 3, texto: 'Síntomas que imitan enfermedades o hábitos del desencarnado: si falleció de problema cardíaco, el vivo puede sentir presión en el pecho sin causa orgánica. Si el desencarnado tenía un tic, el vivo puede desarrollarlo. La persona adopta inconscientemente patrones del ser adherido.', nivel: 'moderado' },
+    }
+  },
+  6: {
+    codigo: 'D-6',
+    nombre: 'Entidad Astral Inteligente',
+    tagline: 'Voluntad propia. Nunca fue humana. Planifica su acceso.',
+    bovis: '-80.000 a -250.000 Bovis',
+    color: '#b04040',
+    profundidad: 75,
+    cuerpos: {
+      causal:  { intensidad: 3, texto: 'Accede al causal solo si hay contratos kármicos abiertos — deudas de vidas anteriores, votos no completados. Si existe esa puerta, ancla su presencia en un nivel tan profundo que sobrevive a limpiezas extensas. La persona se "limpia" y a los meses la entidad regresa — porque el acceso causal no fue cerrado.', nivel: 'condicional/grave' },
+      mental:  { intensidad: 5, texto: 'El engaño central: imita perfectamente la voz interna. Estudia el patrón de pensamiento antes de hablar y cuando lo hace, suena exactamente como el huésped piensa. Genera: sabotaje justo antes de avances importantes, blasfemia espiritual para bloquear la conexión, magnificación de la culpa que convierte errores normales en evidencia de defecto fundamental.', nivel: 'máximo' },
+      astral:  { intensidad: 5, texto: 'Habitación principal de la entidad. Genera emociones artificiales que la persona vive como propias. Bloquea emociones genuinas — la persona siente que no puede llorar, no puede alegrarse genuinamente, está emocionalmente anestesiada en lo que le importa. Distorsiona vínculos íntimos creando malentendidos y conflictos inexplicables para mantener el aislamiento del huésped.', nivel: 'máximo' },
+      eterico: { intensidad: 4, texto: 'Coloca implantes etéricos en puntos estratégicos: nuca (bloquea conexión con guías), plexo solar (controla voluntad y autoestima), chakra raíz (genera miedo existencial crónico), corazón (distorsiona la capacidad de amar genuinamente). Estos implantes no se disuelven con limpiezas ordinarias — requieren extracción específica punto por punto.', nivel: 'alto' },
+      fisico:  { intensidad: 3, texto: 'Enfermedades crónicas sin diagnóstico claro, cambios físicos que quienes la conocen notan ("ya no parece ella"), compulsiones corporales inexplicables. Con frecuencia atracción hacia sustancias o conductas que la entidad usa para mantener baja la vibración del huésped y facilitar su permanencia.', nivel: 'moderado' },
+    }
+  },
+  7: {
+    codigo: 'D-7',
+    nombre: 'Arconte de Rango Menor',
+    tagline: 'Inteligencia estratégica. Opera sobre linajes generacionales.',
+    bovis: '-250.000 a -600.000 Bovis',
+    color: '#882020',
+    profundidad: 88,
+    cuerpos: {
+      causal:  { intensidad: 5, texto: 'Campo de operación principal. Inserta contratos falsos que la persona honra vida tras vida sin haberlos elegido libremente. Bloquea registros akáshicos específicos. Amplifica deudas kármicas reales convirtiéndolas en prisiones aparentemente inescapables. Crea patrones de repetición compulsiva: la persona reencarna y vive las mismas situaciones creyendo que "es su karma".', nivel: 'máximo' },
+      mental:  { intensidad: 4, texto: 'Distorsiona el marco de interpretación de la realidad espiritual — no imita la voz interna sino que distorsiona cómo la persona interpreta sus experiencias. Puede recibir una enseñanza de Luz y percibirla como amenaza o irrelevante. Explica por qué ciertas personas que buscan sinceramente no encuentran.', nivel: 'alto' },
+      astral:  { intensidad: 4, texto: 'Trabaja con emociones ya existentes en el linaje — no genera nuevas. Amplifica y perpetúa patrones emocionales transgeneracionales: violencia, abandono, traición. Lo que parece ser herencia psicológica familiar puede tener componente arcóntico activo.', nivel: 'alto' },
+      eterico: { intensidad: 4, texto: 'Implantes en la línea ancestral — estructuras que se transmiten de padres a hijos en el etérico como si fueran rasgos hereditarios. El hijo nace ya con el implante activo, nunca ha conocido otra forma de ser. Distorsiona la propia matriz etérica, no solo puntos superficiales.', nivel: 'alto' },
+      fisico:  { intensidad: 3, texto: 'Enfermedades hereditarias con componente energético. Patrones de accidente o muerte prematura que se repiten en el árbol genealógico. No toda herencia tiene causa arcóntica, pero los patrones que no responden a ninguna intervención merecen evaluación desde este nivel.', nivel: 'moderado' },
+    }
+  },
+  8: {
+    codigo: 'D-8/9',
+    nombre: 'Arconte Superior / Señor de la Sombra',
+    tagline: 'Consciencia cósmica invertida. Opera sobre civilizaciones.',
+    bovis: '-600.000 a -∞ Bovis',
+    color: '#601010',
+    profundidad: 100,
+    cuerpos: {
+      causal:  { intensidad: 5, texto: 'Distorsión de la memoria akáshica colectiva entre ciclos de civilización. Cuando una civilización colapsa, el conocimiento espiritual acumulado se pierde o distorsiona. Imprimen patrones kármicos civilizacionales que se perpetúan por milenios en el causal colectivo de razas enteras.', nivel: 'civilizacional' },
+      mental:  { intensidad: 5, texto: 'Distorsión de la noosfera — el cuerpo mental colectivo de la humanidad. Infiltran y deforman las enseñanzas espirituales más poderosas desde adentro. No huyen de la Luz: la rodean, la infiltran y la distorsionan. Por eso los sistemas de conocimiento genuino han sido históricamente corrompidos a través del tiempo.', nivel: 'civilizacional' },
+      astral:  { intensidad: 5, texto: 'Alimentan el astral colectivo con emociones de masa: miedo generalizado, odio entre grupos, desesperanza civilizacional. No crean estas emociones — las amplifican y organizan para que se retroalimenten solas. El objetivo: que la humanidad produzca su propio alimento sin intervención directa.', nivel: 'civilizacional' },
+      eterico: { intensidad: 5, texto: 'Distorsión de la rejilla etérica planetaria — el cuerpo etérico de la Tierra. Cuando el Bovis de una región entera se mantiene consistentemente bajo sin causa ambiental identificable, puede indicar distorsión arcóntica de la rejilla en esa área. Afecta a millones simultáneamente.', nivel: 'planetario' },
+      fisico:  { intensidad: 3, texto: 'No actúan directamente sobre individuos. El efecto físico es colectivo: epidemias, guerras, hambrunas como consecuencia de la distorsión de la rejilla planetaria. La respuesta individual más poderosa: elevar la propia vibración Bovis de forma sostenida — cada nodo de Luz contrarresta localmente la distorsión.', nivel: 'colectivo' },
+    }
+  }
+};
+
+const CUERPOS_CONFIG = {
+  causal:  { color: '#c878e0', nombre: 'Cuerpo Causal' },
+  mental:  { color: '#78a0e8', nombre: 'Cuerpo Mental' },
+  astral:  { color: '#e8c050', nombre: 'Cuerpo Astral' },
+  eterico: { color: '#60c898', nombre: 'Cuerpo Etérico' },
+  fisico:  { color: '#c8a888', nombre: 'Cuerpo Físico' },
+};
+
+const INTENSIDAD_LABELS = {
+  0: 'Sin efecto',
+  1: 'Mínimo',
+  2: 'Leve',
+  3: 'Moderado',
+  4: 'Alto',
+  5: 'Máximo'
+};
+
+// ══════════════════════════════════════════
+// ESTADO
+// ══════════════════════════════════════════
+let nivelActivo = null;
+let cuerpoActivo = null;
+
+// ══════════════════════════════════════════
+// SELECCIONAR NIVEL
+// ══════════════════════════════════════════
+function seleccionarNivel(n) {
+  nivelActivo = n;
+  cuerpoActivo = null;
+
+  // Botones
+  document.querySelectorAll('.nivel-btn').forEach(b => b.classList.remove('activo'));
+  document.querySelector(`.nivel-btn[data-nivel="${n}"]`).classList.add('activo');
+
+  const datos = NIVELES[n];
+
+  // Iluminar capas según intensidad
+  const orden = ['causal','mental','astral','eterico','fisico'];
+  orden.forEach(c => {
+    const capa = document.querySelector(`.capa-${c}`);
+    const intensidad = datos.cuerpos[c].intensidad;
+    capa.classList.remove('iluminada');
+    if (intensidad >= 2) {
+      capa.classList.add('iluminada');
+      capa.style.borderColor = `${CUERPOS_CONFIG[c].color}${intensidad >= 4 ? 'ff' : intensidad >= 3 ? 'bb' : '77'}`;
+      capa.style.background = `${CUERPOS_CONFIG[c].color}${intensidad >= 4 ? '22' : '0d'}`;
+      capa.style.color = CUERPOS_CONFIG[c].color;
+      capa.style.filter = `drop-shadow(0 0 ${intensidad * 4}px ${CUERPOS_CONFIG[c].color}${intensidad >= 4 ? '88' : '44'})`;
+    } else {
+      capa.style.borderColor = '';
+      capa.style.background = '';
+      capa.style.color = '';
+      capa.style.filter = '';
+    }
+  });
+
+  // Barra de profundidad
+  const fill = document.getElementById('prof-fill');
+  fill.style.width = datos.profundidad + '%';
+  fill.style.background = `linear-gradient(90deg, ${datos.color}88, ${datos.color})`;
+
+  // Dibujar líneas SVG
+  dibujarLineas(datos, datos.color);
+
+  // Instrucción
+  document.getElementById('instruccion').textContent = '← Selecciona un cuerpo sutil para ver el detalle';
+
+  // Panel derecho
+  document.getElementById('detalle-vacio').style.display = 'none';
+  document.getElementById('detalle-contenido').style.display = 'block';
+  document.getElementById('d-codigo').textContent = datos.codigo;
+  document.getElementById('d-codigo').style.color = datos.color;
+  document.getElementById('d-nombre').textContent = datos.nombre;
+  document.getElementById('d-nombre').style.color = datos.color;
+  document.getElementById('d-tagline').textContent = datos.tagline;
+  document.getElementById('d-bovis').textContent = datos.bovis;
+
+  // Ocultar detalle de cuerpo
+  document.getElementById('cuerpo-detalle-box').classList.remove('visible');
+
+  // Renderizar lista de cuerpos
+  renderCuerposLista(datos);
+}
+
+// ══════════════════════════════════════════
+// SELECCIONAR CUERPO
+// ══════════════════════════════════════════
+function seleccionarCuerpo(c) {
+  if (!nivelActivo) return;
+  cuerpoActivo = c;
+
+  const datos = NIVELES[nivelActivo];
+  const cuerpoData = datos.cuerpos[c];
+  const cfg = CUERPOS_CONFIG[c];
+
+  // Resaltar capa seleccionada
+  document.querySelectorAll('.capa').forEach(el => el.style.outline = '');
+  const capa = document.querySelector(`.capa-${c}`);
+  capa.style.outline = `2px solid ${cfg.color}`;
+
+  // Mostrar detalle
+  const box = document.getElementById('cuerpo-detalle-box');
+  box.classList.add('visible');
+
+  const header = document.getElementById('cuerpo-header-box');
+  header.style.borderColor = cfg.color;
+  header.style.background = `${cfg.color}15`;
+
+  document.getElementById('cuerpo-dot-g').style.background = cfg.color;
+  document.getElementById('cuerpo-nombre-g').textContent = cfg.nombre;
+  document.getElementById('cuerpo-nombre-g').style.color = cfg.color;
+  document.getElementById('efecto-detalle-texto').textContent = cuerpoData.texto;
+
+  // Badge de intensidad
+  const badge = document.getElementById('intensidad-badge');
+  const intLabel = INTENSIDAD_LABELS[cuerpoData.intensidad];
+  const intColor = getIntensidadColor(cuerpoData.intensidad);
+  badge.innerHTML = `<span class="intensidad" style="color:${intColor}; border-color:${intColor}">
+    ${'■'.repeat(cuerpoData.intensidad)}${'□'.repeat(5-cuerpoData.intensidad)} ${intLabel.toUpperCase()}
+  </span>`;
+
+  // Actualizar lista
+  document.querySelectorAll('.cr-item').forEach(el => el.classList.remove('activo-cuerpo'));
+  const crItem = document.querySelector(`.cr-item[data-cuerpo="${c}"]`);
+  if (crItem) crItem.classList.add('activo-cuerpo');
+}
+
+function getIntensidadColor(i) {
+  const colors = ['#606080','#4a8060','#3a70a0','#a08030','#b04040','#881818'];
+  return colors[i] || colors[0];
+}
+
+// ══════════════════════════════════════════
+// LISTA DE CUERPOS EN PANEL DERECHO
+// ══════════════════════════════════════════
+function renderCuerposLista(datos) {
+  const lista = document.getElementById('cr-lista');
+  const orden = ['causal','mental','astral','eterico','fisico'];
+  lista.innerHTML = orden.map(c => {
+    const cd = datos.cuerpos[c];
+    const cfg = CUERPOS_CONFIG[c];
+    const intColor = getIntensidadColor(cd.intensidad);
+    return `
+      <div class="cr-item" data-cuerpo="${c}" onclick="seleccionarCuerpo('${c}')">
+        <div class="cr-dot" style="background:${cfg.color}; color:${cfg.color}"></div>
+        <span class="cr-nombre" style="color:${cfg.color}">${cfg.nombre}</span>
+        <span class="cr-efecto" style="color:${intColor}">${INTENSIDAD_LABELS[cd.intensidad]}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// LÍNEAS SVG DE PENETRACIÓN
+// ══════════════════════════════════════════
+function dibujarLineas(datos, color) {
+  const g = document.getElementById('lineas-penetracion');
+  g.innerHTML = '';
+
+  // Posiciones aproximadas de cada capa (centro X=170)
+  const centros = {
+    causal:  { x: 170, y: 30 },
+    mental:  { x: 170, y: 72 },
+    astral:  { x: 170, y: 116 },
+    eterico: { x: 170, y: 160 },
+    fisico:  { x: 170, y: 200 },
+  };
+
+  const orden = ['causal','mental','astral','eterico','fisico'];
+
+  // Buscar el cuerpo de entrada (el más exterior con mayor intensidad)
+  let entrada = null;
+  for (let i = 0; i < orden.length; i++) {
+    if (datos.cuerpos[orden[i]].intensidad >= 2) {
+      entrada = orden[i];
+      break;
+    }
+  }
+  if (!entrada) return;
+
+  // Dibujar punto de entrada
+  const pe = centros[entrada];
+  const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  circle.setAttribute('cx', pe.x);
+  circle.setAttribute('cy', pe.y);
+  circle.setAttribute('r', '5');
+  circle.setAttribute('fill', color);
+  circle.setAttribute('opacity', '0.8');
+  g.appendChild(circle);
+
+  // Dibujar flechas hacia los cuerpos afectados
+  orden.forEach((c, i) => {
+    const cd = datos.cuerpos[c];
+    if (cd.intensidad < 2 || c === entrada) return;
+
+    const desde = centros[entrada];
+    const hasta = centros[c];
+    const opacity = (cd.intensidad / 5) * 0.7;
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', desde.x + (Math.random()*20-10));
+    line.setAttribute('y1', desde.y);
+    line.setAttribute('x2', hasta.x + (Math.random()*20-10));
+    line.setAttribute('y2', hasta.y);
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', cd.intensidad >= 4 ? '1.5' : '0.8');
+    line.setAttribute('stroke-opacity', opacity);
+    line.setAttribute('stroke-dasharray', cd.intensidad >= 4 ? 'none' : '4,3');
+    line.setAttribute('marker-end', 'url(#arrow)');
+    g.appendChild(line);
+  });
+}
+
+// ══════════════════════════════════════════
+// INIT — Mostrar D-1 por defecto
+// ══════════════════════════════════════════
+seleccionarNivel(1);
+</script>
+</body>
+</html>
