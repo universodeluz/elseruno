@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques Esporádicos al Campo Cardíaco | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#9fc9ff;
+    --gold-soft:#bcdcff;
+    --violet:#1e3a68;
+    --violet-deep:#0f2040;
+    --bg-deep:#0a0612;
+    --bg-panel:#140b24;
+    --bg-card:#1b1130;
+    --text-main:#ece3f7;
+    --text-dim:#b6a6d4;
+    --danger:#c0526a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(123,79,176,0.25), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(212,175,55,0.10), transparent 50%),
+      var(--bg-deep);
+    color:var(--text-main);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.65;
+    min-height:100vh;
+  }
+  a{color:var(--gold-soft);}
+  .stars{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.35), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,.3), transparent),
+      radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,.25), transparent);
+    background-size:600px 600px;
+    opacity:.6;
+  }
+  header{
+    position:relative; z-index:1;
+    text-align:center;
+    padding:64px 20px 40px;
+    border-bottom:1px solid rgba(212,175,55,0.25);
+  }
+  .eyebrow{
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:13px;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,46px);
+    margin:0 0 14px;
+    background:linear-gradient(180deg,var(--gold-soft), var(--gold) 60%, #a9863a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 40px rgba(212,175,55,0.25);
+  }
+  .subtitle{
+    color:var(--text-dim);
+    font-style:italic;
+    font-size:20px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  nav.crumb{
+    text-align:center; padding:16px; font-size:15px; color:var(--text-dim);
+    position:relative; z-index:1;
+  }
+  main{max-width:880px; margin:0 auto; padding:20px 20px 100px; position:relative; z-index:1;}
+
+  section{margin-top:56px;}
+  .section-title{
+    font-family:'Cinzel Decorative', serif;
+    font-size:24px;
+    color:var(--gold-soft);
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .section-lede{
+    text-align:center;
+    color:var(--text-dim);
+    max-width:620px;
+    margin:0 auto 32px;
+    font-size:17px;
+  }
+  .divider{
+    display:flex; align-items:center; gap:14px; margin:56px 0 8px;
+    color:var(--gold); opacity:.7;
+  }
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+  .divider span{font-family:'Cinzel Decorative', serif; font-size:14px; letter-spacing:.2em;}
+
+  /* Intro panel */
+  .intro-panel{
+    background:linear-gradient(160deg, var(--bg-panel), var(--bg-card));
+    border:1px solid rgba(212,175,55,0.2);
+    border-radius:14px;
+    padding:28px 30px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  }
+  .intro-panel p{margin:0 0 14px;}
+  .intro-panel p:last-child{margin-bottom:0;}
+  .medical-note{
+    margin-top:18px;
+    padding:16px 18px;
+    border-left:3px solid var(--danger);
+    background:rgba(192,82,106,0.08);
+    border-radius:0 8px 8px 0;
+    font-size:16px;
+    color:#e6c7ce;
+  }
+
+  /* Accordion cards */
+  .accordion{display:flex; flex-direction:column; gap:14px;}
+  details.card{
+    background:linear-gradient(160deg, var(--bg-card), #150c26);
+    border:1px solid rgba(212,175,55,0.18);
+    border-radius:12px;
+    overflow:hidden;
+    transition:border-color .2s ease;
+  }
+  details.card[open]{border-color:rgba(212,175,55,0.5);}
+  details.card summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    justify-content:space-between;
+  }
+  details.card summary::-webkit-details-marker{display:none;}
+  .card-title{
+    display:flex; align-items:baseline; gap:12px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:16px;
+    color:var(--gold-soft);
+  }
+  .card-num{color:var(--violet); font-size:13px; opacity:.8;}
+  .chevron{
+    color:var(--gold);
+    transition:transform .25s ease;
+    font-size:14px;
+  }
+  details.card[open] .chevron{transform:rotate(90deg);}
+  .card-body{
+    padding:0 22px 22px;
+    color:var(--text-dim);
+    font-size:17px;
+  }
+  .card-body .tag{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--violet);
+    border:1px solid rgba(123,79,176,0.5);
+    padding:3px 10px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+
+  /* Bovis bar */
+  .bovis{margin-top:14px;}
+  .bovis-label{
+    display:flex; justify-content:space-between;
+    font-size:13px; color:var(--text-dim); margin-bottom:5px;
+  }
+  .bovis-track{
+    height:8px; border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    overflow:hidden;
+  }
+  .bovis-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--danger), var(--gold) 60%, #6fbf8a);
+  }
+
+  /* Protocol steps */
+  .protocol{
+    display:grid;
+    gap:16px;
+  }
+  .step{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:16px;
+    background:var(--bg-card);
+    border:1px solid rgba(123,79,176,0.25);
+    border-radius:10px;
+    padding:16px 18px;
+  }
+  .step-num{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    font-size:20px;
+    text-align:center;
+  }
+  .step h4{margin:0 0 6px; color:var(--gold-soft); font-family:'Cinzel Decorative', serif; font-size:15px;}
+  .step p{margin:0; color:var(--text-dim);}
+
+  /* Cross links */
+  .crosslinks{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+  }
+  .crosslink{
+    display:block;
+    background:var(--bg-card);
+    border:1px solid rgba(212,175,55,0.2);
+    border-radius:10px;
+    padding:16px 18px;
+    text-decoration:none;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .crosslink:hover{transform:translateY(-2px); border-color:var(--gold);}
+  .crosslink .cl-title{color:var(--gold-soft); font-weight:600; display:block; margin-bottom:4px;}
+  .crosslink .cl-desc{color:var(--text-dim); font-size:15px;}
+
+  footer{
+    text-align:center;
+    padding:40px 20px 60px;
+    color:var(--text-dim);
+    font-size:14px;
+    position:relative; z-index:1;
+  }
+  footer .sigil{color:var(--gold); font-size:20px; margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="eyebrow">El Ser Uno · Biblioteca Esotérica</div>
+  <h1>Ataques Esporádicos al Campo Cardíaco</h1>
+  <p class="subtitle">Cuando la punzada llega sin aviso, en distintos lugares y situaciones — sin un hilo emocional único que la explique.</p>
+</header>
+
+<nav class="crumb"><a href="index.html">🏠 Portal</a> · <a href="catalogo_completo_ataques_energeticos.html">Catálogo de Ataques</a> · Ataques Esporádicos</nav>
+
+<main>
+
+  <section>
+    <div class="intro-panel">
+      <p>Este patrón se distingue de un ataque dirigido único: no hay una persona, lugar o detonante emocional fijo. Anahata (el centro cardíaco) recibe impactos breves e intensos —punzadas— en momentos y contextos distintos entre sí, lo que apunta a un estado de <strong>hipersensibilidad del campo</strong> más que a una agresión puntual sostenida.</p>
+      <p>La lectura energética distingue tres capas posibles: fuentes múltiples de baja intensidad, un proceso de apertura o recalibración vibracional en curso, o un blindaje personal debilitado que deja pasar cargas ajenas en cualquier entorno denso.</p>
+      <div class="medical-note">
+        <strong>Antes de continuar:</strong> una punzada torácica esporádica también puede tener origen físico (cardíaco, muscular, digestivo, ansioso). Si es intensa, recurrente, o se acompaña de falta de aire, sudoración fría o dolor irradiado al brazo o mandíbula, se debe descartar primero con un médico. Ambos planos —físico y energético— pueden y deben atenderse en paralelo.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span>TAXONOMÍA DE FUENTES</span></div>
+  <section>
+    <p class="section-lede">Cinco fuentes posibles detrás del patrón esporádico, cada una con una firma energética distinta.</p>
+
+    <div class="accordion">
+
+      <details class="card" open>
+        <summary>
+          <span class="card-title"><span class="card-num">01</span> Barrido de Campos Ajenos</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="card-body">
+          <span class="tag">Entorno colectivo</span>
+          <p>En espacios de alta densidad energética —transporte público, oficinas, centros comerciales, reuniones numerosas— un corazón abierto y poco filtrado capta cargas emocionales ajenas (ansiedad, tristeza, ira contenida) como impactos puntuales. La punzada marca el instante exacto de "conexión" involuntaria con el campo de otra persona o de la masa.</p>
+          <div class="bovis">
+            <div class="bovis-label"><span>Intensidad Bovis</span><span>4.500 – 5.800</span></div>
+            <div class="bovis-track"><div class="bovis-fill" style="width:45%"></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="card-title"><span class="card-num">02</span> Disparos Menores No Coordinados</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="card-body">
+          <span class="tag">Multi-fuente</span>
+          <p>En vez de un único ataque de brujería o envidia sostenido, se trata de varias interferencias pequeñas de personas o entidades distintas, cada una aprovechando momentos puntuales de baja protección (cansancio, después de discusiones, en ayuno emocional). No hay coordinación entre ellas; por eso el patrón parece errático.</p>
+          <div class="bovis">
+            <div class="bovis-label"><span>Intensidad Bovis</span><span>3.200 – 4.800</span></div>
+            <div class="bovis-track"><div class="bovis-fill" style="width:32%"></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="card-title"><span class="card-num">03</span> Recalibración del Centro Cardíaco</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="card-body">
+          <span class="tag">Proceso de apertura</span>
+          <p>Durante fases de despertar o expansión de conciencia, Anahata se reajusta a una frecuencia mayor. Cada punzada esporádica puede marcar el cruce de un umbral vibracional, no una agresión externa. Suele acompañarse de mayor sensibilidad emocional general y episodios de llanto o alegría repentina sin causa aparente.</p>
+          <div class="bovis">
+            <div class="bovis-label"><span>Intensidad Bovis</span><span>6.500 – 8.200 (ascendente)</span></div>
+            <div class="bovis-track"><div class="bovis-fill" style="width:70%"></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="card-title"><span class="card-num">04</span> Memoria Kármica Activada</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="card-body">
+          <span class="tag">Registro álmico</span>
+          <p>El corazón "recuerda" una herida de otra vida o vínculo álmico no cerrado. Ciertos lugares, rostros, música o incluso fechas del calendario pueden gatillar la reactivación sin que la persona identifique conscientemente la conexión. La punzada funciona como marcador de reactivación de esa memoria celular.</p>
+          <div class="bovis">
+            <div class="bovis-label"><span>Intensidad Bovis</span><span>4.000 – 5.500</span></div>
+            <div class="bovis-track"><div class="bovis-fill" style="width:40%"></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <span class="card-title"><span class="card-num">05</span> Alarma del Aura</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div class="card-body">
+          <span class="tag">Mecanismo de defensa</span>
+          <p>En algunos casos, la punzada no es el ataque en sí, sino el aviso del campo áurico ante una intrusión activa que está ocurriendo en ese momento —similar a una alarma. Suele ser más breve y aguda que los otros patrones, y desaparece apenas la atención consciente se dirige al pecho.</p>
+          <div class="bovis">
+            <div class="bovis-label"><span>Intensidad Bovis</span><span>2.800 – 4.200</span></div>
+            <div class="bovis-track"><div class="bovis-fill" style="width:28%"></div></div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <div class="divider"><span>PROTOCOLO DE BLINDAJE PORTÁTIL</span></div>
+  <section>
+    <p class="section-lede">Pensado para el momento mismo del impacto, en cualquier entorno —no solo en casa.</p>
+
+    <div class="protocol">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Mano sobre el pecho</h4>
+          <p>Al sentir la punzada, coloca la palma directamente sobre el esternón. El contacto físico ancla la atención en el cuerpo y corta la propagación automática del impacto hacia otras capas áuricas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Exhalación larga en tres tiempos</h4>
+          <p>Inhala en 4 tiempos, exhala en 8, imaginando que el aire sale desde el centro del pecho hacia afuera, arrastrando la carga captada. Repetir tres veces basta para la mayoría de los casos leves.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Sello violeta momentáneo</h4>
+          <p>Visualiza una esfera de luz violeta cerrándose alrededor del pecho, como una burbuja que filtra pero no aísla completamente. No es un cierre defensivo agresivo, sino un filtro selectivo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Pregunta interna de discernimiento</h4>
+          <p>"¿Esto es mío?" Si la respuesta interna es no, se trata probablemente de barrido de campo ajeno (fuente 01) y basta con soltar. Si la respuesta es sí, conviene anotar el contexto para trabajarlo luego con más calma.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h4>Registro de patrón</h4>
+          <p>Anota lugar, hora y situación de cada episodio durante dos semanas. Si se repite en los mismos entornos (transporte, cierto grupo de personas), apunta a la fuente 01 o 02. Si acompaña sueños intensos o sincronías, apunta a la fuente 03 o 04.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span>ARCHIVOS RELACIONADOS</span></div>
+  <section>
+    <div class="crosslinks">
+      <a class="crosslink" href="catalogo_completo_ataques_energeticos.html">
+        <span class="cl-title">Catálogo Completo de Ataques Energéticos</span>
+        <span class="cl-desc">Mapa maestro con enlaces cruzados a toda la taxonomía.</span>
+      </a>
+      <a class="crosslink" href="implantes_por_capa_aurica.html">
+        <span class="cl-title">Implantes por Capa Áurica</span>
+        <span class="cl-desc">Cuando la punzada se vuelve recurrente y sostenida en el tiempo.</span>
+      </a>
+      <a class="crosslink" href="ataques_energeticos_suenos.html">
+        <span class="cl-title">Ataques Energéticos en Sueños</span>
+        <span class="cl-desc">Para punzadas que aparecen o se activan durante el descanso.</span>
+      </a>
+      <a class="crosslink" href="horas_espejo_sincronicidad.html">
+        <span class="cl-title">Horas Espejo y Sincronicidad</span>
+        <span class="cl-desc">Si los episodios coinciden con horas repetidas, revisar este cruce.</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="sigil">✦</div>
+  El Ser Uno · Biblioteca Esotérica
+</footer>
+
+</body>
+</html>

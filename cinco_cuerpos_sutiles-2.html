@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Cinco Cuerpos Sutiles · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Space+Mono&display=swap');
+
+:root {
+  --bg:      #05050d;
+  --s1:      #09091a;
+  --s2:      #0d0d22;
+  --border:  #181830;
+  --border2: #252548;
+  --txt:     #ddd5c8;
+  --muted:   #6868a0;
+  --muted2:  #9898c0;
+
+  --fi: #c8a888; /* físico — ámbar cálido */
+  --et: #58c88a; /* etérico — verde esmeralda */
+  --as: #e8b840; /* astral — dorado */
+  --me: #6898e8; /* mental — azul índigo */
+  --ca: #b868d8; /* causal — violeta */
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-aurora {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 40% at 20% 30%, rgba(88,200,138,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(184,104,216,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(104,152,232,.04) 0%, transparent 70%);
+}
+.cinco-capas {
+  position: relative;
+  width: 200px; height: 200px;
+  margin: 0 auto 3rem;
+}
+.capa-hero {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .3s;
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
+  font-weight: 400;
+  letter-spacing: .2em;
+  color: var(--txt);
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.hero-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: .62rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+.hero-intro {
+  max-width: 520px;
+  font-style: italic;
+  color: var(--muted2);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+.nav-dots {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.nav-dot-btn {
+  display: flex; align-items: center; gap: .5rem;
+  background: none; border: 1px solid var(--border2);
+  border-radius: 2px; padding: .55rem 1rem;
+  color: var(--muted); font-family: 'Cinzel', serif;
+  font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer; transition: all .2s; text-decoration: none;
+}
+.nav-dot-btn:hover { color: var(--txt); }
+.nav-dot-btn .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── BARRA DE NAVEGACIÓN STICKY ── */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(5,5,13,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; overflow-x: auto;
+}
+.snav-btn {
+  font-family: 'Cinzel', serif; font-size: .62rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: .85rem 1.3rem; background: none; border: none;
+  color: var(--muted); cursor: pointer; white-space: nowrap;
+  border-bottom: 2px solid transparent; transition: all .18s;
+  margin-bottom: -1px; display: flex; align-items: center; gap: .4rem;
+}
+.snav-btn .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.snav-btn:hover { color: var(--txt); }
+.snav-btn.on { color: var(--txt); border-bottom-color: currentColor; }
+
+/* ── CUERPO SECTION ── */
+.cuerpo-section {
+  max-width: 900px; margin: 0 auto;
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Encabezado de cuerpo */
+.ch {
+  display: flex; align-items: flex-start; gap: 2rem;
+  margin-bottom: 3rem;
+}
+.ch-orb {
+  flex-shrink: 0;
+  width: 100px; height: 100px; border-radius: 50%;
+  border: 1px solid; display: flex; align-items: center;
+  justify-content: center; font-size: 2rem;
+  position: relative; overflow: hidden;
+}
+.ch-orb::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.12) 0%, transparent 60%);
+}
+.ch-meta { flex: 1; }
+.ch-codigo {
+  font-family: 'Space Mono', monospace; font-size: .62rem;
+  letter-spacing: .2em; color: var(--muted); display: block; margin-bottom: .3rem;
+}
+.ch-nombre {
+  font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 400; margin-bottom: .4rem; line-height: 1.2;
+}
+.ch-tagline {
+  font-style: italic; color: var(--muted2); font-size: 1rem;
+  margin-bottom: .8rem;
+}
+.ch-datos {
+  display: flex; gap: .6rem; flex-wrap: wrap;
+}
+.ch-dato {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  padding: .2rem .55rem; border-radius: 10px;
+  border: 1px solid var(--border2); color: var(--muted);
+}
+
+/* Tabs */
+.ctabs { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.ctab {
+  font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .12em;
+  text-transform: uppercase; padding: .45rem .9rem;
+  background: none; border: 1px solid var(--border); border-radius: 2px;
+  color: var(--muted); cursor: pointer; transition: all .15s;
+}
+.ctab:hover { border-color: var(--border2); color: var(--txt); }
+.ctab.on { color: var(--txt); border-color: currentColor; background: rgba(255,255,255,.03); }
+.cpanel { display: none; }
+.cpanel.on { display: block; }
+
+/* Contenido */
+.blq {
+  background: var(--s1); border: 1px solid var(--border);
+  border-radius: 2px; padding: 1.4rem 1.6rem; margin-bottom: 1rem;
+}
+.blq-t {
+  font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: .9rem;
+}
+.blq p { font-size: 1rem; color: var(--muted2); line-height: 1.75; margin-bottom: .8rem; }
+.blq p:last-child { margin-bottom: 0; }
+.blq strong { color: var(--txt); font-weight: 600; }
+.blq em { color: var(--muted2); }
+
+/* Tabla */
+.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.tbl th {
+  font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--muted); padding: .6rem .8rem;
+  border-bottom: 1px solid var(--border2); text-align: left;
+}
+.tbl td { padding: .6rem .8rem; border-bottom: 1px solid var(--border); color: var(--muted2); }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: rgba(255,255,255,.01); }
+
+/* Nadis */
+.nadi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .7rem; }
+.nadi-card {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 2px;
+  padding: .9rem 1rem;
+}
+.nadi-nom { font-family: 'Cinzel', serif; font-size: .8rem; margin-bottom: .3rem; }
+.nadi-desc { font-size: .85rem; color: var(--muted2); line-height: 1.5; }
+
+/* Chakras visuales */
+.chakra-col { display: flex; flex-direction: column; gap: .5rem; }
+.chakra-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .6rem .9rem; background: var(--s2); border: 1px solid var(--border); border-radius: 2px;
+}
+.ch-circ {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid currentColor; display: flex; align-items: center; justify-content: center;
+  font-size: .6rem;
+}
+.ch-nom { font-family: 'Cinzel', serif; font-size: .72rem; min-width: 80px; }
+.ch-desc { font-size: .85rem; color: var(--muted2); }
+
+/* CB espectro */
+.cb-lista { display: flex; flex-direction: column; gap: .5rem; }
+.cb-row {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .6rem .9rem; border-radius: 2px; border: 1px solid var(--border);
+}
+.cb-row.principal { border-color: var(--border2); background: var(--s2); }
+.cb-col { width: 20px; height: 20px; border-radius: 2px; flex-shrink: 0; border: 1px solid rgba(255,255,255,.1); }
+.cb-nom { font-family: 'Space Mono', monospace; font-size: .65rem; min-width: 130px; }
+.cb-desc { font-size: .85rem; color: var(--muted2); }
+
+/* Señales */
+.senal-lista { display: flex; flex-direction: column; gap: .4rem; }
+.senal-row {
+  display: flex; gap: .8rem; padding: .6rem 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.senal-row:last-child { border-bottom: none; }
+.senal-ico { font-size: 1rem; min-width: 24px; text-align: center; }
+.senal-txt { font-size: .95rem; color: var(--muted2); line-height: 1.55; }
+
+/* Muerte */
+.muerte-etapas { display: flex; flex-direction: column; gap: .5rem; }
+.muerte-etapa {
+  display: flex; gap: 1rem; padding: .8rem 1rem;
+  background: var(--s2); border: 1px solid var(--border); border-radius: 2px;
+  align-items: flex-start;
+}
+.muerte-t {
+  font-family: 'Space Mono', monospace; font-size: .62rem;
+  color: var(--muted); min-width: 90px; padding-top: .1rem;
+}
+.muerte-desc { font-size: .9rem; color: var(--muted2); line-height: 1.55; }
+
+/* Lista simple */
+.lista-simple { list-style: none; }
+.lista-simple li {
+  padding: .5rem 0; border-bottom: 1px solid var(--border);
+  font-size: .95rem; color: var(--muted2); line-height: 1.55;
+  padding-left: 1rem; position: relative;
+}
+.lista-simple li::before { content: '·'; position: absolute; left: 0; color: var(--muted); }
+.lista-simple li:last-child { border-bottom: none; }
+
+/* Diagnóstico */
+.diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.diag-card {
+  background: var(--s2); border: 1px solid var(--border); border-radius: 2px;
+  padding: .8rem 1rem;
+}
+.diag-pendulo {
+  font-family: 'Space Mono', monospace; font-size: .65rem;
+  color: var(--muted); margin-bottom: .3rem;
+}
+.diag-desc { font-size: .85rem; color: var(--muted2); line-height: 1.5; }
+
+/* Grid 2 */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+
+/* ── SÍNTESIS FINAL ── */
+.sintesis {
+  max-width: 900px; margin: 0 auto; padding: 5rem 2rem;
+}
+.sintesis h2 {
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 2rem;
+  text-align: center;
+}
+.sint-row {
+  display: grid; grid-template-columns: 40px 1fr 1fr 1fr 1fr 1fr;
+  gap: .6rem; align-items: center; padding: .7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.sint-row.header { border-bottom: 2px solid var(--border2); }
+.sint-header-txt {
+  font-family: 'Cinzel', serif; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+}
+.sint-dot { width: 14px; height: 14px; border-radius: 50%; margin: 0 auto; }
+.sint-txt { font-size: .88rem; color: var(--muted2); }
+.sint-nom { font-family: 'Cinzel', serif; font-size: .82rem; }
+
+.principio-final {
+  background: var(--s1); border: 1px solid var(--border2);
+  border-radius: 2px; padding: 2rem; margin-top: 3rem; text-align: center;
+}
+.principio-final blockquote {
+  font-size: 1.15rem; font-style: italic; color: var(--txt);
+  line-height: 1.8; margin-bottom: .5rem;
+}
+.principio-final cite {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .15em; color: var(--muted);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .ch { flex-direction: column; gap: 1rem; }
+  .ch-orb { width: 70px; height: 70px; font-size: 1.5rem; }
+  .nadi-grid { grid-template-columns: 1fr; }
+  .diag-grid { grid-template-columns: 1fr; }
+  .g2 { grid-template-columns: 1fr; }
+  .sint-row { grid-template-columns: 30px 1fr 1fr; }
+  .nav-dots { gap: .5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-aurora"></div>
+
+  <!-- Cinco capas concéntricas decorativas -->
+  <div class="cinco-capas">
+    <div class="capa-hero" style="width:200px;height:200px;border-color:rgba(184,104,216,.25);background:rgba(184,104,216,.03)"></div>
+    <div class="capa-hero" style="width:162px;height:162px;border-color:rgba(104,152,232,.25);background:rgba(104,152,232,.03)"></div>
+    <div class="capa-hero" style="width:124px;height:124px;border-color:rgba(232,184,64,.25);background:rgba(232,184,64,.04)"></div>
+    <div class="capa-hero" style="width:86px;height:86px;border-color:rgba(88,200,138,.25);background:rgba(88,200,138,.04)"></div>
+    <div class="capa-hero" style="width:48px;height:48px;border-color:rgba(200,168,136,.3);background:rgba(200,168,136,.08)"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.65rem;color:var(--muted);font-family:'Space Mono',monospace">◉</div>
+  </div>
+
+  <h1>Los Cinco Cuerpos Sutiles</h1>
+  <p class="hero-sub">El Ser Uno · Anatomía Energética Completa</p>
+  <p class="hero-intro">Cada ser humano existe simultáneamente en cinco frecuencias de consciencia. El físico es el más visible — el causal el más eterno. Entre ellos, el tejido completo de la experiencia humana.</p>
+
+  <div class="nav-dots">
+    <a class="nav-dot-btn" href="#fisico"><div class="dot" style="background:var(--fi)"></div>Físico</a>
+    <a class="nav-dot-btn" href="#eterico"><div class="dot" style="background:var(--et)"></div>Etérico</a>
+    <a class="nav-dot-btn" href="#astral"><div class="dot" style="background:var(--as)"></div>Astral</a>
+    <a class="nav-dot-btn" href="#mental"><div class="dot" style="background:var(--me)"></div>Mental</a>
+    <a class="nav-dot-btn" href="#causal"><div class="dot" style="background:var(--ca)"></div>Causal</a>
+  </div>
+</section>
+
+<!-- ══ STICKY NAV ══ -->
+<nav class="sticky-nav">
+  <button class="snav-btn on" onclick="scrollTo('fisico',this)"><div class="dot" style="background:var(--fi)"></div>Físico</button>
+  <button class="snav-btn" onclick="scrollTo('eterico',this)"><div class="dot" style="background:var(--et)"></div>Etérico</button>
+  <button class="snav-btn" onclick="scrollTo('astral',this)"><div class="dot" style="background:var(--as)"></div>Astral</button>
+  <button class="snav-btn" onclick="scrollTo('mental',this)"><div class="dot" style="background:var(--me)"></div>Mental</button>
+  <button class="snav-btn" onclick="scrollTo('causal',this)"><div class="dot" style="background:var(--ca)"></div>Causal</button>
+  <button class="snav-btn" onclick="scrollTo('sintesis',this)">Síntesis</button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     FÍSICO
+══════════════════════════════════════ -->
+<section class="cuerpo-section" id="fisico">
+  <div class="ch">
+    <div class="ch-orb" style="border-color:rgba(200,168,136,.4);background:rgba(200,168,136,.06);color:var(--fi)">🜃</div>
+    <div class="ch-meta">
+      <span class="ch-codigo">Cuerpo I · Densidad Máxima</span>
+      <h2 class="ch-nombre" style="color:var(--fi)">Cuerpo Físico</h2>
+      <p class="ch-tagline">El punto donde la energía más sutil se cristaliza en materia perceptible.</p>
+      <div class="ch-datos">
+        <span class="ch-dato">Frecuencia: Más densa</span>
+        <span class="ch-dato">Bovis: 6.500–8.000 en equilibrio</span>
+        <span class="ch-dato">C-B: Verde+ / Infrarrojo</span>
+        <span class="ch-dato">Se disuelve: Inmediatamente</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctabs" id="tabs-fi">
+    <button class="ctab on" style="color:var(--fi)" onclick="showTab('fi','naturaleza',this)">Naturaleza</button>
+    <button class="ctab" onclick="showTab('fi','sistemas',this)">Sistemas</button>
+    <button class="ctab" onclick="showTab('fi','vulnerabilidad',this)">Vulnerabilidad</button>
+    <button class="ctab" onclick="showTab('fi','cb',this)">Chaumery-Bélizal</button>
+    <button class="ctab" onclick="showTab('fi','muerte',this)">En la Muerte</button>
+    <button class="ctab" onclick="showTab('fi','diag',this)">Diagnóstico</button>
+  </div>
+
+  <div class="cpanel on" id="fi-naturaleza">
+    <div class="blq">
+      <p>El cuerpo físico es el <strong>vehículo de manifestación más denso</strong> del ser. En El Ser Uno no es el "verdadero" cuerpo sino el punto de convergencia de todos los cuerpos superiores — el lugar donde la energía más sutil se cristaliza en materia perceptible por los sentidos físicos.</p>
+      <p>No es el más importante sino el <strong>más visible</strong>. Todo lo que ocurre en los cuerpos sutiles superiores termina eventualmente manifestándose en el físico — la enfermedad física es siempre la última expresión de una distorsión que comenzó en planos más internos.</p>
+      <p>Cada célula del cuerpo físico es en su núcleo más profundo <strong>una unidad de consciencia condensada</strong> — un nimeo densificado al máximo grado de compresión vibracional. La materia no es inerte. Cada órgano responde al campo energético que lo rodea.</p>
+    </div>
+    <div class="blq">
+      <div class="blq-t">El Físico como Barómetro</div>
+      <p>La zona del cuerpo donde se manifiesta la enfermedad corresponde al chakra y al cuerpo sutil que originaron la distorsión:</p>
+      <ul class="lista-simple">
+        <li><strong>Cabeza / cuello:</strong> cuerpo mental — rigidez de pensamiento, problemas de expresión</li>
+        <li><strong>Pecho / corazón:</strong> cuerpo astral — dolor emocional reprimido, duelo no procesado</li>
+        <li><strong>Abdomen / digestivo:</strong> plexo solar astral — poder personal, miedo, control</li>
+        <li><strong>Pelvis / reproducción:</strong> cuerpo causal y ancestral — sexualidad, seguridad existencial</li>
+        <li><strong>Sistema óseo:</strong> cuerpo causal — patrones de vidas anteriores</li>
+        <li><strong>Sistema inmune:</strong> cuerpo etérico — drenaje vital crónico</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cpanel" id="fi-sistemas">
+    <div class="blq">
+      <div class="blq-t">Correspondencia de los Sistemas Físicos con los Cuerpos Sutiles</div>
+      <table class="tbl">
+        <thead><tr><th>Sistema físico</th><th>Cuerpo sutil</th><th>Chakra principal</th><th>Distorsión típica</th></tr></thead>
+        <tbody>
+          <tr><td>Sistema nervioso</td><td style="color:var(--me)">Mental</td><td>Corona / Tercer Ojo</td><td>Ansiedad, insomnio, rigidez</td></tr>
+          <tr><td>Sistema endocrino</td><td style="color:var(--et)">Etérico</td><td>Todos los chakras</td><td>Desequilibrio hormonal crónico</td></tr>
+          <tr><td>Sistema cardiovascular</td><td style="color:var(--as)">Astral</td><td>Corazón</td><td>Dolor emocional somatizado</td></tr>
+          <tr><td>Sistema digestivo</td><td style="color:var(--as)">Astral</td><td>Plexo solar</td><td>Miedo, control, digestión del cambio</td></tr>
+          <tr><td>Sistema inmune</td><td style="color:var(--et)">Etérico</td><td>Timo / Corazón</td><td>Drenaje vital por entidades</td></tr>
+          <tr><td>Sistema reproductor</td><td style="color:var(--ca)">Causal</td><td>Sacro / Raíz</td><td>Karma ancestral, herencia</td></tr>
+          <tr><td>Sistema óseo</td><td style="color:var(--ca)">Causal</td><td>Raíz</td><td>Patrones de vidas anteriores</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cpanel" id="fi-vulnerabilidad">
+    <div class="blq">
+      <div class="blq-t">Regla Fundamental</div>
+      <p><strong>Ninguna entidad de oscuridad actúa directamente sobre el físico sin pasar primero por el etérico.</strong> Esta es una regla sin excepción en El Ser Uno. El físico es vulnerable solo de forma indirecta — a través de los cuerpos superiores.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Vías de Entrada</div>
+        <ul class="lista-simple">
+          <li>Drenaje etérico prolongado → debilita sistema inmune → enfermedad</li>
+          <li>Saturación astral negativa → digestivo, cardiovascular, endocrino</li>
+          <li>Distorsión mental prolongada → sistema nervioso → autoinmune</li>
+          <li>Carga causal → patrones estructurales → enfermedades hereditarias</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Señales de Afectación</div>
+        <ul class="lista-simple">
+          <li>Enfermedades crónicas sin diagnóstico claro</li>
+          <li>Síntomas que migran sin causa orgánica</li>
+          <li>Fatiga persistente que no responde al descanso</li>
+          <li>Dolores que aparecen y desaparecen sin patrón</li>
+          <li>Cambios físicos inexplicables (peso, postura, expresión)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="fi-cb">
+    <div class="blq">
+      <div class="blq-t">Vibraciones del Espectro Chaumery-Bélizal</div>
+      <div class="cb-lista">
+        <div class="cb-row principal">
+          <div class="cb-col" style="background:#2d8a2d"></div>
+          <span class="cb-nom" style="color:var(--et)">Verde Positivo</span>
+          <span class="cb-desc">La vibración más beneficiosa para el tejido físico. Vitaliza, regenera y equilibra. Es el polo norte del espectro — opuesto exacto del Verde Negativo.</span>
+        </div>
+        <div class="cb-row principal">
+          <div class="cb-col" style="background:#d4a840"></div>
+          <span class="cb-nom" style="color:var(--as)">Amarillo</span>
+          <span class="cb-desc">Estimula el sistema nervioso y el metabolismo. Asociado al plexo solar y la energía vital activa.</span>
+        </div>
+        <div class="cb-row">
+          <div class="cb-col" style="background:#8B4513"></div>
+          <span class="cb-nom">Infrarrojo</span>
+          <span class="cb-desc">Zona de calor vital. El cuerpo físico irradia en esta frecuencia. Su ausencia indica debilidad etérica severa.</span>
+        </div>
+        <div class="cb-row">
+          <div class="cb-col" style="background:#080808"></div>
+          <span class="cb-nom">Negro / Verde Negativo</span>
+          <span class="cb-desc">El Verde Negativo deshidrata los tejidos a nivel celular. Chaumery lo documentó como precursor de procesos oncológicos. Su presencia sostenida en el campo físico indica entidad activa o zona geopática severa.</span>
+        </div>
+      </div>
+    </div>
+    <div class="blq">
+      <div class="blq-t">La Escala Bovis y el Físico</div>
+      <p>La Escala Bovis mide directamente la <strong>vitalidad del cuerpo físico</strong> — su capacidad de sostener la vida orgánica. Un Bovis por debajo de 6.500 indica que el físico está recibiendo menos energía vital de la que necesita para mantenerse en equilibrio.</p>
+    </div>
+  </div>
+
+  <div class="cpanel" id="fi-muerte">
+    <div class="blq">
+      <div class="blq-t">El Físico en el Proceso de Tránsito</div>
+      <div class="muerte-etapas">
+        <div class="muerte-etapa"><span class="muerte-t">Bovis +1.000→0</span><span class="muerte-desc">El cuerpo físico aún sostiene la vida pero la fuerza vital ha iniciado su retirada. Temperatura desciende de extremidades hacia el centro. Respiración se vuelve irregular.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Bovis 0</span><span class="muerte-desc">Cese de las funciones orgánicas. El físico deja de recibir el sostén etérico. Es el momento que la medicina llama muerte clínica.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Post-mortem</span><span class="muerte-desc">El etérico permanece unido al físico entre 3 y 72 horas. Durante este período el cuerpo debe ser tratado con respeto — el ser en tránsito puede aún percibirlo.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Disolución</span><span class="muerte-desc">El cuerpo físico regresa a los elementos de la Tierra. Sus componentes energéticos básicos se reintegran al campo material planetario.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="fi-diag">
+    <div class="blq">
+      <div class="blq-t">Diagnóstico Radiestésico del Cuerpo Físico</div>
+      <div class="diag-grid">
+        <div class="diag-card"><div class="diag-pendulo">Giro horario fuerte</div><div class="diag-desc">Vitalidad óptima — buena circulación de prana a través del etérico hacia el físico</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Giro débil o errático</div><div class="diag-desc">Zona de debilidad — puede indicar enfermedad incipiente o drenaje etérico activo</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Giro antihorario</div><div class="diag-desc">Inversión energética — posible presencia de entidad o zona geopática de interferencia</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Péndulo detenido</div><div class="diag-desc">Bloqueo total — implante profundo, trauma severo o zona de muerte energética</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ETÉRICO
+══════════════════════════════════════ -->
+<section class="cuerpo-section" id="eterico">
+  <div class="ch">
+    <div class="ch-orb" style="border-color:rgba(88,200,138,.4);background:rgba(88,200,138,.06);color:var(--et)">🜁</div>
+    <div class="ch-meta">
+      <span class="ch-codigo">Cuerpo II · Primer Cuerpo Sutil</span>
+      <h2 class="ch-nombre" style="color:var(--et)">Cuerpo Etérico</h2>
+      <p class="ch-tagline">El molde del que fue fundida la estatua. Primera línea de defensa y primer punto de contacto con la oscuridad.</p>
+      <div class="ch-datos">
+        <span class="ch-dato">Frecuencia: Densa-sutil</span>
+        <span class="ch-dato">72.000 nadis</span>
+        <span class="ch-dato">C-B: Negro / Infrarrojo</span>
+        <span class="ch-dato">Se separa: 3–72h post-mortem</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctabs" id="tabs-et">
+    <button class="ctab on" style="color:var(--et)" onclick="showTab('et','naturaleza',this)">Naturaleza</button>
+    <button class="ctab" onclick="showTab('et','nadis',this)">Nadis y Chakras</button>
+    <button class="ctab" onclick="showTab('et','funciones',this)">Funciones</button>
+    <button class="ctab" onclick="showTab('et','traumas',this)">Traumas</button>
+    <button class="ctab" onclick="showTab('et','muerte',this)">En la Muerte</button>
+    <button class="ctab" onclick="showTab('et','diag',this)">Diagnóstico</button>
+  </div>
+
+  <div class="cpanel on" id="et-naturaleza">
+    <div class="blq">
+      <p>El cuerpo etérico es el <strong>doble energético del cuerpo físico</strong> — una réplica exacta en frecuencia sutil que sirve como molde y sostén de la forma física. Si el físico es la estatua, el etérico es el molde del que fue fundida. Si el molde se deforma, la estatua eventualmente lo refleja.</p>
+      <p>Es el <strong>transformador que convierte la energía cósmica (prana) en energía biológica</strong> utilizable por el cuerpo físico. Sin este flujo constante de prana canalizado a través del etérico, la vida física no puede sostenerse.</p>
+      <p>En El Ser Uno se describe como el <strong>puente entre la materia densa y los planos emocionales y mentales</strong> — la membrana que separa y conecta simultáneamente el mundo físico y el mundo sutil.</p>
+    </div>
+  </div>
+
+  <div class="cpanel" id="et-nadis">
+    <div class="blq">
+      <div class="blq-t">Los 72.000 Nadis — Red de Distribución Etérica</div>
+      <p>Los <strong>nadis</strong> son canales de energía sutil análogos al sistema nervioso físico pero en frecuencia etérica. Los 72.000 nadis distribuyen el prana desde los chakras hacia cada célula del cuerpo físico.</p>
+    </div>
+    <div class="nadi-grid">
+      <div class="nadi-card" style="border-color:rgba(104,152,232,.3)">
+        <div class="nadi-nom" style="color:var(--me)">IDA</div>
+        <div class="nadi-desc">Canal lunar, femenino, lado izquierdo del cuerpo. Energía receptiva, introspectiva, fría. Asociado a la luna y los ritmos cíclicos.</div>
+      </div>
+      <div class="nadi-card" style="border-color:rgba(232,184,64,.3)">
+        <div class="nadi-nom" style="color:var(--as)">PINGALA</div>
+        <div class="nadi-desc">Canal solar, masculino, lado derecho. Energía proyectiva, activa, cálida. Asociado al sol y la acción en el mundo.</div>
+      </div>
+      <div class="nadi-card" style="border-color:rgba(184,104,216,.3)">
+        <div class="nadi-nom" style="color:var(--ca)">SUSHUMNA</div>
+        <div class="nadi-desc">Canal central — atraviesa todos los chakras desde la raíz hasta la corona. El canal del despertar espiritual. Cuando la Kundalini asciende por el Sushumna, ocurre la iluminación.</div>
+      </div>
+    </div>
+    <div class="blq" style="margin-top:.8rem">
+      <div class="blq-t">Los Chakras como Nodos de la Red</div>
+      <div class="chakra-col">
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(200,168,136,.1);border-color:#c8a888;color:#c8a888">●</div><span class="ch-nom" style="color:#c8a888">Raíz</span><span class="ch-desc">Conexión con la Tierra. Supervivencia, seguridad, materia. Base de todo el sistema etérico.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(232,120,40,.1);border-color:#e87828;color:#e87828">●</div><span class="ch-nom" style="color:#e87828">Sacro</span><span class="ch-desc">Creatividad, sexualidad, flujo emocional. Distribución de prana hacia el sistema reproductor.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(232,184,64,.1);border-color:var(--as);color:var(--as)">●</div><span class="ch-nom" style="color:var(--as)">Plexo Solar</span><span class="ch-desc">Voluntad personal, identidad, poder. Centro del fuego digestivo etérico.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(88,200,138,.1);border-color:var(--et);color:var(--et)">●</div><span class="ch-nom" style="color:var(--et)">Corazón</span><span class="ch-desc">Punto principal de captación del prana cósmico. Amor, compasión, unidad. El chakra más protegido.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(104,152,232,.1);border-color:var(--me);color:var(--me)">●</div><span class="ch-nom" style="color:var(--me)">Garganta</span><span class="ch-desc">Expresión, verdad, creatividad verbal. Distribución de prana hacia el sistema respiratorio.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(80,60,160,.1);border-color:#5040a0;color:#5040a0">●</div><span class="ch-nom" style="color:#5040a0">Tercer Ojo</span><span class="ch-desc">Percepción sutil, intuición, visión interior. Órgano de percepción del plano mental superior.</span></div>
+        <div class="chakra-row"><div class="ch-circ" style="background:rgba(184,104,216,.1);border-color:var(--ca);color:var(--ca)">●</div><span class="ch-nom" style="color:var(--ca)">Corona</span><span class="ch-desc">Conexión con el Ser Superior y los planos cósmicos. Punto de entrada del Rayo Crístico.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="et-funciones">
+    <div class="g2">
+      <div class="blq"><div class="blq-t" style="color:var(--et)">1 · Sostén de la Forma</div><p>El etérico mantiene la cohesión de la forma corporal. Las células físicas se renuevan constantemente — lo que mantiene la forma reconocible a través de ese proceso de renovación es el molde etérico. Sin él, el físico no tendría estructura que mantener.</p></div>
+      <div class="blq"><div class="blq-t" style="color:var(--et)">2 · Captación de Prana</div><p>El prana cósmico entra al sistema humano principalmente a través del chakra del corazón y se distribuye por los 72.000 nadis hacia cada célula. Sin este suministro constante la vida física no puede sostenerse por más de minutos.</p></div>
+      <div class="blq"><div class="blq-t" style="color:var(--et)">3 · Percepción Sutil Básica</div><p>El etérico es responsable de las percepciones sutiles directas: sensaciones de campos energéticos, percepción de presencias, "sexto sentido" básico. No es la intuición superior sino la <strong>percepción energética directa</strong> — sentir antes de pensar.</p></div>
+      <div class="blq"><div class="blq-t" style="color:var(--et)">4 · Primera Línea de Defensa</div><p>Todas las entidades de oscuridad que buscan adherirse deben primero atravesar o anclar en el etérico. Un etérico íntegro, sin fisuras, con Bovis alto es la defensa más eficiente contra la mayoría de presencias de los niveles D-1 a D-5.</p></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="et-traumas">
+    <div class="blq">
+      <div class="blq-t">Las Fisuras Etéricas</div>
+      <p>Cada trauma emocional severo deja una <strong>fisura en el cuerpo etérico</strong> — una zona donde el flujo de prana se interrumpe. Estas fisuras son literalmente puntos de entrada para entidades de oscuridad.</p>
+      <p>Las fisuras no son permanentes — pueden sanar con trabajo energético específico. Pero mientras permanecen abiertas actúan como imanes para la energía compatible con el trauma que las generó.</p>
+    </div>
+    <div class="g2">
+      <div class="blq"><div class="blq-t">Causas de Fisuras</div><ul class="lista-simple"><li>Traumas emocionales severos no procesados</li><li>Cirugías físicas sin acompañamiento energético</li><li>Anestesia general — separa temporalmente el etérico</li><li>Shocks repentinos (accidentes, muertes súbitas)</li><li>Consumo prolongado de sustancias que alteran el campo</li><li>Relaciones sexuales con portadores de entidades</li></ul></div>
+      <div class="blq"><div class="blq-t">Señales de Fisura Activa</div><ul class="lista-simple"><li>Fatiga que no mejora con descanso</li><li>Sensación de "hueco" o vacío en zonas del cuerpo</li><li>Frío interno que no responde al calor externo</li><li>Pérdida de vitalidad súbita sin causa física</li><li>Sensación de ser "drenado" en presencia de ciertas personas</li><li>Infecciones recurrentes en la misma zona del cuerpo</li></ul></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="et-muerte">
+    <div class="blq">
+      <div class="blq-t">El Etérico en el Proceso de Tránsito</div>
+      <div class="muerte-etapas">
+        <div class="muerte-etapa"><span class="muerte-t">Pre-cruce</span><span class="muerte-desc">El etérico comienza a aflojar su unión con el físico. El aura etérica se contrae hacia el centro del cuerpo. En personas con alta vibración este proceso es sereno — en personas con mucho apego puede generar resistencia visible.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">0–3 horas</span><span class="muerte-desc">El etérico permanece parcialmente unido al físico. El ser puede percibir su entorno inmediato aunque sin cuerpo físico. Puede escuchar conversaciones y percibir las emociones de los presentes.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">3–72 horas</span><span class="muerte-desc">El etérico completa su separación del físico. Durante todo este período el ser en tránsito percibe el entorno. Esta es la razón más importante para mantener el espacio sereno y amoroso.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Post-separación</span><span class="muerte-desc">El etérico ya separado inicia su propio proceso de disolución. Sus componentes energéticos regresan al campo etérico planetario. El ser queda entonces con sus cuerpos astral, mental y causal.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="et-diag">
+    <div class="blq">
+      <div class="blq-t">Diagnóstico Radiestésico del Etérico</div>
+      <div class="diag-grid">
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--et)">Horario fuerte y regular</div><div class="diag-desc">Etérico saludable, buen flujo de prana por los nadis, chakras activos y equilibrados</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Horario débil o irregular</div><div class="diag-desc">Fisuras activas o drenaje en proceso. Localizar zona exacta moviéndose sobre el cuerpo</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:#e07030">Antihorario consistente</div><div class="diag-desc">Inversión del flujo — entidad anclada en el etérico o implante activo. Evaluar nivel</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--ca)">Péndulo detenido en zona</div><div class="diag-desc">Implante profundo o trauma severo — bloqueo total del flujo de prana en esa área</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ASTRAL
+══════════════════════════════════════ -->
+<section class="cuerpo-section" id="astral">
+  <div class="ch">
+    <div class="ch-orb" style="border-color:rgba(232,184,64,.4);background:rgba(232,184,64,.06);color:var(--as)">🜂</div>
+    <div class="ch-meta">
+      <span class="ch-codigo">Cuerpo III · Cuerpo Emocional</span>
+      <h2 class="ch-nombre" style="color:var(--as)">Cuerpo Astral</h2>
+      <p class="ch-tagline">El vehículo del sentir. El más activo durante la vida humana. El campo donde habitan los sueños y los vínculos.</p>
+      <div class="ch-datos">
+        <span class="ch-dato">Frecuencia: Sutil</span>
+        <span class="ch-dato">C-B: Verde+ / Amarillo (sano)</span>
+        <span class="ch-dato">Se separa: Días–semanas</span>
+        <span class="ch-dato">Cuerpo del sueño</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctabs" id="tabs-as">
+    <button class="ctab on" style="color:var(--as)" onclick="showTab('as','naturaleza',this)">Naturaleza</button>
+    <button class="ctab" onclick="showTab('as','zonas',this)">Zonas del Astral</button>
+    <button class="ctab" onclick="showTab('as','relaciones',this)">Relaciones</button>
+    <button class="ctab" onclick="showTab('as','suenos',this)">Sueños</button>
+    <button class="ctab" onclick="showTab('as','muerte',this)">En la Muerte</button>
+    <button class="ctab" onclick="showTab('as','diag',this)">Diagnóstico</button>
+  </div>
+
+  <div class="cpanel on" id="as-naturaleza">
+    <div class="blq">
+      <p>El cuerpo astral es el <strong>cuerpo emocional</strong> — el vehículo a través del cual el ser experimenta todo el espectro del sentir: amor, miedo, alegría, tristeza, deseo, repulsión, compasión, ira. Es el más activo durante la vida humana promedio porque la mayor parte de la experiencia cotidiana ocurre en el plano emocional.</p>
+      <p>Está compuesto por <strong>nimeos emocionales</strong> — unidades de energía con carga afectiva. Cada emoción experimentada agrega nimeos al campo astral: los luminosos (amor, gratitud, alegría) elevan su vibración; los distorsionados (miedo, ira, resentimiento) la densifican.</p>
+      <p>El color y luminosidad del aura astral — lo que los clarividentes perciben — es el reflejo directo de la <strong>calidad de los nimeos acumulados</strong> a lo largo de la vida.</p>
+    </div>
+  </div>
+
+  <div class="cpanel" id="as-zonas">
+    <div class="g2">
+      <div class="blq" style="border-color:rgba(184,104,216,.3)">
+        <div class="blq-t" style="color:var(--ca)">Zona Alta del Astral</div>
+        <ul class="lista-simple">
+          <li>Experiencias de amor puro, compasión genuina, gozo espiritual</li>
+          <li>Plano donde operan los guías y Hermanos Mayores en sus aspectos más accesibles</li>
+          <li>Sueños luminosos y clarividencia amorosa</li>
+          <li>Comunicación genuina con seres de Luz</li>
+          <li>Vibración Bovis: por encima de 18.000</li>
+        </ul>
+      </div>
+      <div class="blq" style="border-color:rgba(192,64,64,.3)">
+        <div class="blq-t" style="color:#c04040">Zona Baja del Astral</div>
+        <ul class="lista-simple">
+          <li>Acumulación de miedos, traumas y apegos no resueltos</li>
+          <li>Plano donde habitan las entidades D-5 y D-6</li>
+          <li>Pesadillas, sensaciones de amenaza, angustia sin causa</li>
+          <li>El "purgatorio" de las tradiciones religiosas — no un lugar sino una frecuencia</li>
+          <li>Vibración Bovis: por debajo de 6.500</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="as-relaciones">
+    <div class="blq">
+      <div class="blq-t">Las Cuerdas Etéricas — Vínculos Astrales</div>
+      <p>Todas las relaciones humanas existen simultáneamente en el plano astral. Los vínculos entre personas no son solo físicos y mentales — son principalmente <strong>astrales</strong>. Las cuerdas etéricas se forman a través de:</p>
+    </div>
+    <div class="blq">
+      <table class="tbl">
+        <thead><tr><th>Tipo de vínculo</th><th>Calidad de la cuerda</th><th>Efecto en ambos</th></tr></thead>
+        <tbody>
+          <tr><td>Amor genuino y libre</td><td style="color:var(--et)">Luminosa, bidireccional</td><td>Fortalece a ambos — eleva el campo</td></tr>
+          <tr><td>Dependencia emocional</td><td style="color:var(--as)">Densa, extractiva</td><td>Drena al que sostiene, debilita al dependiente</td></tr>
+          <tr><td>Resentimiento / odio</td><td style="color:#c04040">Oscura, dolorosa</td><td>Lastima a ambos — mantiene el ciclo activo</td></tr>
+          <tr><td>Vínculo sexual</td><td style="color:var(--ca)">Muy fuerte, intercambio total</td><td>Fusión parcial de campos — puede durar años</td></tr>
+          <tr><td>Karma familiar</td><td style="color:var(--fi)">Estructural, profunda</td><td>Patrón que requiere resolución consciente</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.8rem;font-size:.9rem;color:var(--muted2)"><strong>Importante:</strong> toda relación sexual establece un intercambio de campos astrales que puede durar <em>años después de la separación física</em>. Esto explica por qué ciertas relaciones pasadas siguen "pesando" energéticamente aunque hayan terminado hace tiempo.</p>
+    </div>
+  </div>
+
+  <div class="cpanel" id="as-suenos">
+    <div class="blq">
+      <div class="blq-t">El Astral y los Sueños</div>
+      <p>Durante el sueño el astral sale parcialmente del físico y actúa de forma autónoma en los planos astrales. La calidad del sueño es el <strong>termómetro más preciso del estado del astral</strong>.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Funciones del Astral durante el Sueño</div>
+        <ul class="lista-simple">
+          <li>Procesa y convierte en aprendizaje las emociones del día</li>
+          <li>Viaja a los planos astrales para encontrarse con otros seres</li>
+          <li>Recibe enseñanzas de Hermanos Mayores en planos de aprendizaje sutil</li>
+          <li>Resuelve situaciones pendientes con personas del entorno</li>
+          <li>Accede a información del registro akáshico personal</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Señales de Astral Afectado en Sueños</div>
+        <ul class="lista-simple">
+          <li>Pesadillas repetitivas con el mismo tema — patrón emocional sin resolver</li>
+          <li>Sueños de persecución — entidad activa en el astral bajo</li>
+          <li>Cansancio al despertar — drenaje astral durante el sueño</li>
+          <li>Parálisis del sueño — entidad que bloquea el retorno al físico</li>
+          <li>Sueños de caída — ruptura temporal del cordón astral</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="as-muerte">
+    <div class="blq">
+      <div class="blq-t">El Astral en el Proceso de Tránsito</div>
+      <div class="muerte-etapas">
+        <div class="muerte-etapa"><span class="muerte-t">Separación</span><span class="muerte-desc">El cuerpo astral es el segundo en separarse, tras la disolución del etérico. El ser experimenta la revisión de vida emocional — ve las consecuencias de todas sus acciones sobre otros con empatía total y sin filtros.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Revisión</span><span class="muerte-desc">El ser siente exactamente lo que sintieron todas las personas que afectó durante su vida. Esto puede ser experiencia de gozo (cuando las acciones produjeron bien) o de comprensión dolorosa (no como castigo sino como entendimiento).</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Disolución</span><span class="muerte-desc">Los apegos, miedos y deseos en su forma energética se van disolviendo. El peso emocional acumulado en vida determina cuánto dura este proceso. Puede tardar días en almas livianas o semanas en almas con muchos apegos intensos.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Integración</span><span class="muerte-desc">Las experiencias emocionales no se pierden — se integran al registro causal como aprendizaje. Lo que se pierde es el peso vibracional de esas emociones. El amor puro permanece — el apego se transforma.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="as-diag">
+    <div class="blq">
+      <div class="blq-t">Diagnóstico Radiestésico del Astral</div>
+      <p>El astral no se mide directamente con péndulo de la misma forma que el etérico. Las herramientas principales son el péndulo sobre los chakras centrales y las preguntas directas sobre el estado emocional del campo.</p>
+      <div class="diag-grid" style="margin-top:.8rem">
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--et)">Corazón: horario fuerte</div><div class="diag-desc">Astral saludable — flujo de amor y compasión sin bloqueos ni cuerdas extractivas activas</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--as)">Plexo: horario débil</div><div class="diag-desc">Astral bajo de energía — posible cuerda extractiva activa o acumulación de miedo crónico</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:#e07030">Plexo: antihorario</div><div class="diag-desc">Egregor activo o entidad en el astral. El plexo es el punto de entrada preferido de los egregores negativos</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Color C-B predominante</div><div class="diag-desc">Verde+ y Amarillo: astral sano. Negro y Verde-: material denso acumulado o entidad activa en el campo emocional</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MENTAL
+══════════════════════════════════════ -->
+<section class="cuerpo-section" id="mental">
+  <div class="ch">
+    <div class="ch-orb" style="border-color:rgba(104,152,232,.4);background:rgba(104,152,232,.06);color:var(--me)">🜄</div>
+    <div class="ch-meta">
+      <span class="ch-codigo">Cuerpo IV · Cuerpo del Pensamiento</span>
+      <h2 class="ch-nombre" style="color:var(--me)">Cuerpo Mental</h2>
+      <p class="ch-tagline">El vehículo del pensamiento y las creencias. Creador de realidad. Puerta de acceso a los Registros Akáshicos.</p>
+      <div class="ch-datos">
+        <span class="ch-dato">Frecuencia: Muy sutil</span>
+        <span class="ch-dato">C-B: Azul / Índigo</span>
+        <span class="ch-dato">Se separa: Semanas</span>
+        <span class="ch-dato">Mental inferior / superior</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctabs" id="tabs-me">
+    <button class="ctab on" style="color:var(--me)" onclick="showTab('me','naturaleza',this)">Naturaleza</button>
+    <button class="ctab" onclick="showTab('me','creacion',this)">Creación de Realidad</button>
+    <button class="ctab" onclick="showTab('me','creencias',this)">Creencias</button>
+    <button class="ctab" onclick="showTab('me','akashicos',this)">Registros Akáshicos</button>
+    <button class="ctab" onclick="showTab('me','muerte',this)">En la Muerte</button>
+    <button class="ctab" onclick="showTab('me','diag',this)">Diagnóstico</button>
+  </div>
+
+  <div class="cpanel on" id="me-naturaleza">
+    <div class="g2">
+      <div class="blq" style="border-color:rgba(104,152,232,.3)">
+        <div class="blq-t" style="color:var(--me)">Mental Inferior — Concreto</div>
+        <ul class="lista-simple">
+          <li>Pensamiento lógico y analítico</li>
+          <li>Memoria episódica e inmediata</li>
+          <li>Lenguaje y comunicación</li>
+          <li>Resolución de problemas prácticos</li>
+          <li>Planificación y organización</li>
+          <li>Razonamiento causa-efecto</li>
+        </ul>
+      </div>
+      <div class="blq" style="border-color:rgba(184,104,216,.3)">
+        <div class="blq-t" style="color:var(--ca)">Mental Superior — Abstracto</div>
+        <ul class="lista-simple">
+          <li>Intuición elevada y percepción directa</li>
+          <li>Pensamiento filosófico y holístico</li>
+          <li>Comprensión de principios universales</li>
+          <li>Creatividad profunda y original</li>
+          <li>Acceso al conocimiento akáshico</li>
+          <li>Percepción simultánea pasado-presente-futuro</li>
+        </ul>
+      </div>
+    </div>
+    <div class="blq">
+      <p>El mental es el que distingue al ser humano de la mayoría de los reinos naturales. Pero en El Ser Uno también es el campo más <strong>susceptible a la distorsión arcóntica</strong> — porque quien controla los marcos de interpretación mental controla la percepción de la realidad entera.</p>
+    </div>
+  </div>
+
+  <div class="cpanel" id="me-creacion">
+    <div class="blq">
+      <div class="blq-t">El Mecanismo de Creación de Realidad</div>
+      <p>El <strong>pensamiento no solo refleja la realidad sino que la crea</strong>. Los nimeos mentales tienen capacidad creadora real en los planos sutiles. El mecanismo exacto:</p>
+    </div>
+    <div class="muerte-etapas">
+      <div class="muerte-etapa"><span class="muerte-t" style="color:var(--me)">Mental</span><span class="muerte-desc">Un pensamiento repetido con suficiente intensidad crea una <strong>forma-pensamiento</strong> en el plano mental — una estructura energética coherente con su propio campo.</span></div>
+      <div class="muerte-etapa"><span class="muerte-t" style="color:var(--as)">Astral</span><span class="muerte-desc">La forma-pensamiento desciende al astral adquiriendo <strong>carga emocional</strong> — la emoción que la persona asocia al pensamiento. Esto le da potencia creadora.</span></div>
+      <div class="muerte-etapa"><span class="muerte-t" style="color:var(--et)">Etérico</span><span class="muerte-desc">Del astral cargado desciende al etérico como <strong>patrón energético</strong> — una instrucción para el cuerpo físico y el entorno inmediato.</span></div>
+      <div class="muerte-etapa"><span class="muerte-t" style="color:var(--fi)">Físico</span><span class="muerte-desc">Del etérico se <strong>manifiesta en el físico</strong> como experiencia, situación, síntoma, o atracción de circunstancias que reflejan el pensamiento original.</span></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="me-creencias">
+    <div class="blq">
+      <div class="blq-t">Las Creencias como Nimeos Cristalizados</div>
+      <p>Las creencias son <strong>nimeos mentales cristalizados</strong> — estructuras de pensamiento que el ser ha repetido y validado tanto que se vuelven automáticas e invisibles. Forman el lente a través del cual se interpreta toda experiencia.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Cómo Opera una Creencia Limitante</div>
+        <ul class="lista-simple">
+          <li>Filtra información: solo permite entrar lo que confirma la creencia</li>
+          <li>Genera emociones astrales correspondientes automáticamente</li>
+          <li>Produce patrones de comportamiento que confirman la creencia</li>
+          <li>Atrae situaciones y personas que refuerzan el patrón</li>
+          <li>Se vuelve invisible — parece "la realidad" no una creencia</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Señales de Creencia Limitante Activa</div>
+        <ul class="lista-simple">
+          <li>El mismo patrón se repite en diferentes contextos y relaciones</li>
+          <li>Reacción emocional desproporcionada ante ciertos temas</li>
+          <li>Incapacidad de imaginar una alternativa a la situación</li>
+          <li>Sensación de "siempre me pasa esto"</li>
+          <li>Resistencia intensa a cambiar cierta área de la vida</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="me-akashicos">
+    <div class="blq">
+      <div class="blq-t">El Mental Superior como Puerta Akáshica</div>
+      <p>El acceso a los Registros Akáshicos ocurre a través del <strong>mental superior</strong> — específicamente a través del tercer ojo como órgano de percepción del mental sutil. Las condiciones para este acceso:</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Condiciones de Acceso</div>
+        <ul class="lista-simple">
+          <li>Silenciamiento del mental inferior — el "ruido" habitual</li>
+          <li>Bovis personal por encima de 18.000–20.000</li>
+          <li>Ausencia de entidades en el cuerpo mental</li>
+          <li>Estado meditativo sostenido</li>
+          <li>Intención clara y pregunta específica</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Bloqueos Arcónticos al Acceso</div>
+        <ul class="lista-simple">
+          <li>Entidades D-6 y D-7 instaladas en el mental superior</li>
+          <li>Generan "interferencia estática" que distorsiona la recepción</li>
+          <li>La persona recibe información pero la interpreta de forma distorsionada</li>
+          <li>O recibe información del astral bajo creyendo que es akáshica</li>
+          <li>Señal: la información recibida siempre confirma el miedo o el ego</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="me-muerte">
+    <div class="blq">
+      <div class="blq-t">El Mental en el Proceso de Tránsito</div>
+      <div class="muerte-etapas">
+        <div class="muerte-etapa"><span class="muerte-t">Inicio</span><span class="muerte-desc">El mental suelta sus estructuras gradualmente. Primero las creencias más superficiales y situacionales, luego los marcos de interpretación profundos, finalmente la propia identidad mental construida durante la vida.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Proceso</span><span class="muerte-desc">Esta es la etapa más larga en personas muy mentalizadas. Los sistemas de creencias muy rígidos — especialmente dogmas religiosos o filosóficos muy cristalizados — pueden generar resistencia al proceso.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Resultado</span><span class="muerte-desc">El alma accede a su sabiduría causal acumulada en todas sus encarnaciones, sin los filtros de la personalidad mental de la vida que acaba de cerrar. El conocimiento puro sin forma.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="me-diag">
+    <div class="blq">
+      <div class="blq-t">Diagnóstico Radiestésico del Mental</div>
+      <div class="diag-grid">
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--me)">Tercer Ojo: horario amplio</div><div class="diag-desc">Mental saludable — acceso fluido al mental superior, intuición activa, percepción clara</div></div>
+        <div class="diag-card"><div class="diag-pendulo">Tercer Ojo: débil o ausente</div><div class="diag-desc">Bloqueo del mental superior — puede indicar entidad D-6/D-7 o dogma mental muy cristalizado</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:var(--me)">Corona: horario fluido</div><div class="diag-desc">Conexión activa entre mental superior y planos akáshicos — capacidad de recepción clara</div></div>
+        <div class="diag-card"><div class="diag-pendulo" style="color:#c04040">Corona: antihorario</div><div class="diag-desc">Interferencia activa — entidad arcóntica bloqueando el acceso a la información de Luz</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CAUSAL
+══════════════════════════════════════ -->
+<section class="cuerpo-section" id="causal">
+  <div class="ch">
+    <div class="ch-orb" style="border-color:rgba(184,104,216,.5);background:rgba(184,104,216,.08);color:var(--ca)">✦</div>
+    <div class="ch-meta">
+      <span class="ch-codigo">Cuerpo V · La Semilla del Alma</span>
+      <h2 class="ch-nombre" style="color:var(--ca)">Cuerpo Causal</h2>
+      <p class="ch-tagline">El único cuerpo inmortal. Registro de toda la experiencia evolutiva del alma a través de todas las encarnaciones.</p>
+      <div class="ch-datos">
+        <span class="ch-dato">Frecuencia: Sutilísima</span>
+        <span class="ch-dato">C-B: Violeta / Ultravioleta</span>
+        <span class="ch-dato">No se disuelve — permanece</span>
+        <span class="ch-dato">Contiene los Registros Akáshicos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctabs" id="tabs-ca">
+    <button class="ctab on" style="color:var(--ca)" onclick="showTab('ca','naturaleza',this)">Naturaleza</button>
+    <button class="ctab" onclick="showTab('ca','akashicos',this)">Registros Akáshicos</button>
+    <button class="ctab" onclick="showTab('ca','karma',this)">Karma</button>
+    <button class="ctab" onclick="showTab('ca','encarnacion',this)">Elección de Vida</button>
+    <button class="ctab" onclick="showTab('ca','vibracion',this)">Vibración Sostenida</button>
+    <button class="ctab" onclick="showTab('ca','muerte',this)">En la Muerte</button>
+  </div>
+
+  <div class="cpanel on" id="ca-naturaleza">
+    <div class="blq">
+      <p>El cuerpo causal es el <strong>más sutil y más importante</strong> de los cuerpos humanos. Es el único que no muere con la persona — el único que persiste a través de todas las encarnaciones llevando el registro acumulado de toda la experiencia evolutiva del alma.</p>
+      <p>No tiene forma fija como los otros cuerpos. Es más bien un <strong>campo de consciencia</strong> — una esfera de energía extremadamente refinada que contiene en forma concentrada todo lo que el ser ha aprendido, construido y acumulado a través de todas sus vidas.</p>
+      <p>En El Ser Uno se describe como la <strong>"semilla del alma"</strong> — el núcleo inmortal que permanece cuando todo lo demás se transforma. Si los otros cuerpos son los vestidos que el alma usa en cada encarnación, el causal es el ser que los usa.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Lo que el Causal Contiene</div>
+        <ul class="lista-simple">
+          <li>Todo el conocimiento genuinamente integrado en todas las vidas</li>
+          <li>Talentos y habilidades consolidados en encarnaciones anteriores</li>
+          <li>La calidad vibracional sostenida promedio de todas las vidas</li>
+          <li>Los vínculos de amor puro — no de apego</li>
+          <li>Los compromisos evolutivos elegidos libremente</li>
+          <li>Los registros akáshicos completos del alma</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Lo que el Causal No Retiene</div>
+        <ul class="lista-simple">
+          <li>La personalidad de cada vida — eso es astral-mental</li>
+          <li>Las memorias episódicas específicas — eso es mental</li>
+          <li>Los traumas no integrados — quedan como asuntos pendientes</li>
+          <li>Los apegos y resentimientos no resueltos</li>
+          <li>El nombre, el género, la raza, la cultura de cada vida</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="ca-akashicos">
+    <div class="blq">
+      <div class="blq-t">Los Registros Akáshicos son el Causal</div>
+      <p>Los Registros Akáshicos no son una biblioteca externa — son el <strong>contenido mismo del cuerpo causal</strong>. Todo lo que el alma ha vivido, aprendido, elegido y construido en todas sus encarnaciones está registrado en el causal como patrones de energía.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Implicaciones Prácticas</div>
+        <ul class="lista-simple">
+          <li>Cuando se "accede a los Registros Akáshicos" en meditación, se accede al propio causal</li>
+          <li>Las memorias de vidas pasadas son registros causales que emergen</li>
+          <li>Los talentos innatos son habilidades causales de vidas anteriores</li>
+          <li>Los miedos irracionales son frecuentemente memorias causales de traumas</li>
+          <li>Los "déjà vu" son momentos de contacto con el registro causal</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">Tipos de Información Akáshica</div>
+        <ul class="lista-simple">
+          <li>Memorias de vidas anteriores específicas</li>
+          <li>Comprensión del origen de patrones actuales</li>
+          <li>Vínculos kármicos con personas del entorno presente</li>
+          <li>Compromisos elegidos antes de esta encarnación</li>
+          <li>Potencial evolutivo disponible en esta vida</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="ca-karma">
+    <div class="blq">
+      <div class="blq-t">El Karma como Lenguaje del Causal</div>
+      <p>El karma no es un sistema de castigo sino el <strong>lenguaje con que el causal organiza el aprendizaje</strong>. Cada experiencia no integrada queda registrada como un "asunto pendiente" que el alma buscará completar en futuras encarnaciones.</p>
+    </div>
+    <div class="g2">
+      <div class="blq" style="border-color:rgba(88,200,138,.2)">
+        <div class="blq-t" style="color:var(--et)">Karma Auténtico</div>
+        <ul class="lista-simple">
+          <li>Siempre ofrece la posibilidad de resolución y aprendizaje</li>
+          <li>Cuando se aprende la lección, el patrón se libera</li>
+          <li>Lleva a la comprensión y a la expansión de consciencia</li>
+          <li>Produce sensación de "cerrar un ciclo" al resolverse</li>
+          <li>Tiene lógica interna comprensible desde el amor</li>
+        </ul>
+      </div>
+      <div class="blq" style="border-color:rgba(192,64,64,.2)">
+        <div class="blq-t" style="color:#c04040">Karma Manipulado (Arcóntico)</div>
+        <ul class="lista-simple">
+          <li>Se repite sin resolución posible aunque se aprenda la lección</li>
+          <li>Contratos falsos que el alma honra sin haberlos elegido</li>
+          <li>Deudas kármicas amplificadas más allá de lo real</li>
+          <li>Produce sensación de "destino inevitable" sin salida</li>
+          <li>Bloquea el acceso a los propios registros akáshicos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="ca-encarnacion">
+    <div class="blq">
+      <div class="blq-t">La Elección de Encarnación desde el Causal</div>
+      <p>Antes de cada encarnación el alma — desde el plano causal — elige con sus guías y Hermanos Mayores el <strong>diseño pedagógico</strong> de la próxima vida. Esta elección se hace con amor y con pleno conocimiento del propósito evolutivo.</p>
+    </div>
+    <div class="g2">
+      <div class="blq">
+        <div class="blq-t">Lo que se Elige</div>
+        <ul class="lista-simple">
+          <li>Cuerpo físico, familia y contexto de nacimiento</li>
+          <li>Las lecciones principales que se trabajarán</li>
+          <li>Los vínculos kármicos que se buscarán resolver</li>
+          <li>Los talentos que se expresarán en esta vida</li>
+          <li>El nivel de Bovis inicial con que se llegará</li>
+        </ul>
+      </div>
+      <div class="blq">
+        <div class="blq-t">La Paradoja del Sufrimiento</div>
+        <ul class="lista-simple">
+          <li>Las circunstancias más difíciles son frecuentemente las más elegidas</li>
+          <li>Las almas avanzadas eligen contextos de mayor desafío</li>
+          <li>El sufrimiento no es castigo — es acelerador evolutivo elegido</li>
+          <li>La dificultad de la vida no indica el nivel del alma</li>
+          <li>El propósito siempre trasciende el dolor de la experiencia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="ca-vibracion">
+    <div class="blq">
+      <div class="blq-t">La Vibración Sostenida — Lo Único que se Lleva</div>
+      <p>Una de las enseñanzas más precisas de El Ser Uno: <strong>lo que el alma lleva al siguiente ciclo no son las experiencias sino la vibración que logró sostener de forma consistente</strong>.</p>
+      <p>No importa si la persona tuvo momentos de gran iluminación — lo que se graba en el causal es la <em>vibración promedio sostenida durante la vida</em>. Por eso el trabajo espiritual genuino no es sobre experiencias cumbre sino sobre la <strong>elevación consistente del estado vibracional ordinario</strong>.</p>
+    </div>
+    <div class="blq">
+      <div class="blq-t">Tabla de Vibración Sostenida y Marca Causal</div>
+      <table class="tbl">
+        <thead><tr><th>Bovis sostenido de vida</th><th>Marca en el causal</th><th>Próximo ciclo</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--ca)">+35.000</td><td>Apertura de planos de Maestría</td><td>Puede elegir no reencarnar o hacerlo en servicio</td></tr>
+          <tr><td style="color:var(--ca)">25.000–35.000</td><td>Campo de Luz consolidado</td><td>Acceso directo a planos luminosos en tránsito</td></tr>
+          <tr><td style="color:var(--me)">15.000–25.000</td><td>Vibración de aprendizaje activo</td><td>Tránsito sereno, próxima vida con mayores recursos</td></tr>
+          <tr><td style="color:var(--as)">8.000–15.000</td><td>Vibración promedio humana</td><td>Proceso de integración antes del siguiente ciclo</td></tr>
+          <tr><td style="color:var(--fi)">4.000–8.000</td><td>Material denso a procesar</td><td>Período de revisión más extenso, asuntos pendientes</td></tr>
+          <tr><td style="color:#c04040">Debajo de 4.000</td><td>Riesgo de atrapamiento astral</td><td>Puede requerir asistencia para completar el tránsito</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="cpanel" id="ca-muerte" style="display:none">
+    <div class="blq">
+      <div class="blq-t">El Causal en el Proceso de Tránsito</div>
+      <div class="muerte-etapas">
+        <div class="muerte-etapa"><span class="muerte-t" style="color:var(--ca)">No se disuelve</span><span class="muerte-desc">El causal es el único cuerpo que no se disuelve en la muerte. Permanece como el núcleo inmortal del ser, llevando consigo todo el registro acumulado de la trayectoria evolutiva.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Liberación</span><span class="muerte-desc">Lo que ocurre no es disolución sino liberación de la atracción del plano físico. El alma queda en su estado más puro: consciencia causal sin filtros físicos, etéricos, astrales ni mentales.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Destino</span><span class="muerte-desc">El causal libre migra al plano que corresponde exactamente a su vibración sostenida. No hay juicio externo — el alma literalmente vibra hacia donde pertenece según su propia frecuencia acumulada.</span></div>
+        <div class="muerte-etapa"><span class="muerte-t">Continuidad</span><span class="muerte-desc">El causal libre planifica con sus guías la próxima encarnación o continúa su evolución en los planos internos según su nivel. La muerte no es el fin — es el cambio de vehículo.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SÍNTESIS
+══════════════════════════════════════ -->
+<section class="sintesis" id="sintesis">
+  <h2>Síntesis — Los Cinco como Sistema Integrado</h2>
+
+  <div class="sint-row header">
+    <div></div>
+    <div class="sint-header-txt">Cuerpo</div>
+    <div class="sint-header-txt">Frecuencia</div>
+    <div class="sint-header-txt">Función Central</div>
+    <div class="sint-header-txt">En la Muerte</div>
+    <div class="sint-header-txt">C-B</div>
+  </div>
+  <div class="sint-row">
+    <div class="sint-dot" style="background:var(--fi)"></div>
+    <div class="sint-nom" style="color:var(--fi)">Físico</div>
+    <div class="sint-txt">Más densa</div>
+    <div class="sint-txt">Manifestación material</div>
+    <div class="sint-txt">Se disuelve inmediatamente</div>
+    <div class="sint-txt">Verde+ / Infrarrojo</div>
+  </div>
+  <div class="sint-row">
+    <div class="sint-dot" style="background:var(--et)"></div>
+    <div class="sint-nom" style="color:var(--et)">Etérico</div>
+    <div class="sint-txt">Densa-sutil</div>
+    <div class="sint-txt">Sostén vital y prana</div>
+    <div class="sint-txt">3–72 horas post-mortem</div>
+    <div class="sint-txt">Negro / Infrarrojo</div>
+  </div>
+  <div class="sint-row">
+    <div class="sint-dot" style="background:var(--as)"></div>
+    <div class="sint-nom" style="color:var(--as)">Astral</div>
+    <div class="sint-txt">Sutil</div>
+    <div class="sint-txt">Emociones y sueños</div>
+    <div class="sint-txt">Días a semanas</div>
+    <div class="sint-txt">Verde+ / Amarillo</div>
+  </div>
+  <div class="sint-row">
+    <div class="sint-dot" style="background:var(--me)"></div>
+    <div class="sint-nom" style="color:var(--me)">Mental</div>
+    <div class="sint-txt">Muy sutil</div>
+    <div class="sint-txt">Pensamiento y creencias</div>
+    <div class="sint-txt">Semanas</div>
+    <div class="sint-txt">Azul / Índigo</div>
+  </div>
+  <div class="sint-row">
+    <div class="sint-dot" style="background:var(--ca)"></div>
+    <div class="sint-nom" style="color:var(--ca)">Causal</div>
+    <div class="sint-txt">Sutilísima</div>
+    <div class="sint-txt">Registro evolutivo</div>
+    <div class="sint-txt">No se disuelve — permanece</div>
+    <div class="sint-txt">Violeta / Ultravioleta</div>
+  </div>
+
+  <div class="principio-final">
+    <blockquote>
+      "Los cinco cuerpos no son entidades separadas<br>
+      sino frecuencias de un mismo campo de consciencia.<br>
+      Lo que afecta a uno afecta a todos.<br>
+      La oscuridad penetra de afuera hacia adentro.<br>
+      La Luz sana de adentro hacia afuera."
+    </blockquote>
+    <cite>— Principio Unificador · El Ser Uno</cite>
+  </div>
+</section>
+
+<script>
+function showTab(cuerpo, tab, btn) {
+  document.querySelectorAll(`#tabs-${cuerpo} .ctab`).forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll(`[id^="${cuerpo}-"]`).forEach(p => p.classList.remove('on'));
+  const el = document.getElementById(`${cuerpo}-${tab}`);
+  if (el) el.classList.add('on');
+}
+
+function scrollTo(id, btn) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+// Observer para actualizar nav activo al hacer scroll
+const sections = ['fisico','eterico','astral','mental','causal','sintesis'];
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('on'));
+      const btn = document.querySelector(`.snav-btn[onclick*="${id}"]`);
+      if (btn) btn.classList.add('on');
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
+
+// Mostrar tab causal-muerte (estaba hidden por error de lógica)
+document.getElementById('ca-muerte').style.display = '';
+</script>
+</body>
+</html>

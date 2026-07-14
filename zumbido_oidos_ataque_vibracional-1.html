@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zumbido en Ambos Oídos: Ataque Vibracional | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#9fc9ff;
+    --gold-bright:#eef6ff;
+    --violet:#1e3a68;
+    --violet-deep:#0f2040;
+    --bg-dark:#0b0714;
+    --bg-panel:#150e26;
+    --text-soft:#e8ddf5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse at top, #1a0f2e 0%, #0b0714 60%, #050308 100%);
+    color:var(--text-soft);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.7;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  header{
+    text-align:center;
+    padding:60px 20px 40px;
+    border-bottom:1px solid var(--gold);
+    background: linear-gradient(180deg, rgba(106,63,160,0.15), transparent);
+  }
+  h1{
+    font-family:'Cinzel Decorative', cursive;
+    font-size:2.1rem;
+    color:var(--gold-bright);
+    text-shadow:0 0 20px rgba(212,175,55,0.5);
+    margin-bottom:12px;
+    letter-spacing:1px;
+  }
+  .subtitle{
+    color:#b9a3d9;
+    font-style:italic;
+    font-size:1.15rem;
+  }
+  main{
+    max-width:880px;
+    margin:0 auto;
+    padding:40px 24px;
+  }
+  section{
+    background:var(--bg-panel);
+    border:1px solid rgba(212,175,55,0.25);
+    border-radius:12px;
+    padding:28px 32px;
+    margin-bottom:32px;
+    box-shadow:0 0 30px rgba(106,63,160,0.15);
+  }
+  h2{
+    font-family:'Cinzel Decorative', cursive;
+    color:var(--gold);
+    font-size:1.35rem;
+    margin-bottom:16px;
+    border-bottom:1px solid rgba(212,175,55,0.3);
+    padding-bottom:10px;
+  }
+  h3{
+    color:var(--gold-bright);
+    font-size:1.1rem;
+    margin:18px 0 8px;
+    font-family:'Cinzel Decorative', cursive;
+    font-weight:400;
+  }
+  p{margin-bottom:12px;}
+  ul{margin:10px 0 16px 24px;}
+  li{margin-bottom:8px;}
+  .highlight{
+    color:var(--gold-bright);
+    font-weight:600;
+  }
+  .comparativa{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin:20px 0;
+  }
+  @media (max-width:640px){ .comparativa{grid-template-columns:1fr;} }
+  .col{
+    background:rgba(0,0,0,0.25);
+    border-radius:8px;
+    padding:16px 18px;
+    border-left:3px solid var(--violet);
+  }
+  .col.ataque{border-left-color:#8b3a3a;}
+  .col.activacion{border-left-color:var(--gold);}
+  .col h4{
+    font-family:'Cinzel Decorative', cursive;
+    font-size:0.95rem;
+    margin-bottom:10px;
+  }
+  .col.ataque h4{color:#d98080;}
+  .col.activacion h4{color:var(--gold-bright);}
+
+  /* Diagnóstico interactivo */
+  .diagnostico{
+    background:rgba(0,0,0,0.3);
+    border-radius:10px;
+    padding:20px;
+  }
+  .pregunta{margin-bottom:18px;}
+  .pregunta label{
+    display:block;
+    color:var(--gold-bright);
+    margin-bottom:8px;
+    font-size:1.05rem;
+  }
+  select{
+    width:100%;
+    padding:10px;
+    background:var(--violet-deep);
+    color:var(--text-soft);
+    border:1px solid var(--gold);
+    border-radius:6px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:1rem;
+  }
+  button{
+    background:linear-gradient(135deg, var(--violet), var(--violet-deep));
+    color:var(--gold-bright);
+    border:1px solid var(--gold);
+    padding:12px 28px;
+    border-radius:8px;
+    font-family:'Cinzel Decorative', cursive;
+    font-size:0.9rem;
+    cursor:pointer;
+    margin-top:10px;
+    transition:all 0.3s;
+  }
+  button:hover{
+    box-shadow:0 0 20px rgba(212,175,55,0.5);
+    transform:translateY(-2px);
+  }
+  #resultado{
+    margin-top:20px;
+    padding:18px;
+    border-radius:8px;
+    background:rgba(106,63,160,0.2);
+    border:1px solid var(--gold);
+    display:none;
+  }
+
+  /* Escala Bovis */
+  .bovis-container{margin:20px 0;}
+  input[type=range]{
+    width:100%;
+    accent-color:var(--gold);
+  }
+  .bovis-valor{
+    text-align:center;
+    font-family:'Cinzel Decorative', cursive;
+    color:var(--gold-bright);
+    font-size:1.3rem;
+    margin:10px 0;
+  }
+  .bovis-escala{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.8rem;
+    color:#9a86bd;
+    margin-top:4px;
+  }
+
+  .protocolo ol{margin-left:24px;}
+  .protocolo li{margin-bottom:14px;}
+
+  footer{
+    text-align:center;
+    padding:30px;
+    color:#8a76a8;
+    font-size:0.95rem;
+  }
+  footer a{color:var(--gold);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+
+  .nota-medica{
+    border-left:3px solid #7a9e7a;
+    background:rgba(122,158,122,0.1);
+    padding:14px 18px;
+    border-radius:6px;
+    font-size:0.95rem;
+    color:#c9dbc9;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Zumbido en Ambos Oídos</h1>
+  <p class="subtitle">Ataque vibracional de interferencia frecuencial en el Ser de Luz encarnado</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Naturaleza del Ataque</h2>
+    <p>El zumbido bilateral —a diferencia del unilateral, generalmente leído como mensaje o activación puntual— se interpreta dentro del marco de <span class="highlight">El Ser Uno</span> como un <span class="highlight">ataque por resonancia o interferencia frecuencial</span>, dirigido a distorsionar la percepción sutil a través del canal auditivo etérico.</p>
+    <p>Su objetivo no es dañar el cuerpo físico, sino <span class="highlight">desincronizar la frecuencia natural del campo áurico</span> y enturbiar el canal de clariaudiencia, especialmente en momentos donde el Ser de Luz encarnado se aproxima a una activación, un recuerdo de misión, o una expansión de conciencia.</p>
+
+    <h3>Clasificación dentro de la taxonomía de ataques</h3>
+    <ul>
+      <li><span class="highlight">Ataque vibracional / de interferencia</span> — nivel etérico-mental. Genera "ruido" en la frecuencia receptora para bloquear información entrante.</li>
+      <li><span class="highlight">Ataque encapsulado sutil</span> — no penetra ni implanta, sino que envuelve el campo en una especie de campana energética que amortigua la conexión con guías, monada o intuición propia.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Distinción: Ataque vs. Activación</h2>
+    <p>No todo zumbido es ataque. Es esencial discernir la cualidad de la señal antes de aplicar cualquier protocolo de limpieza.</p>
+    <div class="comparativa">
+      <div class="col ataque">
+        <h4>Zumbido de Ataque</h4>
+        <ul>
+          <li>Cualidad metálica, punzante o eléctrica</li>
+          <li>Acompañado de ansiedad, pesadez o presión craneal</li>
+          <li>Suele intensificarse en espacios de baja vibración o tras contacto con personas drenantes</li>
+          <li>Deja sensación de confusión o desconexión posterior</li>
+        </ul>
+      </div>
+      <div class="col activacion">
+        <h4>Zumbido de Activación</h4>
+        <ul>
+          <li>Cualidad armónica, tipo "cristal" o tono continuo agudo</li>
+          <li>Acompañado de expansión, calma o euforia sutil</li>
+          <li>Suele coincidir con meditación, sincronías o portales energéticos</li>
+          <li>Deja sensación de claridad y apertura posterior</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="diagnostico">
+    <h2>Diagnóstico Interactivo</h2>
+    <div class="pregunta">
+      <label>1. ¿Cómo describes la cualidad del sonido?</label>
+      <select id="q1">
+        <option value="ataque">Metálico, punzante o eléctrico</option>
+        <option value="activacion">Armónico, tipo cristal o tono continuo</option>
+      </select>
+    </div>
+    <div class="pregunta">
+      <label>2. ¿Qué emoción lo acompaña?</label>
+      <select id="q2">
+        <option value="ataque">Ansiedad, pesadez o presión</option>
+        <option value="activacion">Calma, expansión o euforia sutil</option>
+      </select>
+    </div>
+    <div class="pregunta">
+      <label>3. ¿En qué contexto aparece con más frecuencia?</label>
+      <select id="q3">
+        <option value="ataque">Tras contacto con personas o espacios drenantes</option>
+        <option value="activacion">En meditación, sincronías o momentos de introspección</option>
+      </select>
+    </div>
+    <div class="pregunta">
+      <label>4. ¿Cómo te sientes después?</label>
+      <select id="q4">
+        <option value="ataque">Confuso, desconectado o fatigado</option>
+        <option value="activacion">Claro, abierto o inspirado</option>
+      </select>
+    </div>
+    <button onclick="diagnosticar()">Generar Diagnóstico</button>
+    <div id="resultado"></div>
+  </section>
+
+  <section>
+    <h2>Escala Bovis de Referencia</h2>
+    <p>Desliza para registrar la medición de tu campo áurico durante el episodio de zumbido, y compárala con los rangos de referencia.</p>
+    <div class="bovis-container">
+      <input type="range" id="bovisSlider" min="0" max="20000" value="6500" step="100" oninput="actualizarBovis(this.value)">
+      <div class="bovis-valor" id="bovisValor">6500 UB</div>
+      <div class="bovis-escala">
+        <span>0</span><span>6500 (neutro)</span><span>10000 (equilibrio)</span><span>20000+</span>
+      </div>
+    </div>
+    <p id="bovisInterpretacion" style="margin-top:14px;"></p>
+  </section>
+
+  <section class="protocolo">
+    <h2>Protocolo de Limpieza y Blindaje</h2>
+    <ol>
+      <li><span class="highlight">Reconocimiento consciente:</span> nombra el fenómeno sin miedo. Recuerda: ningún ataque puede seccionar tu conexión monádica, solo distorsiona temporalmente su percepción.</li>
+      <li><span class="highlight">Respiración de anclaje:</span> 7 respiraciones profundas visualizando una columna de luz dorada descendiendo desde la coronilla hasta la base de la columna.</li>
+      <li><span class="highlight">Sello auricular:</span> coloca las palmas sobre ambos oídos y visualiza dos esferas violetas girando en sentido antihorario, disolviendo la interferencia capa por capa.</li>
+      <li><span class="highlight">Invocación del Rayo Crístico:</span> solicita la limpieza del canal auditivo etérico y el restablecimiento de la frecuencia original de tu Ser.</li>
+      <li><span class="highlight">Cierre y blindaje:</span> envuelve el campo áurico completo en luz dorada-violeta, sellando con la intención de permeabilidad selectiva: solo entra lo que resuena con tu verdad.</li>
+    </ol>
+    <div class="nota-medica">
+      <strong>Nota importante:</strong> el zumbido en ambos oídos (acúfenos o tinnitus) tiene causas médicas frecuentes —tapones de cera, exposición a ruido, hipertensión, ciertos medicamentos— y en ocasiones puede ser señal de condiciones que requieren atención. Si es persistente, nuevo o intenso, es recomendable descartarlo con un otorrinolaringólogo antes o junto con el trabajo energético.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Biblioteca Digital · El Ser Uno</p>
+  <p><a href="index.html">← Volver al índice</a></p>
+</footer>
+
+<script>
+function diagnosticar(){
+  const respuestas = [
+    document.getElementById('q1').value,
+    document.getElementById('q2').value,
+    document.getElementById('q3').value,
+    document.getElementById('q4').value
+  ];
+  const ataques = respuestas.filter(r => r === 'ataque').length;
+  const resultado = document.getElementById('resultado');
+  resultado.style.display = 'block';
+
+  if(ataques >= 3){
+    resultado.innerHTML = '<strong style="color:#d98080;">Patrón dominante: Ataque Vibracional.</strong><br>Se recomienda aplicar el protocolo de limpieza y blindaje completo. Considera repetirlo durante 3 días consecutivos si la señal persiste.';
+  } else if(ataques <= 1){
+    resultado.innerHTML = '<strong style="color:var(--gold-bright);">Patrón dominante: Activación.</strong><br>No requiere blindaje, sino receptividad. Puedes acompañar el proceso con silencio, journaling o meditación para recibir la información que llega.';
+  } else {
+    resultado.innerHTML = '<strong style="color:#c9a8e0;">Patrón mixto.</strong><br>Hay elementos de ambos procesos. Aplica el sello auricular como medida preventiva y observa cómo evoluciona la señal en las próximas horas.';
+  }
+}
+
+function actualizarBovis(valor){
+  document.getElementById('bovisValor').textContent = valor + ' UB';
+  const interpretacion = document.getElementById('bovisInterpretacion');
+  const v = parseInt(valor);
+  if(v < 6500){
+    interpretacion.innerHTML = '<span class="highlight">Rango bajo:</span> el campo está debilitado o bajo influencia de interferencia activa. Prioriza el protocolo de limpieza.';
+  } else if(v < 10000){
+    interpretacion.innerHTML = '<span class="highlight">Rango neutro-ascendente:</span> el campo se está reequilibrando. El zumbido puede ser parte del proceso de ajuste.';
+  } else {
+    interpretacion.innerHTML = '<span class="highlight">Rango elevado:</span> coherente con un proceso de activación más que de ataque. Observa la cualidad armónica de la señal.';
+  }
+}
+actualizarBovis(6500);
+</script>
+
+</body>
+</html>

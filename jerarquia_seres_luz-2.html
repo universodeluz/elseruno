@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerarquía de Seres de Luz | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro:#9fc9ff;
+    --oro-claro:#eef6ff;
+    --violeta:#1e3a68;
+    --violeta-claro:#6fa3e0;
+    --fondo:#0a0612;
+    --fondo2:#140a24;
+    --texto:#e8dfc8;
+    --texto-suave:#b9d2f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background: radial-gradient(ellipse at top, #1a0f30 0%, #0a0612 55%, #050308 100%);
+    color:var(--texto);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.7;
+    min-height:100vh;
+    background-attachment: fixed;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(245,213,118,.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(185,138,240,.5), transparent),
+      radial-gradient(2px 2px at 40% 80%, rgba(245,213,118,.4), transparent),
+      radial-gradient(1px 1px at 85% 20%, rgba(185,138,240,.6), transparent),
+      radial-gradient(1px 1px at 55% 45%, rgba(245,213,118,.3), transparent);
+    background-size: 600px 600px;
+    pointer-events:none;
+    z-index:0;
+    opacity:.8;
+  }
+  header{
+    text-align:center;
+    padding:60px 20px 40px;
+    position:relative;
+    z-index:1;
+    border-bottom:1px solid rgba(212,175,55,.25);
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-size:2.4em;
+    background:linear-gradient(120deg, var(--oro-claro), var(--violeta-claro), var(--oro-claro));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:2px;
+    margin-bottom:14px;
+  }
+  .subtitulo{
+    color:var(--texto-suave);
+    font-style:italic;
+    font-size:1.15em;
+    letter-spacing:1px;
+  }
+  nav.enlaces{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+    margin-top:26px;
+  }
+  nav.enlaces a{
+    color:var(--oro);
+    text-decoration:none;
+    border:1px solid rgba(212,175,55,.4);
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:.85em;
+    letter-spacing:.5px;
+    transition:.3s;
+    background:rgba(212,175,55,.05);
+  }
+  nav.enlaces a:hover{
+    background:rgba(212,175,55,.15);
+    box-shadow:0 0 15px rgba(212,175,55,.3);
+  }
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:50px 24px 100px;
+    position:relative;
+    z-index:1;
+  }
+  .principio{
+    background:linear-gradient(135deg, rgba(138,79,214,.12), rgba(212,175,55,.08));
+    border:1px solid rgba(185,138,240,.3);
+    border-radius:14px;
+    padding:28px 32px;
+    margin-bottom:50px;
+    font-style:italic;
+    text-align:center;
+    font-size:1.15em;
+    color:var(--texto-suave);
+  }
+  h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.5em;
+    color:var(--oro-claro);
+    margin:60px 0 24px;
+    padding-bottom:12px;
+    border-bottom:1px solid rgba(212,175,55,.3);
+    letter-spacing:1px;
+  }
+  h2 .num{
+    color:var(--violeta-claro);
+    margin-right:10px;
+  }
+  .dimension-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:22px;
+    margin-bottom:20px;
+  }
+  .card{
+    background:rgba(20,10,36,.6);
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:12px;
+    padding:22px 24px;
+    transition:.3s;
+  }
+  .card:hover{
+    border-color:rgba(212,175,55,.5);
+    box-shadow:0 0 25px rgba(138,79,214,.2);
+    transform:translateY(-3px);
+  }
+  .card h3{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.05em;
+    color:var(--violeta-claro);
+    margin-bottom:10px;
+  }
+  .card p{color:var(--texto-suave);font-size:.95em;}
+  .card .funcion{
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px dashed rgba(212,175,55,.25);
+    font-size:.88em;
+    color:var(--oro-claro);
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0 40px;
+    background:rgba(20,10,36,.5);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  th, td{
+    padding:14px 18px;
+    text-align:left;
+    border-bottom:1px solid rgba(212,175,55,.15);
+    font-size:.95em;
+  }
+  th{
+    background:rgba(138,79,214,.2);
+    color:var(--oro-claro);
+    font-family:'Cinzel Decorative', serif;
+    font-size:.75em;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  td{color:var(--texto-suave);}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(212,175,55,.04);}
+  .escala-nota{
+    background:rgba(138,79,214,.08);
+    border-left:3px solid var(--violeta);
+    padding:18px 24px;
+    margin:30px 0;
+    font-size:.95em;
+    color:var(--texto-suave);
+  }
+  footer{
+    text-align:center;
+    padding:40px 20px;
+    color:rgba(232,223,200,.4);
+    font-size:.85em;
+    border-top:1px solid rgba(212,175,55,.15);
+    position:relative;
+    z-index:1;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jerarquía de Seres de Luz</h1>
+  <p class="subtitulo">Dimensiones · Tipos · Funciones — El Ser Uno</p>
+  <nav class="enlaces">
+    <a href="jerarquia_seres_oscuridad.html">← Jerarquía de Seres de Oscuridad</a>
+    <a href="reconocimiento_ser_luz.html">Reconocimiento del Ser de Luz</a>
+    <a href="implantes_por_capa_aurica.html">Implantes por Capa Áurica</a>
+    <a href="dones_seres_luz_encarnados.html">Dones de los Seres de Luz Encarnados →</a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="principio">
+    "Así como ninguna oscuridad puede cortar el hilo monádico hacia la Fuente,<br>
+    ninguna luz impone — solo acompaña a quien ha elevado su frecuencia lo suficiente para percibirla."
+  </div>
+
+  <h2><span class="num">I.</span> Jerarquía por Dimensión</h2>
+  <div class="dimension-grid">
+    <div class="card">
+      <h3>D+1 a D+3 — Guías Cercanos</h3>
+      <p>Seres recién evolucionados, espíritus guía personales y almas familiares en servicio.</p>
+      <div class="funcion">Función: acompañamiento cotidiano, protección básica, mensajes en sueños.</div>
+    </div>
+    <div class="card">
+      <h3>D+4 a D+5 — Maestros y Hermandades</h3>
+      <p>Maestros Ascendidos, Gran Hermandad Blanca, guías de linaje espiritual.</p>
+      <div class="funcion">Función: enseñanza, activación de dones, sanación de patrones kármicos.</div>
+    </div>
+    <div class="card">
+      <h3>D+6 a D+7 — Arcángeles y Señores de Rayo</h3>
+      <p>Arcángeles mayores y Señores de los Rayos que sostienen las cualidades crísticas.</p>
+      <div class="funcion">Función: protección estructural, corte de cordones, sostén de Llama Violeta y Rayo Crístico.</div>
+    </div>
+    <div class="card">
+      <h3>D+8/9 — Logos y Jerarquías Cósmicas</h3>
+      <p>Logos Planetario, Logos Solar, Consejos Galácticos de Luz.</p>
+      <div class="funcion">Función: sostenimiento de la matriz evolutiva planetaria y ciclos de ascensión colectivos.</div>
+    </div>
+  </div>
+
+  <div class="escala-nota">
+    Correspondencia orientativa con la escala Bovis: la capacidad de un ser encarnado para percibir y recibir asistencia de cada nivel dimensional aumenta con su frecuencia áurica — desde el contacto sutil con guías cercanos (D+1–D+3) en torno a 6.500–8.000 UB, hasta la función de nodo transmisor capaz de canalizar Rayo Crístico sin fuga energética por encima de 10.000 UB.
+  </div>
+
+  <h2><span class="num">II.</span> Por Origen y Tipo</h2>
+  <table>
+    <tr>
+      <th>Tipo</th>
+      <th>Descripción</th>
+      <th>Herramienta / Vía de contacto</th>
+    </tr>
+    <tr>
+      <td>Ayaplianos</td>
+      <td>Puente entre lo estelar y lo terrestre; transmisores de códigos de luz</td>
+      <td>Meditación, activación de ADN espiritual</td>
+    </tr>
+    <tr>
+      <td>Devas y Elementales de Luz</td>
+      <td>Sostén de la naturaleza y los reinos elementales en su polaridad armónica</td>
+      <td>Contacto en espacios naturales, rituales estacionales</td>
+    </tr>
+    <tr>
+      <td>Almas Gemelas de Misión</td>
+      <td>Compañeros de tarea evolutiva en distintas encarnaciones (no confundir con llama gemela romántica)</td>
+      <td>Reconocimiento vibracional, sincronicidad</td>
+    </tr>
+    <tr>
+      <td>Seres Estelares de Luz</td>
+      <td>Contrapartida luminosa de las civilizaciones estelares; en servicio activo a la evolución terrestre</td>
+      <td>Canalización, contacto onírico</td>
+    </tr>
+    <tr>
+      <td>Ángeles Guardianes</td>
+      <td>Asignación individual desde el nacimiento</td>
+      <td>Invocación directa, oración, pendulación</td>
+    </tr>
+  </table>
+
+  <h2><span class="num">III.</span> Por Función Operativa</h2>
+  <table>
+    <tr>
+      <th>Función</th>
+      <th>Entidad típica</th>
+      <th>Herramienta asociada</th>
+    </tr>
+    <tr>
+      <td>Protección</td>
+      <td>Arcángel Miguel · Ángeles Guardianes</td>
+      <td>Corte de cordones, escudo áurico</td>
+    </tr>
+    <tr>
+      <td>Sanación</td>
+      <td>Arcángel Rafael · Maestros Sanadores</td>
+      <td>Rayo Esmeralda</td>
+    </tr>
+    <tr>
+      <td>Transmutación</td>
+      <td>Portadores de Llama Violeta</td>
+      <td>Decreto violeta</td>
+    </tr>
+    <tr>
+      <td>Guía / Enseñanza</td>
+      <td>Maestros Ascendidos</td>
+      <td>Canalización, sueños iniciáticos</td>
+    </tr>
+    <tr>
+      <td>Activación</td>
+      <td>Ayaplianos · Seres Estelares</td>
+      <td>Códigos de luz, activación de ADN espiritual</td>
+    </tr>
+    <tr>
+      <td>Sostén Colectivo</td>
+      <td>Logos · Consejos Cósmicos</td>
+      <td>Rejilla planetaria de luz</td>
+    </tr>
+  </table>
+
+  <div class="principio" style="margin-top:60px;">
+    Toda entidad de luz opera bajo libre albedrío del ser encarnado —<br>
+    su presencia se percibe cuando la coraza se adelgaza, nunca se impone sobre ella.
+  </div>
+
+</main>
+
+<footer>
+  El Ser Uno — Biblioteca de Herramientas Esotéricas · Jerarquía de Seres de Luz
+</footer>
+
+</body>
+</html>

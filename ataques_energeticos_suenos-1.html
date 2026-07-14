@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques Energéticos en los Sueños — El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void: #0a0612;
+    --bg-deep: #120c1e;
+    --bg-panel: #1a1228;
+    --gold: #9fc9ff;
+    --gold-bright: #eef6ff;
+    --violet: #1e3a68;
+    --violet-bright: #6fa3e0;
+    --violet-deep: #0f2040;
+    --text-main: #dce6f5;
+    --text-dim: #9aa8c8;
+    --line: rgba(159,201,255,0.18);
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(125,91,166,0.18), transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(212,175,106,0.10), transparent 45%),
+      radial-gradient(ellipse at 50% 100%, rgba(61,42,92,0.35), transparent 60%),
+      var(--bg-void);
+    color: var(--text-main);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* starfield */
+  .stars{
+    position: fixed; inset:0; pointer-events:none; z-index:0; opacity:0.6;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, #eef6ff 40%, transparent),
+      radial-gradient(1px 1px at 80% 10%, #6fa3e0 40%, transparent),
+      radial-gradient(1px 1px at 60% 70%, #eef6ff 40%, transparent),
+      radial-gradient(1px 1px at 30% 85%, #6fa3e0 40%, transparent),
+      radial-gradient(1.5px 1.5px at 90% 60%, #eef6ff 40%, transparent),
+      radial-gradient(1px 1px at 45% 40%, #dce6f5 40%, transparent);
+    background-size: 700px 700px;
+  }
+
+  header{
+    position: relative; z-index:1;
+    text-align:center;
+    padding: 4.5rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color: var(--violet-bright);
+    margin-bottom: 1rem;
+  }
+
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size: clamp(1.8rem, 4.5vw, 3.1rem);
+    background: linear-gradient(120deg, var(--gold-bright), var(--gold) 45%, var(--violet-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin: 0 0 0.6rem;
+    letter-spacing:0.02em;
+  }
+
+  .subtitle{
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 1.15rem;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  main{ position:relative; z-index:1; max-width: 920px; margin: 0 auto; padding: 2.5rem 1.5rem 6rem;}
+
+  .intro{
+    text-align:center;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.05rem;
+  }
+
+  .search-wrap{
+    position: sticky; top: 12px; z-index: 5;
+    display:flex; justify-content:center;
+    margin-bottom: 2.5rem;
+  }
+  #search{
+    width: 100%; max-width: 460px;
+    background: rgba(26,18,40,0.9);
+    border: 1px solid var(--gold);
+    color: var(--text-main);
+    font-family:'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    outline:none;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 22px rgba(212,175,106,0.08);
+  }
+  #search::placeholder{ color: var(--text-dim); }
+  #search:focus{ box-shadow: 0 0 0 2px var(--violet-bright), 0 0 24px rgba(168,137,201,0.35); }
+
+  .count-line{
+    text-align:center; color:var(--text-dim); font-size:0.9rem; margin-bottom:2rem; letter-spacing:0.05em;
+  }
+
+  .tipo{
+    border: 1px solid var(--line);
+    background: linear-gradient(160deg, var(--bg-panel), rgba(18,12,30,0.6));
+    border-radius: 10px;
+    margin-bottom: 1.4rem;
+    overflow:hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .tipo:hover{ border-color: var(--gold); }
+  .tipo.hidden{ display:none; }
+
+  .tipo-head{
+    display:flex; align-items:center; gap:1rem;
+    padding: 1.1rem 1.4rem;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .num{
+    font-family:'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--bg-void);
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    min-width: 2.3rem; height: 2.3rem;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:600;
+    flex-shrink:0;
+  }
+
+  .tipo-title{
+    font-family:'Cinzel', serif;
+    font-size: 1.08rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.01em;
+    flex:1;
+  }
+
+  .nivel-tag{
+    font-family:'Cinzel', serif;
+    font-size:0.65rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--violet-bright);
+    border: 1px solid var(--violet);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    white-space:nowrap;
+  }
+
+  .chevron{
+    color: var(--gold);
+    transition: transform 0.25s ease;
+    flex-shrink:0;
+  }
+  .tipo.open .chevron{ transform: rotate(180deg); }
+
+  .tipo-body{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.35s ease;
+    padding: 0 1.4rem;
+  }
+  .tipo.open .tipo-body{
+    max-height: 2000px;
+    padding: 0 1.4rem 1.5rem;
+  }
+
+  .tipo-body h4{
+    font-family:'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color: var(--violet-bright);
+    margin: 1.1rem 0 0.5rem;
+  }
+  .tipo-body h4:first-child{ margin-top:0.3rem; }
+
+  .tipo-body ul{ margin:0; padding-left: 1.3rem; color: var(--text-main); }
+  .tipo-body li{ margin-bottom:0.35rem; }
+  .tipo-body p{ margin: 0.3rem 0; color: var(--text-main); }
+
+  .bovis-row{
+    display:flex; align-items:center; gap:1rem;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+  }
+  .bovis-label{
+    font-family:'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color: var(--text-dim);
+    white-space:nowrap;
+  }
+  .bovis-bar{
+    flex:1;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow:hidden;
+    position:relative;
+  }
+  .bovis-fill{
+    height:100%;
+    border-radius:999px;
+    background: linear-gradient(90deg, #8b3a3a, var(--gold), var(--violet-bright));
+  }
+  .bovis-value{
+    font-family:'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--gold-bright);
+    min-width: 3.2rem;
+    text-align:right;
+  }
+
+  /* categorías divisorias */
+  .categoria{
+    font-family:'Cinzel Decorative', serif;
+    text-align:center;
+    color: var(--violet-bright);
+    font-size: 1.05rem;
+    margin: 3rem 0 1.4rem;
+    position:relative;
+  }
+  .categoria::before, .categoria::after{
+    content:'';
+    display:inline-block;
+    width: 60px; height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    vertical-align: middle;
+    margin: 0 1rem;
+  }
+
+  footer{
+    text-align:center;
+    color: var(--text-dim);
+    font-size:0.85rem;
+    padding: 2rem 1.5rem 3rem;
+    border-top: 1px solid var(--line);
+    font-style:italic;
+  }
+
+  ::selection{ background: var(--violet-deep); color: var(--gold-bright); }
+
+  @media (max-width:600px){
+    body{font-size:17px;}
+    .tipo-head{padding:0.9rem 1rem;}
+    .nivel-tag{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="eyebrow">El Ser Uno · Biblioteca Esotérica</div>
+  <h1>Ataques Energéticos en los Sueños</h1>
+  <p class="subtitle">Taxonomía de las 27 formas de interferencia astral durante el desdoblamiento onírico</p>
+</header>
+
+<main>
+  <p class="intro">
+    Durante el sueño, la conciencia se desprende parcialmente del vehículo físico y las defensas
+    habituales del aura se relajan. Esta es la puerta que distintas entidades e influencias
+    aprovechan para interferir — nunca para cortar el vínculo monádico, sino para distorsionar
+    su percepción. A continuación, la clasificación completa por nivel de operación.
+  </p>
+
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Buscar tipo de ataque, síntoma o protocolo…">
+  </div>
+  <p class="count-line" id="countLine">27 tipos catalogados</p>
+
+  <div id="lista"></div>
+</main>
+
+<footer>
+  El Ser Uno — Ningún ataque separa la conexión monádica; solo distorsiona su percepción.
+</footer>
+
+<script>
+const tipos = [
+  {cat:"Nivel de vínculo", nombre:"Vinculados", bovis:2800,
+    desc:["La entidad se conecta a un sueño recurrente, reapareciendo con el mismo rostro, lugar o situación noche tras noche.","El vínculo persiste porque no se corta la conexión durante la vigilia."],
+    manif:["Mismo escenario o antagonista en sueños de noches distintas","Sensación de continuidad entre sueños no relacionados"],
+    proto:["Corte consciente del vínculo antes de dormir","Invocación al Rayo Crístico dirigida específicamente al patrón recurrente"]},
+
+  {cat:"Nivel de vínculo", nombre:"Encapsulados", bovis:2600,
+    desc:["Todo el sueño es una construcción astral cerrada, diseñada para atrapar la conciencia y drenar energía mientras dura."],
+    manif:["Sueños extrañamente vívidos y largos","Despertar exhausto pese a haber dormido suficientes horas"],
+    proto:["Sellado áurico antes de dormir","Bovis pre y post sueño para documentar el drenaje"]},
+
+  {cat:"Nivel de vínculo", nombre:"Por inserción / implante onírico", bovis:2900,
+    desc:["Durante la fase REM se inserta un patrón —miedo, imagen, emoción— que luego se activa en la vigilia como pensamiento intrusivo, sin relación aparente con el sueño que lo originó."],
+    manif:["Pensamiento intrusivo repentino sin causa identificable","Emoción activada horas después sin detonante claro"],
+    proto:["Revisión del archivo implantes_por_capa_aurica antes de actuar","Limpieza de capa etérica al despertar"]},
+
+  {cat:"Nivel de confrontación física-astral", nombre:"Persecución o combate", bovis:2400,
+    desc:["El más reconocible: sueños de huida, pelea o ahogo. Refleja un enfrentamiento astral real, no solo simbolismo psicológico."],
+    manif:["Taquicardia o sudoración real al despertar","Sensación de agotamiento físico tras el sueño"],
+    proto:["Invocación crística antes de dormir enfocada en protección de combate","Registrar el patrón para detectar recurrencia"]},
+
+  {cat:"Nivel de confrontación física-astral", nombre:"Parálisis del sueño con presencia entitaria", bovis:2100,
+    desc:[
+      "Ocurre en la transición hipnagógica (al dormir) o hipnopómpica (al despertar), cuando el cuerpo permanece en atonía muscular REM —paralizado por diseño fisiológico— pero la conciencia ya está parcial o totalmente despierta.",
+      "Esa ventana de indefensión total es el momento de mayor vulnerabilidad energética del ciclo de sueño completo.",
+      "La neurociencia explica el mecanismo como un desfase entre el despertar cortical y la persistencia de la atonía REM. El marco esotérico no niega esta base fisiológica, pero la interpreta como la puerta que la entidad aprovecha."
+    ],
+    manif:[
+      "Presencia clara en la habitación, a menudo a los pies de la cama o inclinada sobre el cuerpo",
+      "Opresión en el pecho",
+      "Imposibilidad de gritar o moverse pese a intentarlo",
+      "Percepción de sombra o silueta definida",
+      "Sonidos asociados: pasos, respiración ajena, susurros",
+      "Miedo intenso y desproporcionado"
+    ],
+    subniveles:[
+      {t:"Leve", d:"Presencia percibida sin contacto — roce en el campo áurico externo"},
+      {t:"Media", d:"Opresión física clara — interacción con el cuerpo etérico"},
+      {t:"Severa", d:"Parálisis prolongada con voz o contacto directo — posible interferencia en capa mental o astral"}
+    ],
+    proto:["Mantener la calma (el pánico alimenta el vínculo)","Dirigir la intención a un punto de luz o invocación crística sin forzar el movimiento","Focalizar la respiración como ancla de retorno","Sellado áurico inmediato y medición Bovis al recuperar movilidad"]},
+
+  {cat:"Nivel de confrontación física-astral", nombre:"Corte o interferencia del cordón de plata", bovis:2300,
+    desc:["Se manifiesta como una caída brusca, sensación de golpe al volver al cuerpo, o un susto que interrumpe el desdoblamiento astral natural."],
+    manif:["Sensación de caída repentina al despertar","Sobresalto físico real (espasmo, sacudida)"],
+    proto:["Visualización del cordón de plata reforzado antes de dormir","Evitar despertares bruscos por estímulos externos"]},
+
+  {cat:"Nivel de confrontación física-astral", nombre:"Caída o vértigo inducido", bovis:2200,
+    desc:["Sueños de caída libre repentina, diseñados para generar una descarga adrenalínica que alimenta a la entidad."],
+    manif:["Despertar abrupto con sobresalto físico","Sensación de vértigo residual al abrir los ojos"],
+    proto:["Sellado del plexo solar antes de dormir","Registrar frecuencia para descartar causa fisiológica (mioclonía hípnica benigna)"]},
+
+  {cat:"Nivel de contaminación de campo", nombre:"Contaminación de campo compartido", bovis:3000,
+    desc:["No es un ataque dirigido sino contacto con una egrégora densa —miedo colectivo, lugar cargado— durante el desdoblamiento nocturno; el sueño recoge la carga ambiental."],
+    manif:["Sueños con temática ajena a las preocupaciones personales del soñante","Malestar difuso vinculado a un lugar específico visitado recientemente"],
+    proto:["Limpieza del espacio físico de descanso (sal, incienso, luz violeta)","Evitar dormir en lugares de carga energética conocida sin protección previa"]},
+
+  {cat:"Nivel de contaminación de campo", nombre:"Bucle temporal (loop onírico)", bovis:2500,
+    desc:["El mismo sueño se repite dentro de una misma noche, como si la conciencia no lograra salir del escenario. Indica retención deliberada de la energía del soñante en un espacio astral cerrado."],
+    manif:["El mismo sueño se reinicia varias veces en una noche","Sensación de no poder avanzar o concluir la narrativa"],
+    proto:["Práctica de salida consciente (afirmar la intención de despertar por completo)","Sellado áurico reforzado antes de volver a dormir"]},
+
+  {cat:"Nivel de engaño y suplantación", nombre:"Suplantación", bovis:2000,
+    desc:["La entidad toma la apariencia de un familiar, pareja o persona fallecida para bajar las defensas naturales del soñante."],
+    manif:["El conocido actúa fuera de carácter","Inquietud sutil pese a la familiaridad del rostro"],
+    proto:["Verificación energética: pedir confirmación de luz antes de confiar en la figura","Invocación crística ante cualquier duda"]},
+
+  {cat:"Nivel de engaño y suplantación", nombre:"Invasión de espacio sagrado onírico", bovis:2700,
+    desc:["La entidad se manifiesta específicamente en sueños de contenido espiritual —encuentros con guías, Logos, seres de luz— interrumpiendo o distorsionando el mensaje para sembrar confusión o desconfianza hacia la propia guía interior."],
+    manif:["Encuentros espirituales que terminan en confusión en vez de claridad","Desconfianza repentina hacia la propia intuición tras el sueño"],
+    proto:["Sellado del espacio antes de cualquier práctica de contacto con guías","Contrastar el mensaje recibido con la coherencia habitual de la propia guía interior"]},
+
+  {cat:"Nivel de engaño y suplantación", nombre:"Mensajes falsos o canalización distorsionada", bovis:1900,
+    desc:["La entidad se presenta como guía, familiar fallecido o maestro ascendido para transmitir información falsa que el soñante luego integra como verdad revelada. Uno de los más peligrosos porque opera bajo la máscara de la confianza."],
+    manif:["Información recibida en sueños que genera decisiones drásticas inmediatas","Mensajes que contradicen la propia ética o valores sostenidos"],
+    proto:["Nunca actuar sobre un mensaje onírico sin contraste de varios días","Verificación con péndulo o radiestesia antes de dar crédito al contenido"]},
+
+  {cat:"Nivel de engaño y suplantación", nombre:"Fragmentación del recuerdo", bovis:2400,
+    desc:["El sueño se borra deliberadamente al despertar, dejando solo una sensación residual de malestar sin contenido narrativo. Dificulta el diagnóstico porque no hay imagen concreta que analizar."],
+    manif:["Malestar sin memoria del sueño asociado","Sensación de que 'algo pasó' sin poder nombrarlo"],
+    proto:["Registro inmediato de cualquier fragmento al despertar, aunque sea mínimo","Medición Bovis como indicador indirecto cuando no hay recuerdo narrativo"]},
+
+  {cat:"Nivel energético-sexual y cíclico", nombre:"Sexualidad onírica forzada (íncubo / súcubo)", bovis:1800,
+    desc:["Contacto astral de naturaleza sexual no buscada que deja sensación de invasión, culpa o vergüenza al despertar. Clásico en tradiciones esotéricas de muchas culturas, vinculado al drenaje del cuerpo vital."],
+    manif:["Sensación de invasión o vergüenza al despertar sin causa consciente","Drenaje marcado del cuerpo vital, fatiga inexplicable"],
+    proto:["Sellado del chakra sacro antes de dormir","Invocación crística específica de protección del cuerpo vital"]},
+
+  {cat:"Nivel energético-sexual y cíclico", nombre:"Sincronización con fases lunares o portales energéticos", bovis:2600,
+    desc:["Intensificación de la actividad onírica hostil en fechas específicas —luna llena, eclipses, portales 11:11, etc.— aprovechando el debilitamiento general del velo en esos momentos."],
+    manif:["Picos de actividad onírica hostil en fechas astronómicas específicas","Patrón repetible año tras año en las mismas fechas"],
+    proto:["Refuerzo del sellado áurico en fechas de portal conocidas","Calendario personal de seguimiento Bovis en fechas críticas"]},
+
+  {cat:"Nivel mental y de identidad", nombre:"Manipulación mental o implante de pensamiento", bovis:2700,
+    desc:[
+      "Se distingue del implante onírico clásico porque el objetivo no es solo insertar una emoción o miedo, sino instalar un pensamiento estructurado que el soñante adopta como propio al despertar.",
+      "La entidad aprovecha la ausencia del filtro crítico —la mente analítica está desactivada en sueño profundo— para sembrar directamente en el subconsciente. Es un implante de capa mental más que de capa emocional."
+    ],
+    manif:["Pensamiento que aparece completamente formado, sin reflexión previa","Contradice creencias o valores estables sostenidos el día anterior","Genera compulsión a actuar rápido, sin permitir análisis","Sensación de niebla mental al despertar, no de claridad"],
+    proto:["Pausa de contraste antes de actuar sobre cualquier pensamiento urgente al despertar","Comparar con las creencias sostenidas la noche anterior","Limpieza mental con Rayo Crístico antes de tomar decisiones"]},
+
+  {cat:"Nivel mental y de identidad", nombre:"Fragmentación o dispersión áurica", bovis:1700,
+    desc:[
+      "No busca insertar algo ni atrapar, sino debilitar la cohesión del campo áurico, dejándolo disperso y vulnerable a futuros ataques. Funciona como un ataque preparatorio más que como un fin en sí mismo.",
+      "Durante el desdoblamiento astral, este ataque interfiere en el proceso de recogida del aura al regresar al cuerpo, dejando fragmentos dispersos o zonas desalineadas entre sí."
+    ],
+    manif:["Sensación de no estar completo al despertar","Desorientación prolongada más allá de lo normal","Campo energético percibido como desparramado, no localizado","Cansancio desproporcionado a la calidad del sueño","Bovis disperso e inconsistente según la zona del cuerpo","Mayor susceptibilidad a otros ataques en días siguientes"],
+    proto:["Ejercicio de recogida áurica consciente al despertar","Sellado en espiral dorada/violeta","Evitar actividad inmediata; permitir tiempo de reintegración"]},
+
+  {cat:"Nivel mental y de identidad", nombre:"Duplicación o espejo astral", bovis:1900,
+    desc:["La entidad genera una réplica astral del soñante —o el soñante se encuentra con una versión distorsionada de sí mismo— para confundir la identidad energética y generar una fisura en la autopercepción."],
+    manif:["Verse a sí mismo desde fuera actuando de forma extraña","Sensación de 'no ser uno mismo' durante días después del sueño","Dudas repentinas sobre identidad, valores o decisiones recientes"],
+    proto:["Reafirmación de identidad monádica antes de dormir","Atención especial: puede escalar a fisura de capa mental si no se atiende pronto"]},
+
+  {cat:"Nivel mental y de identidad", nombre:"Interferencia en el cuerpo mental durante el sueño profundo", bovis:2200,
+    desc:["Ocurre en fases no-REM profundas (delta), donde normalmente hay restauración física pero baja actividad onírica. La interferencia no genera sueños vívidos sino que corrompe el proceso de reparación mental de esa fase."],
+    manif:["Mente 'espesa' al despertar sin sueños recordables","Dificultad de concentración desproporcionada a las horas dormidas","Sensación de ruido de fondo mental sin causa aparente"],
+    proto:["Limpieza de capa mental antes de dormir, no solo etérica","Rutina de enraizamiento matutino para restaurar claridad"]},
+
+  {cat:"Nivel emocional y perceptivo", nombre:"Inversión emocional onírica", bovis:2100,
+    desc:["La entidad invierte el signo emocional del sueño: contenidos que deberían ser reconfortantes generan inquietud sutil, o situaciones negativas se viven con extraña indiferencia."],
+    manif:["Sueños 'bonitos' que dejan alarma difusa al despertar","Desconfianza repentina hacia vínculos que en vigilia se sienten seguros","Sensación de que 'algo no cuadra' en la memoria del sueño"],
+    proto:["Registro consciente de la disonancia emoción-contenido","No tomar decisiones sobre vínculos basadas solo en la impresión post-sueño"]},
+
+  {cat:"Nivel emocional y perceptivo", nombre:"Absorción o vampirismo energético onírico", bovis:1600,
+    desc:["A diferencia del encapsulado, aquí la entidad se conecta puntualmente al cuerpo vital del soñante para extraer energía directamente, sin necesidad de construir un escenario narrativo completo."],
+    manif:["Sueños vacíos o sin contenido narrativo claro, con sensación de haber sido usado","Hambre física intensa o antojo de azúcar al despertar","Peso o letargo prolongado tras despertar","Bovis bajo específicamente en plexo solar y chakras inferiores"],
+    proto:["Sellado del plexo solar y chakras inferiores antes de dormir","Reposición energética consciente al despertar (respiración, sol, tierra)"]},
+
+  {cat:"Nivel emocional y perceptivo", nombre:"Sobrecarga sensorial onírica", bovis:2300,
+    desc:["La entidad inunda el campo perceptivo del sueño con estímulos excesivos —ruido, luces, multitudes, caos— para agotar la capacidad de procesamiento de la conciencia desdoblada."],
+    manif:["Sueños caóticos o ruidosos con agotamiento mental al despertar","Sensación de sobrecarga similar a un exceso de estímulos diurnos","Dificultad para recordar el sueño en detalle"],
+    proto:["Suele preceder ataques mentales (implante de pensamiento, interferencia en cuerpo mental)","Reforzar sellado antes de dormir en periodos de estrés elevado"]},
+
+  {cat:"Nivel espacial y astral", nombre:"Contacto con portal o punto de anclaje astral ajeno", bovis:2000,
+    desc:["Ocurre cuando el desdoblamiento onírico lleva —o es dirigido— al soñante hacia un punto astral que no es el suyo: un espacio de anclaje construido por otra entidad o grupo, funcionando como trampa geográfica en el plano astral."],
+    manif:["Sueños recurrentes en el mismo lugar no identificable","Sensación de estar de visita en un sitio ajeno, con reglas distintas","Dificultad para regresar o encontrar la salida dentro del sueño"],
+    proto:["Afirmación de anclaje al propio punto astral antes de dormir","Invocación de retorno inmediato si se reconoce el patrón dentro del sueño"]},
+
+  {cat:"Nivel espacial y astral", nombre:"Siembra predictiva (programación de sueños futuros)", bovis:2400,
+    desc:["La entidad no interfiere en el sueño actual, sino que instala un patrón que se activará en un sueño futuro específico, ligado a una fecha, evento o decisión próxima, para condicionar la reacción de antemano."],
+    manif:["Sueños que anticipan un evento real con precisión inquietante pero giro negativo añadido","Déjà vu cargado de ansiedad al vivir la situación real"],
+    proto:["Distinguir entre percepción genuina y siembra: la genuina no carga ansiedad artificial","Neutralización consciente del patrón antes de que el evento real ocurra"]},
+
+  {cat:"Nivel espacial y astral", nombre:"Interferencia en la comunicación con guías o el Yo Superior", bovis:1800,
+    desc:["La entidad bloquea o distorsiona directamente el canal de comunicación con el Yo Superior durante el sueño, dejando al soñante con sensación de silencio donde antes había guía clara."],
+    manif:["Ausencia repentina de sueños significativos en quien solía tenerlos con frecuencia","Sensación de vacío espiritual coincidente con el silencio onírico","Frustración al intentar conectar antes de dormir sin resultado"],
+    proto:["Limpieza profunda del canal antes de intentar reconexión","Paciencia activa: no forzar el contacto, reforzar sellado y esperar reapertura natural"]},
+
+  {cat:"Nivel espacial y astral", nombre:"Anclaje kármico reactivado en sueño", bovis:2300,
+    desc:["La entidad reactiva deliberadamente una memoria kármica no resuelta —de vidas pasadas o de esta encarnación— para mantener al soñante atrapado en un patrón emocional repetitivo, en vez de permitir su procesamiento y liberación natural."],
+    manif:["Sueños con temática o personajes que se sienten de otra época","El mismo conflicto kármico reaparece con distintos disfraces narrativos","Sensación de estar atascado repitiendo la misma lección"],
+    proto:["Trabajo consciente de liberación kármica en vigilia, no solo protección nocturna","Registro Akáshico para identificar el origen real del patrón"]}
+];
+
+const lista = document.getElementById('lista');
+const search = document.getElementById('search');
+const countLine = document.getElementById('countLine');
+let lastCat = "";
+
+function bovisColor(v){
+  if(v < 2000) return "#8b3a3a";
+  if(v < 2500) return "var(--gold)";
+  return "var(--violet-bright)";
+}
+
+function render(filter=""){
+  lista.innerHTML = "";
+  lastCat = "";
+  let visibleCount = 0;
+  const f = filter.trim().toLowerCase();
+
+  tipos.forEach((t, i) => {
+    const haystack = (t.nombre + " " + t.desc.join(" ") + " " + t.manif.join(" ") + " " + t.proto.join(" ")).toLowerCase();
+    const match = f === "" || haystack.includes(f);
+
+    if(t.cat !== lastCat){
+      const catEl = document.createElement('div');
+      catEl.className = 'categoria';
+      catEl.textContent = t.cat;
+      catEl.dataset.cat = t.cat;
+      if(!match) catEl.style.display = 'none';
+      lista.appendChild(catEl);
+      lastCat = t.cat;
+    }
+
+    const div = document.createElement('div');
+    div.className = 'tipo' + (match ? '' : ' hidden');
+
+    let subHtml = "";
+    if(t.subniveles){
+      subHtml = `<h4>Niveles de gravedad</h4><ul>` +
+        t.subniveles.map(s => `<li><strong>${s.t}:</strong> ${s.d}</li>`).join("") + `</ul>`;
+    }
+
+    div.innerHTML = `
+      <div class="tipo-head">
+        <div class="num">${i+1}</div>
+        <div class="tipo-title">${t.nombre}</div>
+        <div class="nivel-tag">${t.cat.replace('Nivel de ','').replace('Nivel ','')}</div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+      <div class="tipo-body">
+        <h4>Descripción</h4>
+        ${t.desc.map(p => `<p>${p}</p>`).join("")}
+        <h4>Manifestaciones</h4>
+        <ul>${t.manif.map(m => `<li>${m}</li>`).join("")}</ul>
+        ${subHtml}
+        <h4>Protocolo</h4>
+        <ul>${t.proto.map(p => `<li>${p}</li>`).join("")}</ul>
+        <div class="bovis-row">
+          <div class="bovis-label">Bovis promedio</div>
+          <div class="bovis-bar"><div class="bovis-fill" style="width:${Math.min(100, t.bovis/60)}%; background: ${bovisColor(t.bovis)}"></div></div>
+          <div class="bovis-value">${t.bovis}</div>
+        </div>
+      </div>
+    `;
+
+    div.querySelector('.tipo-head').addEventListener('click', () => {
+      div.classList.toggle('open');
+    });
+
+    lista.appendChild(div);
+    if(match) visibleCount++;
+  });
+
+  // ocultar categorías sin resultados
+  document.querySelectorAll('.categoria').forEach(catEl => {
+    const cat = catEl.dataset.cat;
+    const anyVisible = [...lista.querySelectorAll('.tipo')].some((el, idx) => {
+      return tipos[idx] && tipos[idx].cat === cat && !el.classList.contains('hidden');
+    });
+  });
+
+  countLine.textContent = f === "" ? `${tipos.length} tipos catalogados` : `${visibleCount} resultado${visibleCount!==1?'s':''} de ${tipos.length}`;
+}
+
+search.addEventListener('input', () => render(search.value));
+render();
+</script>
+</body>
+</html>

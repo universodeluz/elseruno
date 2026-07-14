@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanación · Paso a Paso</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap');
+
+:root {
+  --bg: #0c0e14;
+  --surface: #13151e;
+  --surface2: #1a1d28;
+  --border: rgba(255,255,255,0.07);
+  --text: #ddd8cc;
+  --dim: #7a7568;
+  --accent: #9fc9ff;
+  --accent2: #7eb8a0;
+  --accent3: #9b7ec8;
+  --white: #f0ece4;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Spectral', serif;
+  min-height: 100vh;
+}
+
+/* Fondo sutil */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(155,126,200,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 10% 90%, rgba(126,184,160,0.05) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ─── HEADER ─── */
+header {
+  text-align:center;
+  padding: 4rem 2rem 3rem;
+  position:relative;
+  z-index:1;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.6rem;
+  font-weight:300;
+  letter-spacing:0.55em;
+  text-transform:uppercase;
+  color: var(--accent);
+  margin-bottom:1.2rem;
+}
+
+h1 {
+  font-family:'Spectral', serif;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-weight:300;
+  color: var(--white);
+  line-height:1.15;
+  margin-bottom:0.5rem;
+}
+
+h1 strong {
+  font-weight:600;
+  font-style:italic;
+}
+
+.header-line {
+  width:40px;
+  height:1px;
+  background: var(--accent);
+  margin: 1.5rem auto;
+}
+
+.header-desc {
+  font-size:1rem;
+  font-style:italic;
+  color: var(--dim);
+  max-width:500px;
+  margin:0 auto;
+  line-height:1.7;
+}
+
+/* ─── NAVEGACIÓN DE ETAPAS ─── */
+.nav-strip {
+  position:sticky;
+  top:0;
+  z-index:100;
+  background: rgba(12,14,20,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.8rem 1.5rem;
+  display:flex;
+  gap:0.4rem;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav-strip::-webkit-scrollbar { display:none; }
+
+.nav-btn {
+  flex-shrink:0;
+  background:none;
+  border:1px solid var(--border);
+  color: var(--dim);
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.6rem;
+  font-weight:300;
+  letter-spacing:0.2em;
+  padding:0.4rem 0.8rem;
+  cursor:pointer;
+  transition: all 0.2s;
+  white-space:nowrap;
+}
+.nav-btn:hover, .nav-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200,169,110,0.06);
+}
+
+/* ─── LAYOUT ─── */
+.main {
+  max-width:900px;
+  margin:0 auto;
+  padding:0 1.5rem 6rem;
+  position:relative;
+  z-index:1;
+}
+
+/* ─── ETAPA ─── */
+.etapa-section {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.etapa-section:last-child { border-bottom:none; }
+
+/* Cabecera de etapa */
+.etapa-head {
+  display:grid;
+  grid-template-columns: 80px 1fr;
+  gap:1.5rem;
+  align-items:start;
+  margin-bottom:2.5rem;
+}
+
+.etapa-num-block {
+  text-align:center;
+}
+
+.etapa-num {
+  font-family:'Spectral', serif;
+  font-size:3.5rem;
+  font-weight:300;
+  line-height:1;
+  color: var(--accent);
+  opacity:0.4;
+}
+
+.etapa-roman {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.55rem;
+  letter-spacing:0.4em;
+  color: var(--dim);
+  text-transform:uppercase;
+  margin-top:0.3rem;
+}
+
+.etapa-title-block {}
+
+.etapa-tag {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.55rem;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color: var(--accent);
+  margin-bottom:0.5rem;
+  display:block;
+}
+
+.etapa-titulo {
+  font-family:'Spectral', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight:600;
+  color: var(--white);
+  line-height:1.2;
+  margin-bottom:0.5rem;
+}
+
+.etapa-subtitulo {
+  font-size:0.9rem;
+  font-style:italic;
+  color: var(--dim);
+}
+
+/* Descripción general */
+.etapa-desc {
+  font-size:1.05rem;
+  line-height:1.8;
+  color: var(--text);
+  margin-bottom:2.5rem;
+  padding-left:calc(80px + 1.5rem);
+}
+
+/* Pasos */
+.pasos-label {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.6rem;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color: var(--accent2);
+  margin-bottom:1.2rem;
+  padding-left:calc(80px + 1.5rem);
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+}
+.pasos-label::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background: rgba(126,184,160,0.2);
+}
+
+.pasos {
+  padding-left:calc(80px + 1.5rem);
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-bottom:2rem;
+}
+
+.paso {
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:1rem;
+  align-items:start;
+}
+
+.paso-n {
+  width:32px;
+  height:32px;
+  border:1px solid var(--accent2);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.65rem;
+  color: var(--accent2);
+  flex-shrink:0;
+  margin-top:0.15rem;
+}
+
+.paso-contenido {}
+
+.paso-titulo {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.7rem;
+  font-weight:400;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color: var(--white);
+  margin-bottom:0.4rem;
+}
+
+.paso-texto {
+  font-size:0.95rem;
+  line-height:1.75;
+  color: var(--text);
+}
+
+.paso-texto em {
+  font-style:italic;
+  color: var(--accent);
+}
+
+/* Declaración / decreto */
+.decreto {
+  background: var(--surface);
+  border:1px solid rgba(200,169,110,0.2);
+  border-left:3px solid var(--accent);
+  padding:1.2rem 1.5rem;
+  margin-top:0.8rem;
+  font-style:italic;
+  font-size:0.95rem;
+  line-height:1.7;
+  color: var(--accent);
+}
+
+/* Grid de info */
+.info-grid {
+  padding-left:calc(80px + 1.5rem);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0.8rem;
+  margin-bottom:2rem;
+}
+
+@media(max-width:600px) {
+  .info-grid { grid-template-columns:1fr 1fr; }
+  .etapa-desc,
+  .pasos-label,
+  .pasos,
+  .info-grid,
+  .duracion-block,
+  .señal-block { padding-left:0; }
+  .etapa-head { grid-template-columns:50px 1fr; gap:1rem; }
+  .etapa-num { font-size:2.5rem; }
+}
+
+.info-chip {
+  background: var(--surface);
+  border:1px solid var(--border);
+  padding:0.8rem 1rem;
+}
+
+.info-chip-label {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.55rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color: var(--accent3);
+  margin-bottom:0.3rem;
+}
+
+.info-chip-val {
+  font-size:0.85rem;
+  color: var(--text);
+  line-height:1.4;
+}
+
+/* Duración */
+.duracion-block {
+  padding-left:calc(80px + 1.5rem);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:2rem;
+}
+
+.duracion-bar-wrap {
+  flex:1;
+  height:3px;
+  background: var(--surface2);
+  border-radius:2px;
+  overflow:hidden;
+}
+
+.duracion-bar {
+  height:100%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  border-radius:2px;
+  transition: width 1s ease;
+}
+
+.duracion-label {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.6rem;
+  letter-spacing:0.2em;
+  color: var(--dim);
+  white-space:nowrap;
+}
+
+/* Señal de avance */
+.señal-block {
+  padding-left:calc(80px + 1.5rem);
+  background: rgba(126,184,160,0.05);
+  border:1px solid rgba(126,184,160,0.15);
+  padding:1rem 1.2rem 1rem calc(80px + 1.5rem + 1.2rem);
+  margin-bottom:0.5rem;
+}
+
+@media(max-width:600px) {
+  .señal-block { padding-left:1.2rem; }
+}
+
+.señal-label {
+  font-family:'Josefin Sans', sans-serif;
+  font-size:0.55rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color: var(--accent2);
+  margin-bottom:0.5rem;
+}
+
+.señal-texto {
+  font-size:0.9rem;
+  font-style:italic;
+  color: var(--dim);
+  line-height:1.6;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Protocolo Integral · Vía Esotérica</p>
+  <h1>Las 12 Etapas de la<br><strong>Sanación</strong></h1>
+  <div class="header-line"></div>
+  <p class="header-desc">Cada etapa contiene sus pasos exactos, decretos, herramientas y la señal que indica que puedes avanzar a la siguiente.</p>
+</header>
+
+<nav class="nav-strip" id="navStrip"></nav>
+
+<main class="main" id="mainContent"></main>
+
+<script>
+const etapas = [
+  {
+    n:1, roman:"I", tag:"Despertar",
+    titulo:"Reconocimiento del Dolor",
+    subtitulo:"Salir de la negación y nombrar la herida",
+    desc:"El primer movimiento de toda sanación es romper la anestesia. Mientras el dolor no tenga nombre, no puede transformarse. Esta etapa no requiere resolución — solo presencia honesta ante lo que es.",
+    duracion:"1 a 7 días", durPct:15,
+    chakra:"Muladhara", bovis:"4 000–6 000", cuerpo:"Etérico",
+    pasos:[
+      { t:"Crear espacio seguro", txt:"Elige un lugar donde no seas interrumpido. Apaga el teléfono. Enciende una vela. Este acto físico le dice al sistema nervioso que es seguro sentir." },
+      { t:"Respiración de apertura", txt:"Tres respiraciones lentas y profundas. Al exhalar, di en voz alta o mentalmente: <em>\"Estoy aquí. Estoy presente. Estoy a salvo.\"</em>" },
+      { t:"Nombrar sin juzgar", txt:"En un papel o en voz alta completa la frase: <em>\"Lo que me duele es...\"</em> Sin editar, sin suavizar. Lo que salga, que salga. Puedes hacerlo tantas veces como necesites hasta que no quede más.", decreto:"\"Permito que mi verdad emerja sin vergüenza y sin juicio. Soy lo suficientemente valiente para ver lo que es.\"" },
+      { t:"Registro escrito", txt:"Escribe lo que reconociste. No necesita tener sentido ni ser elocuente. Es solo para ti. El acto de escribirlo externaliza la energía y la hace más manejable." },
+      { t:"Cierre de la sesión", txt:"Cuando termines, dobla el papel y colócalo bajo una piedra o en un cajón. No lo releas hoy. Deja que repose. Bebe agua." }
+    ],
+    señal:"Sientes alivio después de haber nombrado lo que duele, aunque también haya tristeza. Ya no necesitas evitar el tema."
+  },
+  {
+    n:2, roman:"II", tag:"Soltar",
+    titulo:"Aceptación y Rendición",
+    subtitulo:"Dejar de luchar contra lo que ya ocurrió",
+    desc:"Aceptar no es aprobar. Es la decisión de no seguir gastando energía en resistir lo que ya es un hecho. La rendición espiritual libera enormes cantidades de fuerza vital que estaban atadas en la lucha interna.",
+    duracion:"3 a 14 días", durPct:22,
+    chakra:"Svadhisthana", bovis:"6 000–7 500", cuerpo:"Emocional",
+    pasos:[
+      { t:"Identificar la resistencia", txt:"Pregúntate honestamente: <em>¿Contra qué sigo luchando internamente?</em> Escribe todas las formas en que dices 'no debería haber pasado', 'no es justo', 'no puedo aceptarlo'." },
+      { t:"Sentir la resistencia en el cuerpo", txt:"Cierra los ojos. ¿Dónde en tu cuerpo vive esa resistencia? ¿Tensión en el pecho, mandíbula apretada, nudo en la garganta? Pon una mano ahí. Respira hacia ese lugar." },
+      { t:"El decreto de rendición", txt:"Este paso puede repetirse tantas veces como sea necesario, hasta que el cuerpo lo sienta verdadero.", decreto:"\"Acepto lo que ocurrió tal como ocurrió. No lo apruebo, pero dejo de resistirlo. Entrego esta situación a la Luz y confío en que hay un orden superior que no alcanzo a ver desde aquí.\"" },
+      { t:"Práctica del Ho'oponopono", txt:"Durante 5 minutos, repite suavemente: <em>\"Lo siento. Perdóname. Gracias. Te amo.\"</em> No importa hacia quién lo dirijas — puede ser hacia ti mismo, hacia la situación o hacia el universo." },
+      { t:"Integrar con movimiento", txt:"Da una caminata lenta. Cada paso es un acto de avanzar. La rendición no es pasividad — es movimiento sin resistencia." }
+    ],
+    señal:"Puedes pensar en la situación sin que el cuerpo se contraiga con la misma intensidad. Hay una nueva levedad."
+  },
+  {
+    n:3, roman:"III", tag:"Catarsis",
+    titulo:"Liberación Emocional",
+    subtitulo:"Purgar la energía acumulada en el cuerpo",
+    desc:"Las emociones son energía en movimiento. Cuando se bloquean, se acumulan como presión. Esta etapa es la purga: el llanto profundo, la ira saludable, el temblor somático. No se trata de dramatizar sino de permitir que el cuerpo complete lo que quedó interrumpido.",
+    duracion:"Variable · 1–21 días", durPct:28,
+    chakra:"Manipura", bovis:"7 000–8 500", cuerpo:"Emocional-Astral",
+    pasos:[
+      { t:"Preparar el contenedor", txt:"Esta sesión requiere privacidad total. Avisa que no serás interrumpido. Ten papel de cocina a mano. Considera tener música instrumental suave o sonidos de naturaleza." },
+      { t:"Activación corporal", txt:"De pie, sacude suavemente manos, brazos y piernas durante 2 minutos. Esto activa el sistema nervioso y comunica al cuerpo que tiene permiso de moverse y expresarse." },
+      { t:"Invocar la emoción", txt:"Siéntate o acuéstate. Lleva la atención al lugar del cuerpo donde vive la emoción. No la analices — solo obsérvala. Deja que se expanda. Si el llanto viene, recíbelo. Si la ira emerge, puedes golpear un cojín, gritar en un almohada, o pisotear con fuerza.", decreto:"\"Permito que esta emoción se mueva y se libere. No la suprimo ni la exagero. La dejo ser lo que es hasta que pase.\"" },
+      { t:"Llama Violeta de transmutación", txt:"Cuando la emoción comience a calmarse, visualiza la <em>Llama Violeta</em> envolviendo todo tu cuerpo. Declara: <em>\"Llama Violeta, transmuta toda esta energía liberada en Luz pura.\"</em>" },
+      { t:"Descanso y nutrición", txt:"Después de una liberación intensa, el cuerpo necesita recuperarse. Bebe agua con limón. Come algo suave y nutritivo. Descansa. No tomes decisiones importantes el mismo día." }
+    ],
+    señal:"Después de la liberación sientes un vacío limpio, una ligereza inusual. El cuerpo se siente más suave y tu respiración es más profunda."
+  },
+  {
+    n:4, roman:"IV", tag:"Raíz",
+    titulo:"Identificación del Origen",
+    subtitulo:"Encontrar la raíz real de la herida",
+    desc:"Con el campo emocional más limpio es posible ver con mayor claridad. Muchas veces la herida presente es el reflejo de una herida primaria más antigua: de la infancia, de un patrón transgeneracional o de un registro kármico. Esta etapa requiere honestidad y disposición a ver más allá de lo obvio.",
+    duracion:"7 a 30 días", durPct:35,
+    chakra:"Ajna", bovis:"8 000–10 000", cuerpo:"Mental-Causal",
+    pasos:[
+      { t:"Preguntar al cuerpo", txt:"En meditación o con los ojos cerrados, pregunta: <em>\"¿Cuándo sentí esto mismo por primera vez?\"</em> No fuerces la respuesta. Observa qué imagen, edad o recuerdo emerge espontáneamente." },
+      { t:"Mapa de patrones", txt:"Escribe en papel: ¿esta situación te recuerda a algo de tu infancia? ¿hay una figura —madre, padre, maestro— detrás de la dinámica actual? ¿se repite este patrón en distintas áreas de tu vida?" },
+      { t:"Diálogo con el niño interior", txt:"Si emerge una herida de infancia: cierra los ojos, visualiza la versión de ti con esa edad. Dile: <em>\"Te veo. Estoy aquí. No estás solo.\"</em> Escucha lo que esa parte de ti necesita decir.", decreto:"\"Me abro a ver la raíz verdadera de esta herida, sin miedo y sin juicio. Toda verdad que emerja es para mi liberación.\"" },
+      { t:"Consulta radiestésica opcional", txt:"Con el péndulo puedes preguntar: ¿el origen de esta herida es de esta vida? ¿es transgeneracional? ¿es kármico? Esto orienta el tipo de trabajo que se requiere." },
+      { t:"Registro sin interpretación", txt:"Escribe todo lo que emergió sin intentar analizarlo todavía. El análisis viene en la siguiente etapa. Aquí solo se recoge la información." }
+    ],
+    señal:"Sientes un 'clic' de reconocimiento — una comprensión que no es intelectual sino visceral. Sabes que encontraste algo real."
+  },
+  {
+    n:5, roman:"V", tag:"Gnosis",
+    titulo:"Comprensión y Resignificación",
+    subtitulo:"Convertir la experiencia en sabiduría",
+    desc:"La mente necesita comprender para poder soltar. En esta etapa se busca el sentido profundo de lo vivido: ¿qué aprendizaje de alma buscaba activarse? ¿qué contrato inconsciente se estaba cumpliendo? La resignificación no justifica el daño — le otorga un propósito que lo transforma.",
+    duracion:"7 a 21 días", durPct:42,
+    chakra:"Ajna–Sahasrara", bovis:"10 000–12 000", cuerpo:"Mental Superior",
+    pasos:[
+      { t:"Preguntas de resignificación", txt:"Escribe las respuestas a: ¿Qué aprendí de mí mismo a través de esta experiencia? ¿Qué capacidad desarrollé que no hubiera desarrollado sin ella? ¿Qué parte de mí creció?" },
+      { t:"Perspectiva del alma", txt:"Eleva el punto de vista: si tu alma eligió esta experiencia para evolucionar, ¿qué necesitaba aprender? Esto no culpa a la víctima — reconoce que el alma trabaja en una escala de tiempo mayor que el ego.", decreto:"\"Elijo ver esta experiencia desde la perspectiva de mi alma. Confío en que todo lo que viví contiene una semilla de crecimiento que ahora elijo reconocer.\"" },
+      { t:"Reescribir la narrativa", txt:"Toma el relato que has contado sobre esta herida y reescríbelo desde el aprendizaje. No cambies los hechos — cambia el enfoque. Del 'me hicieron' al 'descubrí', del 'perdí' al 'aprendí'." },
+      { t:"Integración con el cuerpo mental", txt:"Lee tu nueva narrativa en voz alta tres veces. El cuerpo mental integra mejor a través del sonido y la repetición consciente." },
+      { t:"Gratitud específica", txt:"Escribe tres cosas concretas por las que puedes estar genuinamente agradecido como resultado de esta experiencia. La gratitud no niega el dolor — coexiste con él y eleva la vibración." }
+    ],
+    señal:"Puedes contar lo que viviste sin identificarte completamente con el sufrimiento. Hay distancia creativa entre tú y la historia."
+  },
+  {
+    n:6, roman:"VI", tag:"Liberación",
+    titulo:"El Perdón",
+    subtitulo:"El acto más poderoso de la sanación",
+    desc:"El perdón no es olvido ni rehabilitación del agresor. Es la decisión soberana de no seguir cargando el peso del resentimiento. Libera al que perdona. Incluye — y frecuentemente comienza por — el autoperdón.",
+    duracion:"Variable · puede ser gradual", durPct:52,
+    chakra:"Anahata", bovis:"12 000–15 000", cuerpo:"Astral-Búdico",
+    pasos:[
+      { t:"Autoperdón primero", txt:"Antes de perdonar a otros, identifica qué te reproches a ti mismo en relación con esta experiencia. Escríbelo. Luego, con la mano en el corazón, di: <em>\"Me perdono por haber creído que merecía esto. Me perdono por no haber sabido más en ese momento. Hice lo mejor que podía con lo que tenía.\"</em>" },
+      { t:"Comprender sin justificar", txt:"Considera brevemente qué heridas, limitaciones o inconsciencia llevó a la otra persona a actuar como actuó. Esto no justifica — crea distancia compasiva que facilita el perdón." },
+      { t:"Decreto de perdón", txt:"Este paso no requiere que la persona esté presente ni que lo sepa. Es un acto interno.", decreto:"\"Elijo liberar el resentimiento que cargo hacia [nombre/situación]. No porque lo que hiciste estuviera bien, sino porque ya no permito que controle mi energía y mi vida. Te libero. Me libero. Ambos quedamos en paz.\"" },
+      { t:"Corte de cuerdas asociadas", txt:"Después del decreto, visualiza el Arcángel Miguel cortando con su espada azul cualquier cuerda que aún conecte tu campo con esa persona o situación. Siente cómo tu energía regresa a ti completa." },
+      { t:"Ho'oponopono de cierre", txt:"Repite durante 5 minutos hacia la persona o situación: <em>\"Lo siento. Perdóname. Gracias. Te amo.\"</em> Aunque no lo sientas completamente verdadero al inicio — la repetición abre el campo." }
+    ],
+    señal:"Al evocar a la persona o situación, el cuerpo ya no se contrae con dolor o ira. Puede haber tristeza, pero es una tristeza limpia, sin veneno."
+  },
+  {
+    n:7, roman:"VII", tag:"Purificación",
+    titulo:"Limpieza Energética",
+    subtitulo:"Limpiar el campo áurico de residuos y anclajes",
+    desc:"La sanación emocional y mental debe acompañarse de una limpieza del campo energético. Sin este paso, los patrones pueden re-engancharse aunque la comprensión intelectual sea profunda. El campo necesita actualizarse a la nueva vibración.",
+    duracion:"3 a 7 días · luego mantenimiento semanal", durPct:60,
+    chakra:"Todos", bovis:"13 000–16 000", cuerpo:"Todos los cuerpos sutiles",
+    pasos:[
+      { t:"Diagnóstico con péndulo", txt:"Mide el estado de cada chakra antes de la limpieza. Anota la respuesta del péndulo en cada uno: ¿hay bloqueo? ¿hay cuerdas? ¿hay residuos? Esto establece el punto de partida." },
+      { t:"Baño de sal", txt:"Prepara un baño con sal gruesa y bicarbonato (o sal del Himalaya). Sumerge el cuerpo durante 20 minutos mínimo. Visualiza que el agua disuelve toda densidad del campo áurico. Al drenar el agua, visualiza cómo arrastra todo lo que se liberó.", decreto:"\"Esta agua sagrada disuelve y purifica todo residuo energético de mi campo. Salgo renovado y limpio.\"" },
+      { t:"Sahumerio del espacio y del cuerpo", txt:"Usa copal, salvia blanca o mirra. Primero limpia tu espacio de vida en sentido contrario a las manecillas del reloj. Luego pasa el sahumerio alrededor de tu cuerpo de pies a cabeza. Abre una ventana para que lo denso salga." },
+      { t:"Activación de la Llama Violeta", txt:"En meditación de 10 minutos: visualiza la Llama Violeta comenzando en tus pies y subiendo lentamente hasta la corona. En cada chakra, permanece 1 minuto. Declara: <em>\"Llama Violeta, transmuta todo en mi campo que no sea de Luz.\"</em>" },
+      { t:"Verificación y sellado", txt:"Repite la medición con el péndulo. Compara con el diagnóstico inicial. Los chakras deben responder con mayor amplitud y claridad. Finaliza con el decreto de sellado del escudo áurico." }
+    ],
+    señal:"Sensación de ligereza física, colores más vivos en meditación. El péndulo gira con mayor amplitud al medir el campo. Mejoran síntomas físicos crónicos."
+  },
+  {
+    n:8, roman:"VIII", tag:"Unificación",
+    titulo:"Integración",
+    subtitulo:"Reunir todos los fragmentos del ser",
+    desc:"La integración es el proceso silencioso por el cual todo lo que la herida separó vuelve a formar parte del ser. Ninguna parte queda excluida: la parte que sufrió, la que se enojó, la que tuvo miedo. Todas son reabsorbidas por la conciencia sin negación.",
+    duracion:"21 a 90 días", durPct:68,
+    chakra:"Sahasrara", bovis:"14 000–17 000", cuerpo:"Todos los cuerpos",
+    pasos:[
+      { t:"Mapa de partes", txt:"Dibuja o escribe las distintas 'partes' internas que emergieron durante el proceso: la parte herida, la furiosa, la que tiene miedo, la que quería huir. Dales un nombre o una imagen." },
+      { t:"Diálogo con cada parte", txt:"Una por una, en meditación o en escritura, habla con cada parte: <em>\"Te veo. Gracias por protegerme. Ya no necesitas estar en guardia. Estás a salvo aquí.\"</em>" },
+      { t:"Meditación de reunificación", txt:"Visualiza todas esas partes como fragmentos de luz flotando alrededor de ti. Inhala profundo — al exhalar, visualiza cómo cada fragmento regresa a tu centro y se integra. Repite hasta que sientas el campo completo.", decreto:"\"Soy uno. Todas mis partes son bienvenidas. No excluyo nada de mí mismo. Me recibo completo, con mis heridas y con mi luz.\"" },
+      { t:"Práctica diaria de presencia", txt:"Durante esta etapa, practica 5 minutos de presencia plena al día: solo observar la respiración sin hacer nada. La integración ocurre en el silencio, no en la acción." },
+      { t:"Señales de integración activa", txt:"Esta etapa es larga y silenciosa. La integración ocurre sola cuando se le da espacio. Tu trabajo es no interrumpirla con nuevas crisis, con distracciones o con la urgencia de 'avanzar más rápido'." }
+    ],
+    señal:"Sientes continuidad interna — una coherencia entre lo que piensas, sientes y haces. Ya no te sientes dividido respecto a la situación."
+  },
+  {
+    n:9, roman:"IX", tag:"Nuevo Código",
+    titulo:"Reprogramación de Creencias",
+    subtitulo:"Instalar verdades de alta vibración",
+    desc:"Toda herida instala creencias limitantes: 'no soy suficiente', 'el amor duele', 'no merezco'. Con el campo limpio y el ser integrado, estas creencias pueden ser identificadas y reemplazadas conscientemente por verdades de mayor vibración.",
+    duracion:"21 a 60 días", durPct:76,
+    chakra:"Manipura–Ajna", bovis:"14 000–17 000", cuerpo:"Mental-Causal",
+    pasos:[
+      { t:"Inventario de creencias", txt:"Escribe todas las creencias que esta herida instaló. Completa las frases: <em>\"A causa de esto aprendí que yo soy...\"</em>, <em>\"A causa de esto creo que el mundo es...\"</em>, <em>\"A causa de esto creo que el amor es...\"</em>" },
+      { t:"Identificar la creencia raíz", txt:"De todas las creencias listadas, ¿cuál es la madre de todas? Generalmente hay una creencia central de la que derivan las demás. Encírrala en un círculo." },
+      { t:"Crear la creencia opuesta elevada", txt:"Para cada creencia limitante, escribe su verdad opuesta en primera persona y tiempo presente: <em>\"Soy completamente suficiente tal como soy.\"</em> <em>\"El amor verdadero es seguro y nutritivo.\"</em>" },
+      { t:"Activación neuronal de la nueva creencia", txt:"De pie, con postura abierta y expansiva, di la nueva creencia en voz alta 21 veces consecutivas por la mañana durante 21 días. El cuerpo y la voz juntos aceleran la reprogramación del subconsciente.", decreto:"\"Ahora instalo en mi cuerpo mental, subconsciente y celular la verdad de que [nueva creencia]. Así es en todos los niveles de mi ser.\"" },
+      { t:"Observar las pruebas de la nueva creencia", txt:"Cada día escribe una evidencia, por pequeña que sea, de que la nueva creencia es verdadera. El cerebro aprende a confirmar lo que busca." }
+    ],
+    señal:"Pensamientos espontáneos más compasivos hacia ti mismo. Respuestas nuevas ante situaciones que antes disparaban la herida. Atracción de circunstancias coherentes con la nueva creencia."
+  },
+  {
+    n:10, roman:"X", tag:"Resurrección",
+    titulo:"Apertura al Amor y a la Vida",
+    subtitulo:"El corazón vuelve a confiar y a recibir",
+    desc:"Cuando la herida se sana de raíz, el corazón se vuelve a abrir. No como era antes — más amplio, más sabio, con mayor capacidad para el amor y para recibir la vida. Esta etapa se reconoce más que se practica.",
+    duracion:"Gradual · sin límite de tiempo", durPct:84,
+    chakra:"Anahata expandido", bovis:"16 000–20 000", cuerpo:"Emocional-Búdico",
+    pasos:[
+      { t:"Práctica del corazón abierto", txt:"Cada mañana, pon ambas manos sobre el corazón. Siente el latido. Di: <em>\"Estoy vivo. Tengo capacidad de amar y ser amado. Estoy abierto a recibir la vida.\"</em> Tres minutos." },
+      { t:"Actos de recepción consciente", txt:"Practica recibir sin culpa. Cuando alguien te ofrezca algo — un elogio, una ayuda, un gesto de amor — recíbelo completamente sin desviarlo ni minimizarlo. Di 'gracias' y déjalo entrar." },
+      { t:"Reconexión con la belleza", txt:"Esta etapa se nutre de la belleza: música que conmueva, naturaleza, arte, momentos de silencio contemplativo. No como distracción sino como reconexión con la dimensión del alma.", decreto:"\"Mi corazón está abierto y es seguro amar. Recibo el amor de la vida en todas sus formas. Soy digno de toda la belleza que existe.\"" },
+      { t:"Nuevas conexiones desde el ser completo", txt:"Observa cómo cambia la calidad de tus relaciones. Las conexiones que se forman desde un corazón sanado tienen una textura diferente: más liviana, más honesta, más nutricia." },
+      { t:"Gratitud viva", txt:"Al final de cada día escribe tres cosas hermosas que la vida te ofreció. No para cumplir un ritual — para entrenas la percepción hacia la abundancia de lo que ya es." }
+    ],
+    señal:"Mayor facilidad para recibir sin culpa. Relaciones que cambian de calidad naturalmente. Capacidad de disfrutar momentos simples sin esperar que 'algo malo pase'."
+  },
+  {
+    n:11, roman:"XI", tag:"Alquimia",
+    titulo:"Transmutación y Servicio",
+    subtitulo:"La herida convertida en don",
+    desc:"La herida completamente sanada se convierte en el recurso más poderoso del sanador. Lo que fue el mayor dolor se transforma en la mayor fuente de comprensión hacia quienes atraviesan lo mismo. Esta es la alquimia espiritual: plomo convertido en oro.",
+    duracion:"Se abre naturalmente", durPct:92,
+    chakra:"Transpersonal", bovis:"18 000–25 000+", cuerpo:"Átmico-Monádico",
+    pasos:[
+      { t:"Reconocer el don", txt:"Pregúntate: ¿qué comprensión profunda me dejó esta experiencia que no habría tenido de otra manera? ¿a quién puedo acompañar mejor gracias a lo que atravesé?" },
+      { t:"Primera forma de servicio", txt:"No necesita ser grandioso. Puede ser acompañar a un amigo que atraviesa algo similar, escribir sobre tu proceso, o simplemente ser una presencia más compasiva en tu entorno cotidiano." },
+      { t:"Decreto de misión", txt:"", decreto:"\"Consagro mi sanación al servicio. Que mi experiencia sea puente de luz para quienes vienen detrás. Que mi herida sanada sea el mapa que otros necesitan para encontrar su camino.\"" },
+      { t:"Compartir sin necesidad de validación", txt:"El servicio desde la sanación no necesita reconocimiento para sostenerse. Fluye naturalmente como expresión del ser. Si necesitas validación constante, hay una capa más de integración pendiente." },
+      { t:"Medir el campo", txt:"Mide tu Bovis con el péndulo. En este punto del proceso, el campo debe mostrar una elevación notable respecto al inicio. Esta medición confirma la sanación a nivel energético." }
+    ],
+    señal:"El deseo de compartir el camino recorrido emerge solo, sin esfuerzo. Sincronicidades que llevan hacia personas que necesitan exactamente lo que tú aprendiste."
+  },
+  {
+    n:12, roman:"XII", tag:"Iluminación",
+    titulo:"Unión con el Ser Superior",
+    subtitulo:"El retorno a la unidad",
+    desc:"La culminación de todo proceso de sanación es el retorno a la fuente: la fusión progresiva con el Yo Superior, el reconocimiento de la naturaleza divina del ser. No es un final — es una apertura infinita hacia niveles cada vez más elevados de consciencia.",
+    duracion:"Proceso continuo · sin fin", durPct:100,
+    chakra:"Sahasrara y transpersonales", bovis:"25 000 – ∞", cuerpo:"Monádico-Crístico",
+    pasos:[
+      { t:"Meditación del Yo Superior", txt:"Diariamente, en silencio, visualiza un ser de luz brillante justo sobre tu corona — tu Yo Superior. Inhala invitándolo a descender. Siente cómo su luz llena tu cuerpo de arriba hacia abajo. Cinco minutos." },
+      { t:"Decreto del Yo Soy", txt:"", decreto:"\"YO SOY la Presencia de Dios en acción en mi vida. YO SOY Luz. YO SOY Amor. YO SOY la plenitud de todo lo que necesito ser. Todo está bien. Todo siempre ha estado bien.\"" },
+      { t:"Vivir desde el testigo", txt:"Practica observar tus pensamientos, emociones y reacciones sin identificarte con ellos completamente. Eres el que observa, no solo lo observado. Esta distancia es el espacio donde vive el Yo Superior." },
+      { t:"Gratitud como estado", txt:"No como práctica sino como estado de ser: despertar con la sensación de que existir es en sí mismo un regalo. Esto no depende de las circunstancias externas — emerge desde adentro." },
+      { t:"Continuar sanando en espiral", txt:"La sanación no termina aquí. Cada nivel alcanzado revela el siguiente. La vida seguirá ofreciendo situaciones para refinar, profundizar y expandir. Ahora, sin embargo, tienes las herramientas y sabes el camino.", decreto:"\"Al final del camino descubro que no había adónde llegar. Siempre estuve en casa. Siempre fui Luz. Siempre fui Amor. Así es.\"" }
+    ],
+    señal:"Estados de paz que no dependen de circunstancias externas. Experiencias de unidad en meditación. Servicio que fluye sin esfuerzo como expresión natural de quien eres."
+  }
+];
+
+const romans = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
+const nav = document.getElementById('navStrip');
+const main = document.getElementById('mainContent');
+
+etapas.forEach((e, i) => {
+  // Nav button
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn';
+  btn.textContent = `${e.roman} · ${e.tag}`;
+  btn.addEventListener('click', () => {
+    document.getElementById(`etapa-${e.n}`).scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  nav.appendChild(btn);
+
+  // Section
+  const sec = document.createElement('section');
+  sec.className = 'etapa-section';
+  sec.id = `etapa-${e.n}`;
+
+  const pasosHTML = e.pasos.map((p, pi) => `
+    <div class="paso">
+      <div class="paso-n">${pi+1}</div>
+      <div class="paso-contenido">
+        <div class="paso-titulo">${p.t}</div>
+        <div class="paso-texto">${p.txt}</div>
+        ${p.decreto ? `<div class="decreto">${p.decreto}</div>` : ''}
+      </div>
+    </div>
+  `).join('');
+
+  sec.innerHTML = `
+    <div class="etapa-head">
+      <div class="etapa-num-block">
+        <div class="etapa-num">${e.n}</div>
+        <div class="etapa-roman">${e.roman}</div>
+      </div>
+      <div class="etapa-title-block">
+        <span class="etapa-tag">${e.tag}</span>
+        <div class="etapa-titulo">${e.titulo}</div>
+        <div class="etapa-subtitulo">${e.subtitulo}</div>
+      </div>
+    </div>
+
+    <p class="etapa-desc">${e.desc}</p>
+
+    <div class="info-grid">
+      <div class="info-chip">
+        <div class="info-chip-label">Chakra</div>
+        <div class="info-chip-val">${e.chakra}</div>
+      </div>
+      <div class="info-chip">
+        <div class="info-chip-label">Vibración Bovis</div>
+        <div class="info-chip-val">${e.bovis}</div>
+      </div>
+      <div class="info-chip">
+        <div class="info-chip-label">Cuerpo Sutil</div>
+        <div class="info-chip-val">${e.cuerpo}</div>
+      </div>
+    </div>
+
+    <div class="duracion-block">
+      <span class="duracion-label">Duración estimada</span>
+      <div class="duracion-bar-wrap">
+        <div class="duracion-bar" style="width:${e.durPct}%"></div>
+      </div>
+      <span class="duracion-label">${e.duracion}</span>
+    </div>
+
+    <div class="pasos-label">Protocolo paso a paso</div>
+    <div class="pasos">${pasosHTML}</div>
+
+    <div class="señal-block">
+      <div class="señal-label">✦ Señal de que puedes avanzar</div>
+      <div class="señal-texto">${e.señal}</div>
+    </div>
+  `;
+
+  main.appendChild(sec);
+});
+
+// Highlight nav on scroll
+const sections = document.querySelectorAll('.etapa-section');
+const navBtns = document.querySelectorAll('.nav-btn');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      const idx = [...sections].findIndex(s => s.id === id);
+      navBtns.forEach((b,i) => b.classList.toggle('active', i === idx));
+      navBtns[idx]?.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+    }
+  });
+}, { threshold:0.3 });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

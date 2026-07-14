@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escala de Transición · Acompañamiento en Agonía · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Space+Mono&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#06060e;color:#ddd8cc;font-family:'Crimson Pro',serif;font-size:16px;line-height:1.65}
+
+/* ── HEADER ── */
+header{text-align:center;padding:2rem 1rem 1.5rem;border-bottom:1px solid #1a1a32;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(100,80,160,.1) 0%,transparent 70%)}
+header h1{font-family:'Cinzel',serif;font-size:clamp(.95rem,2.5vw,1.35rem);letter-spacing:.15em;color:#9fc9ff;text-transform:uppercase;margin-bottom:.3rem}
+header p{font-style:italic;color:#7070a0;font-size:.88rem}
+
+/* ── NAV TABS ── */
+.nav{display:flex;border-bottom:1px solid #1a1a32;overflow-x:auto;background:#0a0a18}
+.nav-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.2rem;background:none;border:none;color:#7070a0;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .18s;margin-bottom:-1px}
+.nav-btn:hover{color:#ddd8cc}
+.nav-btn.on{color:#9fc9ff;border-bottom-color:#9fc9ff}
+
+/* ── PANTALLAS ── */
+.screen{display:none;max-width:960px;margin:0 auto;padding:1.5rem}
+.screen.on{display:block}
+
+/* ── ESCALA PRINCIPAL ── */
+.escala-wrap{position:relative;margin:1rem 0}
+.bovis-input-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.8rem;align-items:end;margin-bottom:1.2rem}
+.campo{display:flex;flex-direction:column;gap:.3rem}
+.campo label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#7070a0}
+.campo input,.campo select{background:#0e0e22;border:1px solid #1a1a32;border-radius:2px;color:#ddd8cc;font-family:'Crimson Pro',serif;font-size:1rem;padding:.55rem .8rem;outline:none;transition:border-color .2s;width:100%}
+.campo input:focus,.campo select:focus{border-color:#1e3a68}
+.btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.6rem 1.2rem;border:none;border-radius:2px;cursor:pointer;transition:all .2s}
+.btn-p{background:#1e3a68;color:#fff}
+.btn-p:hover{background:#6fa3e0}
+.btn-s{background:transparent;border:1px solid #2a2a45;color:#7070a0}
+.btn-s:hover{border-color:#9fc9ff;color:#9fc9ff}
+.btn-r{background:transparent;border:1px solid #5a2020;color:#c06060}
+.btn-r:hover{background:rgba(192,96,96,.08)}
+
+/* Escala visual */
+.escala-visual{position:relative;height:60px;border-radius:3px;overflow:hidden;margin-bottom:.8rem;cursor:pointer}
+.escala-gradiente{position:absolute;inset:0;background:linear-gradient(90deg,
+  #9fc9ff 0%,
+  #60c898 8%,
+  #78a0e8 16%,
+  #6fa3e0 24%,
+  #888 32%,
+  #444 40%,
+  #3a3060 50%,
+  #602020 65%,
+  #3a0808 80%,
+  #100202 100%)}
+.escala-marcas{position:absolute;inset:0;display:flex;align-items:flex-end;padding-bottom:4px}
+.marca{position:absolute;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
+.marca-line{width:1px;height:10px;background:rgba(255,255,255,.3)}
+.marca-txt{font-family:'Space Mono',monospace;font-size:.52rem;color:rgba(255,255,255,.5);margin-top:2px;white-space:nowrap}
+.cursor-escala{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 8px #fff;transition:left .4s;pointer-events:none}
+.cursor-label{position:absolute;top:-22px;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:.6rem;background:#0e0e22;border:1px solid #1e3a68;padding:.1rem .4rem;border-radius:2px;white-space:nowrap;color:#9fc9ff}
+
+/* Etapa activa */
+.etapa-activa{background:#0e0e22;border:1px solid #2a2a45;border-radius:3px;padding:1.2rem;margin-bottom:1.2rem;transition:all .3s}
+.ea-header{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem}
+.ea-num{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:600;min-width:48px;text-align:center}
+.ea-info h2{font-family:'Cinzel',serif;font-size:.95rem;margin-bottom:.2rem}
+.ea-info p{font-style:italic;font-size:.85rem;color:#a0a0c8}
+.ea-bovis{font-family:'Space Mono',monospace;font-size:.72rem;margin-top:.2rem}
+.ea-tiempo{display:inline-flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.65rem;padding:.25rem .6rem;border-radius:10px;border:1px solid #2a2a45;color:#9fc9ff;margin-top:.3rem}
+
+/* Tabs de detalle */
+.dtabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.8rem}
+.dtab{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .8rem;background:none;border:1px solid #1a1a32;border-radius:2px;color:#7070a0;cursor:pointer;transition:all .15s}
+.dtab:hover{border-color:#2a2a45;color:#ddd8cc}
+.dtab.on{border-color:#1e3a68;color:#9fc9ff;background:rgba(123,92,184,.08)}
+.dpanel{display:none}
+.dpanel.on{display:block}
+
+/* Contenido de paneles */
+.bloque{background:rgba(255,255,255,.02);border:1px solid #1a1a32;border-radius:2px;padding:1rem;margin-bottom:.7rem}
+.bloque-titulo{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+.bloque p,.bloque li{font-size:.92rem;color:#a0a0c8;line-height:1.6;margin-bottom:.4rem}
+.bloque ul,.bloque ol{padding-left:1.2rem}
+.bloque strong{color:#ddd8cc}
+
+/* Chakras */
+.chakra-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.4rem;margin-top:.5rem}
+.chakra-item{text-align:center}
+.chakra-circle{width:32px;height:32px;border-radius:50%;margin:0 auto .3rem;border:2px solid;transition:all .3s;position:relative}
+.chakra-circle.activo{box-shadow:0 0 12px currentColor}
+.chakra-circle.inactivo{opacity:.2;filter:grayscale(.8)}
+.chakra-circle.saliendo{animation:pulso-ch 1.5s ease-in-out infinite}
+@keyframes pulso-ch{0%,100%{opacity:1}50%{opacity:.3}}
+.chakra-nom{font-family:'Space Mono',monospace;font-size:.5rem;color:#7070a0;line-height:1.2}
+
+/* Invocaciones */
+.invocacion{background:rgba(200,168,75,.04);border:1px solid rgba(200,168,75,.2);border-radius:2px;padding:1rem;font-style:italic;color:#c8c0a0;line-height:1.75;font-size:.95rem;margin-bottom:.7rem}
+.inv-titulo{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#9fc9ff;margin-bottom:.5rem;font-style:normal}
+
+/* Pendulo */
+.pendulo-wrap{display:flex;gap:1rem;align-items:flex-start;margin-bottom:.6rem}
+.pendulo-anim{flex-shrink:0;width:50px;height:70px;position:relative}
+.pendulo-hilo{position:absolute;top:0;left:50%;width:1px;background:#9fc9ff;transform-origin:top center}
+.pendulo-bola{position:absolute;bottom:0;left:50%;width:10px;height:10px;border-radius:50%;background:#9fc9ff;transform:translateX(-50%)}
+.pendulo-desc{font-size:.9rem;color:#a0a0c8;line-height:1.6}
+
+/* Señales */
+.senal-item{display:flex;gap:.7rem;padding:.5rem 0;border-bottom:1px solid #1a1a32}
+.senal-item:last-child{border-bottom:none}
+.senal-icon{font-size:1.1rem;flex-shrink:0;width:24px;text-align:center;margin-top:.05rem}
+.senal-texto{font-size:.9rem;color:#a0a0c8;line-height:1.5}
+
+/* Familiares */
+.hacer{border-left:3px solid #60c898}
+.evitar{border-left:3px solid #c06060}
+.hacer .bloque-titulo{color:#60c898}
+.evitar .bloque-titulo{color:#c06060}
+
+/* ── REGISTRO ── */
+.reg-form{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:end;margin-bottom:1rem}
+.reg-tabla{width:100%;border-collapse:collapse}
+.reg-tabla th{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#7070a0;padding:.5rem .7rem;border-bottom:1px solid #1a1a32;text-align:left}
+.reg-tabla td{padding:.5rem .7rem;border-bottom:1px solid #0e0e1e;font-size:.88rem;color:#a0a0c8;vertical-align:top}
+.reg-tabla tr:hover td{background:rgba(255,255,255,.01)}
+.etapa-tag{font-family:'Space Mono',monospace;font-size:.6rem;padding:.15rem .45rem;border-radius:10px;border:1px solid currentColor;white-space:nowrap}
+
+/* ── DESTINO ALMA ── */
+.destino-escala{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}
+.dest-row{display:flex;align-items:center;gap:.8rem;padding:.6rem .8rem;border-radius:2px;border:1px solid #1a1a32;cursor:pointer;transition:all .2s}
+.dest-row:hover,.dest-row.on{border-color:#2a2a45;background:rgba(255,255,255,.03)}
+.dest-barra{height:6px;border-radius:3px;flex-shrink:0}
+.dest-rango{font-family:'Space Mono',monospace;font-size:.65rem;min-width:100px;color:#7070a0}
+.dest-texto{font-size:.88rem;color:#a0a0c8;flex:1}
+.dest-plano{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em}
+
+/* ── LIMPIEZA ── */
+.limpieza-etapas{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.limp-card{background:#0e0e22;border:1px solid #1a1a32;border-radius:2px;padding:.9rem}
+.limp-rango{font-family:'Space Mono',monospace;font-size:.6rem;color:#7070a0;margin-bottom:.3rem}
+.limp-titulo{font-family:'Cinzel',serif;font-size:.75rem;margin-bottom:.5rem}
+.limp-item{font-size:.82rem;color:#a0a0c8;padding:.2rem 0;border-bottom:1px solid #0e0e1e}
+.limp-item:last-child{border-bottom:none}
+
+/* ── MISC ── */
+.sep{border:none;border-top:1px solid #1a1a32;margin:1rem 0}
+.nota{background:rgba(123,92,184,.06);border-left:3px solid #1e3a68;padding:.7rem 1rem;font-size:.85rem;font-style:italic;color:#a0a0c8;margin-bottom:1rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+@media(max-width:640px){
+  .bovis-input-row{grid-template-columns:1fr 1fr}
+  .reg-form{grid-template-columns:1fr 1fr}
+  .chakra-grid{grid-template-columns:repeat(4,1fr)}
+  .limpieza-etapas{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .dtabs{gap:.2rem}
+  .dtab{font-size:.55rem;padding:.3rem .6rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Escala de Transición · Acompañamiento en Agonía</h1>
+  <p>El Ser Uno · Escala Bovis Invertida · Instrumento Radiestésico para el Tránsito</p>
+</header>
+
+<!-- NAVEGACIÓN -->
+<nav class="nav">
+  <button class="nav-btn on" onclick="showScreen('escala')">◈ Escala</button>
+  <button class="nav-btn" onclick="showScreen('registro')">◈ Registro</button>
+  <button class="nav-btn" onclick="showScreen('destino')">◈ Destino del Alma</button>
+  <button class="nav-btn" onclick="showScreen('limpieza')">◈ Limpieza Post-mortem</button>
+  <button class="nav-btn" onclick="showScreen('guia')">◈ Guía Familiares</button>
+</nav>
+
+<!-- ══════════════════ ESCALA ══════════════════ -->
+<div class="screen on" id="sc-escala">
+
+  <div class="nota">Esta herramienta está diseñada para el acompañante radiestésico o terapeuta. Las mediciones se realizan con péndulo sobre el cuerpo o el espacio del ser en tránsito. El Bovis 0 es el umbral de cruce vital.</div>
+
+  <!-- Input Bovis -->
+  <div class="bovis-input-row">
+    <div class="campo">
+      <label>Bovis medido ahora</label>
+      <input type="number" id="bovis-now" placeholder="Ej: -3000" oninput="actualizarEscala()">
+    </div>
+    <div class="campo">
+      <label>Referencia (nombre/iniciales)</label>
+      <input type="text" id="ref-nombre" placeholder="Ej: M.L.">
+    </div>
+    <button class="btn btn-p" onclick="registrarMedicion()">+ Registrar</button>
+  </div>
+
+  <!-- Escala visual -->
+  <div class="escala-visual" id="escala-visual" onclick="clickEscala(event)">
+    <div class="escala-gradiente"></div>
+    <div class="escala-marcas" id="marcas"></div>
+    <div class="cursor-escala" id="cursor" style="left:32%">
+      <div class="cursor-label" id="cursor-label">0</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-family:monospace;font-size:.6rem;color:#7070a0;margin-bottom:1rem">
+    <span>+8.000 (vitalidad)</span>
+    <span>0 (umbral)</span>
+    <span>-40.000+ (tránsito)</span>
+  </div>
+
+  <!-- Etapa activa -->
+  <div class="etapa-activa" id="etapa-activa">
+    <div class="ea-header">
+      <div class="ea-num" id="ea-num">—</div>
+      <div class="ea-info">
+        <h2 id="ea-nombre">Ingresa un valor Bovis</h2>
+        <p id="ea-tagline">o haz clic en la escala visual</p>
+        <div class="ea-bovis" id="ea-bovis"></div>
+        <div class="ea-tiempo" id="ea-tiempo" style="display:none">⏱ <span id="ea-t"></span></div>
+      </div>
+    </div>
+
+    <!-- Tabs de detalle -->
+    <div class="dtabs">
+      <button class="dtab on" onclick="showDTab(this,'cuerpos')">Cuerpos Sutiles</button>
+      <button class="dtab" onclick="showDTab(this,'chakras')">Chakras</button>
+      <button class="dtab" onclick="showDTab(this,'pendulo')">Péndulo</button>
+      <button class="dtab" onclick="showDTab(this,'senales')">Señales</button>
+      <button class="dtab" onclick="showDTab(this,'invocacion')">Invocación</button>
+      <button class="dtab" onclick="showDTab(this,'acomp')">Acompañante</button>
+    </div>
+
+    <div class="dpanel on" id="dp-cuerpos"><div id="cont-cuerpos"></div></div>
+    <div class="dpanel" id="dp-chakras"><div id="cont-chakras"></div></div>
+    <div class="dpanel" id="dp-pendulo"><div id="cont-pendulo"></div></div>
+    <div class="dpanel" id="dp-senales"><div id="cont-senales"></div></div>
+    <div class="dpanel" id="dp-invocacion"><div id="cont-invocacion"></div></div>
+    <div class="dpanel" id="dp-acomp"><div id="cont-acomp"></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════ REGISTRO ══════════════════ -->
+<div class="screen" id="sc-registro">
+  <h2 style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:#9fc9ff;margin-bottom:1rem;text-transform:uppercase">Registro de Mediciones</h2>
+  <div class="reg-form">
+    <div class="campo">
+      <label>Fecha y hora</label>
+      <input type="datetime-local" id="reg-fecha">
+    </div>
+    <div class="campo">
+      <label>Bovis medido</label>
+      <input type="number" id="reg-bovis" placeholder="Ej: -6000">
+    </div>
+    <button class="btn btn-p" onclick="addRegistro()">+ Agregar</button>
+  </div>
+  <div class="campo" style="margin-bottom:.8rem">
+    <label>Observaciones</label>
+    <input type="text" id="reg-obs" placeholder="Notas del operador...">
+  </div>
+  <table class="reg-tabla">
+    <thead>
+      <tr>
+        <th>Fecha / Hora</th>
+        <th>Bovis</th>
+        <th>Etapa</th>
+        <th>Observaciones</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="reg-tbody">
+      <tr><td colspan="5" style="color:#7070a0;font-style:italic;text-align:center;padding:1.5rem">Sin registros aún</td></tr>
+    </tbody>
+  </table>
+  <div style="display:flex;gap:.6rem;margin-top:.8rem">
+    <button class="btn btn-s" onclick="exportarRegistro()">↓ Exportar texto</button>
+    <button class="btn btn-r" onclick="limpiarRegistro()">↺ Limpiar</button>
+  </div>
+</div>
+
+<!-- ══════════════════ DESTINO ══════════════════ -->
+<div class="screen" id="sc-destino">
+  <h2 style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:#9fc9ff;margin-bottom:.5rem;text-transform:uppercase">Destino del Alma según Bovis de Vida Sostenido</h2>
+  <p style="font-size:.88rem;color:#7070a0;font-style:italic;margin-bottom:1.2rem">El plano al que migra el alma corresponde exactamente a la vibración Bovis que mantuvo de forma sostenida durante su vida. No hay premio ni castigo — vas donde vibras.</p>
+
+  <div class="campo" style="margin-bottom:1rem;max-width:300px">
+    <label>Bovis de vida sostenido (estimado)</label>
+    <input type="number" id="bovis-vida" placeholder="Ej: 18000" oninput="calcularDestino()">
+  </div>
+
+  <div id="destino-resultado" style="display:none;background:#0e0e22;border:1px solid #2a2a45;border-radius:3px;padding:1.2rem;margin-bottom:1.2rem">
+    <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#7070a0;margin-bottom:.4rem">Destino probable</div>
+    <div id="dest-nombre" style="font-family:'Cinzel',serif;font-size:1.1rem;margin-bottom:.3rem"></div>
+    <div id="dest-desc" style="font-size:.92rem;color:#a0a0c8;line-height:1.6"></div>
+  </div>
+
+  <div class="destino-escala" id="destino-escala"></div>
+</div>
+
+<!-- ══════════════════ LIMPIEZA ══════════════════ -->
+<div class="screen" id="sc-limpieza">
+  <h2 style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:#9fc9ff;margin-bottom:.5rem;text-transform:uppercase">Limpieza del Espacio Post-mortem</h2>
+  <p style="font-size:.88rem;color:#7070a0;font-style:italic;margin-bottom:1.2rem">El protocolo de limpieza varía según la etapa en que se encuentre el proceso de transición detectado en el espacio.</p>
+  <div class="limpieza-etapas" id="limpieza-cont"></div>
+</div>
+
+<!-- ══════════════════ GUÍA FAMILIARES ══════════════════ -->
+<div class="screen" id="sc-guia">
+  <h2 style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:#9fc9ff;margin-bottom:.5rem;text-transform:uppercase">Guía para Familiares Presentes</h2>
+  <p style="font-size:.88rem;color:#7070a0;font-style:italic;margin-bottom:1.2rem">Lo que ocurre en el entorno durante la transición afecta directamente la calidad del tránsito. Esta guía es para quienes acompañan sin formación radiestésica.</p>
+  <div id="guia-cont"></div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// DATOS DE ETAPAS
+// ══════════════════════════════════
+const ETAPAS = [
+  {
+    n:0, nombre:'Pre-transición', tagline:'La fuerza vital inicia su retirada',
+    color:'#9fc9ff', bovisMin:1000, bovisMax:8000, tiempo:'Horas a días',
+    cuerpos:'El cuerpo etérico comienza a aflojar su unión con el físico. La energía deja de sostener los procesos orgánicos. El Bovis cae de forma constante y ya no responde a intervenciones físicas. En personas con alta vibración este proceso es sereno — en personas con mucho miedo o apego puede generar resistencia visible.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'activo',nota:'Muy activo — el ser se aferra al plano físico'},
+      {nom:'Sacro',col:'#e07030',est:'activo',nota:'Activo con intensidad decreciente'},
+      {nom:'Plexo',col:'#e0c030',est:'activo',nota:'Activo — centro de voluntad de permanecer'},
+      {nom:'Corazón',col:'#40c060',est:'activo',nota:'Activo — amor y vínculos se intensifican'},
+      {nom:'Garganta',col:'#4080e0',est:'activo',nota:'Puede haber necesidad de expresar'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'saliendo',nota:'Comienza a abrirse hacia planos internos'},
+      {nom:'Corona',col:'#c0a0e0',est:'saliendo',nota:'Comienza a abrirse — visiones posibles'},
+    ],
+    pendulo:'El péndulo oscila con movimiento amplio pero irregular sobre el cuerpo. Sobre el plexo solar: giro lento con tendencia a detenerse. Bovis en descenso constante — medir cada hora para detectar el cruce.',
+    senales:[
+      {i:'🌡',t:'Temperatura corporal disminuye progresivamente desde las extremidades hacia el centro'},
+      {i:'👁',t:'La mirada puede perderse hacia un punto fijo o hacia el lado superior derecho'},
+      {i:'💨',t:'Respiración irregular — pausas cada vez más largas entre respiraciones'},
+      {i:'✋',t:'Las manos pueden señalar o gesticular hacia presencias invisibles para los presentes'},
+      {i:'🌀',t:'El campo áurico etérico se contrae visiblemente para quien tiene percepción sutil'},
+      {i:'🐾',t:'Los animales del hogar se inquietan o se acercan repetidamente al moribundo'},
+    ],
+    invocacion:'Amado ser de Luz,\nInvocamos la presencia de tus Hermanos Mayores y guías de alma\npara que estén presentes en este sagrado momento de tránsito.\nRodeamos este espacio con Luz Dorada de amor y protección.\nQue la paz sea tu compañera en el camino que comienza.\nTe damos permiso de partir cuando sea tu momento.\nNuestro amor te acompañará más allá del umbral.',
+    acomp:'Mantén el Bovis del espacio por encima de 8.000 usando copal, incienso de mirra o sándalo. Música armónica suave — cuencos tibetanos o música de 432 Hz. Habla con el ser en voz calma aunque parezca inconsciente — puede escuchar. Evita conversaciones sobre herencias o conflictos familiares en el cuarto.',
+  },
+  {
+    n:1, nombre:'Cruce del Umbral', tagline:'El punto de inversión del flujo vital',
+    color:'#6fa3e0', bovisMin:0, bovisMax:1000, tiempo:'Instante / minutos',
+    cuerpos:'El momento preciso en que la fuerza vital ya no sostiene la función orgánica. La energía que durante toda la vida fluyó hacia adentro (de lo sutil a lo denso) comienza ahora a fluir hacia afuera (de lo denso a lo sutil). Los cuerpos sutiles permanecen todos presentes pero el hilo que los une al físico se corta.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'saliendo',nota:'Comienza a apagarse — desconexión de tierra'},
+      {nom:'Sacro',col:'#e07030',est:'saliendo',nota:'Liberación de vínculos físicos'},
+      {nom:'Plexo',col:'#e0c030',est:'saliendo',nota:'La voluntad se rinde al proceso'},
+      {nom:'Corazón',col:'#40c060',est:'activo',nota:'El último en apagarse — amor permanece'},
+      {nom:'Garganta',col:'#4080e0',est:'inactivo',nota:'La expresión física cesa'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'activo',nota:'Muy activo — percepción del plano sutil'},
+      {nom:'Corona',col:'#c0a0e0',est:'activo',nota:'Completamente abierto — canal de salida'},
+    ],
+    pendulo:'El péndulo se detiene brevemente sobre el plexo solar — pausa total. Luego sobre la corona inicia un giro lento horario ascendente. Es el único momento en que el péndulo indica dirección hacia arriba sobre el cuerpo.',
+    senales:[
+      {i:'⚡',t:'El campo áurico colapsa hacia el centro y simultáneamente se expande en los planos sutiles'},
+      {i:'🕯',t:'Las llamas de velas o inciensos en el cuarto pueden oscilar sin corriente de aire'},
+      {i:'❄',t:'Descenso súbito de temperatura en el cuarto aunque las ventanas estén cerradas'},
+      {i:'💫',t:'Algunos presentes perciben una "presencia" o "luz" que sale del cuerpo'},
+      {i:'🐦',t:'Pájaros u otros animales pueden aparecer en la ventana o puertas del cuarto'},
+      {i:'🔕',t:'Silencio inexplicable — incluso los sonidos del exterior parecen detenerse'},
+    ],
+    invocacion:'En este sagrado instante de cruce,\nInvocamos a los Ángeles del Tránsito y a los Hermanos Mayores de este ser.\nQue el Rayo Crístico ilumine el camino de su alma.\nQue la Llama Violeta transmute todo karma pendiente.\nQue su tránsito sea suave, luminoso y sereno.\nTe liberamos con amor. Eres libre.\nEl amor no muere — solo cambia de forma.',
+    acomp:'Este es el momento más importante. Guarda silencio absoluto o habla solo con palabras de amor y liberación. No llores desesperadamente — las emociones densas pesan sobre el campo del ser en tránsito. Di en voz alta: "Te amamos. Tienes permiso de partir. Estarás bien." Enciende una vela blanca.',
+  },
+  {
+    n:2, nombre:'Separación Etérica', tagline:'El doble vital se disuelve — el ser puede aún percibir el entorno',
+    color:'#60c898', bovisMin:-6000, bovisMax:-1, tiempo:'3 a 72 horas post-mortem',
+    cuerpos:'El cuerpo etérico — el doble vital que sostiene la forma física — inicia su proceso de disolución. Aún está parcialmente unido al físico. Durante esta etapa el ser fallecido puede tener percepción del entorno inmediato aunque sin cuerpo físico. Puede "ver" a quienes están presentes, escuchar conversaciones, percibir emociones.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'inactivo',nota:'Completamente desconectado'},
+      {nom:'Sacro',col:'#e07030',est:'inactivo',nota:'Completamente desconectado'},
+      {nom:'Plexo',col:'#e0c030',est:'saliendo',nota:'En proceso de liberación'},
+      {nom:'Corazón',col:'#40c060',est:'activo',nota:'Aún activo — vínculos de amor'},
+      {nom:'Garganta',col:'#4080e0',est:'inactivo',nota:'Inactivo en plano físico'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'activo',nota:'Percepción del plano astral activa'},
+      {nom:'Corona',col:'#c0a0e0',est:'activo',nota:'Canal de comunicación con guías'},
+    ],
+    pendulo:'El péndulo gira antihorario sobre el cuerpo físico con amplitud decreciente. Sobre la cabeza puede girar horario débil — presencia etérica aún activa. Al llegar a -6.000 el péndulo no responde sobre el cuerpo físico: etérico completamente separado.',
+    senales:[
+      {i:'🌬',t:'Presencia "ambiental" perceptible en el cuarto — como si alguien estuviera ahí'},
+      {i:'💭',t:'Familiares cercanos pueden recibir mensajes en sueños con gran claridad'},
+      {i:'🕯',t:'Objetos del fallecido pueden moverse o caer sin causa aparente'},
+      {i:'🌡',t:'Zonas de frío puntual en el cuarto que se desplazan'},
+      {i:'👂',t:'Algunos familiares escuchan la voz del fallecido con claridad interna'},
+      {i:'🌸',t:'Olores característicos del ser — su perfume, comida favorita — sin fuente'},
+    ],
+    invocacion:'Amado ser que transita,\nSabemos que puedes percibir este espacio.\nTe hablamos con amor y claridad:\nEstás siendo acompañado por tus guías de Luz.\nMira hacia la Luz que se abre ante ti.\nNuestro amor te sostiene pero no te retiene.\nSuelta los vínculos de este plano con amor.\nTus guías te esperan. Avanza con confianza.',
+    acomp:'Mantén el entorno limpio y sereno. El ser puede escuchar todo lo que se dice. Habla con él como si estuviera presente — porque lo está. Evita peleas, llantos desesperados o conversaciones sobre dinero. Enciende incienso de copal cada 3-4 horas. Mide el Bovis del espacio cada 12 horas.',
+  },
+  {
+    n:3, nombre:'Zona Intermedia', tagline:'Revisión de vida — el alma se ve a sí misma con total claridad',
+    color:'#78a0e8', bovisMin:-9000, bovisMax:-6001, tiempo:'Días',
+    cuerpos:'El etérico completamente separado inicia su propia disolución mientras el cuerpo astral prepara su separación. Sin el filtro del cuerpo físico, el registro akáshico personal queda completamente visible para el alma. La persona ve con total claridad todo lo que vivió, todas las consecuencias de sus acciones, todos los vínculos no resueltos.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Sacro',col:'#e07030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Plexo',col:'#e0c030',est:'inactivo',nota:'Completamente liberado'},
+      {nom:'Corazón',col:'#40c060',est:'saliendo',nota:'Liberando vínculos afectivos'},
+      {nom:'Garganta',col:'#4080e0',est:'inactivo',nota:'Inactivo'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'activo',nota:'Revisión de vida — visión completa'},
+      {nom:'Corona',col:'#c0a0e0',est:'activo',nota:'Comunicación activa con Hermanos Mayores'},
+    ],
+    pendulo:'El péndulo no responde significativamente sobre el cuerpo físico. En el espacio del cuarto puede detectarse una presencia suave — giro horario muy débil en el centro del cuarto. Si hay asuntos kármicos muy cargados, el péndulo puede girar antihorario indicando resistencia al tránsito.',
+    senales:[
+      {i:'💭',t:'Los sueños de familiares cercanos son muy vívidos y con contenido de despedida o resolución'},
+      {i:'🌡',t:'La temperatura del espacio donde vivía el ser puede fluctuar sin causa ambiental'},
+      {i:'🌀',t:'Sensación de "resolución" o paz en el entorno que llega de forma inexplicable'},
+      {i:'📿',t:'Objetos significativos para el ser pueden aparecer o desaparecer'},
+      {i:'🕊',t:'Animales o pájaros inusuales pueden aparecer persistentemente cerca del hogar'},
+    ],
+    invocacion:'En el nombre del Cristo Cósmico y los Hermanos Mayores,\nsolicitamos que este ser sea asistido en su revisión de vida\ncon compasión, claridad y amor.\nQue todo karma pendiente sea transmutado por la Llama Violeta.\nQue los vínculos de amor permanezcan y los de apego sean liberados.\nQue la Luz guíe su comprensión hacia la paz.\nEnviamos Luz a su alma en este proceso sagrado.',
+    acomp:'Ora por el alma del ser — puede ayudar a aliviar la revisión de vida. Si hubo conflictos no resueltos entre el fallecido y personas presentes, este es el momento de hacer las paces en voz alta aunque el ser no esté físicamente. El perdón enviado en este período tiene un efecto real en el proceso del alma.',
+  },
+  {
+    n:4, nombre:'Separación Astral', tagline:'El mundo emocional acumulado en vida se disuelve',
+    color:'#e8c050', bovisMin:-15000, bovisMax:-9001, tiempo:'Días a semanas',
+    cuerpos:'El cuerpo astral — todo el mundo emocional acumulado en vida — inicia su proceso de disolución. Esta etapa puede durar días o semanas según el peso emocional no resuelto. Lo que se disuelve: todos los apegos, miedos, deseos, amores y odios en su forma energética. No desaparecen como experiencia — se integran al registro causal como aprendizaje.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Sacro',col:'#e07030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Plexo',col:'#e0c030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Corazón',col:'#40c060',est:'saliendo',nota:'Disolución de apegos emocionales'},
+      {nom:'Garganta',col:'#4080e0',est:'inactivo',nota:'Inactivo'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'activo',nota:'Comprensión del plano astral'},
+      {nom:'Corona',col:'#c0a0e0',est:'activo',nota:'Guías asisten el proceso'},
+    ],
+    pendulo:'Si el péndulo detecta al ser en el espacio, indica giro lento y decreciente — señal de que el astral aún no completó su disolución. La amplitud del giro indica cuánto proceso queda. A -15.000 la respuesta del péndulo en el espacio es mínima.',
+    senales:[
+      {i:'💤',t:'Los sueños de familiares con el fallecido se vuelven más simbólicos y menos literales'},
+      {i:'🌡',t:'La presencia en el espacio se percibe cada vez más tenue'},
+      {i:'🌸',t:'Fenómenos físicos menores — olores, sensaciones — disminuyen progresivamente'},
+      {i:'☮️',t:'Sensación de paz creciente en quienes estuvieron más apegados al ser'},
+    ],
+    invocacion:'Llama Violeta de Saint Germain,\ntransmuta todos los apegos, miedos y dolores\nque este ser acumuló durante su vida.\nQue se disuelvan en Luz con amor y compasión.\nAmado ser, te liberamos de toda carga emocional.\nEl amor puro permanece — todo lo demás se transforma.\nCamina liviano hacia la Luz que te espera.',
+    acomp:'Practica la Llama Violeta enfocada en el alma del ser durante 7 días consecutivos. Rezar por el alma — la oración genuina emitida con amor ayuda a aliviar el peso astral. Evita rituales de "llamada" al ser — puede dificultar el tránsito. El ser necesita avanzar, no ser retenido.',
+  },
+  {
+    n:5, nombre:'Separación Mental', tagline:'Las creencias y marcos de vida se disuelven',
+    color:'#c878e0', bovisMin:-40000, bovisMax:-15001, tiempo:'Semanas',
+    cuerpos:'El cuerpo mental — todas las creencias, estructuras de pensamiento y marcos de interpretación acumulados en vida — se disuelve. Esta es una de las etapas más largas en personas muy mentalizadas o con sistemas de creencias muy rígidos. El alma queda progresivamente libre de su programación mental y comienza a tener acceso directo al conocimiento causal.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Sacro',col:'#e07030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Plexo',col:'#e0c030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Corazón',col:'#40c060',est:'inactivo',nota:'Completamente liberado'},
+      {nom:'Garganta',col:'#4080e0',est:'saliendo',nota:'Liberación de la expresión mental'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'saliendo',nota:'Disolución del marco mental'},
+      {nom:'Corona',col:'#c0a0e0',est:'activo',nota:'Acceso a registros akáshicos propios'},
+    ],
+    pendulo:'En este rango el ser generalmente ya no tiene presencia perceptible en el espacio físico. Si el péndulo aún detecta algo, indica anclaje mental muy fuerte — creencias o misiones no completadas que retienen al alma en planos intermedios.',
+    senales:[
+      {i:'🌙',t:'Los sueños con el fallecido cesan o se vuelven muy ocasionales'},
+      {i:'☮️',t:'Familiares sienten una "finalización" — el duelo comienza a transformarse'},
+      {i:'🌿',t:'La presencia ya no se detecta en el espacio habitual del ser'},
+    ],
+    invocacion:'En nombre del Padre-Madre Creador\ny del Logos Planetario Sanat Kumara,\nsolicitamos que este ser sea guiado hacia los planos\nque corresponden a su vibración de alma.\nQue los Registros Akáshicos se abran ante él con claridad.\nQue la sabiduría de todas sus vidas sea accesible.\nQue avance libremente en su evolución.\nAsí es. Así se cumple.',
+    acomp:'El ser ya no necesita asistencia activa del entorno físico. El foco ahora se vuelve hacia los familiares vivos: el duelo, la integración, la sanación. Si se siente la necesidad de "hacer algo" por el ser, la Llama Violeta enviada con amor es suficiente.',
+  },
+  {
+    n:6, nombre:'Liberación Causal', tagline:'El alma libre migra al plano que corresponde a su vibración',
+    color:'#888', bovisMin:-1000000, bovisMax:-40001, tiempo:'Variable — tránsito completo',
+    cuerpos:'El cuerpo causal no se disuelve — es el único que permanece y se lleva al siguiente ciclo. Lo que ocurre es su liberación de la atracción del plano físico. El alma queda en su estado más puro: consciencia causal sin filtros. El destino corresponde exactamente a la vibración Bovis que mantuvo de forma sostenida durante su vida física.',
+    chakras:[
+      {nom:'Raíz',col:'#e03030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Sacro',col:'#e07030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Plexo',col:'#e0c030',est:'inactivo',nota:'Inactivo'},
+      {nom:'Corazón',col:'#40c060',est:'inactivo',nota:'Inactivo — amor integrado en causal'},
+      {nom:'Garganta',col:'#4080e0',est:'inactivo',nota:'Inactivo'},
+      {nom:'Tercer Ojo',col:'#6040c0',est:'inactivo',nota:'Inactivo'},
+      {nom:'Corona',col:'#c0a0e0',est:'saliendo',nota:'Último hilo — cierre del tránsito'},
+    ],
+    pendulo:'Sin respuesta sobre el espacio físico. El tránsito está completo. Si el péndulo aún detecta algo en el espacio, no pertenece al ser que partió — evaluar presencia residual independiente.',
+    senales:[
+      {i:'🌅',t:'Sensación colectiva entre familiares de que "ya partió de verdad"'},
+      {i:'🕊',t:'El espacio del hogar se siente diferente — más liviano, más silencioso'},
+      {i:'✨',t:'Algunos familiares reciben en sueños una imagen final de paz o despedida luminosa'},
+    ],
+    invocacion:'Celebramos el tránsito completo de este ser de Luz.\nGracias por su presencia en nuestras vidas.\nGracias por las lecciones compartidas.\nEl amor que nos unió permanece más allá del tiempo y el espacio.\nContinúa tu camino evolutivo en los planos de Luz.\nNos encontraremos de nuevo en el momento que el universo disponga.\nBuen viaje, alma querida. Eres libre.',
+    acomp:'Este es el momento de soltar completamente. Celebra la vida del ser con gratitud. Realiza una limpieza energética completa del espacio — es el momento apropiado. El duelo que sigue es del plano humano, no del ser que partió, que ya está bien.',
+  }
+];
+
+const DESTINOS = [
+  {min:35000,max:999999,nombre:'Planos de Luz Superior',col:'#9fc9ff',desc:'El alma accede directamente a los planos de trabajo con los Hermanos Mayores. Puede elegir no reencarnar o hacerlo voluntariamente para servicio evolutivo.'},
+  {min:25000,max:34999,nombre:'Planos de Luz',col:'#6fa3e0',desc:'Transición serena hacia planos luminosos de aprendizaje avanzado. El alma tiene acceso claro a sus registros akáshicos y a sus guías.'},
+  {min:15000,max:24999,nombre:'Planos de Aprendizaje Medio',col:'#78a0e8',desc:'El alma accede a planos de revisión y preparación para el próximo ciclo. Tránsito tranquilo con asistencia de guías.'},
+  {min:8000,max:14999,nombre:'Planos de Integración',col:'#60c898',desc:'Proceso de integración de la vida vivida. El alma necesita tiempo de revisión antes de planificar la siguiente encarnación.'},
+  {min:4000,max:7999,nombre:'Planos de Revisión Profunda',col:'#e8c050',desc:'El alma debe procesar mucho material denso. El tránsito puede ser más largo. Se beneficia de oraciones y Llama Violeta enviadas desde el plano físico.'},
+  {min:0,max:3999,nombre:'Riesgo de Plano Astral Bajo',col:'#e07030',desc:'Alta probabilidad de que el alma quede atrapada en plano astral bajo (D-5). Requiere asistencia activa del acompañante y oraciones intensas durante el proceso de tránsito.'},
+  {min:-999999,max:-1,nombre:'Plano Astral Bajo — Asistencia Urgente',col:'#c04040',desc:'El alma necesita asistencia activa. Invocar guías del ser, Arcángel Miguel y Llama Violeta con urgencia. El ser puede no saber que ha fallecido.'},
+];
+
+const LIMPIEZA = [
+  {rango:'Etapas 0-1 (Bovis +1.000 a 0)',titulo:'Durante la Agonía',items:['Incienso de copal o mirra encendido continuamente','Música armónica suave — cuencos, 432 Hz','Agua con sal marina en los cuatro rincones del cuarto','Mantener Bovis del espacio medido y por encima de 8.000','Turmalina negra en el umbral de la puerta']},
+  {rango:'Etapa 2 (Bovis -1 a -6.000)',titulo:'Primeras 72 Horas',items:['No mover objetos personales del ser durante 72 horas','Incienso continuo — el etérico aún está presente','Hablar al ser con amor — puede escuchar','Medición Bovis del espacio cada 12 horas','Mantener luz suave encendida en el cuarto']},
+  {rango:'Etapa 3-4 (Bovis -6.000 a -15.000)',titulo:'Primera Semana',items:['Llama Violeta enviada al alma durante 7 días consecutivos','Oraciones por el alma — mínimo una vez al día','Limpiar el cuarto físicamente con agua y sal','Copal o palo santo diariamente','Verificar con péndulo si hay presencia residual']},
+  {rango:'Etapa 5-6 (Bovis -15.000 a -∞)',titulo:'Limpieza Final del Espacio',items:['Limpieza energética completa del espacio con copal','Agua Florida o agua con sal en todas las superficies','Turmalina negra en cuatro puntos cardinales del hogar','Apertura de ventanas — renovación del campo etérico','Medición Bovis final del espacio — debe superar 8.000','Si el Bovis no sube: hay presencia independiente — diagnóstico separado']},
+];
+
+const GUIA = [
+  {titulo:'Qué HACER', tipo:'hacer', items:[
+    'Habla con el ser en voz calmada y amorosa aunque parezca inconsciente — puede escuchar hasta 72 horas después del fallecimiento.',
+    'Di en voz alta: "Te amamos. Tienes permiso de partir. Estarás bien." El permiso explícito alivia enormemente el proceso.',
+    'Mantén el ambiente sereno: música suave, luz cálida, incienso de copal o mirra.',
+    'Si hay conflictos no resueltos contigo y el ser, habla con él en voz alta y pide perdón o perdona — tiene efecto real.',
+    'Reza o envía Luz con intención de amor al alma del ser durante los primeros 7 días.',
+    'Permite que el duelo fluya naturalmente, pero hazlo fuera del cuarto del fallecido durante las primeras 72 horas.',
+    'Si sientes su presencia en casa, es normal — dile que lo amas y que puede avanzar.',
+  ]},
+  {titulo:'Qué EVITAR', tipo:'evitar', items:[
+    'Evita llorar desesperadamente junto al cuerpo o en el cuarto durante las primeras 72 horas. El campo emocional denso dificulta el tránsito del etérico.',
+    'No discutas sobre herencias, propiedades o conflictos familiares en el espacio donde está el ser. Puede percibir todo.',
+    'No hagas rituales de "llamada" al ser — lo retienen en el plano astral bajo cuando debería avanzar.',
+    'Evita fotografiar el cuerpo o el espacio inmediatamente — espera al menos 24 horas.',
+    'No tomes decisiones importantes o irreversibles sobre pertenencias del ser en los primeros 3 días.',
+    'Si usas redes sociales, hazlo con respeto y no compartas imágenes del ser sin el acuerdo familiar.',
+    'Evita la televisión encendida en el cuarto — el ruido emocional de los medios contamina el campo.',
+  ]},
+];
+
+// ══════════════════════════════════
+// LÓGICA
+// ══════════════════════════════════
+let registros = JSON.parse(localStorage.getItem('transicion_registros') || '[]');
+let etapaActual = null;
+
+function getEtapa(bovis) {
+  if (bovis >= 1000) return ETAPAS[0];
+  if (bovis >= 0)    return ETAPAS[1];
+  if (bovis >= -6000)  return ETAPAS[2];
+  if (bovis >= -9000)  return ETAPAS[3];
+  if (bovis >= -15000) return ETAPAS[4];
+  if (bovis >= -40000) return ETAPAS[5];
+  return ETAPAS[6];
+}
+
+function bovisToPercent(b) {
+  // Mapear: +8000=0%, 0=32%, -40000=100%
+  if (b >= 0) return Math.max(0, 32 - (b / 8000) * 32);
+  return 32 + Math.min(68, (Math.abs(b) / 40000) * 68);
+}
+
+function actualizarEscala() {
+  const v = parseInt(document.getElementById('bovis-now').value);
+  if (isNaN(v)) return;
+  const pct = bovisToPercent(v);
+  document.getElementById('cursor').style.left = pct + '%';
+  document.getElementById('cursor-label').textContent = v.toLocaleString();
+  const e = getEtapa(v);
+  renderEtapa(e, v);
+}
+
+function clickEscala(ev) {
+  const rect = ev.currentTarget.getBoundingClientRect();
+  const pct = (ev.clientX - rect.left) / rect.width;
+  let bovis;
+  if (pct <= 0.32) bovis = Math.round(8000 - (pct / 0.32) * 8000);
+  else bovis = Math.round(-((pct - 0.32) / 0.68) * 40000);
+  document.getElementById('bovis-now').value = bovis;
+  actualizarEscala();
+}
+
+function renderEtapa(e, bovis) {
+  etapaActual = e;
+  document.getElementById('ea-num').textContent = 'E' + e.n;
+  document.getElementById('ea-num').style.color = e.color;
+  document.getElementById('ea-nombre').textContent = e.nombre;
+  document.getElementById('ea-nombre').style.color = e.color;
+  document.getElementById('ea-tagline').textContent = e.tagline;
+  document.getElementById('ea-bovis').textContent = 'Rango: ' + e.bovisMax.toLocaleString() + ' a ' + e.bovisMin.toLocaleString() + ' Bovis';
+  document.getElementById('ea-bovis').style.color = '#7070a0';
+  document.getElementById('ea-tiempo').style.display = 'inline-flex';
+  document.getElementById('ea-t').textContent = e.tiempo;
+  document.getElementById('etapa-activa').style.borderColor = e.color + '60';
+
+  // Cuerpos sutiles
+  document.getElementById('cont-cuerpos').innerHTML = `<div class="bloque"><p>${e.cuerpos}</p></div>`;
+
+  // Chakras
+  document.getElementById('cont-chakras').innerHTML = `
+    <div class="bloque">
+      <div class="chakra-grid">${e.chakras.map(c=>`
+        <div class="chakra-item">
+          <div class="chakra-circle ${c.est}" style="background:${c.col}22;border-color:${c.col};color:${c.col}"></div>
+          <div class="chakra-nom">${c.nom}</div>
+        </div>`).join('')}
+      </div>
+      <hr style="border:none;border-top:1px solid #1a1a32;margin:1rem 0">
+      ${e.chakras.map(c=>`<div class="senal-item">
+        <div class="senal-icon" style="color:${c.col}">●</div>
+        <div class="senal-texto"><strong style="color:${c.col}">${c.nom}:</strong> ${c.nota}</div>
+      </div>`).join('')}
+    </div>`;
+
+  // Péndulo
+  document.getElementById('cont-pendulo').innerHTML = `
+    <div class="bloque">
+      <div class="bloque-titulo" style="color:${e.color}">◈ Respuesta del Péndulo</div>
+      <p>${e.pendulo}</p>
+    </div>`;
+
+  // Señales
+  document.getElementById('cont-senales').innerHTML = `
+    <div class="bloque">
+      <div class="bloque-titulo" style="color:${e.color}">◈ Señales Perceptibles</div>
+      ${e.senales.map(s=>`<div class="senal-item"><div class="senal-icon">${s.i}</div><div class="senal-texto">${s.t}</div></div>`).join('')}
+    </div>`;
+
+  // Invocación
+  document.getElementById('cont-invocacion').innerHTML = `
+    <div class="invocacion">
+      <div class="inv-titulo" style="color:${e.color}">◈ Invocación para esta Etapa</div>
+      ${e.invocacion.split('\n').map(l=>`<p style="margin-bottom:.2rem">${l}</p>`).join('')}
+    </div>`;
+
+  // Acompañante
+  document.getElementById('cont-acomp').innerHTML = `
+    <div class="bloque">
+      <div class="bloque-titulo" style="color:${e.color}">◈ Acción Prioritaria del Acompañante</div>
+      <p>${e.acomp}</p>
+    </div>`;
+}
+
+// Tabs de detalle
+function showDTab(btn, name) {
+  btn.closest('.etapa-activa').querySelectorAll('.dtab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  btn.closest('.etapa-activa').querySelectorAll('.dpanel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('dp-'+name).classList.add('on');
+}
+
+// ── REGISTRO ──
+function getNow() {
+  const n = new Date();
+  return n.toISOString().slice(0,16);
+}
+document.getElementById('reg-fecha').value = getNow();
+
+function registrarMedicion() {
+  const v = parseInt(document.getElementById('bovis-now').value);
+  const ref = document.getElementById('ref-nombre').value || 'S/R';
+  if (isNaN(v)) return;
+  const e = getEtapa(v);
+  registros.push({ fecha: new Date().toLocaleString('es-ES'), bovis: v, etapa: e.nombre, color: e.color, obs: ref });
+  guardarRegistros();
+  renderRegistros();
+}
+
+function addRegistro() {
+  const fecha = document.getElementById('reg-fecha').value;
+  const v = parseInt(document.getElementById('reg-bovis').value);
+  const obs = document.getElementById('reg-obs').value || '';
+  if (isNaN(v)) return;
+  const e = getEtapa(v);
+  const d = new Date(fecha);
+  registros.push({ fecha: d.toLocaleString('es-ES'), bovis: v, etapa: e.nombre, color: e.color, obs });
+  guardarRegistros();
+  renderRegistros();
+  document.getElementById('reg-bovis').value = '';
+  document.getElementById('reg-obs').value = '';
+  document.getElementById('reg-fecha').value = getNow();
+}
+
+function guardarRegistros() {
+  localStorage.setItem('transicion_registros', JSON.stringify(registros));
+}
+
+function renderRegistros() {
+  const tb = document.getElementById('reg-tbody');
+  if (!registros.length) {
+    tb.innerHTML = '<tr><td colspan="5" style="color:#7070a0;font-style:italic;text-align:center;padding:1.5rem">Sin registros aún</td></tr>';
+    return;
+  }
+  tb.innerHTML = registros.map((r,i)=>`
+    <tr>
+      <td style="font-family:monospace;font-size:.78rem">${r.fecha}</td>
+      <td style="font-family:monospace;color:${r.color}">${r.bovis.toLocaleString()}</td>
+      <td><span class="etapa-tag" style="color:${r.color};border-color:${r.color}">${r.etapa}</span></td>
+      <td>${r.obs}</td>
+      <td><button class="btn btn-r" style="padding:.2rem .5rem;font-size:.58rem" onclick="eliminarRegistro(${i})">×</button></td>
+    </tr>`).join('');
+}
+
+function eliminarRegistro(i) {
+  registros.splice(i,1);
+  guardarRegistros();
+  renderRegistros();
+}
+
+function limpiarRegistro() {
+  if (confirm('¿Limpiar todos los registros?')) { registros=[]; guardarRegistros(); renderRegistros(); }
+}
+
+function exportarRegistro() {
+  const txt = registros.map(r=>`${r.fecha} | Bovis: ${r.bovis} | ${r.etapa} | ${r.obs}`).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent('REGISTRO DE TRANSICIÓN · EL SER UNO\n\n' + txt);
+  a.download = 'registro_transicion.txt';
+  a.click();
+}
+
+renderRegistros();
+
+// ── DESTINO ──
+function calcularDestino() {
+  const v = parseInt(document.getElementById('bovis-vida').value);
+  if (isNaN(v)) return;
+  const d = DESTINOS.find(x => v >= x.min && v <= x.max) || DESTINOS[DESTINOS.length-1];
+  document.getElementById('destino-resultado').style.display='block';
+  document.getElementById('dest-nombre').textContent = d.nombre;
+  document.getElementById('dest-nombre').style.color = d.col;
+  document.getElementById('dest-desc').textContent = d.desc;
+  document.querySelectorAll('.dest-row').forEach(r=>r.classList.remove('on'));
+  const row = document.querySelector(`.dest-row[data-min="${d.min}"]`);
+  if(row) row.classList.add('on');
+}
+
+function renderDestinos() {
+  document.getElementById('destino-escala').innerHTML = DESTINOS.map(d=>`
+    <div class="dest-row" data-min="${d.min}" onclick="selDestino(this,'${d.nombre}','${d.col}','${d.desc}')">
+      <div class="dest-barra" style="width:${Math.min(100,Math.max(20,(d.min/35000)*100))}px;background:${d.col}"></div>
+      <span class="dest-rango" style="color:${d.col}">${d.min >= 0 ? '+'+d.min.toLocaleString() : d.min.toLocaleString()}+</span>
+      <div>
+        <div class="dest-plano" style="color:${d.col}">${d.nombre}</div>
+        <div class="dest-texto">${d.desc.slice(0,80)}...</div>
+      </div>
+    </div>`).join('');
+}
+
+function selDestino(el, nombre, col, desc) {
+  document.querySelectorAll('.dest-row').forEach(r=>r.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('destino-resultado').style.display='block';
+  document.getElementById('dest-nombre').textContent = nombre;
+  document.getElementById('dest-nombre').style.color = col;
+  document.getElementById('dest-desc').textContent = desc;
+}
+
+renderDestinos();
+
+// ── LIMPIEZA ──
+document.getElementById('limpieza-cont').innerHTML = LIMPIEZA.map(l=>`
+  <div class="limp-card">
+    <div class="limp-rango">${l.rango}</div>
+    <div class="limp-titulo">${l.titulo}</div>
+    ${l.items.map(i=>`<div class="limp-item">· ${i}</div>`).join('')}
+  </div>`).join('');
+
+// ── GUÍA FAMILIARES ──
+document.getElementById('guia-cont').innerHTML = GUIA.map(g=>`
+  <div class="bloque ${g.tipo}">
+    <div class="bloque-titulo">${g.tipo==='hacer'?'✓':' ✗'} ${g.titulo}</div>
+    <ul>${g.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+  </div>`).join('');
+
+// ── NAV ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('sc-'+id).classList.add('on');
+  event.currentTarget.classList.add('on');
+}
+
+// Init escala visual marcas
+const marcasData = [{v:8000,p:0},{v:4000,p:16},{v:0,p:32},{v:-9000,p:48},{v:-15000,p:58},{v:-40000,p:80}];
+document.getElementById('marcas').innerHTML = marcasData.map(m=>`
+  <div class="marca" style="left:${m.p}%">
+    <div class="marca-line"></div>
+    <div class="marca-txt">${m.v >= 0 ? '+'+m.v.toLocaleString() : m.v.toLocaleString()}</div>
+  </div>`).join('');
+</script>
+</body>
+</html>
