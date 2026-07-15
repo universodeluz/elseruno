@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerarquía de Seres de Luz | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#d4af37;
+    --gold-soft:#e9cf7a;
+    --violet:#7b4fd1;
+    --violet-deep:#3a1f6b;
+    --bg-0:#0a0714;
+    --bg-1:#120b25;
+    --bg-2:#1a1032;
+    --ink:#ece6f5;
+    --ink-dim:#b8aed0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(123,79,209,0.25), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(212,175,55,0.12), transparent 50%),
+      var(--bg-0);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.65;
+    min-height:100vh;
+  }
+  .stars{
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.5;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 80% 10%, #fff, transparent),
+      radial-gradient(1px 1px at 50% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 30% 80%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 70%, #fff, transparent),
+      radial-gradient(1px 1px at 65% 30%, #fff, transparent);
+    background-repeat:repeat; background-size:300px 300px;
+  }
+  header{
+    position:relative; z-index:1;
+    text-align:center;
+    padding:64px 20px 40px;
+    border-bottom:1px solid rgba(212,175,55,0.25);
+  }
+  .eyebrow{
+    font-family:'Cinzel Decorative', serif;
+    font-size:12px; letter-spacing:0.35em; text-transform:uppercase;
+    color:var(--gold-soft); opacity:0.85; margin-bottom:14px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,46px);
+    margin:0 0 14px;
+    background:linear-gradient(120deg, var(--gold-soft), #fff 40%, var(--violet) 90%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 40px rgba(212,175,55,0.2);
+  }
+  .subtitle{
+    color:var(--ink-dim);
+    font-size:19px;
+    font-style:italic;
+    max-width:640px;
+    margin:0 auto;
+  }
+  main{position:relative; z-index:1; max-width:900px; margin:0 auto; padding:50px 20px 100px;}
+
+  .stream{
+    position:relative;
+    margin-left:26px;
+    border-left:1px solid rgba(212,175,55,0.3);
+    padding-left:36px;
+  }
+
+  .level{
+    position:relative;
+    margin-bottom:38px;
+    background:linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    border:1px solid rgba(123,79,209,0.35);
+    border-radius:4px;
+    padding:26px 28px 24px;
+    transition:border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .level:hover{
+    border-color:var(--gold);
+    transform:translateX(4px);
+    box-shadow:0 0 30px rgba(212,175,55,0.08);
+  }
+  .level::before{
+    content:attr(data-n);
+    position:absolute;
+    left:-58px; top:24px;
+    width:36px; height:36px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel Decorative', serif;
+    font-size:14px;
+    color:var(--bg-0);
+    background:radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold) 70%);
+    box-shadow:0 0 16px rgba(212,175,55,0.5);
+  }
+  .level h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:22px;
+    font-weight:700;
+    margin:0 0 4px;
+    color:var(--gold-soft);
+    letter-spacing:0.01em;
+  }
+  .level .tag{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--violet);
+    opacity:0.9;
+    margin-bottom:12px;
+  }
+  .level p{margin:0; color:var(--ink);}
+  .level .func{
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px dashed rgba(212,175,55,0.2);
+    font-size:16px;
+    color:var(--ink-dim);
+  }
+  .level .func b{color:var(--gold-soft); font-weight:600;}
+
+  .func-block{
+    max-width:900px;
+    margin:60px auto 0;
+    padding:0 20px;
+  }
+  .func-block h3{
+    font-family:'Cinzel Decorative', serif;
+    text-align:center;
+    color:var(--gold-soft);
+    font-size:24px;
+    margin-bottom:28px;
+  }
+  .func-grid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .func-card{
+    background:linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    border:1px solid rgba(212,175,55,0.2);
+    border-radius:4px;
+    overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .func-card[open]{border-color:rgba(212,175,55,0.45);}
+  .func-card summary{
+    list-style:none;
+    cursor:pointer;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:16px;
+    color:var(--gold-soft);
+  }
+  .func-card summary::-webkit-details-marker{display:none;}
+  .func-card summary .ico{font-size:22px;}
+  .func-card summary .chev{
+    margin-left:auto;
+    font-size:13px;
+    color:var(--violet);
+    transition:transform .3s ease;
+  }
+  .func-card[open] summary .chev{transform:rotate(180deg);}
+  .func-card .func-body{
+    padding:0 22px 20px 58px;
+    color:var(--ink-dim);
+    font-size:17px;
+    line-height:1.6;
+  }
+
+  .links{
+    max-width:900px; margin:70px auto 0; padding:0 20px;
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+  }
+  @media (max-width:640px){ .links{grid-template-columns:1fr;} .stream{margin-left:12px; padding-left:26px;} .level::before{left:-46px; width:30px; height:30px; font-size:12px;} }
+  .cross-link{
+    display:block;
+    text-decoration:none;
+    background:linear-gradient(160deg, var(--bg-2), var(--bg-1));
+    border:1px solid rgba(123,79,209,0.4);
+    border-radius:4px;
+    padding:22px 24px;
+    transition:border-color .3s, transform .3s;
+  }
+  .cross-link:hover{border-color:var(--gold); transform:translateY(-3px);}
+  .cross-link .eyebrow-sm{
+    font-family:'Cinzel Decorative', serif;
+    font-size:11px; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--violet); display:block; margin-bottom:8px;
+  }
+  .cross-link .title-sm{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold-soft); font-size:17px; display:block; margin-bottom:6px;
+  }
+  .cross-link .desc-sm{color:var(--ink-dim); font-size:15px; font-style:italic;}
+
+  footer{
+    position:relative; z-index:1;
+    text-align:center;
+    padding:50px 20px 70px;
+    color:var(--ink-dim);
+    font-size:14px;
+    font-style:italic;
+    border-top:1px solid rgba(212,175,55,0.15);
+    margin-top:40px;
+  }
+  .back{
+    display:inline-block; margin-bottom:18px;
+    color:var(--gold-soft); text-decoration:none; font-size:15px; letter-spacing:0.05em;
+  }
+  .back:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="eyebrow">El Ser Uno · Jerarquías y Seres</div>
+  <h1>Jerarquía de los Seres de Luz</h1>
+  <p class="subtitle">Nueve niveles de la corriente luminosa, desde la fuente crística hasta su expresión encarnada en la Tierra.</p>
+</header>
+
+<main>
+  <div class="stream">
+
+    <div class="level" data-n="1">
+      <h2>Eloín</h2>
+      <span class="tag">Fuente crística primordial</span>
+      <p>No es un ser individualizado, sino el principio unificador del que emanan todas las jerarquías de luz. Punto de origen vibracional del que se despliega toda la corriente crística.</p>
+      <div class="func"><b>Función:</b> origen y sostén último de la corriente de luz.</div>
+    </div>
+
+    <div class="level" data-n="2">
+      <h2>Logos Planetario</h2>
+      <span class="tag">Conciencia rectora planetaria</span>
+      <p>Administra la evolución de un planeta completo. Cada planeta habitado posee su propio Logos, que coordina las corrientes de vida y el plan evolutivo colectivo de sus habitantes.</p>
+      <div class="func"><b>Función:</b> dirección evolutiva y equilibrio energético del planeta.</div>
+    </div>
+
+    <div class="level" data-n="3">
+      <h2>Ayaplianos</h2>
+      <span class="tag">Guías estelares avanzados</span>
+      <p>Seres de luz pertenecientes a civilizaciones estelares avanzadas. Actúan como custodios técnico-espirituales, vinculados con contactos, transmisión de conocimiento y asistencia en saltos evolutivos de conciencia.</p>
+      <div class="func"><b>Función:</b> transmisión de conocimiento y asistencia evolutiva.</div>
+    </div>
+
+    <div class="level" data-n="4">
+      <h2>Portadores del Rayo Crístico</h2>
+      <span class="tag">Puentes energéticos</span>
+      <p>Seres —encarnados o no— que canalizan directamente la energía crística hacia la Tierra, sirviendo de puente entre los niveles superiores y la humanidad.</p>
+      <div class="func"><b>Func:</b> canalización directa de energía crística.</div>
+    </div>
+
+    <div class="level" data-n="5">
+      <h2>Maestros Ascendidos</h2>
+      <span class="tag">Guías desde planos superiores</span>
+      <p>Almas que completaron su ciclo evolutivo terrestre y ahora sirven como guías desde planos superiores, sosteniendo la enseñanza y el acompañamiento espiritual de la humanidad.</p>
+      <div class="func"><b>Función:</b> enseñanza y guía espiritual post-encarnación.</div>
+    </div>
+
+    <div class="level" data-n="6">
+      <h2>Jerarquía Angélica</h2>
+      <span class="tag">Arcángeles · Ángeles · Huestes</span>
+      <p>Estructura de tres niveles: Arcángeles con función macro (protección, sanación, transmutación), ángeles guardianes con función individual, y huestes angélicas especializadas en tareas específicas.</p>
+      <div class="func"><b>Función:</b> protección, sanación y transmutación a distintas escalas.</div>
+    </div>
+
+    <div class="level" data-n="7">
+      <h2>Devas y Espíritus de la Naturaleza</h2>
+      <span class="tag">Custodios elementales</span>
+      <p>Custodios de los reinos elemental, vegetal y mineral. Sostienen la infraestructura energética de la biosfera y median entre el mundo físico y el sutil.</p>
+      <div class="func"><b>Función:</b> sostén energético de la biosfera.</div>
+    </div>
+
+    <div class="level" data-n="8">
+      <h2>Seres Humanos de Luz Encarnados</h2>
+      <span class="tag">Misión en cuerpo físico</span>
+      <p>Almas de alta vibración encarnadas en cuerpo físico con una misión específica en la Tierra. Portan dones particulares según su linaje y propósito evolutivo.</p>
+      <div class="func"><b>Función:</b> anclaje de luz y servicio directo en el plano terrestre.</div>
+    </div>
+
+    <div class="level" data-n="9">
+      <h2>Guías de Encarnación y Custodios Akáshicos</h2>
+      <span class="tag">Acompañamiento y memoria del alma</span>
+      <p>Seres asignados a acompañar los procesos individuales de vida de cada alma y a sostener los registros akáshicos donde queda inscrita su historia evolutiva.</p>
+      <div class="func"><b>Función:</b> acompañamiento personal y custodia de la memoria akáshica.</div>
+    </div>
+
+  </div>
+
+  <div class="func-block">
+    <h3>Clasificación por Función</h3>
+    <div class="func-grid">
+      <details class="func-card">
+        <summary><span class="ico">🛡️</span> Protectores / guardianes energéticos <span class="chev">▾</span></summary>
+        <div class="func-body">Seres cuya función central es resguardar el campo áurico y los espacios sagrados de interferencias, entidades oscuras o fugas energéticas. Actúan como escudo activo, tanto a nivel individual (guardianes personales) como colectivo (protección de linajes, templos o comunidades).</div>
+      </details>
+      <details class="func-card">
+        <summary><span class="ico">✨</span> Sanadores <span class="chev">▾</span></summary>
+        <div class="func-body">Canalizan energía restauradora hacia cuerpos físicos, emocionales y sutiles. Trabajan reparando fisuras áuricas, disolviendo implantes y restableciendo la coherencia vibracional tras un ataque energético o un proceso de desgaste kármico.</div>
+      </details>
+      <details class="func-card">
+        <summary><span class="ico">📡</span> Mensajeros / comunicadores <span class="chev">▾</span></summary>
+        <div class="func-body">Transmiten información entre planos —de lo superior a lo terrestre y viceversa—. Son quienes activan intuiciones, sincronicidades y señales (incluyendo fenómenos como las horas espejo) para guiar decisiones y despertar conciencia.</div>
+      </details>
+      <details class="func-card">
+        <summary><span class="ico">🕯️</span> Guías de encarnación <span class="chev">▾</span></summary>
+        <div class="func-body">Acompañan el trayecto vital de un alma desde antes de nacer, ayudando a sostener el plan evolutivo elegido. Intervienen en momentos clave de elección, crisis o expansión de conciencia.</div>
+      </details>
+      <details class="func-card">
+        <summary><span class="ico">📜</span> Custodios de registros akáshicos <span class="chev">▾</span></summary>
+        <div class="func-body">Resguardan la memoria vibracional de cada alma y de la humanidad colectiva. Facilitan el acceso a esos registros durante regresiones, sesiones akáshicas o procesos de sanación de patrones repetitivos.</div>
+      </details>
+    </div>
+  </div>
+
+  <div class="links">
+    <a class="cross-link" href="dones_seres_luz_encarnados.html">
+      <span class="eyebrow-sm">Relacionado</span>
+      <span class="title-sm">Dones de los Seres de Luz Encarnados</span>
+      <span class="desc-sm">49 categorías · 147 dones asociados al nivel 8 de esta jerarquía.</span>
+    </a>
+    <a class="cross-link" href="jerarquia_seres_oscuridad.html">
+      <span class="eyebrow-sm">Contraparte</span>
+      <span class="title-sm">Jerarquía de Seres de Oscuridad</span>
+      <span class="desc-sm">La corriente opuesta: niveles D-1 a D-8/9.</span>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <a class="back" href="index.html">← Volver a la biblioteca</a>
+  <div>El Ser Uno · Biblioteca Esotérica</div>
+</footer>
+
+</body>
+</html>
