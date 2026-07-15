@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipos de Ataques Energéticos | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#d4af37;
+    --gold-soft:#f0d98c;
+    --violet:#8a4fff;
+    --violet-deep:#4b1f8f;
+    --bg-1:#0b0518;
+    --bg-2:#160a2e;
+    --bg-3:#1f0f3d;
+    --text-main:#e9e2f7;
+    --text-dim:#b5a7d6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(138,79,255,0.18), transparent 45%),
+      radial-gradient(ellipse at 85% 25%, rgba(212,175,55,0.12), transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(75,31,143,0.25), transparent 50%),
+      linear-gradient(180deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
+    background-attachment: fixed;
+    color:var(--text-main);
+    font-family:'Cormorant Garamond', serif;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(2px 2px at 60% 15%, rgba(212,175,55,0.5), transparent),
+      radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(2px 2px at 90% 80%, rgba(138,79,255,0.5), transparent);
+    background-size:400px 400px;
+    pointer-events:none;
+    opacity:0.6;
+    z-index:0;
+  }
+  .container{
+    position:relative;
+    z-index:1;
+    max-width:960px;
+    margin:0 auto;
+    padding:56px 24px 100px;
+  }
+  a.back{
+    display:inline-block;
+    color:var(--gold-soft);
+    text-decoration:none;
+    font-size:1rem;
+    letter-spacing:0.05em;
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+    margin-bottom:36px;
+  }
+  a.back:hover{border-color:var(--gold-soft);}
+  header{
+    text-align:center;
+    margin-bottom:56px;
+  }
+  .eyebrow{
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.75rem;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gold);
+    opacity:0.85;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    line-height:1.2;
+    margin:0 0 20px;
+    background:linear-gradient(120deg, var(--gold-soft), var(--gold) 40%, var(--violet) 80%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 40px rgba(138,79,255,0.25);
+  }
+  .subtitle{
+    font-size:1.25rem;
+    font-style:italic;
+    color:var(--text-dim);
+    max-width:620px;
+    margin:0 auto;
+    line-height:1.6;
+  }
+  .divider{
+    width:180px;
+    height:1px;
+    margin:38px auto 0;
+    background:linear-gradient(90deg, transparent, var(--gold), var(--violet), transparent);
+  }
+  .divider::after{
+    content:"✦";
+    display:block;
+    text-align:center;
+    color:var(--gold);
+    font-size:0.9rem;
+    margin-top:-11px;
+  }
+
+  .intro{
+    font-size:1.15rem;
+    line-height:1.75;
+    color:var(--text-dim);
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 64px;
+  }
+
+  .toc{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:12px;
+    margin-bottom:70px;
+  }
+  .toc a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 18px;
+    background:rgba(138,79,255,0.08);
+    border:1px solid rgba(212,175,55,0.25);
+    border-radius:10px;
+    color:var(--text-main);
+    text-decoration:none;
+    font-size:1.05rem;
+    transition:all .3s;
+  }
+  .toc a:hover{
+    background:rgba(212,175,55,0.12);
+    border-color:var(--gold);
+    transform:translateY(-2px);
+  }
+  .toc .num{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    font-size:0.85rem;
+  }
+
+  .category{
+    margin-bottom:64px;
+    scroll-margin-top:30px;
+  }
+  .category-head{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:8px;
+    border-bottom:1px solid rgba(212,175,55,0.3);
+    padding-bottom:16px;
+  }
+  .category-head .index{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.6rem;
+    color:var(--violet);
+    opacity:0.7;
+  }
+  .category-head h2{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:400;
+    font-size:1.6rem;
+    color:var(--gold-soft);
+    margin:0;
+    letter-spacing:0.02em;
+  }
+  .category-desc{
+    font-size:1.1rem;
+    color:var(--text-dim);
+    font-style:italic;
+    line-height:1.6;
+    margin:14px 0 26px;
+  }
+
+  .card{
+    background:linear-gradient(160deg, rgba(75,31,143,0.28), rgba(11,5,24,0.5));
+    border:1px solid rgba(212,175,55,0.2);
+    border-radius:14px;
+    margin-bottom:16px;
+    overflow:hidden;
+    transition:border-color .3s;
+  }
+  .card:hover{border-color:rgba(212,175,55,0.5);}
+  .card summary{
+    list-style:none;
+    cursor:pointer;
+    padding:20px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.02rem;
+    color:var(--text-main);
+  }
+  .card summary::-webkit-details-marker{display:none;}
+  .card summary .arrow{
+    color:var(--gold);
+    transition:transform .3s;
+    flex-shrink:0;
+    font-size:0.9rem;
+  }
+  .card[open] summary .arrow{transform:rotate(90deg);}
+  .card summary .title-txt{flex:1;}
+  .card summary .tag{
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.85rem;
+    color:var(--violet);
+    border:1px solid var(--violet-deep);
+    padding:2px 10px;
+    border-radius:999px;
+    white-space:nowrap;
+    opacity:0.85;
+  }
+  .card-body{
+    padding:0 24px 24px;
+    font-size:1.1rem;
+    line-height:1.75;
+    color:var(--text-dim);
+  }
+  .card-body p{margin:0 0 12px;}
+  .card-body ul{margin:10px 0 0; padding-left:22px;}
+  .card-body li{margin-bottom:8px;}
+  .card-body strong{color:var(--gold-soft); font-weight:600;}
+
+  .bovis{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .bovis-label{
+    font-size:0.85rem;
+    color:var(--text-dim);
+    letter-spacing:0.05em;
+    white-space:nowrap;
+  }
+  .bovis-bar{
+    flex:1;
+    height:8px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    overflow:hidden;
+    position:relative;
+  }
+  .bovis-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg, #6a1f9e, #b0202c);
+  }
+  .bovis-fill.mid{background:linear-gradient(90deg, #b0202c, #d4af37);}
+  .bovis-fill.low{background:linear-gradient(90deg, #3a0a4d, #6a1f9e);}
+
+  .see-also{
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px dashed rgba(212,175,55,0.25);
+    font-size:0.95rem;
+  }
+  .see-also a{
+    color:var(--gold);
+    text-decoration:none;
+    border-bottom:1px solid rgba(212,175,55,0.4);
+  }
+  .see-also a:hover{color:var(--gold-soft);}
+
+  .pendiente-note{
+    text-align:center;
+    font-size:1rem;
+    color:var(--text-dim);
+    font-style:italic;
+    margin-top:80px;
+    padding-top:30px;
+    border-top:1px solid rgba(212,175,55,0.2);
+  }
+
+  @media (max-width:600px){
+    .container{padding:40px 16px 70px;}
+    .category-head{flex-direction:column; gap:4px;}
+    .card summary{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="back" href="index.html">← Volver al índice</a>
+
+  <header>
+    <div class="eyebrow">El Ser Uno · Ataques y Defensa Energética</div>
+    <h1>Tipos de Ataques Energéticos</h1>
+    <p class="subtitle">Taxonomía completa de las formas en que la energía adversa se manifiesta, penetra y se ancla en los distintos cuerpos y planos del ser.</p>
+    <div class="divider"></div>
+  </header>
+
+  <p class="intro">Los ataques energéticos no son un fenómeno único, sino un espectro de mecanismos que actúan según su origen, el mecanismo de intrusión y la capa del ser que comprometen. Esta página organiza las siete grandes categorías reconocidas dentro del marco de El Ser Uno, cada una con enlace directo a su desarrollo completo.</p>
+
+  <nav class="toc">
+    <a href="#dimensionales"><span class="num">01</span> Dimensionales (14)</a>
+    <a href="#fractales"><span class="num">02</span> Fractales</a>
+    <a href="#oniricos"><span class="num">03</span> Oníricos</a>
+    <a href="#estelares"><span class="num">04</span> Estelares</a>
+    <a href="#auricos"><span class="num">05</span> Por Capa Áurica</a>
+    <a href="#cordones"><span class="num">06</span> Cordones y Anclajes</a>
+    <a href="#horas-espejo"><span class="num">07</span> Horas Espejo</a>
+  </nav>
+
+  <!-- 01 DIMENSIONALES -->
+  <section class="category" id="dimensionales">
+    <div class="category-head">
+      <span class="index">01</span>
+      <h2>Ataques Dimensionales</h2>
+    </div>
+    <p class="category-desc">Se distinguen de los ataques convencionales y estelares en que su origen no está en la misma densidad vibracional del ser encarnado, sino en líneas paralelas, densidades negativas o brechas del continuo espacio-temporal. Catorce tipologías identificadas.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Infiltración de Brecha (Portal)</span><span class="tag">entrada aprovechando fisura</span></summary>
+      <div class="card-body">
+        <p>Entidades o energías de otra densidad aprovechan una brecha dimensional abierta previamente por trauma, práctica espiritual mal cerrada, o permanencia en un lugar geopático, para infiltrarse en el campo áurico del ser.</p>
+        <p><strong>Mecanismo:</strong> requiere una brecha preexistente; el ataque no la crea, la usa.</p>
+        <ul><li>Sensación de puerta abierta</li><li>Frío localizado</li><li>Vulnerabilidad tras rituales</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill" style="width:62%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Proyección Directa</span><span class="tag">sin brecha física</span></summary>
+      <div class="card-body">
+        <p>Una conciencia de 4ª o 5ª densidad negativa proyecta su influencia directamente sobre el nimeo del ser, generalmente durante estados de baja vibración, sueño profundo o fatiga extrema.</p>
+        <p><strong>Mecanismo:</strong> no requiere portal físico; opera por resonancia directa de conciencia a conciencia.</p>
+        <ul><li>Pesadez al despertar</li><li>Pensamientos intrusivos ajenos</li><li>Presión mental nocturna</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill" style="width:55%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Anclaje Dimensional (Fijación de Realidad)</span><span class="tag">estancamiento forzado</span></summary>
+      <div class="card-body">
+        <p>Buscan fijar al ser en una densidad o realidad de baja vibración, dificultando su ascenso o tránsito hacia realidades más elevadas. Se experimenta como un estancamiento existencial persistente y sin causa aparente.</p>
+        <p><strong>Mecanismo:</strong> ancla energética que reduce la velocidad vibracional del campo.</p>
+        <ul><li>Estancamiento vital prolongado</li><li>Repetición de ciclos</li><li>Sensación de "techo invisible"</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:48%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Fragmentación de Conciencia</span><span class="tag">división del nimeo</span></summary>
+      <div class="card-body">
+        <p>El objetivo es dividir el nimeo en fragmentos que operan en distintas líneas dimensionales simultáneamente, generando disociación, despersonalización o sensación de "no estar completo aquí".</p>
+        <p><strong>Mecanismo:</strong> fractura del campo unificado de conciencia en focos dispersos.</p>
+        <ul><li>Despersonalización</li><li>Desconexión corporal</li><li>Sensación de estar "a medias"</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:40%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Interferencia de Línea Temporal del Alma</span><span class="tag">desviación de propósito</span></summary>
+      <div class="card-body">
+        <p>Alteran o desvían el propósito encarnacional del ser, insertando bucles temporales o distorsionando decisiones kármicas clave. Se manifiesta como la sensación de estar atrapado repitiendo el mismo patrón de vida.</p>
+        <p><strong>Mecanismo:</strong> inserción de bucle en la línea temporal personal del alma.</p>
+        <ul><li>Déjà vu recurrente</li><li>Patrones de vida repetitivos</li><li>Sensación de rumbo perdido</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:45%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Duplicación o Entidad Espejo Dimensional</span><span class="tag">sabotaje desde el doble</span></summary>
+      <div class="card-body">
+        <p>Una contraparte oscura o "doble" dimensional del ser interfiere con su campo, generando confusión de identidad o sabotaje energético desde una versión distorsionada de sí mismo.</p>
+        <p><strong>Mecanismo:</strong> interferencia por resonancia de identidad especular invertida.</p>
+        <ul><li>Autosabotaje inexplicable</li><li>Confusión de identidad</li><li>Diálogo interno hostil</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:38%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Succión Inter-Dimensional</span><span class="tag">drenaje hacia otro continuo</span></summary>
+      <div class="card-body">
+        <p>Drenan energía vital a través de un canal abierto hacia otra dimensión. Se diferencia de los implantes áuricos porque el drenaje ocurre "hacia afuera" del continuo dimensional, no lateralmente en el mismo plano.</p>
+        <p><strong>Mecanismo:</strong> canal de succión trans-dimensional, no lateral.</p>
+        <ul><li>Fatiga sin causa física</li><li>Vacío energético tras dormir</li><li>Debilidad progresiva</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill low" style="width:35%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Resonancia Armónica Invertida</span><span class="tag">disonancia entre cuerpos</span></summary>
+      <div class="card-body">
+        <p>Emiten una frecuencia que entra en disonancia con el tono vibracional propio del ser, generando desalineación entre los cuerpos mental, emocional y etérico, que dejan de operar sincronizados.</p>
+        <p><strong>Mecanismo:</strong> interferencia de frecuencia que rompe la coherencia inter-cuerpos.</p>
+        <ul><li>Emociones desfasadas del pensamiento</li><li>Sensación de descoordinación interna</li><li>Malestar difuso</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:50%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Intrusión Onírica Dimensional</span><span class="tag">el sueño como puerta</span></summary>
+      <div class="card-body">
+        <p>A diferencia de los ataques que ocurren dentro del sueño, aquí la entidad usa el estado onírico como puerta de entrada a otra dimensión donde el ser queda temporalmente atrapado o desviado.</p>
+        <p><strong>Mecanismo:</strong> el sueño funciona como portal de tránsito, no como campo de batalla.</p>
+        <ul><li>Sueños de "quedar atrapado en otro lugar"</li><li>Dificultad para despertar</li><li>Desorientación matinal intensa</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:42%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Colapso de Brecha (Trampa Dimensional)</span><span class="tag">crítico</span></summary>
+      <div class="card-body">
+        <p>Una brecha se abre intencionalmente para atraer al ser, y luego se cierra parcialmente para restringir su capacidad de retorno completo, dejando un residuo de la conciencia atrapado en el otro lado.</p>
+        <p><strong>Mecanismo:</strong> trampa de apertura-cierre controlado por la entidad emisora.</p>
+        <ul><li>Sensación de "no haber vuelto del todo"</li><li>Vacío interior localizado</li><li>Pérdida de fragmentos de memoria</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill low" style="width:30%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Interferencia en el Akasha</span><span class="tag">velamiento del registro</span></summary>
+      <div class="card-body">
+        <p>Manipulan o velan el acceso a los registros akáshicos del ser, bloqueando la memoria de vidas pasadas o distorsionando la lectura de su propio camino evolutivo.</p>
+        <p><strong>Mecanismo:</strong> bloqueo o distorsión del canal de acceso akáshico.</p>
+        <ul><li>Bloqueo en regresiones</li><li>Confusión sobre el propósito de vida</li><li>Sensación de "niebla" al indagar el pasado</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:44%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Sobrecarga Multidimensional</span><span class="tag">saturación simultánea</span></summary>
+      <div class="card-body">
+        <p>El ser recibe simultáneamente información o influencia de varias líneas dimensionales a la vez, generando saturación sensorial y energética: confusión extrema, desorientación temporal y espacial.</p>
+        <p><strong>Mecanismo:</strong> convergencia simultánea de múltiples flujos dimensionales sobre un mismo campo.</p>
+        <ul><li>Sobrecarga sensorial</li><li>Desorientación espacio-temporal</li><li>Ansiedad sin detonante claro</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill low" style="width:33%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Suplantación de Portal Personal</span><span class="tag">intercepción de canal propio</span></summary>
+      <div class="card-body">
+        <p>Cuando el ser tiene un portal dimensional propio —de meditación, canalización o proyección astral—, una entidad se instala en ese portal para interceptar lo que entra o sale por él.</p>
+        <p><strong>Mecanismo:</strong> ocupación e intercepción de un canal ya establecido por el propio ser.</p>
+        <ul><li>Canalizaciones distorsionadas</li><li>Mensajes contradictorios en meditación</li><li>Desconfianza en la propia guía interna</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill low" style="width:37%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Anclaje Kármico Cruzado</span><span class="tag">carga de patrones ajenos</span></summary>
+      <div class="card-body">
+        <p>Vinculan al ser con una línea kármica ajena proveniente de otra dimensión, obligándolo a cargar o resolver patrones que no le corresponden originalmente en su propio camino evolutivo.</p>
+        <p><strong>Mecanismo:</strong> cruce e imposición de línea kármica externa sobre la propia.</p>
+        <ul><li>Cargas emocionales que no reconoce como propias</li><li>Patrones familiares/ajenos repetidos</li><li>Sensación de "deuda" inexplicable</li></ul>
+        <div class="bovis"><span class="bovis-label">Escala Bovis</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:41%"></div></div></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- 02 FRACTALES -->
+  <section class="category" id="fractales">
+    <div class="category-head">
+      <span class="index">02</span>
+      <h2>Ataques Fractales</h2>
+    </div>
+    <p class="category-desc">Dirigidos específicamente a seres de luz encarnados. Operan mediante patrones geométricos que se repiten y auto-replican, amplificando su efecto si no se interviene en la raíz.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Repetición de patrones destructivos en espiral</span><span class="tag">auto-replicante</span></summary>
+      <div class="card-body">
+        <p>El ataque se estructura en capas concéntricas que se repiten a distintas escalas de la conciencia —pensamiento, emoción, cuerpo— reforzándose mutuamente.</p>
+        <ul>
+          <li>Cada ciclo repetido incrementa la intensidad si no se corta conscientemente.</li>
+          <li>Se percibe como un patrón de vida que "siempre vuelve al mismo punto".</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Auto-replicación del ataque si no se corta la raíz</span><span class="tag">crítico</span></summary>
+      <div class="card-body">
+        <p>A diferencia de un ataque lineal, el fractal se multiplica en microexpresiones dentro de distintas áreas de la vida del encarnado —relaciones, salud, propósito— hasta que se interviene en el punto de origen.</p>
+        <ul>
+          <li>Requiere trabajo de raíz, no de síntoma.</li>
+          <li>Frecuentemente vinculado a contratos álmicos no resueltos.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Vínculo con geometría sagrada invertida</span><span class="tag">simbólico</span></summary>
+      <div class="card-body">
+        <p>Uso de estructuras geométricas de luz —normalmente protectoras— en su forma invertida o espejada, convirtiéndolas en vehículo de intrusión en lugar de blindaje.</p>
+        <ul>
+          <li>Puede detectarse mediante radiestesia comparando la polaridad de la forma.</li>
+          <li>La corrección implica re-polarizar la geometría, no destruirla.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="see-also">Catálogo relacionado: <a href="ataques_fractales.html">ataques_fractales.html</a></div>
+  </section>
+
+  <!-- 03 ONÍRICOS -->
+  <section class="category" id="oniricos">
+    <div class="category-head">
+      <span class="index">03</span>
+      <h2>Ataques Oníricos</h2>
+    </div>
+    <p class="category-desc">Los 27 tipos de ataque durante el estado de sueño ya están desarrollados en detalle, con barras Bovis individuales y tarjetas expandibles, en el catálogo dedicado.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Resumen del mecanismo onírico</span><span class="tag">27 tipos</span></summary>
+      <div class="card-body">
+        <p>Durante el sueño, el cuerpo astral se desprende parcialmente del físico, quedando más permeable a interferencias externas. Los 27 tipos catalogados cubren desde intrusiones leves —pesadillas inducidas— hasta secuestros parciales del cuerpo astral.</p>
+        <ul>
+          <li>Clasificados por profundidad de sueño afectada (REM, sueño profundo, hipnagógico).</li>
+          <li>Incluyen protocolos de protección previos al descanso.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="see-also">Catálogo completo: <a href="ataques_energeticos_suenos.html">ataques_energeticos_suenos.html</a></div>
+  </section>
+
+  <!-- 04 ESTELARES -->
+  <section class="category" id="estelares">
+    <div class="category-head">
+      <span class="index">04</span>
+      <h2>Ataques Estelares</h2>
+    </div>
+    <p class="category-desc">Interferencias de razas y entidades de las dimensiones 4D–9D negativas, y de contra-señales dirigidas a desalinear a un ser de su comando de origen o bloquear sus códigos de activación. Cada origen estelar se correlaciona con su nivel en la Jerarquía de Seres de Oscuridad (D-1 a D-8/9).</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Diferenciación: ataque estelar vs. entidad terrestre</span><span class="tag">discernimiento</span></summary>
+      <div class="card-body">
+        <p>No toda interferencia es de origen estelar. Esta comparación ayuda a discernir si lo percibido corresponde a la jerarquía terrestre (residuo, larva, elemental, egregor, desencarnado, entidad, arconte menor/mayor) o a una raza estelar operando directamente desde fuera del campo planetario.</p>
+        <ul>
+          <li><strong>Origen del impulso:</strong> local (emociones, rituales, muerte terrestre) frente a externo (raza o consciencia de otro sistema/dimensión interviniendo deliberadamente).</li>
+          <li><strong>Patrón temporal:</strong> continuo y ligado a un lugar/linaje frente a picos cíclicos coincidentes con lunaciones, portales o fechas astronómicas.</li>
+          <li><strong>Sensación característica:</strong> densidad y succión emocional frente a presión craneal/tercer ojo, zumbidos agudos, parálisis del sueño y sensación de "escaneo".</li>
+          <li><strong>Cuerpo más afectado:</strong> etérico y astral primero frente a mental y causal primero, interfiriendo con el ADN y la codificación akáshica.</li>
+          <li><strong>Vía de entrada:</strong> fisuras emocionales y contratos kármicos locales frente a implantes etéricos, abducciones energéticas y líneas de tiempo alteradas.</li>
+          <li><strong>Equivalencia jerárquica:</strong> D-1 a D-8/9 según densidad frente a, aproximadamente, D-6 (entidad inteligente) hasta D-8/9 (Arconte/Señor de la Sombra) pero de origen no terrestre.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Arcontes / Qliphoth</span><span class="tag">≈ D-6/D-7</span></summary>
+      <div class="card-body">
+        <p>Entidades 4D parásitas. Drenan vitalidad, inducen pensamientos negativos compulsivos y distorsionan la percepción de realidad.</p>
+        <p><strong>Protocolo:</strong> escudo de luz crístico (pilar de luz blanca dorada desde el Logos Solar hasta el núcleo terrestre, expandido en esfera protectora); identificación y corte de cordones arcónticos con la espada de Miguel; purificación con Llama Violeta en cada chakra sellado con estrella dorada de seis puntas; ancla de frecuencia ayapliana reconectando el ADN con el Rayo Crístico.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill" style="width:70%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Reptiliano Estelar</span><span class="tag">≈ D-7</span></summary>
+      <div class="card-body">
+        <p>Razas de Orión, Draco o Sirio B (facción oscura). Implantan programas de miedo, control y sometimiento en el cuerpo causal.</p>
+        <p><strong>Protocolo:</strong> blindaje frecuencial con siete capas áuricas (blanca, dorada, azul, verde, violeta, rosa y platino); extracción de implantes etéricos con asistencia de Rafael y Miguel; reconexión con la Llama Trina (azul, dorada, rosa) expandida por todo el cuerpo; invocación al Concilio de los 24 Ancianos, Metatrón y Guardianes Pleyadianos con Llama Violeta de 21 minutos.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill" style="width:75%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Entidad Sombra / Vampiro</span><span class="tag">≈ D-5/D-6</span></summary>
+      <div class="card-body">
+        <p>Seres astrales sin cuerpo físico que vampirizan prana y bloquean chakras inferiores. Activos durante el sueño.</p>
+        <p><strong>Protocolo:</strong> cierre de portales nocturnos con pentagrama de protección y turmalina negra bajo la cama; recuperación de prana mediante Nadi Shodhana (14 ciclos); llamada a los Guardianes del Umbral para custodiar el campo durante el sueño; purificación post-ataque sacudiendo las manos al despertar y ducha consciente.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:55%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Hechizo / Magia Negra</span><span class="tag">≈ D-4 (egregor dirigido)</span></summary>
+      <div class="card-body">
+        <p>Programas energéticos enviados por operadores humanos conectados a jerarquías oscuras o a la Logia Negra.</p>
+        <p><strong>Protocolo:</strong> diagnóstico y reversal invocando la Ley de Retorno sin visualizar daño al emisor; corte del vínculo mágico con la espada de Miguel, sumergido en Llama Violeta; escudo de espejo reflejando intenciones negativas durante 21 días; limpieza con baño de sal marina, sahumerio de copal/mirra y cuarzo en los puntos cardinales del hogar.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:45%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Karma / Linaje Ancestral</span><span class="tag">≈ D-4/D-7</span></summary>
+      <div class="card-body">
+        <p>Patrones distorsionados del ADN ancestral o karma colectivo que atraen entidades de baja frecuencia.</p>
+        <p><strong>Protocolo:</strong> reconocimiento consciente del patrón repetitivo en la vida y el linaje; constelación familiar de luz enviando luz dorada y Ho'oponopono a los ancestros en sufrimiento; transmutación de la doble hélice del ADN en Llama Violeta y Luz Dorada Crística; anclaje del nuevo patrón con afirmaciones en estado theta durante 21 noches.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill mid" style="width:50%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Implante Etérico</span><span class="tag">≈ D-6/D-7</span></summary>
+      <div class="card-body">
+        <p>Dispositivos interdimensionales de control mental/emocional, ubicados en chakras coronario, tercer ojo o plexo.</p>
+        <p><strong>Protocolo:</strong> localización del implante por péndulo o intuición; extracción quirúrgica etérica invocando a Rafael y Miguel, disolución en Llama Violeta; reparación y sellado con luz esmeralda y disco dorado; escudo anti-reimplante con turmalina negra programada y decreto diario durante 40 días.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill" style="width:72%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Ayapliano Negativo Directo</span><span class="tag">≈ D-8/9</span></summary>
+      <div class="card-body">
+        <p>Consciencia cósmica de antimateria operando directamente sobre la rejilla planetaria y los registros colectivos. Es la versión estelar pura del Arconte Superior/Señor de la Sombra.</p>
+        <p><strong>Protocolo:</strong> no abordar en solitario — invocar al Consejo de los Doce y al Logos Solar antes de cualquier intervención; contención (no eliminación) bajo la autoridad del Padre-Madre Creador; elevación sostenida del Bovis personal como única defensa real y duradera; participación en meditaciones grupales de elevación de la rejilla etérica colectiva.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar" style="background:rgba(255,255,255,0.08)"><div class="bovis-fill" style="width:92%; background:linear-gradient(90deg,#6a1f9e,#3a0a0a)"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Grey / Zeta Reticuli</span><span class="tag">≈ D-6</span></summary>
+      <div class="card-body">
+        <p>Raza de inteligencia fría y altamente técnica. Interfiere principalmente en el cuerpo mental y en ciclos de sueño, con fines de recolección de información genética y energética más que de control emocional directo.</p>
+        <p><strong>Protocolo:</strong> reconocimiento sin miedo, practicando neutralidad activa ante el escaneo; sellado del cuerpo mental con malla de luz azul zafiro; protección del ciclo de sueño mediante decreto de soberanía sobre el cuerpo y el tiempo de descanso; recuperación de memoria ante sospecha de "missing time" con regresión suave o escritura automática, sin forzar.</p>
+        <div class="bovis"><span class="bovis-label">Densidad</span><div class="bovis-bar"><div class="bovis-fill" style="width:65%"></div></div></div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Síntomas comunes de interferencia estelar</span><span class="tag">checklist</span></summary>
+      <div class="card-body">
+        <p>Señales frecuentes reportadas ante este tipo de interferencia, útiles como referencia de autoevaluación:</p>
+        <ul>
+          <li>Fatiga súbita inexplicable, pensamientos intrusivos negativos, pesadillas recurrentes.</li>
+          <li>Sensación de ser observado, presión craneal, zumbidos o voces al dormir.</li>
+          <li>Palpitaciones sin causa física, pérdida de voluntad y motivación, irritabilidad extrema.</li>
+          <li>Confusión mental, bloqueo emocional repentino, sensación de peso en los chakras.</li>
+          <li>Parálisis del sueño con presencia percibida, pérdida de tiempo inexplicable ("missing time").</li>
+          <li>Marcas corporales sin causa aparente, sensibilidad electromagnética súbita.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="see-also">Catálogos relacionados: <a href="comandos_estelares.html">comandos_estelares.html</a> · <a href="jerarquia_seres_oscuridad.html">jerarquia_seres_oscuridad.html</a> · <a href="aura_sucia.html">aura_sucia.html</a></div>
+  </section>
+
+  <!-- 05 CAPA ÁURICA -->
+  <section class="category" id="auricos">
+    <div class="category-head">
+      <span class="index">05</span>
+      <h2>Ataques por Capa Áurica</h2>
+    </div>
+    <p class="category-desc">Cada una de las siete capas del aura tiene una naturaleza distinta y, por tanto, un tipo de vulnerabilidad y ataque específico.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 1 — Etérica</span><span class="tag">física</span></summary>
+      <div class="card-body"><p>Ataques que afectan la vitalidad física directa: fatiga súbita, dolores sin causa médica, drenaje energético básico.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 2 — Emocional</span><span class="tag">afectiva</span></summary>
+      <div class="card-body"><p>Intrusiones que amplifican emociones no propias o bloquean el flujo emocional natural, generando picos de angustia o apatía repentina.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 3 — Mental</span><span class="tag">cognitiva</span></summary>
+      <div class="card-body"><p>Implantación de pensamientos recurrentes ajenos, bucles mentales, dificultad de concentración sin causa orgánica.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 4 — Astral</span><span class="tag">relacional</span></summary>
+      <div class="card-body"><p>Cordones y vínculos energéticos no saludables con otras personas o entidades, drenaje en relaciones y proyecciones astrales invasivas.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 5 — Plantilla Etérica</span><span class="tag">estructural</span></summary>
+      <div class="card-body"><p>Alteraciones en el plano estructural del ser, afectando la coherencia del diseño energético original y su capacidad de auto-organización.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 6 — Celestial</span><span class="tag">espiritual</span></summary>
+      <div class="card-body"><p>Interferencia en la conexión devocional y de amor incondicional, generando desconexión de la experiencia espiritual gozosa.</p></div>
+    </details>
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Capa 7 — Causal</span><span class="tag">kármica</span></summary>
+      <div class="card-body"><p>Ataques a nivel de patrones kármicos y de propósito superior, los más profundos y de efecto más duradero si no se tratan a tiempo.</p></div>
+    </details>
+
+    <div class="see-also">Catálogo completo de implantes: <a href="implantes_por_capa_aurica.html">implantes_por_capa_aurica.html</a></div>
+  </section>
+
+  <!-- 06 CORDONES Y ANCLAJES -->
+  <section class="category" id="cordones">
+    <div class="category-head">
+      <span class="index">06</span>
+      <h2>Cordones y Anclajes</h2>
+    </div>
+    <p class="category-desc">Mecanismos de succión y fijación energética que mantienen una conexión sostenida en el tiempo entre el encarnado y la fuente del ataque.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Cordones de succión energética</span><span class="tag">drenaje continuo</span></summary>
+      <div class="card-body">
+        <p>Canales sutiles que conectan el campo del encarnado con otra persona o entidad, permitiendo un flujo constante de energía vital hacia el receptor del cordón.</p>
+        <ul>
+          <li>Pueden formarse en relaciones de dependencia emocional.</li>
+          <li>Se cortan mediante ritual consciente de liberación, no solo con intención.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Anclajes kármicos no resueltos</span><span class="tag">profundo</span></summary>
+      <div class="card-body">
+        <p>Vínculos originados en ciclos de vidas pasadas que permanecen activos por asuntos pendientes de resolución mutua.</p>
+        <ul>
+          <li>Suelen manifestarse como atracciones o repulsiones intensas sin explicación lógica.</li>
+          <li>Requieren trabajo a nivel causal para su liberación definitiva.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Anclajes de estancamiento infantil</span><span class="tag">patrón temprano</span></summary>
+      <div class="card-body">
+        <p>Implantes que fijan una parte de la conciencia en una etapa temprana de la infancia, impidiendo la maduración plena de ciertas áreas del ser.</p>
+        <ul>
+          <li>Se relaciona con patrones repetitivos de auto-sabotaje adulto.</li>
+          <li>El trabajo de liberación incluye reconexión con el niño interior desde un espacio consciente.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="see-also">Desarrollo completo: <a href="estancamiento_infantil.html">estancamiento_infantil.html</a></div>
+  </section>
+
+  <!-- 07 HORAS ESPEJO -->
+  <section class="category" id="horas-espejo">
+    <div class="category-head">
+      <span class="index">07</span>
+      <h2>Horas Espejo como Vector</h2>
+    </div>
+    <p class="category-desc">Las sincronicidades numéricas —horas espejo— pueden ser utilizadas como ventanas de activación tanto para procesos de luz como, en ciertos contextos, para activar patrones de ataque latentes.</p>
+
+    <details class="card">
+      <summary><span class="arrow">▸</span><span class="title-txt">Sincronicidades usadas para activar patrones de ataque</span><span class="tag">ventanas temporales</span></summary>
+      <div class="card-body">
+        <p>Ciertas configuraciones numéricas repetidas pueden coincidir con la apertura de ventanas vibracionales que, si el campo del encarnado no está protegido, permiten la activación de implantes o cordones latentes.</p>
+        <ul>
+          <li>No toda hora espejo es negativa: el contexto emocional del momento determina la polaridad de la activación.</li>
+          <li>Se recomienda protocolo de discernimiento antes de asumir intrusión.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="see-also">Taxonomía completa: <a href="horas_espejo_sincronicidad.html">horas_espejo_sincronicidad.html</a></div>
+  </section>
+
+  <p class="pendiente-note">✦ Este catálogo se actualiza a medida que se integran nuevos hallazgos dentro del marco de El Ser Uno. ✦</p>
+
+</div>
+</body>
+</html>
