@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques Energéticos Estelares · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #c8a84b;
+  --oro-dim: #7a6228;
+  --violeta: #6b4fa0;
+  --violeta-c: #9d7fd4;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --crimson: #b04040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.1; transform:scale(1); } 50% { opacity:.9; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+/* HERO */
+.hero { min-height: 70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(200,168,75,.2); animation:giro 30s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--oro); box-shadow:0 0 10px var(--oro); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 20s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,10,10,.9) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(157,127,212,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:600px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+
+/* CARDS */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+
+/* DIFERENCIACIÓN TABLE */
+.diff-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+.diff-table th { font-family:'Cinzel', serif; font-size:.65rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gris); text-align:left; padding:.5rem .6rem; border-bottom:1px solid var(--border-h); }
+.diff-table td { padding:.55rem .6rem; border-bottom:1px solid var(--border); color:var(--gris-c); vertical-align:top; }
+.diff-table tr:last-child td { border-bottom:none; }
+
+/* ENTITY GRID */
+.entity-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:.7rem; }
+.entity-btn { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:.9rem 1rem; cursor:pointer; transition:all .2s; text-align:left; color:var(--blanco); font-family:'Crimson Pro', serif; }
+.entity-btn:hover { border-color:var(--border-h); background:rgba(255,255,255,.04); }
+.entity-btn.active { border-color:var(--oro); background:rgba(200,168,75,.07); }
+.entity-btn .e-name { font-family:'Cinzel', serif; font-size:.82rem; font-weight:600; color:var(--violeta-c); margin-bottom:.35rem; }
+.entity-btn .e-nivel { display:inline-block; font-family:'Space Mono', monospace; font-size:.6rem; padding:.1rem .5rem; border-radius:8px; border:1px solid currentColor; margin-bottom:.4rem; }
+.entity-btn .e-desc { font-size:.78rem; color:var(--gris-c); line-height:1.5; }
+
+/* SYMPTOMS */
+.symptoms-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:.5rem; }
+.symptom-check { display:flex; align-items:flex-start; gap:.6rem; padding:.65rem .75rem; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; cursor:pointer; transition:border-color .2s; }
+.symptom-check:hover { border-color:var(--border-h); }
+.symptom-check.checked { border-color:var(--teal); background:rgba(58,128,112,.1); }
+.sym-box { width:15px; height:15px; border:1px solid var(--gris); border-radius:2px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; font-size:9px; transition:all .2s; }
+.symptom-check.checked .sym-box { background:var(--teal); border-color:var(--teal); color:#fff; }
+.sym-label { font-size:.78rem; line-height:1.4; color:var(--blanco); }
+
+/* INTENSITY */
+.intensity-row { display:flex; gap:.6rem; flex-wrap:wrap; }
+.int-btn { padding:.5rem 1.1rem; border-radius:20px; border:1px solid var(--border-h); background:transparent; color:var(--gris); font-size:.78rem; cursor:pointer; font-family:'Crimson Pro', serif; transition:all .2s; }
+.int-btn:hover { border-color:var(--oro); color:var(--oro); }
+.int-btn.active-low { border-color:var(--teal); background:rgba(58,128,112,.15); color:#8ad0bc; }
+.int-btn.active-med { border-color:var(--oro); background:rgba(200,168,75,.1); color:var(--oro); }
+.int-btn.active-high { border-color:var(--crimson); background:rgba(176,64,64,.15); color:#e08080; }
+
+/* BOVIS */
+.bovis-bar { height:12px; border-radius:6px; background:linear-gradient(90deg,#b04040 0%,#c8a84b 40%,#3a8070 70%,#6b4fa0 100%); position:relative; margin:.8rem 0; }
+.bovis-pointer { position:absolute; top:-4px; width:4px; height:20px; background:#fff; border-radius:2px; box-shadow:0 0 6px #fff; transform:translateX(-50%); transition:left 1s ease; }
+.bovis-labels { display:flex; justify-content:space-between; font-size:.62rem; color:var(--gris); margin-top:.3rem; }
+
+#diag-btn { display:block; width:100%; padding:1rem; background:linear-gradient(135deg, var(--violeta), #4a3470); border:1px solid var(--border-h); border-radius:4px; color:#fff; font-family:'Cinzel', serif; font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .25s; margin-top:1rem; }
+#diag-btn:hover { border-color:var(--oro); }
+
+#resultado { display:none; animation:fadeIn .5s ease; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.nivel-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem 1rem; border-radius:16px; font-size:.78rem; font-weight:600; margin-bottom:1rem; font-family:'Space Mono', monospace; }
+.nivel-bajo { background:rgba(58,128,112,.15); border:1px solid var(--teal); color:#8ad0bc; }
+.nivel-medio { background:rgba(200,168,75,.12); border:1px solid var(--oro); color:var(--oro); }
+.nivel-alto { background:rgba(176,64,64,.15); border:1px solid var(--crimson); color:#e08080; }
+.nivel-critico { background:rgba(176,64,64,.3); border:1px solid #ff4040; color:#ffaaaa; animation:flicker 1.5s ease-in-out infinite; }
+@keyframes flicker { 0%,100%{opacity:1;} 50%{opacity:.7;} }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.3rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+.phase-content ul { list-style:none; padding:0; }
+.phase-content ul li { padding:.2rem 0 .2rem 1.1em; position:relative; }
+.phase-content ul li::before { content:'◆'; position:absolute; left:0; color:var(--violeta-c); font-size:.5rem; top:.5em; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+.timer-section { text-align:center; padding:.6rem; }
+#timer-display { font-family:'Cinzel', serif; font-size:2.3rem; color:var(--oro); letter-spacing:.1em; }
+.timer-btns { display:flex; gap:.7rem; justify-content:center; margin-top:.7rem; flex-wrap:wrap; }
+.t-btn { padding:.4rem 1rem; border-radius:4px; border:1px solid var(--border-h); background:rgba(255,255,255,.02); color:var(--blanco); font-size:.78rem; cursor:pointer; font-family:'Crimson Pro', serif; transition:all .2s; }
+.t-btn:hover { border-color:var(--oro); }
+
+textarea { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:4px; color:var(--blanco); font-family:'Crimson Pro', serif; font-size:.85rem; padding:.85rem; resize:vertical; min-height:90px; outline:none; transition:border-color .2s; }
+textarea:focus { border-color:var(--border-h); }
+
+#export-btn { padding:.55rem 1.4rem; background:transparent; border:1px solid var(--oro-dim); border-radius:4px; color:var(--oro); font-family:'Cinzel', serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:all .2s; margin-top:1rem; }
+#export-btn:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+
+@media (max-width:560px){ .entity-grid,.symptoms-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◉</div></div>
+  <h1>Ataques Energéticos Estelares</h1>
+  <p class="hero-sub">El Ser Uno · Ayaplianos · Rayo Crístico · Jerarquías Oscuras Galácticas</p>
+  <p class="hero-intro">Diagnóstico y protocolo de protección frente a interferencias de razas y entidades de las dimensiones 4D–9D negativas. Cada origen estelar se correlaciona con su nivel correspondiente en la Jerarquía de Seres de Oscuridad (D-1 a D-8/9).</p>
+  <a href="jerarquia_seres_oscuridad.html" style="display:inline-block; margin-top:1.6rem; font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; transition:all .2s; margin-right:.8rem;" onmouseover="this.style.background='rgba(200,168,75,.08)'" onmouseout="this.style.background='none'">⬡ Ver Jerarquía Completa D-1 a D-8/9</a>
+  <a href="aura_sucia.html" style="display:inline-block; margin-top:1.6rem; font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; transition:all .2s;" onmouseover="this.style.background='rgba(200,168,75,.08)'" onmouseout="this.style.background='none'">◐ Ver Aura Sucia</a>
+</section>
+
+<!-- DIFERENCIACIÓN: ESTELAR vs TERRESTRE -->
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Diferenciación: Ataque Estelar vs. Entidad Terrestre (D-1 a D-8/9)</div>
+  <p style="font-size:.85rem; color:var(--gris-c); margin-bottom:1rem;">No toda interferencia energética es de origen estelar. Esta tabla ayuda a discernir si lo que percibes corresponde a un ser de la jerarquía terrestre (residuo, larva, elemental, egregor, desencarnado, entidad, arconte menor/mayor) o a una raza estelar operando directamente desde fuera del campo planetario.</p>
+  <table class="diff-table">
+    <tr><th>Criterio</th><th>Jerarquía Terrestre (D-1/D-8)</th><th>Ataque Estelar Directo</th></tr>
+    <tr><td><strong style="color:var(--blanco)">Origen del impulso</strong></td><td>Local — generado por emociones, rituales o muerte en el plano terrestre</td><td>Externo — raza o consciencia de otro sistema/dimensión interviniendo deliberadamente</td></tr>
+    <tr><td><strong style="color:var(--blanco)">Patrón temporal</strong></td><td>Continuo, ligado a un lugar, persona o linaje específico</td><td>Suele tener picos cíclicos (lunaciones, portales, fechas astronómicas)</td></tr>
+    <tr><td><strong style="color:var(--blanco)">Sensación característica</strong></td><td>Densidad, peso, succión emocional</td><td>Presión craneal/tercer ojo, zumbidos agudos, parálisis del sueño, sensación de "escaneo"</td></tr>
+    <tr><td><strong style="color:var(--blanco)">Cuerpo más afectado</strong></td><td>Etérico y astral primero</td><td>Mental y causal primero — interfiere con el ADN y la codificación akáshica</td></tr>
+    <tr><td><strong style="color:var(--blanco)">Vía de entrada</strong></td><td>Fisuras emocionales, traumas, contratos kármicos locales</td><td>Implantes etéricos, abducciones energéticas, líneas de tiempo alteradas</td></tr>
+    <tr><td><strong style="color:var(--blanco)">Equivalencia jerárquica</strong></td><td>D-1 a D-8/9 según densidad</td><td>Corresponde aproximadamente a D-6 (entidad inteligente) hasta D-8/9 (Arconte/Señor de la Sombra), pero de origen no-terrestre</td></tr>
+  </table>
+</div>
+
+<!-- PASO 1 -->
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Origen del Ataque — Tipo de Entidad</div>
+  <div class="entity-grid" id="entity-grid"></div>
+</div>
+
+<!-- PASO 2 -->
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Síntomas Presentes</div>
+  <div class="symptoms-grid" id="symptoms-grid"></div>
+</div>
+
+<!-- PASO 3 -->
+<div class="card">
+  <div class="card-title"><span class="num">3</span>Intensidad Percibida</div>
+  <div class="intensity-row">
+    <button class="int-btn" onclick="selectIntensity(this,'bajo','active-low')">Leve</button>
+    <button class="int-btn" onclick="selectIntensity(this,'medio','active-med')">Moderado</button>
+    <button class="int-btn" onclick="selectIntensity(this,'alto','active-high')">Fuerte</button>
+    <button class="int-btn" onclick="selectIntensity(this,'critico','active-high')" style="border-color:rgba(176,64,64,.5);color:#e08080">Crítico</button>
+  </div>
+</div>
+
+<!-- PASO 4 -->
+<div class="card">
+  <div class="card-title"><span class="num">4</span>Estimación de Campo Bovis</div>
+  <p style="font-size:.8rem;color:var(--gris);margin-bottom:.8rem;">Ajusta el indicador según tu percepción o lectura con péndulo:</p>
+  <input type="range" id="bovis-range" min="0" max="100" value="40" style="width:100%;accent-color:var(--oro);cursor:pointer;" oninput="updateBovis(this.value)">
+  <div class="bovis-bar"><div class="bovis-pointer" id="bovis-ptr" style="left:40%"></div></div>
+  <div class="bovis-labels"><span>0 — Ataque severo</span><span>6.000 UB</span><span>10.000+</span><span>Alta conciencia</span></div>
+  <div id="bovis-text" style="text-align:center;margin-top:.5rem;font-size:.82rem;color:var(--violeta-c)">~4.000 UB — Campo bajo: vulnerable a interferencias</div>
+</div>
+
+<button id="diag-btn" onclick="generarDiagnostico()">Generar Diagnóstico y Protocolo</button>
+
+<div id="resultado">
+  <div class="card" style="border-color:var(--border-h);">
+    <div class="card-title"><span class="num">◈</span>Evaluación del Campo</div>
+    <div id="nivel-badge-container"></div>
+    <div id="evaluacion-texto" style="font-size:.84rem;line-height:1.8;color:var(--gris-c);"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">◆</span>Protocolo de Extracción y Protección</div>
+    <div id="protocolo-contenido"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">◇</span>Decretos, Mantras y Llaves de Luz</div>
+    <div id="mantras-contenido"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">◈</span>Plan de Mantenimiento Post-Protocolo</div>
+    <div id="mantenimiento-contenido" style="font-size:.83rem;line-height:1.8;color:var(--gris-c);"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">⏱</span>Temporizador de Meditación / Ritual</div>
+    <div class="timer-section">
+      <div id="timer-display">21:00</div>
+      <div class="timer-btns">
+        <button class="t-btn" onclick="setTimer(7)">7 min</button>
+        <button class="t-btn" onclick="setTimer(14)">14 min</button>
+        <button class="t-btn" onclick="setTimer(21)">21 min</button>
+        <button class="t-btn" onclick="setTimer(33)">33 min</button>
+        <button class="t-btn" id="start-btn" onclick="toggleTimer()" style="border-color:var(--violeta-c);color:var(--violeta-c)">▶ Iniciar</button>
+        <button class="t-btn" onclick="resetTimer()" style="border-color:rgba(176,64,64,.5);color:#e08080">↺ Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="num">✎</span>Notas del Registro Akásico</div>
+    <textarea id="notas" placeholder="Registra percepciones, sensaciones, visiones o mensajes recibidos durante el protocolo..."></textarea>
+    <br>
+    <button id="export-btn" onclick="exportar()">↓ Descargar Registro Completo</button>
+  </div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Ayaplianos · Rayo Crístico · Llama Violeta</p>
+  <p style="margin-top:.3rem">Herramienta de trabajo interior — Úsese con discernimiento</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+
+const symptoms = [
+  "Fatiga súbita inexplicable","Pensamientos intrusivos negativos","Pesadillas recurrentes",
+  "Sensación de ser observado","Dolor de cabeza / presión craneal","Zumbidos o voces al dormir",
+  "Palpitaciones sin causa física","Pérdida de voluntad y motivación","Irritabilidad extrema",
+  "Confusión mental / niebla","Bloqueo emocional repentino","Sensación de peso en chakras",
+  "Náuseas o mareo energético","Cambios de temperatura corporal","Bloqueo en proyectos o metas",
+  "Accidentes o incidentes en serie","Distanciamiento espiritual","Desconexión de la intuición",
+  "Sueño excesivo o insomnio","Sensación de presencia hostil","Parálisis del sueño con presencia",
+  "Pérdida de tiempo inexplicable ('missing time')","Marcas corporales sin causa","Sensibilidad electromagnética súbita"
+];
+
+const sg=document.getElementById('symptoms-grid');
+symptoms.forEach((s,i)=>{
+  const d=document.createElement('div'); d.className='symptom-check';
+  d.innerHTML=`<input type="checkbox" id="s${i}"><div class="sym-box" id="sb${i}"></div><label class="sym-label" for="s${i}">${s}</label>`;
+  d.onclick=()=>{ d.classList.toggle('checked'); document.getElementById(`sb${i}`).textContent=d.classList.contains('checked')?'✓':''; };
+  sg.appendChild(d);
+});
+
+let selectedEntity=null, selectedIntensity=null, bovisVal=40;
+
+const protocolos = {
+  arcontes: {
+    nombre:"Arcontes / Qliphoth", nivel:"≈ D-6/D-7", nivelColor:"#d06060",
+    desc:"Entidades 4D parásitas. Drenan vitalidad, inducen pensamientos negativos compulsivos y distorsionan la percepción de realidad.",
+    protocolo:[
+      {title:"FASE 1 · Escudo de Luz Crístico", content:`<ul><li>Visualiza un pilar de Luz Blanca Dorada descendiendo desde el Logos Solar a través de tu coronario hasta el núcleo terrestre.</li><li>Expande esa luz hasta formar una esfera de 3 metros a tu alrededor.</li><li>Declara: <em style="color:var(--violeta-c)">"Activo mi escudo crístico en todas las dimensiones. Ninguna entidad de baja frecuencia puede acceder a mi campo."</em></li></ul>`},
+      {title:"FASE 2 · Identificación y Corte de Cordones", content:`<ul><li>Pide al Arcángel Miguel que ilumine con luz azul zafiro cualquier cordón arcóntico.</li><li>Visualiza su espada cortando cada cordón desde la raíz, disolviéndose en Llama Violeta.</li><li>Repite 3 veces: <em style="color:var(--violeta-c)">"Yo SOY la Presencia YO SOY. Corto, sello y transmuto todo vínculo arcóntico ahora y para siempre."</em></li></ul>`},
+      {title:"FASE 3 · Purificación con Llama Violeta", content:`<ul><li>Llama Violeta envolviendo cada chakra durante 3 minutos.</li><li>Decreto: <em style="color:var(--violeta-c)">"Llama Violeta, limpia, purifica y libera mi campo de toda influencia arcóntica."</em></li><li>Sella cada chakra con una estrella dorada de seis puntas.</li></ul>`},
+      {title:"FASE 4 · Ancla de Frecuencia Ayapliana", content:`<ul><li>Conecta con los Ayaplianos de Luz pidiendo reconfigurar tus nimeos.</li><li>Visualiza esferas de luz áurea reconectando tu ADN con el Rayo Crístico.</li><li>Permanece en silencio receptivo 7 minutos.</li></ul>`}
+    ],
+    mantras:[`"YO SOY la Luz del Cristo Cósmico.\nYO SOY la Llama de la Libertad que Transmuta.\nYO SOY el Ser de Luz que ninguna sombra puede tocar."`,`"Arcángel Miguel, rodéame con tu manto azul zafiro.\nLos arcontes y parásitos se alejan de mi campo ahora.\nGracias. Gracias. Gracias."`]
+  },
+  reptiliano: {
+    nombre:"Reptiliano Estelar", nivel:"≈ D-7", nivelColor:"#c04040",
+    desc:"Razas de Orión, Draco o Sirio B (facción oscura). Implantan programas de miedo, control y sometimiento en el cuerpo causal.",
+    protocolo:[
+      {title:"FASE 1 · Blindaje Frecuencial", content:`<ul><li>Aura rodeada por 7 capas: blanca, dorada, azul, verde, violeta, rosa y platino.</li><li>Decreto: <em style="color:var(--violeta-c)">"Mi campo vibra en la frecuencia del Amor Crístico. Ningún programa reptiliano puede resonar aquí."</em></li></ul>`},
+      {title:"FASE 2 · Extracción de Implantes", content:`<ul><li>Pide a Rafael y Miguel asistencia en la localización de implantes etéricos.</li><li>Pinza de luz dorada extrayendo el dispositivo y disolviéndolo en luz.</li><li>Sella el punto repitiendo 3 veces: <em style="color:var(--violeta-c)">"Este implante es extraído, disuelto y transmutado en luz."</em></li></ul>`},
+      {title:"FASE 3 · Reconexión con la Llama Trina", content:`<ul><li>Llama Trina en el corazón: Azul, Dorada, Rosa, expandida por todo el cuerpo.</li></ul>`},
+      {title:"FASE 4 · Invocación a la Jerarquía de Luz", content:`<ul><li>Concilio de los 24 Ancianos, Metatrón y Guardianes Pleyadianos.</li><li>Solicita reprogramación de registros akásicos. Llama Violeta 21 minutos.</li></ul>`}
+    ],
+    mantras:[`"Cancelo y disuelvo todo contrato, acuerdo o vínculo\ncon razas de conciencia invertida en todos mis planos,\ntiempos y dimensiones. ¡ASÍ ES!"`,`"Mi ADN responde únicamente al Rayo Crístico.\nLas frecuencias de control se disuelven en la Nada."`]
+  },
+  sombra: {
+    nombre:"Entidad Sombra / Vampiro", nivel:"≈ D-5/D-6", nivelColor:"#b080c0",
+    desc:"Seres astrales sin cuerpo físico que vampirizan prana y bloquean chakras inferiores. Activos durante el sueño.",
+    protocolo:[
+      {title:"FASE 1 · Cierre de Portales Nocturnos", content:`<ul><li>Pentagrama de protección en cada esquina de la habitación antes de dormir.</li><li>Turmalina negra bajo la cama.</li><li>"Sello y protejo este espacio en la luz del Cristo Cósmico."</li></ul>`},
+      {title:"FASE 2 · Recuperación del Prana", content:`<ul><li>Nadi Shodhana 14 ciclos.</li><li>Prana dorado desde la coronilla a cada célula.</li></ul>`},
+      {title:"FASE 3 · Llamada a los Guardianes del Umbral", content:`<ul><li>Invoca a tu Yo Superior y Guías para custodiar tu campo durante el sueño.</li></ul>`},
+      {title:"FASE 4 · Purificación Post-Ataque", content:`<ul><li>Sacude las manos 7 veces al despertar.</li><li>Ducha visualizando que el agua arrastra energía ajena.</li></ul>`}
+    ],
+    mantras:[`"Yo invoco la Llama Plateada de Protección\ny el Manto Azul del Arcángel Miguel."`,`Ho'oponopono: "Lo siento. Perdóname. Gracias. Te Amo."`]
+  },
+  hechizo: {
+    nombre:"Hechizo / Magia Negra", nivel:"≈ D-4 (egregor dirigido)", nivelColor:"#c09040",
+    desc:"Programas energéticos enviados por operadores humanos conectados a jerarquías oscuras o a la Logia Negra.",
+    protocolo:[
+      {title:"FASE 1 · Diagnóstico y Reversal", content:`<ul><li>Ley de Retorno: <em style="color:var(--violeta-c)">"Toda energía enviada con intención de daño regresa transmutada, envuelta en Amor y Llama Violeta."</em> No visualices daño al emisor.</li></ul>`},
+      {title:"FASE 2 · Corte de Vínculos Mágicos", content:`<ul><li>Vela blanca. Corta el cordón con la espada de Miguel. Sumérgelo en Llama Violeta.</li></ul>`},
+      {title:"FASE 3 · Escudo de Espejo", content:`<ul><li>Esfera de espejos hacia afuera, reflejando intenciones negativas sin causarte daño. Refuerzo diario 21 días.</li></ul>`},
+      {title:"FASE 4 · Limpieza con Elementos", content:`<ul><li>Baño de sal marina (21 min). Sahumerio de copal/mirra. Cuarzo en los puntos cardinales del hogar.</li></ul>`}
+    ],
+    mantras:[`"Invoco la Ley Universal de No Interferencia.\nTodo programa ajeno a mi ADN de Luz\nes detectado, extraído y transmutado."`]
+  },
+  ancestral: {
+    nombre:"Karma / Linaje Ancestral", nivel:"≈ D-4/D-7 (según profundidad)", nivelColor:"#c09040",
+    desc:"Patrones distorsionados del ADN ancestral o karma colectivo que atraen entidades de baja frecuencia.",
+    protocolo:[
+      {title:"FASE 1 · Reconocimiento del Patrón", content:`<ul><li>Identifica el patrón repetitivo en tu vida y linaje. "Veo el patrón. Lo honro. Elijo transmutarlo."</li></ul>`},
+      {title:"FASE 2 · Constelación Familiar de Luz", content:`<ul><li>Visualiza ancestros en línea detrás de ti. Envíales luz dorada. Ho'oponopono por cada uno en sufrimiento.</li></ul>`},
+      {title:"FASE 3 · Transmutación del ADN", content:`<ul><li>Doble hélice bañada en Llama Violeta y Luz Dorada Crística.</li></ul>`},
+      {title:"FASE 4 · Anclaje del Nuevo Patrón", content:`<ul><li>Afirmaciones en estado theta, 21 noches consecutivas.</li></ul>`}
+    ],
+    mantras:[`"Libero a mis ancestros con Amor.\nMe libero de patrones que no me pertenecen.\nSoy el primer eslabón de un linaje de Luz."`]
+  },
+  implante: {
+    nombre:"Implante Etérico", nivel:"≈ D-6/D-7", nivelColor:"#d06060",
+    desc:"Dispositivos interdimensionales de control mental/emocional, ubicados en chakras coronario, tercer ojo o plexo.",
+    protocolo:[
+      {title:"FASE 1 · Localización del Implante", content:`<ul><li>Péndulo o intuición sobre tercer ojo, nuca, cardíaco, plexo solar.</li></ul>`},
+      {title:"FASE 2 · Extracción Quirúrgica Etérica", content:`<ul><li>Invoca a Rafael y Miguel. Extracción suave, disolución en Llama Violeta.</li></ul>`},
+      {title:"FASE 3 · Reparación y Sellado", content:`<ul><li>Luz esmeralda 7 minutos. Sello con disco dorado.</li></ul>`},
+      {title:"FASE 4 · Escudo Anti-Reimplante", content:`<ul><li>Turmalina negra programada. Decreto diario 40 días.</li></ul>`}
+    ],
+    mantras:[`"Arcángel Rafael, cirujano de Luz,\nextrae todo implante de mi campo etérico."`]
+  },
+  ayapliano: {
+    nombre:"Ayapliano Negativo Directo", nivel:"≈ D-8/9", nivelColor:"#904040",
+    desc:"Consciencia cósmica de antimateria operando directamente sobre la rejilla planetaria y los registros colectivos. Es la versión estelar pura del Arconte Superior/Señor de la Sombra.",
+    protocolo:[
+      {title:"FASE 1 · No abordar en solitario", content:`<ul><li>Si reconoces este patrón, no es un trabajo individual. Invoca al Consejo de los Doce y al Logos Solar antes de cualquier intervención.</li></ul>`},
+      {title:"FASE 2 · Contención, no eliminación", content:`<ul><li>Decreto de contención bajo autoridad del Padre-Madre Creador. El objetivo es limitar su acción sobre tu campo, no "vencerlo".</li></ul>`},
+      {title:"FASE 3 · Elevación sostenida del Bovis personal", content:`<ul><li>La única defensa real y duradera frente a este nivel es la elevación constante de tu propia vibración — no hay decreto puntual que sustituya el trabajo diario.</li></ul>`},
+      {title:"FASE 4 · Trabajo de rejilla planetaria", content:`<ul><li>Participa o sostén meditaciones grupales de elevación de la rejilla etérica colectiva como estrategia de fondo.</li></ul>`}
+    ],
+    mantras:[`"Mi campo de consciencia es soberano.\nNinguna fuerza, por antigua o vasta que sea,\npuede gobernar lo que elijo en libertad."`]
+  },
+  grey: {
+    nombre:"Grey / Zeta Reticuli", nivel:"≈ D-6", nivelColor:"#d06060",
+    desc:"Raza de inteligencia fría y altamente técnica. Interfiere principalmente en el cuerpo mental y en ciclos de sueño, con fines de recolección de información genética y energética más que de control emocional directo.",
+    protocolo:[
+      {title:"FASE 1 · Reconocimiento sin miedo", content:`<ul><li>El miedo es la frecuencia que más facilita el contacto. Practica neutralidad activa: observar sin reactividad emocional.</li></ul>`},
+      {title:"FASE 2 · Sellado del cuerpo mental", content:`<ul><li>Visualiza el cuerpo mental envuelto en una malla de luz azul zafiro que filtra cualquier escaneo o intrusión.</li></ul>`},
+      {title:"FASE 3 · Protección del ciclo de sueño", content:`<ul><li>Decreto antes de dormir: <em style="color:var(--violeta-c)">"Mi cuerpo y mi tiempo de sueño son soberanos. Ninguna raza puede intervenir sin mi consentimiento consciente."</em></li></ul>`},
+      {title:"FASE 4 · Recuperación de memoria", content:`<ul><li>Si sospechas "missing time", trabaja con regresión suave o escritura automática para recuperar fragmentos, sin forzar.</li></ul>`}
+    ],
+    mantras:[`"Mi tiempo, mi cuerpo y mi ADN son soberanos.\nTodo contacto requiere mi consentimiento consciente."`]
+  }
+};
+
+const entityGrid=document.getElementById('entity-grid');
+Object.keys(protocolos).forEach(key=>{
+  const p=protocolos[key];
+  const btn=document.createElement('button');
+  btn.className='entity-btn'; btn.dataset.entity=key;
+  btn.onclick=()=>selectEntity(btn);
+  btn.innerHTML=`<div class="e-name">${p.nombre}</div><span class="e-nivel" style="color:${p.nivelColor}">${p.nivel}</span><div class="e-desc">${p.desc}</div>`;
+  entityGrid.appendChild(btn);
+});
+
+function selectEntity(btn){
+  document.querySelectorAll('.entity-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedEntity=btn.dataset.entity;
+}
+function selectIntensity(btn,level,cls){
+  document.querySelectorAll('.int-btn').forEach(b=>b.className='int-btn');
+  btn.classList.add(cls);
+  selectedIntensity=level;
+}
+function updateBovis(v){
+  bovisVal=parseInt(v);
+  document.getElementById('bovis-ptr').style.left=v+'%';
+  const ub=Math.round(v/100*12000);
+  let desc='';
+  if(ub<2000) desc='Campo crítico: interferencia masiva';
+  else if(ub<4000) desc='Campo bajo: alta vulnerabilidad';
+  else if(ub<6500) desc='Campo medio: interferencias activas';
+  else if(ub<9000) desc='Campo estable: protección parcial';
+  else desc='Campo elevado: alta resonancia crística';
+  document.getElementById('bovis-text').textContent=`~${ub.toLocaleString()} UB — ${desc}`;
+}
+
+function generarDiagnostico(){
+  const checked=document.querySelectorAll('.symptom-check.checked').length;
+  if(!selectedEntity){ alert('Por favor selecciona el tipo de entidad'); return; }
+  if(!selectedIntensity){ alert('Por favor selecciona la intensidad'); return; }
+  const ub=Math.round(bovisVal/100*12000);
+  let nivel='', badgeCls='', evalTxt='';
+  const p=protocolos[selectedEntity];
+
+  if(selectedIntensity==='critico' || (checked>12 && ub<3000)){
+    nivel='CRÍTICO'; badgeCls='nivel-critico';
+    evalTxt=`Campo áurico severamente comprometido. ${checked} síntomas activos, Bovis ~${ub.toLocaleString()} UB. El ataque de tipo <strong style="color:var(--violeta-c)">${p.nombre}</strong> (${p.nivel}) ha penetrado múltiples capas del cuerpo sutil. Se requiere protocolo completo de emergencia con apoyo de la Jerarquía de Luz. Considera trabajar con un facilitador de sanación energética avanzada.`;
+  } else if(selectedIntensity==='alto' || checked>8){
+    nivel='ALTO'; badgeCls='nivel-alto';
+    evalTxt=`Interferencia significativa. ${checked} síntomas, Bovis ~${ub.toLocaleString()} UB. El ataque tipo <strong style="color:var(--violeta-c)">${p.nombre}</strong> (${p.nivel}) está activo en etérico y astral. Protocolo de 7-21 días para resultados permanentes.`;
+  } else if(selectedIntensity==='medio' || checked>4){
+    nivel='MODERADO'; badgeCls='nivel-medio';
+    evalTxt=`Interferencia moderada. ${checked} síntomas, Bovis ~${ub.toLocaleString()} UB. <strong style="color:var(--violeta-c)">${p.nombre}</strong> (${p.nivel}) opera en astral/emocional. Protocolo de 7 días con práctica diaria.`;
+  } else {
+    nivel='LEVE'; badgeCls='nivel-bajo';
+    evalTxt=`Interferencia inicial o residual. ${checked} síntomas, Bovis ~${ub.toLocaleString()} UB. <strong style="color:var(--violeta-c)">${p.nombre}</strong> (${p.nivel}) en fase temprana. Protocolo preventivo de 3 días.`;
+  }
+
+  document.getElementById('nivel-badge-container').innerHTML=`<span class="nivel-badge ${badgeCls}">NIVEL ${nivel}</span>`;
+  document.getElementById('evaluacion-texto').innerHTML=evalTxt;
+
+  let pHtml='';
+  p.protocolo.forEach(f=>{ pHtml+=`<div class="protocol-phase"><div class="phase-title">${f.title}</div><div class="phase-content">${f.content}</div></div>`; });
+  document.getElementById('protocolo-contenido').innerHTML=pHtml;
+
+  let mHtml='';
+  p.mantras.forEach(m=>{ mHtml+=`<div class="mantra-box">${m.replace(/\n/g,'<br>')}</div>`; });
+  document.getElementById('mantras-contenido').innerHTML=mHtml;
+
+  const mantDays=selectedIntensity==='critico'?40:selectedIntensity==='alto'?21:selectedIntensity==='medio'?7:3;
+  document.getElementById('mantenimiento-contenido').innerHTML=`
+    <div class="protocol-phase"><div class="phase-title">CICLO DE CONSOLIDACIÓN — ${mantDays} DÍAS</div>
+    <div class="phase-content"><ul>
+      <li><strong>Diariamente:</strong> Decreto matutino + Llama Violeta vespertina (7 min).</li>
+      <li><strong>Cada 3 días:</strong> Revisión con péndulo del campo áurico.</li>
+      <li><strong>Semanalmente:</strong> Baño de sales + sahumerio.</li>
+      <li><strong>Cristales:</strong> Turmalina negra, Labradorita, Cuarzo ahumado, Amatista.</li>
+      <li><strong>Bovis objetivo:</strong> Mantener sobre 6.500 UB; a 30 días, 8.000+ UB.</li>
+    </ul></div></div>`;
+
+  document.getElementById('resultado').style.display='block';
+  setTimeout(()=>document.getElementById('resultado').scrollIntoView({behavior:'smooth'}),100);
+}
+
+let timerSeconds=21*60, timerRunning=false, timerInterval=null;
+function setTimer(min){ timerSeconds=min*60; timerRunning=false; clearInterval(timerInterval); updateTimerDisplay(); document.getElementById('start-btn').textContent='▶ Iniciar'; }
+function toggleTimer(){
+  if(timerRunning){ clearInterval(timerInterval); timerRunning=false; document.getElementById('start-btn').textContent='▶ Iniciar'; }
+  else { timerRunning=true; document.getElementById('start-btn').textContent='⏸ Pausar';
+    timerInterval=setInterval(()=>{ if(timerSeconds>0){ timerSeconds--; updateTimerDisplay(); } else { clearInterval(timerInterval); timerRunning=false; document.getElementById('timer-display').textContent='OM'; document.getElementById('start-btn').textContent='▶ Iniciar'; } },1000);
+  }
+}
+function resetTimer(){ clearInterval(timerInterval); timerRunning=false; timerSeconds=21*60; updateTimerDisplay(); document.getElementById('start-btn').textContent='▶ Iniciar'; }
+function updateTimerDisplay(){ const m=Math.floor(timerSeconds/60), s=timerSeconds%60; document.getElementById('timer-display').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }
+
+function exportar(){
+  const lines=[
+    '═══════════════════════════════════════════',
+    '  REGISTRO: PROTOCOLO DE PROTECCIÓN ESTELAR',
+    '═══════════════════════════════════════════',
+    `Fecha: ${new Date().toLocaleString('es-ES')}`,
+    `Entidad detectada: ${selectedEntity ? protocolos[selectedEntity].nombre+' ('+protocolos[selectedEntity].nivel+')' : 'No especificada'}`,
+    `Intensidad: ${selectedIntensity || 'No especificada'}`,
+    `Campo Bovis estimado: ~${Math.round(bovisVal/100*12000).toLocaleString()} UB`,
+    '', 'SÍNTOMAS MARCADOS:',
+    ...Array.from(document.querySelectorAll('.symptom-check.checked')).map(el=>`  • ${el.querySelector('.sym-label').textContent}`),
+    '', 'NOTAS DEL REGISTRO:', document.getElementById('notas').value || '(sin notas)',
+    '', '─────────────────────────────────────────', 'El Ser Uno · Ayaplianos · Rayo Crístico', '─────────────────────────────────────────'
+  ];
+  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`protocolo_estelar_${new Date().toISOString().slice(0,10)}.txt`; a.click();
+}
+</script>
+</body>
+</html>
