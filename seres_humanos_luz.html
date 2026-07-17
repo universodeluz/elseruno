@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seres Humanos de Luz | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void: #060812;
+    --bg-deep: #0b0f1e;
+    --bg-panel: #10142a;
+    --gold: #d4af6a;
+    --gold-soft: #e8c98a;
+    --gold-dim: #8a713f;
+    --blue-glow: #4a6fb5;
+    --blue-soft: #8fb3e8;
+    --blue-deep: #1a2447;
+    --text-main: #e8e6df;
+    --text-dim: #9aa0b4;
+    --divider: rgba(212,175,106,0.25);
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(74,111,181,0.12), transparent 55%),
+      radial-gradient(ellipse at 85% 60%, rgba(212,175,106,0.08), transparent 50%),
+      linear-gradient(180deg, var(--bg-void) 0%, var(--bg-deep) 100%);
+    color: var(--text-main);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Estrellas de fondo */
+  .stars{
+    position: fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1.5px 1.5px at 50% 30%, rgba(232,201,138,0.5), transparent),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 85% 15%, rgba(143,179,232,0.5), transparent),
+      radial-gradient(1.5px 1.5px at 92% 55%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 45% 45%, rgba(255,255,255,0.3), transparent);
+    background-size: 100% 100%;
+    opacity:0.8;
+  }
+
+  a{ color: var(--gold-soft); }
+
+  .container{
+    position:relative;
+    z-index:1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 70px 28px 120px;
+  }
+
+  nav.back-link{
+    display:block;
+    margin-bottom: 46px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration:none;
+  }
+  nav.back-link a{ color: var(--text-dim); text-decoration:none; border-bottom: 1px solid transparent; transition: all .3s ease; }
+  nav.back-link a:hover{ color: var(--gold-soft); border-bottom-color: var(--gold-dim); }
+
+  header.hero{
+    text-align:center;
+    margin-bottom: 70px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--divider);
+    position: relative;
+  }
+
+  .eyebrow{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--blue-soft);
+    margin-bottom: 18px;
+  }
+
+  h1{
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--blue-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 20px;
+    line-height: 1.25;
+    text-shadow: 0 0 40px rgba(212,175,106,0.15);
+  }
+
+  .subtitle{
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-dim);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .glyph-divider{
+    text-align:center;
+    color: var(--gold-dim);
+    font-size: 1.4rem;
+    letter-spacing: 1.2em;
+    margin: 56px 0;
+    padding-left: 1.2em;
+  }
+
+  section{ margin-bottom: 64px; }
+
+  h2{
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+    display:flex;
+    align-items:center;
+    gap: 16px;
+  }
+  h2::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+  }
+
+  h3{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--blue-soft);
+    margin: 0 0 8px;
+  }
+
+  p{ color: var(--text-main); margin: 0 0 18px; }
+  p.lead{ font-size: 1.15rem; color: var(--text-main); }
+
+  .panel{
+    background: linear-gradient(160deg, rgba(16,20,42,0.75), rgba(10,13,28,0.6));
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 30px 34px;
+    position: relative;
+  }
+  .panel::before{
+    content:'';
+    position:absolute;
+    top:0; left:0;
+    width: 40px; height: 40px;
+    border-top: 1px solid var(--gold-dim);
+    border-left: 1px solid var(--gold-dim);
+  }
+  .panel::after{
+    content:'';
+    position:absolute;
+    bottom:0; right:0;
+    width: 40px; height: 40px;
+    border-bottom: 1px solid var(--gold-dim);
+    border-right: 1px solid var(--gold-dim);
+  }
+
+  .grid-cards{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 8px;
+  }
+  @media (max-width: 640px){ .grid-cards{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: rgba(16,20,42,0.55);
+    border: 1px solid var(--divider);
+    border-radius: 3px;
+    padding: 22px 24px;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .card:hover{ border-color: var(--gold-dim); transform: translateY(-2px); }
+  .card .num{
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+  .card p{ margin-bottom:0; color: var(--text-dim); font-size: 1.02rem; }
+
+  ul.signos{ list-style: none; padding:0; margin: 0; }
+  ul.signos li{
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid rgba(212,175,106,0.12);
+    position: relative;
+  }
+  ul.signos li:last-child{ border-bottom: none; }
+  ul.signos li::before{
+    content:'✦';
+    position:absolute;
+    left:0; top:14px;
+    color: var(--gold-dim);
+    font-size: 0.9rem;
+  }
+  ul.signos li strong{ color: var(--gold-soft); font-weight:600; }
+
+  .origen-tabla{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    border: 1px solid var(--divider);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .origen-tabla > div{ padding: 16px 20px; border-bottom: 1px solid rgba(212,175,106,0.12); }
+  .origen-tabla > div:nth-child(4n+1), .origen-tabla > div:nth-child(4n+2){ background: rgba(16,20,42,0.4); }
+  .origen-tabla .cabecera{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-soft);
+    border-bottom: 1px solid var(--divider);
+    background: rgba(26,36,71,0.4) !important;
+  }
+  .origen-tabla .linaje{ color: var(--gold-soft); font-style: italic; font-weight:600; }
+
+  blockquote{
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--gold-soft);
+    text-align:center;
+    max-width: 600px;
+    margin: 48px auto;
+    line-height: 1.6;
+    position: relative;
+    padding: 0 20px;
+  }
+  blockquote::before, blockquote::after{
+    content:'—';
+    color: var(--gold-dim);
+    display:block;
+    text-align:center;
+    margin: 10px 0;
+  }
+
+  footer{
+    text-align:center;
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid var(--divider);
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+  footer .marca{ color: var(--gold-dim); font-family:'Cinzel Decorative', serif; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<div class="container">
+
+  <nav class="back-link"><a href="index.html">&larr; Volver al índice de El Ser Uno</a></nav>
+
+  <header class="hero">
+    <div class="eyebrow">Jerarquías y Seres · Cuerpo Sutil y Misión</div>
+    <h1>Seres Humanos de Luz</h1>
+    <p class="subtitle">Almas de alta frecuencia encarnadas en cuerpo terrestre, portadoras de códigos, memoria multidimensional y misión de servicio.</p>
+  </header>
+
+  <section>
+    <div class="panel">
+      <p class="lead">Un Ser Humano de Luz es un alma que, habitando plenamente un cuerpo físico de tercera densidad, conserva activa —parcial o totalmente— la memoria de su origen no terrestre y la frecuencia vibratoria propia de ese origen. No se trata de una condición externa ni de un estatus concedido, sino de un estado de conciencia que se activa, se recuerda y se sostiene mediante el trabajo interior.</p>
+      <p>Dentro de la cosmología de El Ser Uno, estos seres constituyen el puente vivo entre el Logos Planetario y la humanidad en despertar: encarnan para anclar frecuencia, sostener campo y acompañar el tránsito colectivo hacia estados de mayor coherencia.</p>
+    </div>
+  </section>
+
+  <div class="glyph-divider">✦ ✦ ✦</div>
+
+  <section>
+    <h2>Naturaleza esencial</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="num">I</div>
+        <h3>Doble pertenencia</h3>
+        <p>Viven simultáneamente en la densidad terrestre y en la memoria de su plano de origen, sosteniendo una tensión constante entre ambos mundos.</p>
+      </div>
+      <div class="card">
+        <div class="num">II</div>
+        <h3>Cuerpo como instrumento</h3>
+        <p>El cuerpo físico no es una limitación sino un instrumento de transmisión: un receptor y emisor de frecuencia hacia el campo colectivo.</p>
+      </div>
+      <div class="card">
+        <div class="num">III</div>
+        <h3>Códigos latentes</h3>
+        <p>Portan información codificada a nivel etérico y de ADN que se activa progresivamente conforme se eleva su nivel de conciencia.</p>
+      </div>
+      <div class="card">
+        <div class="num">IV</div>
+        <h3>Función de anclaje</h3>
+        <p>Estabilizan frecuencias superiores en el plano físico, actuando como puntos de sostén energético dentro de la red planetaria.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Orígenes y linajes</h2>
+    <div class="origen-tabla">
+      <div class="cabecera">Linaje</div><div class="cabecera">Cualidad que aporta</div>
+      <div class="linaje">Estelar Pleyadiano</div><div>Sanación emocional, ternura estructurante, trabajo con el corazón colectivo.</div>
+      <div class="linaje">Sirio</div><div>Orden, geometría sagrada, transmisión de leyes y códigos civilizatorios.</div>
+      <div class="linaje">Arcturiano</div><div>Tecnología de luz, sanación vibracional, precisión multidimensional.</div>
+      <div class="linaje">Angélico / Devico</div><div>Custodia, protección de campo, sostén de la Llama Crística en la materia.</div>
+      <div class="linaje">Elohímico</div><div>Memoria de la creación original, arquitectura de mundos, autoridad serena.</div>
+      <div class="linaje">Terrestre ascendido</div><div>Sabiduría encarnada acumulada en múltiples ciclos, raíz profunda con Gaia.</div>
+    </div>
+  </section>
+
+  <div class="glyph-divider">✦ ✦ ✦</div>
+
+  <section>
+    <h2>Señales de reconocimiento</h2>
+    <div class="panel">
+      <ul class="signos">
+        <li><strong>Hipersensibilidad energética</strong> — percepción intensificada de ambientes, personas y campos sutiles, a menudo vivida como sobrecarga antes de ser comprendida como don.</li>
+        <li><strong>Sensación de extrañeza vital</strong> — la impresión persistente de "no encajar" del todo en las dinámicas terrestres, incluso desde la infancia.</li>
+        <li><strong>Memoria fragmentada</strong> — destellos de recuerdos no lineales: paisajes, sonidos o estados que no corresponden a esta biografía.</li>
+        <li><strong>Atracción por el servicio</strong> — un impulso constante, no siempre consciente, hacia el acompañamiento, la sanación o la enseñanza.</li>
+        <li><strong>Ciclos de oscuridad iniciática</strong> — noches oscuras del alma que preceden y provocan activaciones de conciencia.</li>
+        <li><strong>Resonancia con lo simbólico</strong> — afinidad natural con símbolos, geometría sagrada, sonido y arquetipos, como lenguaje reconocido más que aprendido.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>El proceso de activación</h2>
+    <p>La activación no ocurre en un instante sino en capas sucesivas. Suele iniciarse con una crisis —de salud, de sentido o de identidad— que quiebra la estructura de vida anterior y abre espacio para una frecuencia más alta. A esta ruptura le sigue un período de reconfiguración del cuerpo energético, donde los códigos latentes comienzan a expresarse como intuición, sensibilidad aumentada o percepción extrasensorial.</p>
+    <p>La fase final es la de integración: el ser humano de luz aprende a sostener su frecuencia sin desconectarse de la vida cotidiana, transformando la misión en presencia estable más que en excepcionalidad.</p>
+  </section>
+
+  <blockquote>La luz que se recuerda a sí misma no busca destacar; busca sostener.</blockquote>
+
+  <section>
+    <h2>Desafíos de la encarnación</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Densidad del entorno</h3>
+        <p>Adaptarse a estructuras sociales, ritmos y densidades que contrastan con la frecuencia de origen.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Aislamiento inicial</h3>
+        <p>Dificultad para encontrar espejos o comunidad antes del despertar consciente.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Sobrecarga energética</h3>
+        <p>Absorción involuntaria de cargas ajenas por falta de discernimiento y límites claros.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Exposición a interferencia</h3>
+        <p>Mayor visibilidad ante ataques energéticos por la frecuencia que sostienen y transmiten.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="glyph-divider">✦ ✦ ✦</div>
+
+  <section>
+    <h2>Misión y función colectiva</h2>
+    <div class="panel">
+      <p>Más allá de la experiencia individual, los seres humanos de luz cumplen una función dentro del tejido planetario: sirven como nodos de transmisión que ayudan a integrar frecuencias superiores en la vida cotidiana, sin necesidad de roles públicos o reconocimiento. Su presencia —serena, coherente, sostenida— actúa por resonancia, ofreciendo al campo colectivo un punto de referencia vibracional que otros pueden usar, consciente o inconscientemente, para reorientar su propio proceso.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="marca">EL SER UNO</div>
+    <p style="margin-top:8px; color:var(--text-dim); font-size:0.85rem;">Biblioteca esotérica · Seres Humanos de Luz</p>
+  </footer>
+
+</div>
+</body>
+</html>
