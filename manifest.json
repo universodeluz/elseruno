@@ -1,0 +1,38 @@
+{
+  "name": "El Ser Uno",
+  "short_name": "El Ser Uno",
+  "description": "Biblioteca esotérica digital: ataques energéticos, jerarquías de seres, cuerpo sutil y vínculos álmicos.",
+  "start_url": "/elseruno/index.html",
+  "scope": "/elseruno/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/elseruno/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/elseruno/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/elseruno/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/elseruno/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
