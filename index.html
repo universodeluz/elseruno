@@ -267,6 +267,10 @@
         <h3>Ataques Esporádicos al Campo Cardíaco</h3>
         <p>Cuando la punzada llega sin aviso, en distintos lugares y situaciones, sin un hilo emocional único que la explique.</p>
       </a>
+      <a class="tarjeta" href="ataques_esencia_ser.html">
+        <h3>Ataques a la Esencia Misma del Ser</h3>
+        <p>La agresión más profunda: nueve tipologías que comprometen el núcleo divino, no solo las capas periféricas del campo.</p>
+      </a>
 
       <!-- Para agregar un nuevo archivo en esta categoría, copiar y modificar el bloque de abajo: -->
       <!--
@@ -349,6 +353,10 @@
       <a class="tarjeta" href="rayo_cristico.html">
         <h3>Rayo Crístico</h3>
         <p>La frecuencia madre que sostiene la jerarquía de luz: naturaleza, relación jerárquica y protocolo defensivo transversal.</p>
+      </a>
+      <a class="tarjeta" href="ataques_capas_2_5_aura.html">
+        <h3>Ataques a la Capa 2 y Capa 5 del Aura</h3>
+        <p>El cuerpo emocional y la plantilla etérica ante la interferencia energética: anclajes emocionales, succión afectiva, distorsión de la plantilla y bloqueo del propósito.</p>
       </a>
 
       <!--
@@ -450,6 +458,27 @@
   </section>
 
   <!-- ============================================= -->
+  <!-- CATEGORÍA: ASCENSIÓN Y EVOLUCIÓN PLANETARIA -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Ascensión y Evolución Planetaria</h2>
+    <p class="descripcion-cat">El tránsito colectivo de Gaia y la humanidad hacia una conciencia de luz</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="ascension_gaia_humanidad.html">
+        <h3>La Ascensión de Gaia y la Humanidad</h3>
+        <p>Proceso ascensional completo: cuerpos sutiles, niveles evolutivos, jerarquía de luz y meta final.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
   <!-- Para crear una NUEVA CATEGORÍA completa, copiar el bloque <section> de arriba,
        cambiar el título en <h2 class="titulo-cat">, la descripción,
        y agregar las tarjetas correspondientes dentro de <div class="grid-tarjetas"> -->
@@ -461,14 +490,38 @@
 </footer>
 
 <script>
+// Índice de búsqueda de texto completo (contenido de cada documento).
+// Se carga una sola vez desde indice-busqueda.json, generado con
+// generar_indice_busqueda.py. Si el archivo no existe o falla la carga,
+// el buscador sigue funcionando solo con el texto de las tarjetas.
+let indiceBusqueda = {};
+let indiceCargado = false;
+
+fetch('indice-busqueda.json')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(datos => {
+    datos.forEach(doc => { indiceBusqueda[doc.archivo] = doc.contenido; });
+    indiceCargado = true;
+  })
+  .catch(() => {
+    console.warn('indice-busqueda.json no disponible: la búsqueda solo usará el texto de las tarjetas.');
+  });
+
 function filtrarTarjetas(){
-  const filtro = document.getElementById('buscador').value.toLowerCase();
+  const filtro = document.getElementById('buscador').value.toLowerCase().trim();
   const tarjetas = document.querySelectorAll('a.tarjeta');
   const categorias = document.querySelectorAll('section.categoria');
 
   tarjetas.forEach(t => {
-    const texto = t.textContent.toLowerCase();
-    t.classList.toggle('oculto', filtro !== '' && !texto.includes(filtro));
+    const textoTarjeta = t.textContent.toLowerCase();
+    const archivo = (t.getAttribute('href') || '').split('/').pop();
+    const textoDocumento = indiceBusqueda[archivo] || '';
+
+    const coincide = filtro === ''
+      || textoTarjeta.includes(filtro)
+      || textoDocumento.includes(filtro);
+
+    t.classList.toggle('oculto', !coincide);
   });
 
   categorias.forEach(cat => {
