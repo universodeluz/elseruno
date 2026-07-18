@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques a la Capa 2 y Capa 5 del Aura | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05060f;
+    --bg-nebula:#0a0d1f;
+    --gold:#d4af37;
+    --gold-soft:#f3e2a9;
+    --blue-deep:#1b2a52;
+    --blue-glow:#5c8fd6;
+    --text-main:#e8e6f0;
+    --text-dim:#a9a8c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:radial-gradient(ellipse at top, var(--bg-nebula) 0%, var(--bg-deep) 60%, #000 100%);
+    color:var(--text-main);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.7;
+    min-height:100vh;
+    background-attachment:fixed;
+  }
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.4), transparent),
+      radial-gradient(2px 2px at 40% 80%, rgba(212,175,55,.5), transparent),
+      radial-gradient(1px 1px at 85% 20%, rgba(92,143,214,.6), transparent),
+      radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,.5), transparent);
+    background-size:400px 400px;
+    opacity:.8;
+  }
+  header{
+    position:relative; z-index:1;
+    text-align:center;
+    padding:70px 20px 40px;
+    border-bottom:1px solid rgba(212,175,55,.25);
+  }
+  header h1{
+    font-family:'Cinzel Decorative', cursive;
+    font-size:2.2em;
+    font-weight:700;
+    background:linear-gradient(180deg, var(--gold-soft), var(--gold) 60%, #8a6d1e);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 30px rgba(212,175,55,.25);
+    letter-spacing:1px;
+  }
+  header p.subtitulo{
+    margin-top:16px;
+    color:var(--blue-glow);
+    font-style:italic;
+    font-size:1.2em;
+    letter-spacing:.5px;
+  }
+  nav.volver{
+    display:block; text-align:center; margin-top:24px;
+  }
+  nav.volver a{
+    color:var(--text-dim);
+    text-decoration:none;
+    font-size:.95em;
+    border:1px solid rgba(168,167,192,.3);
+    padding:6px 18px;
+    border-radius:20px;
+    transition:.3s;
+  }
+  nav.volver a:hover{ color:var(--gold-soft); border-color:var(--gold); }
+
+  main{
+    position:relative; z-index:1;
+    max-width:900px;
+    margin:0 auto;
+    padding:50px 24px 100px;
+  }
+  section.capa{
+    margin-bottom:60px;
+    background:linear-gradient(160deg, rgba(27,42,82,.25), rgba(10,13,31,.4));
+    border:1px solid rgba(212,175,55,.18);
+    border-radius:18px;
+    padding:36px 32px;
+    box-shadow:0 0 40px rgba(0,0,0,.4), inset 0 0 60px rgba(92,143,214,.04);
+  }
+  section.capa h2{
+    font-family:'Cinzel Decorative', cursive;
+    font-size:1.5em;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+  }
+  section.capa .ficha{
+    color:var(--blue-glow);
+    font-size:1em;
+    font-style:italic;
+    margin-bottom:22px;
+    display:block;
+  }
+  h3.tipo{
+    font-family:'Cinzel Decorative', cursive;
+    font-size:1.05em;
+    color:var(--gold);
+    margin:28px 0 8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  h3.tipo::before{
+    content:"✦";
+    color:var(--blue-glow);
+    font-size:.8em;
+  }
+  p{ color:var(--text-main); margin-bottom:10px; }
+  ul.detalle{
+    list-style:none;
+    margin:10px 0 18px 4px;
+  }
+  ul.detalle li{
+    padding-left:20px;
+    position:relative;
+    color:var(--text-dim);
+    margin-bottom:6px;
+  }
+  ul.detalle li::before{
+    content:"—";
+    position:absolute; left:0; color:var(--gold);
+  }
+  .caja-sintomas{
+    margin-top:18px;
+    border-left:2px solid var(--blue-deep);
+    padding:14px 18px;
+    background:rgba(28,20,50,.3);
+    border-radius:0 10px 10px 0;
+  }
+  .caja-sintomas strong{ color:var(--gold-soft); }
+
+  .comparativa{
+    margin-top:70px;
+    text-align:center;
+  }
+  .comparativa h2{
+    font-family:'Cinzel Decorative', cursive;
+    color:var(--gold-soft);
+    font-size:1.4em;
+    margin-bottom:24px;
+  }
+  table.comp{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.98em;
+  }
+  table.comp th, table.comp td{
+    border:1px solid rgba(212,175,55,.2);
+    padding:12px 14px;
+    text-align:left;
+    color:var(--text-dim);
+  }
+  table.comp th{
+    color:var(--gold-soft);
+    font-family:'Cinzel Decorative', cursive;
+    font-weight:400;
+    font-size:.9em;
+  }
+  table.comp td strong{ color:var(--text-main); }
+
+  .nota-final{
+    margin-top:60px;
+    text-align:center;
+    color:var(--text-dim);
+    font-style:italic;
+    padding:0 20px;
+  }
+  footer{
+    text-align:center;
+    padding:40px 20px 60px;
+    color:#55536b;
+    font-size:.85em;
+    position:relative; z-index:1;
+  }
+  @media (max-width:600px){
+    header h1{ font-size:1.6em; }
+    section.capa{ padding:26px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <h1>Ataques a la Capa 2 y Capa 5 del Aura</h1>
+  <p class="subtitulo">El cuerpo emocional y la plantilla etérica ante la interferencia energética</p>
+  <nav class="volver"><a href="index.html">← Volver al índice</a></nav>
+</header>
+
+<main>
+
+  <section class="capa">
+    <h2>Capa 2 — Cuerpo Emocional</h2>
+    <span class="ficha">Frecuencia sensible · sede de los patrones afectivos no resueltos</span>
+    <p>La segunda capa áurica vibra en sintonía directa con las emociones. Es la capa más porosa del campo, ya que cualquier emoción no procesada —miedo, culpa, rabia, tristeza— deja una puerta entreabierta por donde pueden anclarse energías o entidades de baja frecuencia.</p>
+
+    <h3 class="tipo">Anclaje emocional en bucle</h3>
+    <p>Implante que sostiene un patrón afectivo específico (dolor, rabia, miedo) en repetición constante, de modo que la entidad o energía adherida se alimenta del ciclo emocional que ella misma provoca.</p>
+
+    <h3 class="tipo">Succión emocional (vampirismo energético)</h3>
+    <p>Drenaje directo de vitalidad a través de picos emocionales inducidos: discusiones que aparecen "de la nada", ansiedad repentina sin causa identificable, o cansancio abrupto tras un intercambio con ciertas personas o entornos.</p>
+
+    <h3 class="tipo">Distorsión afectiva</h3>
+    <ul class="detalle">
+      <li>Tristeza o irritabilidad desproporcionada a la situación real</li>
+      <li>Emociones que "no sienten propias", como si vinieran de afuera</li>
+      <li>Cambios de humor abruptos sin detonante consciente</li>
+    </ul>
+
+    <div class="caja-sintomas">
+      <strong>Señales físicas asociadas:</strong> opresión en el plexo solar, nudo en el pecho o la garganta, llanto sin causa aparente, fatiga emocional al despertar.
+    </div>
+  </section>
+
+  <section class="capa">
+    <h2>Capa 5 — Plantilla Etérica</h2>
+    <span class="ficha">El molde estructural · sede de la voluntad divina y el propósito encarnado</span>
+    <p>La quinta capa no vibra en la emoción sino en la forma: es el plano o "molde" energético que sostiene la coherencia física y estructural del ser. Un ataque aquí es más sutil que en la Capa 2, pero también más profundo, porque no distorsiona lo que se siente sino lo que se es.</p>
+
+    <h3 class="tipo">Distorsión de la plantilla</h3>
+    <p>Alteración del molde energético que sostiene la salud física. Puede manifestarse como enfermedades recurrentes o síntomas físicos sin causa médica identificable, ya que el patrón original de salud queda "desalineado" en su fuente etérica.</p>
+
+    <h3 class="tipo">Bloqueo de la voluntad y del propósito</h3>
+    <p>Al ser la capa vinculada a la voluntad divina, los ataques aquí buscan desconectar a la persona de su misión o propósito de encarnación, generando confusión vocacional, procrastinación crónica o sensación de estar "atascado" sin motivo aparente.</p>
+
+    <h3 class="tipo">Interferencia geométrica-fractal</h3>
+    <ul class="detalle">
+      <li>Corrupción de la coherencia estructural del campo, similar en naturaleza a los patrones fractales de autorreplicación</li>
+      <li>Sensación de "no encajar" en el propio cuerpo o en la propia vida</li>
+      <li>Resistencia inexplicable a procesos de sanación que deberían funcionar</li>
+    </ul>
+
+    <div class="caja-sintomas">
+      <strong>Señales físicas asociadas:</strong> fatiga estructural profunda, desalineación postural recurrente, sensación de extrañeza corporal, estancamiento vital prolongado sin causa aparente.
+    </div>
+  </section>
+
+  <div class="comparativa">
+    <h2>Comparativa rápida</h2>
+    <table class="comp">
+      <tr>
+        <th>Aspecto</th>
+        <th>Capa 2 (Emocional)</th>
+        <th>Capa 5 (Plantilla Etérica)</th>
+      </tr>
+      <tr>
+        <td><strong>Qué distorsiona</strong></td>
+        <td>El sentir</td>
+        <td>El ser / la forma</td>
+      </tr>
+      <tr>
+        <td><strong>Velocidad del efecto</strong></td>
+        <td>Rápida, episódica</td>
+        <td>Lenta, acumulativa</td>
+      </tr>
+      <tr>
+        <td><strong>Manifestación típica</strong></td>
+        <td>Picos emocionales, drenaje afectivo</td>
+        <td>Enfermedad recurrente, desconexión de propósito</td>
+      </tr>
+      <tr>
+        <td><strong>Puerta de entrada</strong></td>
+        <td>Emoción no resuelta</td>
+        <td>Desalineación con la voluntad superior</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="nota-final">Ambas capas trabajan en conjunto: un patrón emocional sostenido en el tiempo (Capa 2) puede terminar por inscribirse en la plantilla etérica (Capa 5), transformando una herida pasajera en un patrón estructural. De ahí la importancia de intervenir tempranamente en el cuerpo emocional antes de que la distorsión se profundice.</p>
+
+</main>
+
+<footer>El Ser Uno · Biblioteca esotérica</footer>
+
+</body>
+</html>
