@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Ser Uno | Biblioteca de Conocimiento Esotérico</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oro: #9fc9ff;
+    --oro-claro: #eef6ff;
+    --violeta: #1e3a68;
+    --violeta-claro: #6fa3e0;
+    --fondo1: #04060f;
+    --texto: #dce6f5;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background: radial-gradient(ellipse at top, #0c1a3a 0%, var(--fondo1) 60%, #000 100%);
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #fff8 50%, transparent),
+      radial-gradient(1px 1px at 70% 60%, #fff6 50%, transparent),
+      radial-gradient(2px 2px at 40% 80%, #fff5 50%, transparent),
+      radial-gradient(1px 1px at 90% 20%, #fff7 50%, transparent),
+      radial-gradient(1px 1px at 55% 45%, #fff5 50%, transparent),
+      radial-gradient(2px 2px at 15% 65%, #fff4 50%, transparent);
+    background-size: 400px 400px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  header{
+    text-align: center;
+    padding: 80px 20px 40px;
+    position: relative;
+    z-index: 1;
+  }
+  h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 3em;
+    background: linear-gradient(120deg, var(--oro-claro), var(--oro), var(--violeta-claro));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(212,175,55,0.3);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+  .subtitulo{
+    font-style: italic;
+    color: var(--violeta-claro);
+    font-size: 1.25em;
+    letter-spacing: 1px;
+  }
+  .linea-divisoria{
+    width: 260px;
+    height: 2px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--oro), var(--violeta), var(--oro), transparent);
+  }
+  .principio{
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-style: italic;
+    color: var(--oro-claro);
+    padding: 0 24px;
+    font-size: 1.05em;
+  }
+
+  /* --- Buscador --- */
+  .buscador-wrap{
+    max-width: 500px;
+    margin: 0 auto 70px;
+    padding: 0 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  #buscador{
+    width: 100%;
+    padding: 14px 22px;
+    border-radius: 30px;
+    border: 1px solid rgba(212,175,55,0.4);
+    background: rgba(18,10,36,0.6);
+    color: var(--oro-claro);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05em;
+    font-style: italic;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  #buscador:focus{
+    border-color: var(--oro);
+    box-shadow: 0 0 25px rgba(212,175,55,0.2);
+  }
+  #buscador::placeholder{ color: rgba(232,224,240,0.4); }
+
+  main{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  section.categoria{
+    margin-bottom: 64px;
+  }
+  h2.titulo-cat{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.5em;
+    color: var(--oro);
+    text-align: center;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .descripcion-cat{
+    text-align: center;
+    color: var(--violeta-claro);
+    font-style: italic;
+    margin-bottom: 30px;
+    font-size: 0.98em;
+  }
+  .grid-tarjetas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  a.tarjeta{
+    display: block;
+    background: linear-gradient(160deg, rgba(18,10,36,0.85), rgba(5,3,10,0.92));
+    border: 1px solid rgba(138,43,226,0.3);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  a.tarjeta::before{
+    content:"✦";
+    position:absolute;
+    top: 16px; right: 18px;
+    color: var(--oro);
+    opacity: 0.5;
+    font-size: 0.9em;
+  }
+  a.tarjeta:hover{
+    border-color: var(--oro);
+    box-shadow: 0 0 30px rgba(212,175,55,0.2);
+    transform: translateY(-4px);
+  }
+  a.tarjeta h3{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.05em;
+    color: var(--oro-claro);
+    margin-bottom: 10px;
+    font-weight: 400;
+    padding-right: 20px;
+  }
+  a.tarjeta p{
+    font-size: 0.95em;
+    color: var(--texto);
+    opacity: 0.85;
+  }
+
+  /* Tarjeta de archivo pendiente / en desarrollo */
+  a.tarjeta.pendiente{
+    border-style: dashed;
+    border-color: rgba(212,175,55,0.35);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  a.tarjeta.pendiente::before{ content:"◌"; }
+  .etiqueta-pendiente{
+    display:inline-block;
+    margin-top: 10px;
+    font-size: 0.78em;
+    color: var(--violeta-claro);
+    border: 1px solid rgba(138,43,226,0.4);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  footer{
+    text-align: center;
+    padding: 30px;
+    color: rgba(232,224,240,0.4);
+    font-size: 0.85em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .oculto{ display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>El Ser Uno</h1>
+  <div class="subtitulo">Portal de la Biblioteca de Conocimiento Esotérico</div>
+  <div class="linea-divisoria"></div>
+</header>
+
+<p class="principio">
+  "Ningún ataque, por profundo que sea, corta la conexión monádica con la Fuente.
+  Solo bloquea el flujo o la percepción de ella. Este portal reúne las herramientas
+  para reconocer, comprender y disolver aquello que vela la luz."
+</p>
+
+<div class="buscador-wrap">
+  <input type="text" id="buscador" placeholder="Buscar documento..." onkeyup="filtrarTarjetas()">
+</div>
+
+<main>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: ATAQUES Y DEFENSA ENERGÉTICA -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Ataques y Defensa Energética</h2>
+    <p class="descripcion-cat">Clasificación, diagnóstico y disolución de interferencias energéticas</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="tipos_ataques_energeticos.html">
+        <h3>Tipos de Ataques Energéticos</h3>
+        <p>Clasificación por dimensión (D-1 a D-8/9), cuerpo sutil y modalidad de ataque.</p>
+      </a>
+      <a class="tarjeta" href="ataques_energeticos_estelares.html">
+        <h3>Ataques Energéticos Estelares</h3>
+        <p>Interferencias de origen cósmico y su penetración en los cuerpos sutiles.</p>
+      </a>
+      <a class="tarjeta" href="aura_sucia.html">
+        <h3>Aura Sucia</h3>
+        <p>Reconocimiento y limpieza de densidad acumulada en el campo áurico.</p>
+      </a>
+      <a class="tarjeta" href="ataques_energeticos_suenos.html">
+        <h3>Ataques Energéticos en los Sueños</h3>
+        <p>Catálogo de 27 tipos de interferencia astral durante el desdoblamiento onírico.</p>
+      </a>
+      <a class="tarjeta" href="zumbido_oidos_ataque_vibracional.html">
+        <h3>Zumbido en Ambos Oídos: Ataque Vibracional</h3>
+        <p>Ataque vibracional de interferencia frecuencial en el Ser de Luz encarnado.</p>
+      </a>
+      <a class="tarjeta" href="ataques_dimensionales.html">
+        <h3>Ataques Dimensionales</h3>
+        <p>Catálogo de interferencias provenientes de líneas dimensionales, densidades paralelas y brechas del continuo.</p>
+      </a>
+      <a class="tarjeta" href="ataques_fractales.html">
+        <h3>Ataques Fractales</h3>
+        <p>Patrones geométrico-vibracionales autorreplicantes dentro del campo áurico.</p>
+      </a>
+      <a class="tarjeta" href="ataques_esporadicos_campo_cardiaco.html">
+        <h3>Ataques Esporádicos al Campo Cardíaco</h3>
+        <p>Cuando la punzada llega sin aviso, en distintos lugares y situaciones, sin un hilo emocional único que la explique.</p>
+      </a>
+      <a class="tarjeta" href="ataques_esencia_ser.html">
+        <h3>Ataques a la Esencia Misma del Ser</h3>
+        <p>La agresión más profunda: nueve tipologías que comprometen el núcleo divino, no solo las capas periféricas del campo.</p>
+      </a>
+
+      <!-- Para agregar un nuevo archivo en esta categoría, copiar y modificar el bloque de abajo: -->
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: JERARQUÍAS Y SERES -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Jerarquías y Seres</h2>
+    <p class="descripcion-cat">Taxonomía de entidades de luz y de oscuridad, encarnadas y no encarnadas</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="jerarquia_seres_oscuridad.html">
+        <h3>Jerarquía de Seres de Oscuridad</h3>
+        <p>Explorador completo D-1 a D-8/9 con tablas de diagnóstico radiestésico.</p>
+      </a>
+      <a class="tarjeta" href="jerarquia_seres_luz.html">
+        <h3>Jerarquía de Seres de Luz</h3>
+        <p>Dimensiones, tipos y funciones de las jerarquías de luz — contraparte de la jerarquía de oscuridad.</p>
+      </a>
+      <a class="tarjeta" href="seres_humanos_luz.html">
+        <h3>Seres Humanos de Luz</h3>
+        <p>Taxonomía de la encarnación consciente: origen del alma, función y nivel de activación.</p>
+      </a>
+      <a class="tarjeta" href="dones_seres_luz_encarnados.html">
+        <h3>Dones de los Seres de Luz Encarnados</h3>
+        <p>Catálogo de 49 categorías de facultades del alma: perceptivas, sanadoras, vinculares y de servicio.</p>
+      </a>
+      <a class="tarjeta" href="tabla_radiestesica_seres_oscuridad.html">
+        <h3>Tabla Radiestésica — Seres de Oscuridad</h3>
+        <p>Herramienta de diagnóstico radiestésico con registro de sesión por fecha y referencia.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: CUERPO SUTIL Y CAPAS ÁURICAS -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Cuerpo Sutil y Capas Áuricas</h2>
+    <p class="descripcion-cat">Implantes, bloqueos y patrones instalados en los distintos cuerpos y capas</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="implantes_por_capa_aurica.html">
+        <h3>Implantes por Capa Áurica</h3>
+        <p>Mapeo de implantes a través de las siete capas del aura.</p>
+      </a>
+      <a class="tarjeta" href="estancamiento_infantil.html">
+        <h3>Estancamiento Infantil</h3>
+        <p>El patrón del Implante de Anclaje de la Infancia y su disolución.</p>
+      </a>
+      <a class="tarjeta" href="sanacion_esofago_energetico.html">
+        <h3>Sanación del Esófago Energético</h3>
+        <p>El canal entre el corazón y la voz. Protocolo completo con cinco modalidades integradas.</p>
+      </a>
+      <a class="tarjeta" href="cinco_cuerpos_sutiles.html">
+        <h3>Los Cinco Cuerpos Sutiles</h3>
+        <p>Anatomía energética completa: del cuerpo físico al causal, el tejido de la experiencia humana.</p>
+      </a>
+      <a class="tarjeta" href="mapa_penetracion_cuerpos_sutiles.html">
+        <h3>Mapa de Penetración — Cuerpos Sutiles</h3>
+        <p>Selector interactivo por nivel de oscuridad para ver su acción sobre los cuerpos sutiles.</p>
+      </a>
+      <a class="tarjeta" href="sanacion-paso-a-paso.html">
+        <h3>Las 12 Etapas de la Sanación</h3>
+        <p>Protocolo integral vía esotérica: pasos exactos, decretos y herramientas para cada etapa.</p>
+      </a>
+      <a class="tarjeta" href="rayo_cristico.html">
+        <h3>Rayo Crístico</h3>
+        <p>La frecuencia madre que sostiene la jerarquía de luz: naturaleza, relación jerárquica y protocolo defensivo transversal.</p>
+      </a>
+      <a class="tarjeta" href="ataques_capas_2_5_aura.html">
+        <h3>Ataques a la Capa 2 y Capa 5 del Aura</h3>
+        <p>El cuerpo emocional y la plantilla etérica ante la interferencia energética: anclajes emocionales, succión afectiva, distorsión de la plantilla y bloqueo del propósito.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: VÍNCULOS Y RELACIONES ÁLMICAS -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Vínculos y Relaciones Álmicas</h2>
+    <p class="descripcion-cat">Llamas gemelas, almas afines y las interferencias que los afectan</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="separacion_llama_gemela.html">
+        <h3>Separación de Llama Gemela</h3>
+        <p>Ocho tipos de interferencia dirigidos a fracturar el vínculo entre llamas gemelas.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: ACOMPAÑAMIENTO Y SANACIÓN COLECTIVA -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Acompañamiento y Sanación Colectiva</h2>
+    <p class="descripcion-cat">Protocolos de sostén energético ante catástrofes, duelo colectivo y transiciones planetarias</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="acompanamiento_telurico.html">
+        <h3>Acompañamiento Energético Telúrico</h3>
+        <p>La Tierra como cuerpo vivo: lectura simbólica del movimiento sísmico, protocolo de sostén para sobrevivientes y tránsito de las almas que partieron.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: SINCRONICIDAD Y NUMEROLOGÍA SAGRADA -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Sincronicidad y Numerología Sagrada</h2>
+    <p class="descripcion-cat">Nimeo, matriz temporal-numérica y mensajes codificados en la realidad manifestada</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="horas_espejo_sincronicidad.html">
+        <h3>Horas Espejo y Sincronicidad</h3>
+        <p>Cuando el nimeo se sincroniza con la matriz temporal-numérica de la realidad manifestada.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: DIAGNÓSTICO Y HERRAMIENTAS RADIESTÉSICAS -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Diagnóstico y Herramientas Radiestésicas</h2>
+    <p class="descripcion-cat">Instrumentos de medición, péndulo y escalas para el diagnóstico energético</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="evolucion-energetica.html">
+        <h3>Sistema de Evolución Energética</h3>
+        <p>Logos Planetario, Rayo Crístico y diagnóstico por péndulo del nivel evolutivo.</p>
+      </a>
+      <a class="tarjeta" href="escala_transicion_agonia.html">
+        <h3>Escala de Transición · Acompañamiento en Agonía</h3>
+        <p>Escala Bovis invertida, instrumento radiestésico para el tránsito y su protocolo de limpieza por etapa.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CATEGORÍA: ASCENSIÓN Y EVOLUCIÓN PLANETARIA -->
+  <!-- ============================================= -->
+  <section class="categoria">
+    <h2 class="titulo-cat">Ascensión y Evolución Planetaria</h2>
+    <p class="descripcion-cat">El tránsito colectivo de Gaia y la humanidad hacia una conciencia de luz</p>
+    <div class="grid-tarjetas">
+      <a class="tarjeta" href="ascension_gaia_humanidad.html">
+        <h3>La Ascensión de Gaia y la Humanidad</h3>
+        <p>Proceso ascensional completo: cuerpos sutiles, niveles evolutivos, jerarquía de luz y meta final.</p>
+      </a>
+
+      <!--
+      <a class="tarjeta" href="nombre_archivo.html">
+        <h3>Título del Documento</h3>
+        <p>Breve descripción del contenido.</p>
+      </a>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- Para crear una NUEVA CATEGORÍA completa, copiar el bloque <section> de arriba,
+       cambiar el título en <h2 class="titulo-cat">, la descripción,
+       y agregar las tarjetas correspondientes dentro de <div class="grid-tarjetas"> -->
+
+</main>
+
+<footer>
+  El Ser Uno · Biblioteca de Conocimiento Esotérico
+</footer>
+
+<script>
+// Índice de búsqueda de texto completo (contenido de cada documento).
+// Se carga una sola vez desde indice-busqueda.json, generado con
+// generar_indice_busqueda.py. Si el archivo no existe o falla la carga,
+// el buscador sigue funcionando solo con el texto de las tarjetas.
+let indiceBusqueda = {};
+let indiceCargado = false;
+
+fetch('indice-busqueda.json')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(datos => {
+    datos.forEach(doc => { indiceBusqueda[doc.archivo] = doc.contenido; });
+    indiceCargado = true;
+  })
+  .catch(() => {
+    console.warn('indice-busqueda.json no disponible: la búsqueda solo usará el texto de las tarjetas.');
+  });
+
+function filtrarTarjetas(){
+  const filtro = document.getElementById('buscador').value.toLowerCase().trim();
+  const tarjetas = document.querySelectorAll('a.tarjeta');
+  const categorias = document.querySelectorAll('section.categoria');
+
+  tarjetas.forEach(t => {
+    const textoTarjeta = t.textContent.toLowerCase();
+    const archivo = (t.getAttribute('href') || '').split('/').pop();
+    const textoDocumento = indiceBusqueda[archivo] || '';
+
+    const coincide = filtro === ''
+      || textoTarjeta.includes(filtro)
+      || textoDocumento.includes(filtro);
+
+    t.classList.toggle('oculto', !coincide);
+  });
+
+  categorias.forEach(cat => {
+    const visibles = cat.querySelectorAll('a.tarjeta:not(.oculto)').length;
+    cat.classList.toggle('oculto', visibles === 0);
+  });
+}
+</script>
+
+</body>
+</html>
