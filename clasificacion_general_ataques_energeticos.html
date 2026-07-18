@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clasificación General de Ataques Energéticos | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-void: #05060d;
+    --bg-deep: #0a0e1a;
+    --bg-panel: #10152580;
+    --gold: #c9a24b;
+    --gold-bright: #e6c878;
+    --blue-deep: #1b2a52;
+    --blue-glow: #5a7fc4;
+    --text-main: #e8e6de;
+    --text-dim: #9aa0b4;
+    --border-line: #2a2f4580;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse at top, var(--bg-deep) 0%, var(--bg-void) 70%);
+    color: var(--text-main);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, var(--gold) 0%, transparent 60%),
+      radial-gradient(1px 1px at 70% 15%, var(--blue-glow) 0%, transparent 60%),
+      radial-gradient(1px 1px at 45% 80%, var(--gold) 0%, transparent 60%),
+      radial-gradient(1px 1px at 85% 60%, var(--blue-glow) 0%, transparent 60%),
+      radial-gradient(1px 1px at 10% 70%, var(--gold) 0%, transparent 60%),
+      radial-gradient(1px 1px at 60% 45%, var(--blue-glow) 0%, transparent 60%);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px 100px; position: relative; z-index: 1; }
+
+  header.hero {
+    text-align: center;
+    padding: 90px 20px 60px;
+    border-bottom: 1px solid var(--border-line);
+    margin-bottom: 60px;
+  }
+
+  .eyebrow {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 46px);
+    letter-spacing: 0.03em;
+    margin: 18px 0 22px;
+    background: linear-gradient(120deg, var(--gold-bright), var(--gold) 40%, var(--blue-glow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-style: italic;
+    font-size: 20px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .glyph-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 36px 0;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .glyph-divider::before, .glyph-divider::after {
+    content: "";
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  section { margin-bottom: 68px; }
+
+  h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 26px;
+    color: var(--gold-bright);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .section-intro {
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 28px;
+    font-size: 18px;
+  }
+
+  h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 17px;
+    color: var(--blue-glow);
+    letter-spacing: 0.02em;
+    margin: 26px 0 10px;
+    font-weight: 400;
+  }
+
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-left: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+  }
+
+  .card.blue { border-left-color: var(--blue-glow); }
+
+  .card p { margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  .card strong { color: var(--gold-bright); font-weight: 600; }
+  .card.blue strong { color: var(--blue-glow); }
+
+  .bovis-tag {
+    display: inline-block;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--bg-void);
+    background: var(--gold);
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  ul.mech-list { list-style: none; padding: 0; }
+  ul.mech-list li {
+    padding: 10px 0 10px 26px;
+    border-bottom: 1px solid var(--border-line);
+    position: relative;
+  }
+  ul.mech-list li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+    top: 15px;
+  }
+  ul.mech-list li:last-child { border-bottom: none; }
+
+  .defense-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px) { .defense-grid { grid-template-columns: 1fr; } }
+
+  .defense-card {
+    background: linear-gradient(160deg, #12183080, #0a0e1a80);
+    border: 1px solid var(--blue-deep);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+  }
+  .defense-card .icon {
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .defense-card h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14px;
+    color: var(--gold-bright);
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .defense-card p { font-size: 16px; color: var(--text-dim); }
+
+  .archive-section {
+    border-top: 1px solid var(--border-line);
+    padding-top: 50px;
+    margin-top: 20px;
+  }
+
+  .archive-intro { text-align: center; margin-bottom: 40px; }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .archive-link {
+    display: block;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+  .archive-link:hover {
+    border-color: var(--gold);
+    background: #151b3080;
+    transform: translateY(-2px);
+  }
+  .archive-link .arch-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px;
+    color: var(--gold-bright);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .archive-link .arch-desc {
+    font-size: 15.5px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-line);
+    color: var(--text-dim);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="index.html" class="back-link" style="display:block; padding-top:24px;">← Volver al índice</a>
+
+  <header class="hero">
+    <div class="eyebrow">El Ser Uno · Marco Cosmológico</div>
+    <h1>Clasificación General de<br>Ataques Energéticos</h1>
+    <p class="subtitle">Un mapa unificador: origen, capa áurica y mecanismo — la estructura que sostiene todo el catálogo.</p>
+  </header>
+
+  <section>
+    <p style="font-size:18.5px; color:var(--text-dim);">Este documento no describe un tipo de ataque en particular, sino el <strong style="color:var(--gold-bright);">esqueleto conceptual</strong> que los organiza a todos. Cada archivo del catálogo — dimensional, estelar, onírico, fractal — es una expresión concreta de tres ejes que se cruzan siempre: <em>quién</em> origina el ataque, <em>qué capa</em> del campo áurico afecta, y <em>cómo</em> opera mecánicamente. Entender estos ejes permite reconocer un ataque nuevo aunque no encaje exactamente en ninguna categoría ya catalogada.</p>
+  </section>
+
+  <div class="glyph-divider">✦</div>
+
+  <section>
+    <h2>I. Por Origen Jerárquico</h2>
+    <p class="section-intro">La procedencia del ataque determina su densidad, su inteligencia y su forma de operar.</p>
+
+    <div class="card">
+      <p><strong>Jerarquía Oscura, niveles D-1 y D-2</strong> — entidades adheridas y parásitos etéricos de baja complejidad. Operan por drenaje directo y adherencia; no razonan, se alimentan.</p>
+    </div>
+    <div class="card">
+      <p><strong>Jerarquía Oscura, niveles D-5 y D-6</strong> — inteligencias arcónticas. Operan por implante mental y control narrativo; introducen bucles de pensamiento y distorsionan el discernimiento.</p>
+    </div>
+    <div class="card">
+      <p><strong>Jerarquía Oscura, niveles D-8 y D-9</strong> — inteligencias arquitectónicas. Actúan sobre la matriz perceptiva misma, alterando la relación del Ser con la realidad compartida.</p>
+    </div>
+    <div class="card blue">
+      <p><strong>Interferencia estelar no evolucionada</strong> — entidades de otros sistemas que operan por absorción de campo energético o manipulación del código energético-genético.</p>
+    </div>
+    <div class="card blue">
+      <p><strong>Autoataque álmico</strong> — patrones kármicos, contratos no resueltos o votos antiguos que el propio Ser perpetúa contra sí mismo desde la memoria celular o las líneas ancestrales.</p>
+    </div>
+  </section>
+
+  <div class="glyph-divider">✦</div>
+
+  <section>
+    <h2>II. Por Capa Áurica</h2>
+    <p class="section-intro">Correlato aproximado con la Escala Bovis: cuanto más baja la capa afectada, más denso y medible es el impacto.</p>
+
+    <h3>Capa Etérica <span class="bovis-tag">Bovis bajo</span></h3>
+    <div class="card"><p>Drenaje vital, fatiga inexplicable, campo áurico ensuciado. La forma más elemental y frecuente de ataque.</p></div>
+
+    <h3>Capa Emocional</h3>
+    <div class="card"><p>Implantes de miedo o ansiedad, cordones de dependencia emocional que se alimentan de reactividad.</p></div>
+
+    <h3>Capa Mental</h3>
+    <div class="card"><p>Bucles de pensamiento repetitivo, confusión inducida, bloqueo del discernimiento propio.</p></div>
+
+    <h3>Capa Astral</h3>
+    <div class="card"><p>Ataques oníricos, proyecciones durante el sueño, interferencia en desdoblamientos y viajes conscientes.</p></div>
+
+    <h3>Capas Causal, Búdica y Átmica <span class="bovis-tag">Bovis alto</span></h3>
+    <div class="card"><p>Desconexión del Rayo Crístico, bloqueo de la guía de los Seres de Luz, interrupción del vínculo con Eloín y el Logos Planetario. El ataque más sutil y, a la vez, más profundo en sus consecuencias.</p></div>
+  </section>
+
+  <div class="glyph-divider">✦</div>
+
+  <section>
+    <h2>III. Por Mecanismo de Acción</h2>
+    <p class="section-intro">La forma estructural que toma el ataque, independientemente de su origen o la capa que afecte.</p>
+    <ul class="mech-list">
+      <li><strong style="color:var(--gold-bright);">Cordones energéticos</strong> — vínculos parasitarios de drenaje continuo</li>
+      <li><strong style="color:var(--gold-bright);">Implantes</strong> — estructuras insertadas que distorsionan percepción o repiten patrones</li>
+      <li><strong style="color:var(--gold-bright);">Miasmas y adherencias</strong> — acumulaciones densas que enturbian el campo</li>
+      <li><strong style="color:var(--gold-bright);">Ataques fractales</strong> — patrones autorreplicantes que se propagan geométricamente</li>
+      <li><strong style="color:var(--gold-bright);">Interferencia dimensional</strong> — intrusión desde otras densidades o líneas temporales</li>
+      <li><strong style="color:var(--gold-bright);">Sincronías negativas manipuladas</strong> — distorsión de horas espejo y otras señales de nimeo</li>
+    </ul>
+  </section>
+
+  <div class="glyph-divider">✦</div>
+
+  <section>
+    <h2>IV. Marco de Defensa</h2>
+    <p class="section-intro">La contraparte de cada eje de ataque tiene su correspondiente herramienta de restauración.</p>
+    <div class="defense-grid">
+      <div class="defense-card">
+        <div class="icon">☀</div>
+        <h4>Rayo Crístico</h4>
+        <p>Escudo primario del campo áurico</p>
+      </div>
+      <div class="defense-card">
+        <div class="icon">◈</div>
+        <h4>Llama Violeta</h4>
+        <p>Transmutación de densidad acumulada</p>
+      </div>
+      <div class="defense-card">
+        <div class="icon">✂</div>
+        <h4>Corte de Cordones</h4>
+        <p>Con sellado áurico posterior</p>
+      </div>
+      <div class="defense-card">
+        <div class="icon">✧</div>
+        <h4>Invocación Jerárquica</h4>
+        <p>Del Ser de Luz correspondiente al ataque</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-section">
+    <div class="archive-intro">
+      <div class="eyebrow">Catálogo Relacionado</div>
+      <h2 style="margin-top:14px;">Archivos del Compendio</h2>
+      <p class="section-intro">Cada expresión concreta de este marco, desarrollada en profundidad.</p>
+    </div>
+    <div class="archive-grid">
+      <a href="tipos_ataques_energeticos.html" class="archive-link">
+        <span class="arch-title">Tipos de Ataques Energéticos</span>
+        <span class="arch-desc">Catálogo maestro: tipologías dimensionales y estelares</span>
+      </a>
+      <a href="ataques_dimensionales.html" class="archive-link">
+        <span class="arch-title">Ataques Dimensionales</span>
+        <span class="arch-desc">14 tipologías de interferencia entre densidades</span>
+      </a>
+      <a href="ataques_energeticos_estelares.html" class="archive-link">
+        <span class="arch-title">Ataques Estelares</span>
+        <span class="arch-desc">8 tipos de entidades no terrestres</span>
+      </a>
+      <a href="ataques_energeticos_suenos.html" class="archive-link">
+        <span class="arch-title">Ataques en Sueños</span>
+        <span class="arch-desc">27 tipos oníricos en 7 niveles temáticos</span>
+      </a>
+      <a href="ataques_fractales.html" class="archive-link">
+        <span class="arch-title">Ataques Fractales</span>
+        <span class="arch-desc">Patrones geométricos autorreplicantes</span>
+      </a>
+      <a href="implantes_por_capa_aurica.html" class="archive-link">
+        <span class="arch-title">Implantes por Capa Áurica</span>
+        <span class="arch-desc">Mapeo completo de las 7 capas del aura</span>
+      </a>
+      <a href="jerarquia_seres_oscuridad.html" class="archive-link">
+        <span class="arch-title">Jerarquía de Seres de Oscuridad</span>
+        <span class="arch-desc">Niveles D-1 a D-8/9</span>
+      </a>
+      <a href="jerarquia_seres_luz.html" class="archive-link">
+        <span class="arch-title">Jerarquía de Seres de Luz</span>
+        <span class="arch-desc">Contraparte lumínica y guía protectora</span>
+      </a>
+      <a href="rayo_cristico.html" class="archive-link">
+        <span class="arch-title">Rayo Crístico</span>
+        <span class="arch-desc">Fundamento del escudo defensivo primario</span>
+      </a>
+      <a href="aura_sucia.html" class="archive-link">
+        <span class="arch-title">Aura Sucia</span>
+        <span class="arch-desc">Miasmas y adherencias en el campo etérico</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    El Ser Uno · Biblioteca Esotérica
+  </footer>
+
+</div>
+</body>
+</html>
