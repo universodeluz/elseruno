@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Códigos Sagrados de Agesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void: #05070f;
+    --bg-deep: #0b1024;
+    --gold: #d4af37;
+    --gold-soft: #e8cd7a;
+    --blue-deep: #1b2a52;
+    --blue-glow: #4a6fa5;
+    --text-soft: #cfd3e6;
+    --text-dim: #8890b0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: radial-gradient(ellipse at 50% -10%, var(--blue-deep) 0%, var(--bg-deep) 45%, var(--bg-void) 100%);
+    color: var(--text-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .stars{
+    position: fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(212,175,55,.5), transparent),
+      radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1.5px 1.5px at 60% 40%, rgba(255,255,255,.5), transparent);
+    background-size: 600px 600px;
+    opacity:.8;
+  }
+  header{
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 70px 20px 40px;
+    border-bottom: 1px solid rgba(212,175,55,.25);
+  }
+  .eyebrow{
+    font-family:'Cinzel Decorative', serif;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:13px;
+    color: var(--gold-soft);
+    opacity:.85;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size: clamp(28px, 5vw, 46px);
+    margin: 18px 0 10px;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), #fff6da);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .subtitle{
+    font-style: italic;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 19px;
+  }
+  nav.back{
+    position:relative; z-index:1;
+    text-align:center; margin-top:22px;
+    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
+  }
+  nav.back a{
+    color: var(--blue-glow);
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:.08em;
+    border:1px solid rgba(74,111,165,.4);
+    padding:6px 16px;
+    border-radius: 20px;
+  }
+  nav.back a:hover{ border-color: var(--gold); color: var(--gold-soft); }
+
+  main{ position:relative; z-index:1; max-width: 920px; margin: 0 auto; padding: 50px 24px 100px;}
+  section{ margin-bottom: 64px; }
+
+  .section-title{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 26px;
+    color: var(--gold-soft);
+    text-align:center;
+    margin-bottom: 10px;
+  }
+  .section-lede{
+    text-align:center;
+    color: var(--text-dim);
+    max-width:640px;
+    margin: 0 auto 34px;
+    font-style: italic;
+  }
+
+  .intro p{ margin: 0 0 18px; }
+  .intro strong{ color: var(--gold-soft); font-weight:600; }
+
+  .code-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .code-card{
+    background: linear-gradient(160deg, rgba(27,42,82,.45), rgba(5,7,15,.6));
+    border: 1px solid rgba(212,175,55,.22);
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .code-card::before{
+    content:"";
+    position:absolute; top:-40%; right:-30%;
+    width:160px; height:160px;
+    background: radial-gradient(circle, rgba(212,175,55,.13), transparent 70%);
+  }
+  .code-card .code{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 30px;
+    color: var(--gold);
+    line-height:1;
+    margin-bottom: 6px;
+    letter-spacing:.02em;
+  }
+  .code-card h3{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:400;
+    font-size:15px;
+    letter-spacing:.04em;
+    color: var(--gold-soft);
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+  .code-card p{ margin:0; font-size:16.5px; color: var(--text-soft); }
+  .code-card .comp{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed rgba(212,175,55,.2);
+    font-size: 14.5px;
+    color: var(--text-dim);
+  }
+  .code-card .comp b{ color: var(--blue-glow); font-weight:600; }
+
+  .situation-table{
+    width:100%;
+    border-collapse: collapse;
+    font-size: 17px;
+  }
+  .situation-table th{
+    font-family:'Cinzel Decorative', serif;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color: var(--gold-soft);
+    text-align:left;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(212,175,55,.3);
+  }
+  .situation-table td{
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(212,175,55,.08);
+  }
+  .situation-table td.code-num{
+    font-family:'Cinzel Decorative', serif;
+    color: var(--gold);
+    white-space:nowrap;
+  }
+  .table-wrap{ overflow-x:auto; }
+
+  .steps{
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .step{
+    display:flex; gap:16px; align-items:flex-start;
+    background: rgba(27,42,82,.25);
+    border-left: 3px solid var(--gold);
+    padding: 14px 20px;
+    border-radius:6px;
+  }
+  .step .n{
+    font-family:'Cinzel Decorative', serif;
+    color: var(--gold);
+    font-size:20px;
+    min-width: 28px;
+  }
+
+  .link-card{
+    background: rgba(11,16,36,.5);
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:12px;
+    padding: 22px 24px;
+  }
+  .link-card p{ margin:0 0 12px; }
+  .link-card p:last-child{ margin-bottom:0; }
+
+  footer{
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 30px 20px 60px;
+    color: var(--text-dim);
+    font-size: 14px;
+    font-style: italic;
+    border-top: 1px solid rgba(212,175,55,.2);
+  }
+
+  @media (max-width: 560px){
+    body{ font-size: 17px; }
+    header{ padding: 50px 16px 30px; }
+    .situation-table{ font-size:15px; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="eyebrow">El Ser Uno · Sistemas Complementarios</div>
+  <h1>Códigos Sagrados de Agesta</h1>
+  <p class="subtitle">Secuencias numéricas canalizadas por José Gabriel Uribe — nombre espiritual Agesta — que actúan como llaves de conexión directa con arcángeles y maestros ascendidos, integradas aquí al Procedimiento del Ser Uno.</p>
+  <nav class="back">
+    <a href="index.html">← Volver al índice</a>
+    <a href="numeros_sagrados_ser_uno.html">Números Sagrados del Ser Uno</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="intro">
+    <div class="section-title">¿Quién es Agesta y qué son sus códigos?</div>
+    <p class="section-lede">Una canalización paralela que el Ser Uno reconoce como afín</p>
+    <p>José Gabriel Uribe, conocido en el ámbito espiritual como <strong>Agesta</strong>, es un canalizador que durante décadas ha recibido secuencias numéricas de arcángeles y maestros ascendidos. Cada código funciona como una firma vibracional concreta: al repetirlo con intención y estado interior receptivo, se establece una conexión directa con el ser de luz o la cualidad asociada a ese número.</p>
+    <p>Dentro de la cosmología del Ser Uno, estos códigos no reemplazan al Procedimiento — lo <strong>complementan</strong>. Donde el Procedimiento aporta la estructura (ritmo, capas, sellado), los códigos de Agesta aportan llaves puntuales y ya codificadas para invocar a un arcángel específico, tratar una afección concreta o sostener una intención de manifestación.</p>
+  </section>
+
+  <section>
+    <div class="section-title">Códigos Arcangélicos</div>
+    <p class="section-lede">Cada arcángel principal, su código y su complemento divino (arcangelina)</p>
+    <div class="code-grid">
+
+      <div class="code-card">
+        <div class="code">613</div>
+        <h3>Arcángel Miguel</h3>
+        <p>Protección contra energías negativas y coraje frente al miedo.</p>
+        <div class="comp"><b>Arcangelina Fe</b> — 72128</div>
+      </div>
+
+      <div class="code-card">
+        <div class="code">29</div>
+        <h3>Arcángel Rafael</h3>
+        <p>Sanación física y emocional.</p>
+        <div class="comp"><b>Arcangelina María</b> — 333</div>
+      </div>
+
+      <div class="code-card">
+        <div class="code">881</div>
+        <h3>Arcángel Gabriel</h3>
+        <p>Comunicación, buenas noticias y nuevos comienzos.</p>
+        <div class="comp"><b>Arcangelina Esperanza</b> — 584</div>
+      </div>
+
+      <div class="code-card">
+        <div class="code">4</div>
+        <h3>Arcángel Uriel</h3>
+        <p>Abundancia material y disfrute de la experiencia corporal.</p>
+        <div class="comp"><b>Arcangelina Gracia</b> — 996</div>
+      </div>
+
+      <div class="code-card">
+        <div class="code">725</div>
+        <h3>Arcángel Chamuel</h3>
+        <p>Sanación de relaciones, propósito divino y liberación de patrones que matan el amor.</p>
+      </div>
+
+      <div class="code-card">
+        <div class="code">521</div>
+        <h3>Arcángel Jofiel</h3>
+        <p>Claridad mental y belleza interior.</p>
+      </div>
+
+      <div class="code-card">
+        <div class="code">389</div>
+        <h3>Arcángel Zadquiel</h3>
+        <p>Transmutación con la Llama Violeta.</p>
+        <div class="comp"><b>Arcangelina Amatista</b> — 62114</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Códigos por Situación</div>
+    <p class="section-lede">Salud, hábitos y estados a los que Agesta dedicó códigos específicos</p>
+    <div class="table-wrap">
+      <table class="situation-table">
+        <thead><tr><th>Código</th><th>Situación</th></tr></thead>
+        <tbody>
+          <tr><td class="code-num">71566</td><td>Alcoholismo</td></tr>
+          <tr><td class="code-num">25543</td><td>Tabaquismo</td></tr>
+          <tr><td class="code-num">32194</td><td>Peso corporal</td></tr>
+          <tr><td class="code-num">551</td><td>Artritis</td></tr>
+          <tr><td class="code-num">428</td><td>Dolor de cabeza</td></tr>
+          <tr><td class="code-num">611</td><td>Catarro y tos</td></tr>
+          <tr><td class="code-num">759</td><td>Mareos</td></tr>
+          <tr><td class="code-num">572</td><td>Alergias</td></tr>
+          <tr><td class="code-num">554</td><td>Co-dependencia</td></tr>
+          <tr><td class="code-num">315</td><td>Miopía</td></tr>
+          <tr><td class="code-num">47620</td><td>Libertad financiera</td></tr>
+          <tr><td class="code-num">87949</td><td>Ley de atracción (siete ángeles)</td></tr>
+          <tr><td class="code-num">14720</td><td>Apertura a la quinta dimensión</td></tr>
+          <tr><td class="code-num">72249</td><td>Inmunidad ante la enfermedad</td></tr>
+          <tr><td class="code-num">3333</td><td>Gratitud</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Más Códigos Canalizados por Agesta</div>
+    <p class="section-lede">Mente, emociones, propósito, protección y animales de poder</p>
+
+    <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--blue-glow); text-transform:uppercase; letter-spacing:.05em; text-align:center; margin-bottom:16px;">Mente y Emociones</h3>
+    <div class="table-wrap" style="margin-bottom:32px;">
+      <table class="situation-table">
+        <thead><tr><th>Código</th><th>Situación</th></tr></thead>
+        <tbody>
+          <tr><td class="code-num">00</td><td>Concentración</td></tr>
+          <tr><td class="code-num">39</td><td>Controlar la mente dispersa</td></tr>
+          <tr><td class="code-num">578</td><td>Fortalecer emociones positivas</td></tr>
+          <tr><td class="code-num">8128</td><td>Ataraxia — tranquilidad, ausencia de temores</td></tr>
+          <tr><td class="code-num">9999</td><td>Compasión</td></tr>
+          <tr><td class="code-num">917 / 868</td><td>Apoyo emocional (pedir acompañamiento)</td></tr>
+          <tr><td class="code-num">791</td><td>Liberar asuntos pendientes de esta u otras vidas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--blue-glow); text-transform:uppercase; letter-spacing:.05em; text-align:center; margin-bottom:16px;">Vida, Propósito y Abundancia</h3>
+    <div class="table-wrap" style="margin-bottom:32px;">
+      <table class="situation-table">
+        <thead><tr><th>Código</th><th>Situación</th></tr></thead>
+        <tbody>
+          <tr><td class="code-num">11550</td><td>Atraer el amor de la vida</td></tr>
+          <tr><td class="code-num">25700</td><td>Conseguir un deseo apremiante (Maestra Kwan Yin)</td></tr>
+          <tr><td class="code-num">682</td><td>Conectar con el doble en otra dimensión</td></tr>
+          <tr><td class="code-num">100</td><td>Favorecer un viaje</td></tr>
+          <tr><td class="code-num">2615</td><td>Aprender a interpretar las señales (Arcángel Rafael)</td></tr>
+          <tr><td class="code-num">680</td><td>Aliviar los síntomas del proceso de ascensión</td></tr>
+          <tr><td class="code-num">128</td><td>Acelerar la sanación en todos los niveles</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--blue-glow); text-transform:uppercase; letter-spacing:.05em; text-align:center; margin-bottom:16px;">Protección</h3>
+    <div class="table-wrap" style="margin-bottom:32px;">
+      <table class="situation-table">
+        <thead><tr><th>Código</th><th>Situación</th></tr></thead>
+        <tbody>
+          <tr><td class="code-num">051</td><td>Librarse de enemigos ocultos</td></tr>
+          <tr><td class="code-num">33351</td><td>Reparar daño ocurrido durante una sanación (Kwan Yin)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--blue-glow); text-transform:uppercase; letter-spacing:.05em; text-align:center; margin-bottom:16px;">Animales de Poder</h3>
+    <div class="table-wrap">
+      <table class="situation-table">
+        <thead><tr><th>Código</th><th>Situación</th></tr></thead>
+        <tbody>
+          <tr><td class="code-num">179</td><td>Águila como animal de poder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Cómo se Activan</div>
+    <p class="section-lede">El protocolo original de Agesta</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div>Elegir el código correspondiente a la situación o al ser de luz que se desea invocar.</div></div>
+      <div class="step"><div class="n">2</div><div>Ubicarse en un espacio tranquilo, en estado de relajación, gratitud, amor o paz.</div></div>
+      <div class="step"><div class="n">3</div><div>Repetir el código exactamente <strong>45 veces</strong> — mentalmente, en susurro o en voz alta — ya sea como cifra completa o dígito por dígito.</div></div>
+      <div class="step"><div class="n">4</div><div>Visualizar el resultado deseado como si ya estuviera manifestado, sosteniendo esa imagen mientras se repite.</div></div>
+      <div class="step"><div class="n">5</div><div>Sostener la práctica el número de días que se necesite, generalmente hasta ver la manifestación.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Vínculo con el Procedimiento del Ser Uno</div>
+    <p class="section-lede">Dos sistemas numéricos, una misma intención de servicio</p>
+    <div class="link-card">
+      <p>Los números sagrados propios del Ser Uno (3, 7, 9, 33, 144...) estructuran el <strong>ritmo</strong> del Procedimiento: cuándo se abre, cuándo se sella, en qué nivel jerárquico se actúa. Los códigos de Agesta, en cambio, funcionan como <strong>llaves puntuales de invocación</strong> dentro de ese mismo ritmo — se insertan en la fase de invocación o activación del Procedimiento para llamar a un arcángel específico o tratar una situación concreta.</p>
+      <p>Una integración natural: usar <strong>3</strong> (ritmo) para estructurar la sesión, invocar el código de Agesta correspondiente al arcángel o situación durante la fase de activación, y cerrar con <strong>33</strong> (Rayo Crístico) como sello final. El 45 de la repetición de Agesta puede leerse, dentro de esta cosmología, como 4+5=9 — resonando con el número de la jerarquía evolutiva del Ser Uno.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  El Ser Uno · Cada código es una llave; el Procedimiento es la puerta que la recibe.
+</footer>
+
+</body>
+</html>

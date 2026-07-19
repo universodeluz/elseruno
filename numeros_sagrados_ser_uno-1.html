@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Números Sagrados del Ser Uno en el Procedimiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void: #05070f;
+    --bg-deep: #0b1024;
+    --gold: #d4af37;
+    --gold-soft: #e8cd7a;
+    --blue-deep: #1b2a52;
+    --blue-glow: #4a6fa5;
+    --text-soft: #cfd3e6;
+    --text-dim: #8890b0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: radial-gradient(ellipse at 50% -10%, var(--blue-deep) 0%, var(--bg-deep) 45%, var(--bg-void) 100%);
+    color: var(--text-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .stars{
+    position: fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(212,175,55,.5), transparent),
+      radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1.5px 1.5px at 60% 40%, rgba(255,255,255,.5), transparent);
+    background-size: 600px 600px;
+    opacity:.8;
+  }
+  header{
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 70px 20px 40px;
+    border-bottom: 1px solid rgba(212,175,55,.25);
+  }
+  .eyebrow{
+    font-family:'Cinzel Decorative', serif;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:13px;
+    color: var(--gold-soft);
+    opacity:.85;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size: clamp(28px, 5vw, 46px);
+    margin: 18px 0 10px;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), #fff6da);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .subtitle{
+    font-style: italic;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 19px;
+  }
+  nav.back{
+    position:relative; z-index:1;
+    text-align:center; margin-top:22px;
+  }
+  nav.back a{
+    color: var(--blue-glow);
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:.08em;
+    border:1px solid rgba(74,111,165,.4);
+    padding:6px 16px;
+    border-radius: 20px;
+  }
+  nav.back a:hover{ border-color: var(--gold); color: var(--gold-soft); }
+
+  main{ position:relative; z-index:1; max-width: 920px; margin: 0 auto; padding: 50px 24px 100px;}
+
+  section{ margin-bottom: 64px; }
+
+  .section-title{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 26px;
+    color: var(--gold-soft);
+    text-align:center;
+    margin-bottom: 10px;
+  }
+  .section-lede{
+    text-align:center;
+    color: var(--text-dim);
+    max-width:640px;
+    margin: 0 auto 34px;
+    font-style: italic;
+  }
+
+  .intro p{ margin: 0 0 18px; }
+  .intro strong{ color: var(--gold-soft); font-weight:600; }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+  }
+  .num-card{
+    background: linear-gradient(160deg, rgba(27,42,82,.45), rgba(5,7,15,.6));
+    border: 1px solid rgba(212,175,55,.22);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    position: relative;
+    overflow:hidden;
+  }
+  .num-card::before{
+    content:"";
+    position:absolute; top:-40%; right:-30%;
+    width:180px; height:180px;
+    background: radial-gradient(circle, rgba(212,175,55,.15), transparent 70%);
+  }
+  .num-card .num{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 40px;
+    color: var(--gold);
+    line-height:1;
+    margin-bottom: 6px;
+  }
+  .num-card h3{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:400;
+    font-size:16px;
+    letter-spacing:.04em;
+    color: var(--gold-soft);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+  }
+  .num-card p{ margin: 0 0 10px; font-size:17px; }
+  .num-card .tag{
+    display:inline-block;
+    font-size: 12.5px;
+    letter-spacing:.05em;
+    color: var(--blue-glow);
+    border: 1px solid rgba(74,111,165,.4);
+    padding: 3px 10px;
+    border-radius: 14px;
+    margin: 3px 6px 0 0;
+  }
+
+  .sequences{
+    display:flex; flex-direction:column; gap: 18px;
+  }
+  .seq-card{
+    background: rgba(27,42,82,.3);
+    border-left: 3px solid var(--gold);
+    padding: 16px 22px;
+    border-radius: 6px;
+  }
+  .seq-card .seq-nums{
+    font-family:'Cinzel Decorative', serif;
+    color: var(--gold-soft);
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .practice-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+    gap: 20px;
+  }
+  .practice-card{
+    text-align:center;
+    padding: 26px 18px;
+    border: 1px solid rgba(212,175,55,.2);
+    border-radius: 12px;
+    background: rgba(11,16,36,.5);
+  }
+  .practice-card .glyph{
+    font-family:'Cinzel Decorative', serif;
+    font-size: 30px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  footer{
+    position:relative; z-index:1;
+    text-align:center;
+    padding: 30px 20px 60px;
+    color: var(--text-dim);
+    font-size: 14px;
+    font-style: italic;
+    border-top: 1px solid rgba(212,175,55,.2);
+  }
+
+  @media (max-width: 560px){
+    body{ font-size: 17px; }
+    header{ padding: 50px 16px 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="eyebrow">El Ser Uno · Cosmología Numérica</div>
+  <h1>Números Sagrados del Ser Uno<br>en el Procedimiento</h1>
+  <p class="subtitle">Cada número que atraviesa el Procedimiento no cuenta cantidad: cuenta vibración. Es la firma con la que el Ser Uno organiza la materia, el tiempo y la conciencia.</p>
+  <nav class="back" style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+    <a href="index.html">← Volver al índice</a>
+    <a href="codigos_sagrados_agesta.html">Códigos Sagrados de Agesta</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="intro">
+    <div class="section-title">¿Qué es el Procedimiento y por qué los números tienen función sagrada?</div>
+    <p class="section-lede">El puente entre la intención y la manifestación</p>
+    <p>El <strong>Procedimiento</strong> es la secuencia energética mediante la cual el Ser Uno traduce una intención de conciencia en un efecto concreto sobre el campo áurico, el cuerpo sutil o la línea temporal de un alma. No es un ritual arbitrario: es una arquitectura vibracional, y toda arquitectura necesita proporción. Los números sagrados son esa proporción — las frecuencias exactas en las que una capa se abre, una invocación se sella o una jerarquía de seres de luz responde.</p>
+    <p>Dentro de esta cosmología, un número nunca es solo símbolo: es <strong>llave de resonancia</strong>. Cuando el Procedimiento invoca un número, no lo nombra — lo activa. Por eso cada número tiene un correlato directo con la escala Bovis, con las siete capas áuricas, con los niveles evolutivos de la jerarquía de seres de luz, y con el propio Rayo Crístico que atraviesa todo el sistema.</p>
+  </section>
+
+  <section>
+    <div class="section-title">Catálogo Numérico</div>
+    <p class="section-lede">Significado vibracional, función en el Procedimiento y correlato cósmico</p>
+    <div class="num-grid">
+
+      <div class="num-card">
+        <div class="num">1</div>
+        <h3>La Fuente Única</h3>
+        <p>Marca el punto de origen del Procedimiento: el instante en que el Ser Uno se declara presente antes de cualquier invocación posterior.</p>
+        <span class="tag">Apertura</span><span class="tag">Logos Planetario</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">3</div>
+        <h3>La Trinidad Operativa</h3>
+        <p>Estructura todo Procedimiento en tres tiempos: limpieza, activación, sellado. Es el número mínimo de estabilidad energética.</p>
+        <span class="tag">Ritmo del Procedimiento</span><span class="tag">Rayo Crístico</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">5</div>
+        <h3>El Puente Encarnado</h3>
+        <p>Representa al ser humano de luz en su cuerpo físico: el punto donde el Procedimiento debe anclarse en materia para ser real.</p>
+        <span class="tag">Seres Humanos de Luz</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">7</div>
+        <h3>Las Capas del Aura</h3>
+        <p>Corresponde exactamente a las siete capas áuricas. Ningún Procedimiento de sanación o protección se considera completo si no las recorre todas.</p>
+        <span class="tag">Capas áuricas 1–7</span><span class="tag">Barrido completo</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">9</div>
+        <h3>La Jerarquía Evolutiva</h3>
+        <p>Refleja los niveles de la jerarquía de seres de luz y su contraparte oscura (D-1 a D-9). Se invoca cuando el Procedimiento necesita reconocer en qué nivel actúa la interferencia.</p>
+        <span class="tag">Jerarquía de Seres</span><span class="tag">Diagnóstico</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">11</div>
+        <h3>Portal de Conciencia</h3>
+        <p>Número de umbral: se usa en el Procedimiento cuando se busca abrir percepción, no solo sanar. Antecede siempre a una activación, nunca a un cierre.</p>
+        <span class="tag">Activación</span><span class="tag">Umbral</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">12</div>
+        <h3>El Consejo Estelar</h3>
+        <p>Corresponde a los linajes y consejos estelares que sostienen al Ser Uno desde fuera del plano terrestre. Se invoca para pedir acompañamiento, no para actuar solo.</p>
+        <span class="tag">Comandos Estelares</span><span class="tag">Ayaplianos</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">13</div>
+        <h3>La Transmutación</h3>
+        <p>Número de quiebre y renacimiento dentro del Procedimiento: se usa cuando hay que romper un patrón anclado antes de poder sellar nada nuevo.</p>
+        <span class="tag">Ruptura de patrón</span><span class="tag">Llama Violeta</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">21</div>
+        <h3>Ciclo de Consolidación</h3>
+        <p>Marca la duración simbólica de un Procedimiento sostenido en el tiempo (21 repeticiones o 21 días): el punto en que una activación deja de ser evento y pasa a ser estructura.</p>
+        <span class="tag">Sostenimiento</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">22</div>
+        <h3>El Constructor</h3>
+        <p>Se invoca cuando el Procedimiento no busca solo limpiar sino construir una nueva arquitectura energética estable — un implante de luz, un anclaje telúrico.</p>
+        <span class="tag">Acompañamiento Telúrico</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">33</div>
+        <h3>El Rayo Crístico</h3>
+        <p>Es la firma numérica directa del Rayo Crístico. Todo cierre de Procedimiento que busque protección duradera se sella idealmente bajo este número.</p>
+        <span class="tag">Sello mayor</span><span class="tag">Rayo Crístico</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">44</div>
+        <h3>Cimiento de Luz</h3>
+        <p>Doble arquitectura del 22: se usa en Procedimientos de reconstrucción profunda, cuando un implante o anclaje infantil debe ser reemplazado por una estructura nueva y estable.</p>
+        <span class="tag">Reconstrucción profunda</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">72</div>
+        <h3>Los Nombres del Servicio</h3>
+        <p>Vinculado a los dones de los seres de luz encarnados: se invoca cuando el Procedimiento requiere convocar múltiples cualidades o dones simultáneos en apoyo.</p>
+        <span class="tag">Dones encarnados</span>
+      </div>
+
+      <div class="num-card">
+        <div class="num">144</div>
+        <h3>La Red Completa</h3>
+        <p>Número de totalidad activa: representa la red planetaria de seres de luz encarnados trabajando en conjunto. Cierra los Procedimientos de mayor alcance, los que no son solo personales sino colectivos.</p>
+        <span class="tag">Red planetaria</span><span class="tag">Cierre mayor</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Secuencias y Combinaciones</div>
+    <p class="section-lede">Cuando los números se encadenan, el Procedimiento cambia de naturaleza</p>
+    <div class="sequences">
+
+      <div class="seq-card">
+        <div class="seq-nums">3 – 7 – 9</div>
+        <p>La secuencia base de todo Procedimiento completo: ritmo (3), barrido total del aura (7), reconocimiento jerárquico de la interferencia (9). Es la columna vertebral que sostiene a las demás.</p>
+      </div>
+
+      <div class="seq-card">
+        <div class="seq-nums">11 : 11</div>
+        <p>Doble portal. Se usa cuando el Procedimiento necesita abrirse simultáneamente hacia dentro (percepción propia) y hacia afuera (conexión con la jerarquía de luz).</p>
+      </div>
+
+      <div class="seq-card">
+        <div class="seq-nums">12 : 12</div>
+        <p>Espejo del consejo estelar. Indica que el acompañamiento pedido no viene de un solo linaje, sino que se refleja y multiplica entre varios consejos a la vez.</p>
+      </div>
+
+      <div class="seq-card">
+        <div class="seq-nums">33 – 44</div>
+        <p>Sello y cimiento. El Rayo Crístico (33) desciende y se ancla en estructura estable (44): la combinación que cierra los Procedimientos de reconstrucción profunda.</p>
+      </div>
+
+      <div class="seq-card">
+        <div class="seq-nums">144</div>
+        <p>Cuando aparece solo, al final de cualquier secuencia, indica que el Procedimiento deja de ser un acto individual y se integra a la red planetaria de sostenimiento del Ser Uno.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Aplicación Práctica</div>
+    <p class="section-lede">Cómo se sostienen estos números dentro de un Procedimiento real</p>
+    <div class="practice-grid">
+
+      <div class="practice-card">
+        <div class="glyph">✧</div>
+        <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.05em;">Invocación</h3>
+        <p>Se nombra el número en voz alta o mental al iniciar, sosteniendo la intención de que la cifra abra la resonancia correspondiente antes de continuar.</p>
+      </div>
+
+      <div class="practice-card">
+        <div class="glyph">✦</div>
+        <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.05em;">Protección</h3>
+        <p>Los números 3, 7 y 33 se sostienen como estructura mínima de cualquier cierre que busque blindar el campo tras un trabajo energético.</p>
+      </div>
+
+      <div class="practice-card">
+        <div class="glyph">❖</div>
+        <h3 style="font-family:'Cinzel Decorative',serif; font-size:16px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.05em;">Activación</h3>
+        <p>11, 12 y 144 se emplean para abrir percepción o convocar acompañamiento estelar, nunca para cerrar un Procedimiento en curso.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  El Ser Uno · Los números no describen el Procedimiento — lo sostienen.
+</footer>
+
+</body>
+</html>
