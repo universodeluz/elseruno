@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosario · El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05070f;
+    --bg-panel:#0b0f1e;
+    --gold:#d4af6a;
+    --gold-soft:#e8cd93;
+    --blue:#5b7fa6;
+    --blue-soft:#8fb3d9;
+    --text:#e6e2d6;
+    --text-dim:#a9a6b0;
+    --border:rgba(212,175,106,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(91,127,166,0.12), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(212,175,106,0.08), transparent 60%),
+      var(--bg-deep);
+    color:var(--text);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.6;
+  }
+  header{
+    text-align:center;
+    padding:56px 20px 32px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,44px);
+    letter-spacing:2px;
+    margin:0 0 12px;
+    background:linear-gradient(120deg,var(--gold-soft),var(--blue-soft));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  header p{
+    color:var(--text-dim);
+    font-style:italic;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .back-link{
+    display:inline-block;
+    margin-top:18px;
+    color:var(--gold);
+    text-decoration:none;
+    font-size:16px;
+    letter-spacing:1px;
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  .back-link:hover{border-color:var(--gold);}
+
+  .intro{
+    max-width:720px;
+    margin:0 auto 44px;
+    padding:26px 32px;
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    position:relative;
+  }
+  .intro::before{
+    content:"✦";
+    display:block;
+    text-align:center;
+    color:var(--gold);
+    font-size:20px;
+    margin-bottom:14px;
+  }
+  .intro p{
+    margin:0 0 14px;
+    color:var(--text);
+  }
+  .intro p:last-child{margin-bottom:0;}
+  .intro strong{color:var(--gold-soft); font-weight:600;}
+
+  .search-wrap{
+    max-width:640px;
+    margin:0 auto 40px;
+    padding:0 20px;
+  }
+  #buscador{
+    width:100%;
+    padding:14px 18px;
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:var(--text);
+    font-family:'Cormorant Garamond', serif;
+    font-size:18px;
+    outline:none;
+  }
+  #buscador::placeholder{color:var(--text-dim);}
+  #buscador:focus{border-color:var(--gold);}
+
+  .abecedario{
+    max-width:900px;
+    margin:0 auto 30px;
+    padding:0 20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+  }
+  .abecedario a{
+    color:var(--blue-soft);
+    text-decoration:none;
+    font-family:'Cinzel Decorative', serif;
+    font-size:14px;
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--border);
+    border-radius:6px;
+    transition:all .25s;
+  }
+  .abecedario a:hover, .abecedario a.activo{
+    color:var(--gold);
+    border-color:var(--gold);
+    background:rgba(212,175,106,0.08);
+  }
+
+  main{
+    max-width:860px;
+    margin:0 auto;
+    padding:0 20px 80px;
+  }
+
+  .letra-grupo{
+    margin-bottom:48px;
+  }
+  .letra-titulo{
+    font-family:'Cinzel Decorative', serif;
+    font-size:30px;
+    color:var(--gold);
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
+    margin-bottom:24px;
+    letter-spacing:2px;
+  }
+
+  .termino{
+    padding:18px 22px;
+    margin-bottom:14px;
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-left:3px solid var(--blue);
+    border-radius:8px;
+    transition:transform .25s, border-color .25s;
+  }
+  .termino:hover{
+    transform:translateX(4px);
+    border-left-color:var(--gold);
+  }
+  .termino dt{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:400;
+    font-size:20px;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+    letter-spacing:0.5px;
+  }
+  .termino dd{
+    margin:0;
+    color:var(--text);
+  }
+  .categoria{
+    display:inline-block;
+    font-size:13px;
+    font-style:italic;
+    color:var(--text-dim);
+    margin-top:8px;
+  }
+  .oculto{display:none !important;}
+
+  .sin-resultados{
+    text-align:center;
+    color:var(--text-dim);
+    font-style:italic;
+    margin-top:60px;
+    display:none;
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 20px 60px;
+    color:var(--text-dim);
+    font-size:15px;
+    font-style:italic;
+    border-top:1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Glosario de El Ser Uno</h1>
+  <p>Un compendio de los términos, conceptos y nombres propios que atraviesan la cosmología, la práctica energética y la biblioteca de El Ser Uno.</p>
+  <a class="back-link" href="index.html">← Volver al índice</a>
+</header>
+
+<section class="intro">
+  <p>Este glosario reúne los términos, nombres propios y conceptos que atraviesan la biblioteca de <strong>El Ser Uno</strong>: desde las jerarquías de seres de luz y de oscuridad, hasta las escalas de medición vibratoria, las tipologías de ataques energéticos y las prácticas de sanación y protección del cuerpo sutil.</p>
+  <p>No pretende ser un diccionario cerrado, sino un mapa vivo que crece junto con cada nuevo archivo de la biblioteca. Cada entrada indica también la categoría a la que pertenece, para que puedas rastrear su origen dentro del conjunto mayor de la obra.</p>
+  <p>Usa el buscador o el índice alfabético para ubicar un término específico, o simplemente recorre las letras para descubrir conexiones entre conceptos.</p>
+</section>
+
+<div class="search-wrap">
+  <input type="text" id="buscador" placeholder="Buscar un término...">
+</div>
+
+<nav class="abecedario" id="nav-letras"></nav>
+
+<main id="contenedor">
+
+  <div class="letra-grupo" data-letra="A">
+    <h2 class="letra-titulo">A</h2>
+
+    <dl class="termino"><dt>Akasha / Registros Akáshicos</dt><dd>Campo de memoria universal donde queda inscrita toda experiencia, pensamiento y emoción de cada alma a lo largo de sus encarnaciones; puede consultarse mediante protocolos de acceso energético.</dd><span class="categoria">Cosmología</span></dl>
+
+    <dl class="termino"><dt>Ataque Dimensional</dt><dd>Interferencia energética que se origina o se filtra desde planos o dimensiones distintas a la tridimensional, afectando el campo áurico de la persona sin pasar por canales estelares u oníricos convencionales.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Ataque Energético</dt><dd>Cualquier forma de interferencia, intrusión o drenaje que afecta el campo vibratorio de una persona, ya sea de origen humano, entitario, estelar, dimensional o fractal.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Ataque Estelar</dt><dd>Interferencia energética proveniente de entidades o inteligencias de origen estelar, generalmente vinculada a agendas de control o extracción sobre el campo humano.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Ataque Fractal</dt><dd>Patrón de interferencia autorreplicante que se propaga geométricamente dentro del campo energético, reproduciendo su propia estructura a distintas escalas hasta consolidarse como bucle recurrente.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Ataque Onírico</dt><dd>Interferencia energética que ocurre durante el sueño, cuando el cuerpo sutil viaja o queda más expuesto; catalogado en múltiples niveles temáticos según su intención y origen.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Ayaplianos</dt><dd>Linaje de seres de luz dentro de la cosmología de El Ser Uno, asociados al acompañamiento y la guía evolutiva de la humanidad.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="B">
+    <h2 class="letra-titulo">B</h2>
+    <dl class="termino"><dt>Bovis (Escala Bovis)</dt><dd>Escala radiestésica utilizada para medir la vibración energética de un lugar, objeto o persona; sirve de base para la escala evolutiva humana empleada en El Ser Uno, desde el nivel Dormido hasta el Nodo Transmisor.</dd><span class="categoria">Radiestesia</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="C">
+    <h2 class="letra-titulo">C</h2>
+    <dl class="termino"><dt>Capas Áuricas</dt><dd>Las siete envolturas energéticas que conforman el campo áurico humano, cada una asociada a funciones específicas (física, emocional, mental, astral, etérica superior, celestial y causal) y susceptible de albergar implantes.</dd><span class="categoria">Cuerpo Sutil</span></dl>
+
+    <dl class="termino"><dt>Chakra</dt><dd>Centro energético del cuerpo sutil que regula el flujo vital entre los distintos cuerpos y capas áuricas; su equilibrio es central en el diagnóstico y la sanación energética.</dd><span class="categoria">Cuerpo Sutil</span></dl>
+
+    <dl class="termino"><dt>Comandos Estelares</dt><dd>Conjunto de siete invocaciones o protocolos vibracionales de origen estelar utilizados para activar protección, sanación o conexión con linajes de luz específicos.</dd><span class="categoria">Prácticas y Herramientas</span></dl>
+
+    <dl class="termino"><dt>Cordón Energético</dt><dd>Vínculo sutil que conecta a dos personas, lugares o entidades a través del campo áurico, permitiendo intercambio de energía consciente o inconsciente; puede requerir corte cuando resulta nocivo.</dd><span class="categoria">Cuerpo Sutil</span></dl>
+
+    <dl class="termino"><dt>Cuerpo Sutil</dt><dd>Conjunto de envolturas energéticas no físicas del ser humano (etérico, astral, mental, causal, entre otros) que sostienen la conciencia más allá del cuerpo físico.</dd><span class="categoria">Cuerpo Sutil</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="D">
+    <h2 class="letra-titulo">D</h2>
+    <dl class="termino"><dt>D-1 a D-9 (Jerarquía de Seres de Oscuridad)</dt><dd>Clasificación en nueve niveles de densidad de entidades no evolucionadas o de agenda oscura, ordenadas de menor a mayor sofisticación e influencia sobre el campo humano.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+
+    <dl class="termino"><dt>Dormido</dt><dd>Nivel más bajo de la escala evolutiva humana correlacionada con el Bovis, correspondiente a una conciencia sin apertura espiritual activa.</dd><span class="categoria">Escala Evolutiva</span></dl>
+
+    <dl class="termino"><dt>Dones de los Seres de Luz Encarnados</dt><dd>Catálogo de capacidades y talentos espirituales manifestados por almas de linaje lumínico encarnadas en cuerpo humano, agrupados en categorías temáticas.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="E">
+    <h2 class="letra-titulo">E</h2>
+    <dl class="termino"><dt>Eloín</dt><dd>Figura o linaje central en la cosmología de El Ser Uno, vinculado a la guía crística y a la transmisión de conocimiento evolutivo para la humanidad.</dd><span class="categoria">Cosmología</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="H">
+    <h2 class="letra-titulo">H</h2>
+    <dl class="termino"><dt>Horas Espejo</dt><dd>Secuencias numéricas repetidas en el reloj (como 11:11 o 22:22) interpretadas como sincronías o "nimeo", mensajes codificados del campo energético hacia la conciencia despierta.</dd><span class="categoria">Sincronía</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="I">
+    <h2 class="letra-titulo">I</h2>
+    <dl class="termino"><dt>Implante Energético</dt><dd>Estructura sutil insertada en una o varias capas áuricas que condiciona pensamientos, emociones o patrones de comportamiento, generalmente sin conciencia de quien lo porta.</dd><span class="categoria">Ataques y Defensa</span></dl>
+
+    <dl class="termino"><dt>Implante por Anclaje Infantil (Estancamiento Infantil)</dt><dd>Tipo de implante instalado en etapas tempranas de vida que fija a la persona en patrones emocionales o de percepción propios de la niñez, dificultando su maduración energética.</dd><span class="categoria">Ataques y Defensa</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="J">
+    <h2 class="letra-titulo">J</h2>
+    <dl class="termino"><dt>Jerarquía de Seres de Luz</dt><dd>Estructura ordenada de entidades lumínicas —desde guías personales hasta logos planetarios y cósmicos— que acompañan la evolución de la conciencia humana.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="K">
+    <h2 class="letra-titulo">K</h2>
+    <dl class="termino"><dt>Kundalini</dt><dd>Energía primordial enroscada en la base de la columna que, al activarse, asciende a través de los chakras generando expansión de conciencia; su práctica requiere preparación gradual.</dd><span class="categoria">Prácticas y Herramientas</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="L">
+    <h2 class="letra-titulo">L</h2>
+    <dl class="termino"><dt>Llama Gemela</dt><dd>Contraparte energética de un alma dividida en dos expresiones humanas; su reencuentro o separación puede generar interferencias específicas catalogadas en ocho tipos.</dd><span class="categoria">Vínculos y Relaciones Álmicas</span></dl>
+
+    <dl class="termino"><dt>Llama Violeta</dt><dd>Fuego espiritual de transmutación asociado a la energía crística, utilizado en prácticas de sanación para disolver densidades, implantes o memorias kármicas.</dd><span class="categoria">Prácticas y Herramientas</span></dl>
+
+    <dl class="termino"><dt>Logos Planetario</dt><dd>Conciencia rectora que gobierna la evolución espiritual de un planeta dentro de la jerarquía cósmica de seres de luz.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="N">
+    <h2 class="letra-titulo">N</h2>
+    <dl class="termino"><dt>Nimeo</dt><dd>Término empleado en El Ser Uno para referirse a la sincronía consciente, especialmente la manifestada a través de horas espejo o secuencias numéricas.</dd><span class="categoria">Sincronía</span></dl>
+
+    <dl class="termino"><dt>Nodo Transmisor</dt><dd>Nivel más alto de la escala evolutiva humana correlacionada con el Bovis, correspondiente a un ser que canaliza y transmite activamente energía crística a su entorno.</dd><span class="categoria">Escala Evolutiva</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="P">
+    <h2 class="letra-titulo">P</h2>
+    <dl class="termino"><dt>Pendiente</dt><dd>Estado editorial dentro de la biblioteca que indica que una entrada o archivo está anunciado en el índice pero aún en desarrollo.</dd><span class="categoria">Estructura de la biblioteca</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="R">
+    <h2 class="letra-titulo">R</h2>
+    <dl class="termino"><dt>Radiestesia</dt><dd>Técnica de diagnóstico energético mediante el uso del péndulo u otros instrumentos sensibles, empleada para medir campos vibratorios según sistemas como el de Chaumery-Bélizal.</dd><span class="categoria">Radiestesia</span></dl>
+
+    <dl class="termino"><dt>Rayo Crístico</dt><dd>Frecuencia de luz asociada a la conciencia crística universal, utilizada como canal de sanación, protección y elevación vibracional en las prácticas de El Ser Uno.</dd><span class="categoria">Prácticas y Herramientas</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="S">
+    <h2 class="letra-titulo">S</h2>
+    <dl class="termino"><dt>Seres de Luz</dt><dd>Entidades de naturaleza evolucionada y elevada vibración que acompañan, guían o protegen a la humanidad desde distintos niveles jerárquicos.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+
+    <dl class="termino"><dt>Seres Humanos de Luz</dt><dd>Almas de origen lumínico encarnadas en cuerpo humano con una misión evolutiva específica, portadoras de dones particulares.</dd><span class="categoria">Jerarquías y Seres</span></dl>
+  </div>
+
+  <div class="letra-grupo" data-letra="T">
+    <h2 class="letra-titulo">T</h2>
+    <dl class="termino"><dt>Telúrico (Acompañamiento Telúrico)</dt><dd>Vínculo energético entre el ser humano y las fuerzas de la Tierra, empleado como práctica de anclaje, protección y sanación desde el plano terrestre.</dd><span class="categoria">Prácticas y Herramientas</span></dl>
+  </div>
+
+</main>
+
+<p class="sin-resultados" id="sin-resultados">No se encontraron términos que coincidan con tu búsqueda.</p>
+
+<footer>
+  El Ser Uno · Glosario vivo, en expansión constante
+</footer>
+
+<script>
+  const contenedor = document.getElementById('contenedor');
+  const buscador = document.getElementById('buscador');
+  const sinResultados = document.getElementById('sin-resultados');
+  const navLetras = document.getElementById('nav-letras');
+  const grupos = Array.from(document.querySelectorAll('.letra-grupo'));
+
+  // Construir navegación alfabética dinámicamente según letras presentes
+  grupos.forEach(g => {
+    const letra = g.dataset.letra;
+    const enlace = document.createElement('a');
+    enlace.href = '#letra-' + letra;
+    enlace.textContent = letra;
+    g.id = 'letra-' + letra;
+    navLetras.appendChild(enlace);
+  });
+
+  buscador.addEventListener('input', () => {
+    const q = buscador.value.trim().toLowerCase();
+    let algunoVisible = false;
+
+    grupos.forEach(grupo => {
+      let grupoTieneVisible = false;
+      grupo.querySelectorAll('.termino').forEach(term => {
+        const texto = term.textContent.toLowerCase();
+        const coincide = texto.includes(q);
+        term.classList.toggle('oculto', !coincide);
+        if (coincide) grupoTieneVisible = true;
+      });
+      grupo.classList.toggle('oculto', !grupoTieneVisible);
+      if (grupoTieneVisible) algunoVisible = true;
+    });
+
+    sinResultados.style.display = algunoVisible ? 'none' : 'block';
+  });
+</script>
+
+</body>
+</html>
