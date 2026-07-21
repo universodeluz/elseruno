@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel Vibracional del Ser de Luz | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #05070f;
+    --bg-panel: #0b0f1e;
+    --bg-panel-light: #11172b;
+    --gold: #d4af37;
+    --gold-soft: #e8cf7a;
+    --blue: #4a6fa5;
+    --blue-soft: #8fb4e3;
+    --text: #e6e6f0;
+    --text-dim: #9ea3c2;
+    --border: rgba(212, 175, 55, 0.25);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, #0d1224 0%, #05070f 60%, #020308 100%);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    padding: 0 0 80px 0;
+  }
+  .stars {
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 40% 85%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(2px 2px at 90% 50%, rgba(255,255,255,0.4), transparent);
+    background-repeat: repeat; background-size: 400px 400px;
+    z-index: 0; pointer-events: none; opacity: 0.6;
+  }
+  header {
+    position: relative; z-index: 1; text-align: center;
+    padding: 70px 20px 50px; border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(212,175,55,0.05), transparent);
+  }
+  header h1 {
+    font-family: 'Cinzel Decorative', cursive; font-size: 2.15em;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--blue-soft));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin: 0 0 15px; letter-spacing: 1px;
+  }
+  header p.subtitle {
+    color: var(--text-dim); font-style: italic; font-size: 1.15em;
+    max-width: 650px; margin: 0 auto;
+  }
+  nav.breadcrumb {
+    text-align: center; padding: 18px; font-size: 0.95em;
+    color: var(--text-dim); position: relative; z-index: 1;
+  }
+  nav.breadcrumb a { color: var(--blue-soft); text-decoration: none; }
+  nav.breadcrumb a:hover { color: var(--gold-soft); }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 25px; position: relative; z-index: 1; }
+  section.fundamento {
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 30px 35px; margin: 40px 0;
+  }
+  section.fundamento h2 {
+    font-family: 'Cinzel Decorative', cursive; color: var(--gold-soft);
+    font-size: 1.3em; margin-top: 0;
+  }
+  .related-links { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .related-links a {
+    font-size: 0.9em; color: var(--blue-soft); border: 1px solid var(--border);
+    padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all 0.2s;
+  }
+  .related-links a:hover { background: rgba(212,175,55,0.1); color: var(--gold-soft); }
+  h2.block-title {
+    font-family: 'Cinzel Decorative', cursive; font-size: 1.6em; color: var(--gold-soft);
+    text-align: center; margin: 70px 0 10px; position: relative;
+  }
+  h2.block-title::after {
+    content: ''; display: block; width: 80px; height: 2px; margin: 15px auto 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  p.block-intro {
+    text-align: center; color: var(--text-dim); font-style: italic;
+    max-width: 600px; margin: 0 auto 40px;
+  }
+  .card {
+    background: var(--bg-panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 26px 30px; margin-bottom: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover { border-color: rgba(212,175,55,0.55); transform: translateY(-2px); }
+  .card h3 {
+    font-family: 'Cinzel Decorative', cursive; font-size: 1.1em; color: var(--gold);
+    margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .card h3 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--gold)); color: #05070f;
+    font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 0.8em; flex-shrink: 0;
+  }
+  .card .field { margin: 10px 0; }
+  .card .field .label {
+    color: var(--blue-soft); font-weight: 600; font-size: 0.92em;
+    text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 3px;
+  }
+  .card .field .value { color: var(--text); }
+
+  .bovis-row {
+    display: flex; align-items: center; gap: 14px; margin: 14px 0;
+  }
+  .bovis-label { font-size: 0.9em; color: var(--text-dim); min-width: 150px; }
+  .bovis-bar {
+    flex: 1; height: 12px; background: rgba(255,255,255,0.06);
+    border-radius: 6px; overflow: hidden; border: 1px solid var(--border);
+  }
+  .bovis-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--blue), var(--gold)); }
+  .bovis-value { font-size: 0.9em; color: var(--gold-soft); min-width: 110px; text-align: right; }
+
+  table.resumen {
+    width: 100%; border-collapse: collapse; margin: 30px 0 60px; font-size: 0.95em;
+  }
+  table.resumen th, table.resumen td { border: 1px solid var(--border); padding: 12px 14px; text-align: left; }
+  table.resumen th {
+    background: var(--bg-panel-light); color: var(--gold-soft);
+    font-family: 'Cinzel Decorative', cursive; font-size: 0.85em; letter-spacing: 0.5px;
+  }
+  table.resumen tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  section.cierre {
+    background: linear-gradient(160deg, var(--bg-panel), var(--bg-panel-light));
+    border: 1px solid var(--border); border-radius: 10px; padding: 35px 40px; margin-top: 60px;
+  }
+  section.cierre h2 { font-family: 'Cinzel Decorative', cursive; color: var(--gold-soft); text-align: center; margin-top: 0; }
+  section.cierre ol { padding-left: 22px; }
+  section.cierre li { margin-bottom: 10px; }
+
+  .nota {
+    font-size: 0.88em; color: var(--text-dim); font-style: italic;
+    border-left: 2px solid var(--border); padding-left: 14px; margin-top: 30px;
+  }
+
+  footer {
+    text-align: center; margin-top: 60px; color: var(--text-dim);
+    font-size: 0.9em; font-style: italic; position: relative; z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<header>
+  <h1>Nivel Vibracional del Ser de Luz</h1>
+  <p class="subtitle">La frecuencia energética como expresión directa del grado de conciencia y alineación con el Rayo Crístico</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="index.html">Inicio</a> · <a href="jerarquia_seres_luz.html">Jerarquía de Seres de Luz</a> · Nivel Vibracional
+</nav>
+
+<div class="container">
+
+  <section class="fundamento">
+    <h2>Fundamento dentro de El Ser Uno</h2>
+    <p>El <strong>nivel vibracional</strong> es la frecuencia energética que un Ser sostiene en su campo áurico en un momento dado. No es una etiqueta fija ni un rango asignado de por vida: es un estado dinámico, medible mediante la <strong>escala Bovis</strong> (unidades bovis, UB), que fluctúa según el estado emocional, mental, físico y espiritual del Ser, así como por la presencia o ausencia de interferencias externas.</p>
+    <p>Un Ser de Luz encarnado —aquel que porta dones latentes y una misión específica dentro del entramado de El Ser Uno— suele sostener un nivel vibracional de base más elevado que el promedio humano. Sin embargo, esto no lo hace inmune: precisamente por su función, suele ser blanco prioritario de ataques, implantes e interferencias diseñadas para reducir su frecuencia y silenciar su propósito.</p>
+    <div class="related-links">
+      <a href="jerarquia_seres_luz.html">→ Jerarquía de Seres de Luz</a>
+      <a href="rayo_cristico.html">→ Rayo Crístico</a>
+      <a href="dones_seres_luz_encarnados.html">→ Dones de Seres de Luz Encarnados</a>
+      <a href="evolucion-energetica.html">→ Escala Evolutiva Humana</a>
+      <a href="tipos_ataques_energeticos.html">→ Tipos de Ataques Energéticos</a>
+    </div>
+  </section>
+
+  <h2 class="block-title">La Escala Bovis Aplicada</h2>
+  <p class="block-intro">Rangos orientativos de nivel vibracional, correlacionados con la escala evolutiva humana ya establecida.</p>
+
+  <div class="card">
+    <div class="bovis-row">
+      <span class="bovis-label">Dormido</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:15%"></div></div>
+      <span class="bovis-value">0 – 3.000 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Despertar Inicial</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:30%"></div></div>
+      <span class="bovis-value">3.000 – 6.500 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Buscador Consciente</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:45%"></div></div>
+      <span class="bovis-value">6.500 – 10.000 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Ser de Luz en Activación</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:60%"></div></div>
+      <span class="bovis-value">10.000 – 20.000 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Ser de Luz Encarnado Activo</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:75%"></div></div>
+      <span class="bovis-value">20.000 – 50.000 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Canal Crístico Estable</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:88%"></div></div>
+      <span class="bovis-value">50.000 – 80.000 UB</span>
+    </div>
+    <div class="bovis-row">
+      <span class="bovis-label">Nodo Transmisor</span>
+      <div class="bovis-bar"><div class="bovis-fill" style="width:100%"></div></div>
+      <span class="bovis-value">80.000+ UB</span>
+    </div>
+    <p class="nota">Nota: estos rangos son orientativos y están pensados para alinearse con tu escala evolutiva ya existente. Si en <em>evolucion-energetica.html</em> tienes valores distintos para alguna etapa, dime los rangos exactos y ajusto esta tabla para que sea coherente en toda la biblioteca.</p>
+  </div>
+
+  <h2 class="block-title">Factores que Elevan el Nivel Vibracional</h2>
+  <p class="block-intro">Prácticas y estados que incrementan sostenidamente la frecuencia del campo áurico.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Alineación con el Rayo Crístico</h3>
+    <div class="field"><span class="value">La conexión consciente y sostenida con el Rayo Crístico personal actúa como el elevador vibracional más directo, al anclar al Ser a su fuente original de luz.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Coherencia Cardiaca y Emocional</h3>
+    <div class="field"><span class="value">Un estado emocional coherente —gratitud, amor incondicional, paz sostenida— eleva de forma medible la frecuencia del campo, más que cualquier práctica externa aislada.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">3</span> Activación de Dones Latentes</h3>
+    <div class="field"><span class="value">Ejercer conscientemente un don propio (ver catálogo de dones de Seres de Luz encarnados) genera una retroalimentación vibracional ascendente, ya que el Ser cumple su función.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">4</span> Limpieza Energética Regular</h3>
+    <div class="field"><span class="value">La remoción periódica de implantes, cordones y adherencias mantiene el campo libre de "peso" vibracional que de otro modo drena la frecuencia base.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">5</span> Contacto con la Naturaleza y Gaia</h3>
+    <div class="field"><span class="value">El anclaje telúrico consciente (ver acompañamiento telúrico) sincroniza el campo personal con la frecuencia base del planeta, estabilizando y elevando el nivel propio.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">6</span> Servicio Alineado a la Misión</h3>
+    <div class="field"><span class="value">Actuar desde el propósito encarnacional propio, en lugar de la inercia o el miedo, sostiene una frecuencia elevada de forma más estable que cualquier práctica puntual.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">7</span> Silencio Interior y Meditación</h3>
+    <div class="field"><span class="value">Los estados de quietud profunda permiten que el campo se reorganice y libere ruido vibracional acumulado, favoreciendo un ascenso natural y sostenido.</span></div>
+  </div>
+
+  <h2 class="block-title">Factores que Reducen el Nivel Vibracional</h2>
+  <p class="block-intro">Interferencias internas y externas que drenan o distorsionan la frecuencia del campo.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Ataques Energéticos Activos</h3>
+    <div class="field"><span class="value">Cualquier tipología del catálogo general de ataques reduce de forma directa y a veces abrupta el nivel vibracional mientras permanece activa.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Implantes y Anclajes</h3>
+    <div class="field"><span class="value">Los implantes por capa áurica o por función (creencia, dependencia, silencio) actúan como lastres constantes que impiden sostener una frecuencia alta.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">3</span> Emociones de Baja Densidad Sostenidas</h3>
+    <div class="field"><span class="value">Culpa, resentimiento, miedo crónico o autocrítica constante son, por sí mismos, reductores vibracionales independientes de cualquier interferencia externa.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">4</span> Ambientes y Vínculos Geopáticos o Tóxicos</h3>
+    <div class="field"><span class="value">La permanencia prolongada en espacios de baja energía o vínculos desalineados desgasta el campo de forma progresiva y silenciosa.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">5</span> Desconexión de la Misión Propia</h3>
+    <div class="field"><span class="value">Vivir de espaldas al propósito encarnacional genera una disonancia interna que reduce la frecuencia, incluso en ausencia de ataques externos.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">6</span> Sobrecarga Sensorial y Mental</h3>
+    <div class="field"><span class="value">El exceso de estímulos, información o exigencia mental satura el campo y dificulta que el Ser sostenga una frecuencia elevada de forma constante.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">7</span> Cordones y Vínculos Álmicos Mal Cerrados</h3>
+    <div class="field"><span class="value">Los lazos energéticos no resueltos —relaciones, contratos, promesas del alma— drenan de forma continua parte de la frecuencia disponible del Ser.</span></div>
+  </div>
+
+  <h2 class="block-title">Correlación con la Jerarquía de Seres de Luz</h2>
+  <p class="block-intro">El nivel vibracional no determina jerarquía por sí solo, pero condiciona la capacidad de sostener una función dentro de ella.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Umbral Mínimo de Función</h3>
+    <div class="field"><span class="value">Cada nivel dentro de la jerarquía de Seres de Luz requiere un piso vibracional mínimo sostenido; por debajo de ese umbral, el don asociado permanece latente e inaccesible.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Fluctuación No Invalida la Función</h3>
+    <div class="field"><span class="value">Un descenso temporal del nivel vibracional —por fatiga, ataque o ciclo vital— no elimina la pertenencia jerárquica del Ser, aunque sí puede suspender temporalmente su capacidad operativa plena.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">3</span> Ascenso Jerárquico como Consolidación</h3>
+    <div class="field"><span class="value">El paso de un nivel jerárquico a otro suele reflejar, más que un evento puntual, la consolidación de un nivel vibracional sostenido en el tiempo, no solo un pico aislado.</span></div>
+  </div>
+
+  <h2 class="block-title">Signos Perceptibles</h2>
+  <p class="block-intro">Cómo reconocer el nivel vibracional propio o ajeno sin necesidad de instrumentos.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Signos de Nivel Alto</h3>
+    <div class="field"><span class="value">Claridad mental sostenida, sincronicidades frecuentes, sensación de ligereza corporal, facilidad para el perdón, y percepción sutil ampliada (intuición, empatía energética).</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Signos de Nivel Bajo</h3>
+    <div class="field"><span class="value">Fatiga sin causa física, pensamientos circulares negativos, sensación de "pesadez" corporal o ambiental, aislamiento involuntario, y mayor susceptibilidad a conflictos o accidentes menores.</span></div>
+  </div>
+
+  <h2 class="block-title">Prácticas de Sostenimiento y Elevación</h2>
+  <p class="block-intro">Protocolo sugerido para mantener y elevar el nivel vibracional de forma sostenida.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Práctica Diaria</h3>
+    <div class="field"><span class="value">Invocación breve del Rayo Crístico al despertar, seguida de un momento de gratitud consciente antes de iniciar cualquier actividad.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Práctica Semanal</h3>
+    <div class="field"><span class="value">Sesión de limpieza energética profunda (Llama Violeta, corte de cordones) y revisión de vínculos activos que puedan estar drenando el campo.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">3</span> Práctica Cíclica</h3>
+    <div class="field"><span class="value">Reconexión telúrica periódica y revisión del propósito encarnacional, para detectar y corregir desalineaciones antes de que se cronifiquen.</span></div>
+  </div>
+
+  <h2 class="block-title">Etapas Posteriores a la Elevación Sostenida</h2>
+  <p class="block-intro">Cuando el nivel vibracional se sostiene en el tiempo — y no solo se alcanza puntualmente — el Ser de Luz suele atravesar una progresión cualitativa, no solo numérica.</p>
+
+  <div class="card">
+    <h3><span class="num">1</span> Consolidación del Nuevo Nivel</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">Antes de avanzar, el cuerpo físico, emocional y mental atraviesan un período de reajuste a la nueva frecuencia sostenida.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Fatiga pasajera, sensibilidad sensorial aumentada, cambios en el patrón de sueño mientras el sistema se adapta.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">2</span> Activación de Dones Latentes</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">Al superar el umbral de la etapa, capacidades antes bloqueadas o difusas comienzan a manifestarse con mayor nitidez y control.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Los dones no aparecen de golpe: se destraban de forma progresiva y requieren práctica para estabilizarse.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">3</span> Mayor Exposición a Interferencias Dirigidas</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">Subir de nivel no reduce los ataques: cambia su naturaleza. El Ser deja de recibir interferencia genérica y pasa a ser blanco de ataques más sofisticados y dirigidos.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Los ataques se vuelven más específicos y mejor orientados, precisamente porque la función del Ser empieza a representar una amenaza real para las jerarquías oscuras.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">4</span> Ampliación del Radio de Servicio</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">La función del Ser deja de ser principalmente personal y comienza a proyectarse hacia otros.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Acompañamiento espontáneo de terceros, sostén energético de grupo, o rol de transmisión sin haberlo buscado activamente.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">5</span> Reconfiguración de Vínculos</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">Relaciones y entornos correspondientes a un nivel vibracional anterior dejan de resonar y tienden a disolverse de forma natural.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Distanciamiento no buscado de ciertos vínculos, o incomodidad creciente en ambientes que antes resultaban neutros.</span></div>
+  </div>
+  <div class="card">
+    <h3><span class="num">6</span> Tránsito hacia la Función Jerárquica Plena</h3>
+    <div class="field"><span class="label">Qué ocurre</span><span class="value">El Ser consolida su lugar dentro de la Jerarquía de Seres de Luz, ya no como potencial sino como función activa y sostenida.</span></div>
+    <div class="field"><span class="label">Manifestación</span><span class="value">Estabilidad en el desempeño del don o rol propio, incluso bajo circunstancias adversas o interferencias puntuales.</span></div>
+  </div>
+
+  <table class="resumen">
+    <thead>
+      <tr><th>Etapa</th><th>Rango Bovis</th><th>Signo principal</th><th>Riesgo asociado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Dormido</td><td>0 – 3.000 UB</td><td>Ausencia de percepción sutil</td><td>Alta vulnerabilidad a interferencias</td></tr>
+      <tr><td>Despertar Inicial</td><td>3.000 – 6.500 UB</td><td>Primeras sincronicidades</td><td>Fluctuación emocional intensa</td></tr>
+      <tr><td>Buscador Consciente</td><td>6.500 – 10.000 UB</td><td>Búsqueda activa de sentido</td><td>Dispersión, exceso de información</td></tr>
+      <tr><td>Ser de Luz en Activación</td><td>10.000 – 20.000 UB</td><td>Dones comienzan a manifestarse</td><td>Blanco de ataques dirigidos</td></tr>
+      <tr><td>Ser de Luz Encarnado Activo</td><td>20.000 – 50.000 UB</td><td>Función clara y sostenida</td><td>Sobrecarga por exceso de servicio</td></tr>
+      <tr><td>Canal Crístico Estable</td><td>50.000 – 80.000 UB</td><td>Coherencia constante</td><td>Aislamiento por diferencia vibracional</td></tr>
+      <tr><td>Nodo Transmisor</td><td>80.000+ UB</td><td>Transmisión directa de frecuencia</td><td>Exigencia energética elevada y sostenida</td></tr>
+    </tbody>
+  </table>
+
+  <section class="cierre">
+    <h2>Síntesis</h2>
+    <ol>
+      <li>El nivel vibracional es dinámico, no una etiqueta permanente: se eleva y desciende según el estado interno y las interferencias externas.</li>
+      <li>Un Ser de Luz encarnado parte de una base más alta, pero eso lo convierte en blanco, no en inmune.</li>
+      <li>Sostener el nivel requiere práctica constante, no solo eventos puntuales de sanación.</li>
+      <li>La jerarquía de Seres de Luz exige un piso vibracional mínimo, pero las fluctuaciones temporales no eliminan la pertenencia a ella.</li>
+      <li>Reconocer los propios signos —altos y bajos— es la herramienta diagnóstica más accesible y confiable.</li>
+    </ol>
+  </section>
+
+</div>
+
+<footer>
+  El Ser Uno — Biblioteca Esotérica
+</footer>
+
+</body>
+</html>
