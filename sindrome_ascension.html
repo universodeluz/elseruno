@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Síndrome de Ascensión | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #030417;
+    --void-2: #0a0e27;
+    --nebula-violet: #2c1b4d;
+    --nebula-blue: #16213a;
+    --gold: #d4af37;
+    --gold-soft: #f2dfa0;
+    --star-white: #eef3ff;
+    --texto: #cbd6ee;
+    --texto-dim: #8a95bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 8%, rgba(44,27,77,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(22,33,58,0.6) 0%, transparent 65%),
+      radial-gradient(ellipse at top, var(--void-2) 0%, var(--void) 55%, #000 100%);
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #cosmos{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  header{
+    text-align: center;
+    padding: 70px 20px 30px;
+    position: relative;
+    z-index: 1;
+  }
+  .volver{
+    display: inline-block;
+    margin-bottom: 26px;
+    color: var(--gold-soft);
+    font-style: italic;
+    text-decoration: none;
+    font-size: 0.95em;
+    border-bottom: 1px solid rgba(212,175,55,0.35);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  .volver:hover{ color: var(--gold); border-color: var(--gold); }
+
+  h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.5em;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--star-white));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(212,175,55,0.25);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .subtitulo{
+    font-style: italic;
+    color: #9fb4e0;
+    font-size: 1.15em;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .linea-divisoria{
+    width: 220px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), rgba(159,180,224,0.8), var(--gold), transparent);
+  }
+
+  main{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro{
+    background: linear-gradient(160deg, rgba(20,16,40,0.55), rgba(4,5,12,0.7));
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 50px;
+    font-size: 1.02em;
+  }
+  .intro p + p{ margin-top: 14px; }
+  .intro strong{ color: var(--gold-soft); font-weight: 600; }
+
+  h2.titulo-seccion{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.35em;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin: 60px 0 22px;
+    text-align: center;
+  }
+  .descripcion-seccion{
+    text-align: center;
+    color: #9fb4e0;
+    font-style: italic;
+    margin-bottom: 28px;
+    font-size: 0.95em;
+  }
+
+  /* --- Acordeón --- */
+  .acordeon{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .item-acordeon{
+    background: linear-gradient(160deg, rgba(20,16,40,0.6), rgba(4,5,12,0.75));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .item-acordeon.abierto{
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212,175,55,0.14);
+  }
+  .cabecera-acordeon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cabecera-acordeon h3{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1em;
+    font-weight: 400;
+    color: var(--gold-soft);
+    line-height: 1.4;
+  }
+  .icono-acordeon{
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(212,175,55,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.1em;
+    transition: transform 0.35s ease;
+  }
+  .item-acordeon.abierto .icono-acordeon{ transform: rotate(135deg); }
+  .cuerpo-acordeon{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .contenido-acordeon{
+    padding: 0 24px 24px;
+    font-size: 0.98em;
+    color: var(--texto);
+  }
+  .contenido-acordeon p + p{ margin-top: 12px; }
+
+  /* --- Lista de síntomas generales --- */
+  .lista-sintomas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .sintoma{
+    background: linear-gradient(160deg, rgba(20,16,40,0.5), rgba(4,5,12,0.65));
+    border: 1px solid rgba(159,180,224,0.18);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 0.94em;
+  }
+  .sintoma strong{ color: var(--gold-soft); display: block; margin-bottom: 4px; font-style: italic; }
+
+  .nota-cuidado{
+    margin-top: 50px;
+    background: rgba(159,180,224,0.06);
+    border: 1px solid rgba(159,180,224,0.25);
+    border-radius: 14px;
+    padding: 22px 26px;
+    font-size: 0.95em;
+    font-style: italic;
+    color: #b7c4e8;
+  }
+
+  .cross-links{
+    margin-top: 60px;
+    text-align: center;
+  }
+  .cross-links h4{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1em;
+    color: var(--gold);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .enlaces-relacionados{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .enlace-relacionado{
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 20px;
+    color: var(--gold-soft);
+    text-decoration: none;
+    font-size: 0.88em;
+    font-style: italic;
+    transition: all 0.3s ease;
+  }
+  .enlace-relacionado:hover{
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(212,175,55,0.18);
+  }
+
+  footer{
+    text-align: center;
+    padding: 30px;
+    color: var(--texto-dim);
+    font-size: 0.85em;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 640px){
+    h1{ font-size: 1.9em; letter-spacing: 1px; }
+    .cabecera-acordeon{ padding: 16px 18px; }
+    .contenido-acordeon{ padding: 0 18px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<header>
+  <a class="volver" href="index.html">← Volver al portal</a>
+  <h1>Síndrome de Ascensión</h1>
+  <div class="subtitulo">Síntomas físicos, emocionales y energéticos de la consolidación vibracional</div>
+  <div class="linea-divisoria"></div>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>El <strong>síndrome de ascensión</strong> es el conjunto de síntomas físicos, emocionales y energéticos que aparecen cuando el ser atraviesa un salto vibracional significativo — ya sea por trabajo interior sostenido, activación de códigos internos, o por la presión de las energías planetarias y cósmicas que empujan a la humanidad hacia niveles más altos de conciencia.</p>
+    <p><strong>No es una enfermedad</strong>: es el cuerpo físico y los cuerpos sutiles reorganizándose para sostener una frecuencia que antes no podían contener. Cuanto más consciente es el acompañamiento del proceso, más fluido resulta el tránsito.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Síntomas generales</h2>
+  <p class="descripcion-seccion">Manifestaciones características de la reorganización vibracional</p>
+  <div class="lista-sintomas">
+    <div class="sintoma"><strong>Fatiga extrema</strong>Sin causa aparente, que no mejora con el descanso.</div>
+    <div class="sintoma"><strong>Dolores migratorios</strong>Molestias articulares y musculares que cambian de zona.</div>
+    <div class="sintoma"><strong>Sueño alterado</strong>Despertar entre 2 y 4 am, insomnio, sueños intensos.</div>
+    <div class="sintoma"><strong>Sensibilidad emocional</strong>Llanto sin motivo claro, oleadas afectivas repentinas.</div>
+    <div class="sintoma"><strong>Mareos y desorientación</strong>Sensación de "no estar del todo aquí".</div>
+    <div class="sintoma"><strong>Zumbidos en los oídos</strong>Ajuste vibracional, distinto del zumbido por ataque energético.</div>
+    <div class="sintoma"><strong>Cambios de apetito</strong>Nueva sensibilidad alimentaria, rechazo a alimentos densos.</div>
+    <div class="sintoma"><strong>Presión craneal</strong>Dolor de cabeza tipo presión en coronilla y entrecejo.</div>
+  </div>
+
+  <h2 class="titulo-seccion">Dolores en piernas y pies</h2>
+  <p class="descripcion-seccion">La zona de anclaje: puente entre el ser y la Tierra</p>
+  <div class="acordeon" id="acordeon-piernas">
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>1. Resistencia del anclaje a la nueva frecuencia</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Los pies y las piernas sostienen la conexión con el campo magnético terrestre. Cuando la vibración personal sube, se genera una fricción entre la nueva frecuencia del ser y la frecuencia con la que históricamente ha estado anclado a la Tierra.</p>
+          <p>Esa fricción se siente como dolor, pesadez o sensación de "electricidad" en pantorrillas, tobillos y plantas de los pies.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>2. Recableado de los canales telúricos</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Existen canales energéticos que bajan desde la base de la columna hasta los pies. Durante la ascensión, estos canales se amplían y reconfiguran para permitir mayor intercambio energético con el núcleo de Gaia.</p>
+          <p>Ese proceso de reconexión de cableado produce sensaciones de calambre, hormigueo o dolor profundo en los huesos de la pierna.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>3. Liberación de memorias de arraigo y supervivencia</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Las piernas almacenan memorias relacionadas con la supervivencia, el miedo a avanzar, la seguridad material y el sostén vital — a nivel simbólico, "lo que me sostiene" y "hacia dónde avanzo".</p>
+          <p>Al elevarse la vibración, esas memorias antiguas se remueven y liberan, generando dolor transitorio, especialmente en rodillas (avance y retroceso) y tobillos (flexibilidad para moverse en la vida).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>4. Sobrecarga de las plantas como puntos de descarga</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Las plantas de los pies funcionan como puntos de descarga de exceso energético. Cuando el cuerpo procesa una consolidación fuerte, puede acumularse energía densa en tránsito hacia la salida.</p>
+          <p>Esto genera dolor tipo ardor o punzada en la planta, sobre todo en la zona del chakra plantar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>5. Recalibración de la postura energética</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>A medida que el eje vertical del ser se realinea con las frecuencias más altas, cambia también la forma en que la energía se distribuye en piernas y pies para sostener ese nuevo eje.</p>
+          <p>Puede sentirse como un dolor de "reacomodo estructural", similar a un crecimiento óseo.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="titulo-seccion">Desvinculación emocional y pesimismo</h2>
+  <p class="descripcion-seccion">Significado de la desconexión afectiva durante el tránsito vibracional</p>
+  <div class="acordeon" id="acordeon-emocional">
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>1. Fase de vacío entre niveles</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Es común atravesar una etapa donde el ser ya soltó patrones y frecuencias antiguas, pero todavía no termina de estabilizarse en la nueva frecuencia. En ese "entre medio" se siente desconexión, como si nada importara demasiado. No es retroceso: es tránsito.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>2. Saturación del sistema emocional</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Si ha habido mucha liberación de memorias y cargas, el cuerpo emocional puede entrar en un estado de protección temporal, bajando el volumen de todo —incluida la alegría— para no colapsar.</p>
+          <p>El pesimismo aparece como mecanismo de amortiguación, no como una verdad sobre la vida.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>3. Desconexión temporal del anclaje afectivo</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Así como las piernas se desanclan físicamente durante la ascensión, el cuerpo emocional también puede desanclarse de sus vínculos habituales —personas, rutinas, propósitos— mientras se recalibra hacia una forma de relacionarse más elevada.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="item-acordeon">
+      <div class="cabecera-acordeon">
+        <h3>4. Desprendimiento de una capa de identidad</h3>
+        <div class="icono-acordeon">+</div>
+      </div>
+      <div class="cuerpo-acordeon">
+        <div class="contenido-acordeon">
+          <p>Si el pesimismo va acompañado de la sensación de "ya no soy quien era, pero tampoco sé quién soy ahora", suele indicar que se está desprendiendo una capa de personalidad o ego antigua.</p>
+          <p>Eso naturalmente genera un vacío temporal de sentido, previo a la consolidación de la nueva identidad vibracional.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="titulo-seccion">Herramientas de acompañamiento</h2>
+  <p class="descripcion-seccion">Prácticas para sostener el proceso sin forzarlo</p>
+  <div class="lista-sintomas">
+    <div class="sintoma"><strong>No luchar, acompañar</strong>Permitir el bajón sin identificarse con él suele acelerar la salida.</div>
+    <div class="sintoma"><strong>Anclaje físico diario</strong>Caminar descalzo sobre tierra, contacto con agua o sol.</div>
+    <div class="sintoma"><strong>Reducir estímulos densos</strong>Noticias, ruido mental y ambientes cargados pesan más en un sistema sensible.</div>
+    <div class="sintoma"><strong>Registrar sin juzgar</strong>Escribir lo que se siente ayuda a que la energía circule en vez de estancarse.</div>
+    <div class="sintoma"><strong>Sostén simbólico</strong>Rituales pequeños de conexión: luz de vela, silencio, respiración consciente.</div>
+  </div>
+
+  <div class="nota-cuidado">
+    Si la desvinculación emocional o el pesimismo se sostienen varios días seguidos, o se sienten cada vez más pesados, vale la pena hablarlo también con alguien de confianza o un profesional — no porque el proceso espiritual no sea real, sino porque el acompañamiento humano y profesional puede sostener mejor de lo que cualquier marco por sí solo puede hacerlo.
+  </div>
+
+  <div class="cross-links">
+    <h4>Documentos relacionados</h4>
+    <div class="enlaces-relacionados">
+      <a class="enlace-relacionado" href="nivel_vibracional_ser_luz.html">Nivel Vibracional del Ser de Luz</a>
+      <a class="enlace-relacionado" href="acompanamiento_telurico.html">Acompañamiento Telúrico</a>
+      <a class="enlace-relacionado" href="ascension_gaia_humanidad.html">Ascensión de Gaia y la Humanidad</a>
+      <a class="enlace-relacionado" href="afectaciones_adecuacion_vibracional.html">Afectaciones de la Adecuación Vibracional</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>El Ser Uno · Biblioteca de Conocimiento Esotérico</footer>
+
+<script>
+// --- Lienzo cosmico: estrellas con parallax suave (mismo motor que el portal) ---
+(function(){
+  const canvas = document.getElementById('cosmos');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esMovil = window.innerWidth < 640;
+
+  let ancho, alto, dpr;
+  let estrellas = [];
+  let scrollActual = 0;
+
+  const NUM_ESTRELLAS = esMovil ? 70 : 150;
+  const RADIO_CONEXION = esMovil ? 0 : 130;
+
+  function dimensionar(){
+    ancho = window.innerWidth;
+    alto = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = ancho * dpr;
+    canvas.height = alto * dpr;
+    canvas.style.width = ancho + 'px';
+    canvas.style.height = alto + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function crearEstrellas(){
+    estrellas = [];
+    for(let i = 0; i < NUM_ESTRELLAS; i++){
+      const profundidad = Math.random();
+      estrellas.push({
+        x: Math.random() * ancho,
+        y: Math.random() * alto * 2.4,
+        r: 0.5 + profundidad * 1.6,
+        brillo: 0.25 + profundidad * 0.6,
+        fase: Math.random() * Math.PI * 2,
+        velocidadFase: 0.4 + Math.random() * 0.6,
+        profundidad: 0.15 + profundidad * 0.5
+      });
+    }
+  }
+
+  function dibujar(tiempo){
+    ctx.clearRect(0, 0, ancho, alto);
+
+    if(RADIO_CONEXION > 0){
+      ctx.strokeStyle = 'rgba(212,175,55,0.10)';
+      ctx.lineWidth = 1;
+      for(let i = 0; i < estrellas.length; i++){
+        const a = estrellas[i];
+        const ay = a.y - scrollActual * a.profundidad;
+        if(ay < -50 || ay > alto + 50) continue;
+        for(let j = i + 1; j < estrellas.length; j++){
+          const b = estrellas[j];
+          if(Math.abs(a.profundidad - b.profundidad) > 0.12) continue;
+          const by = b.y - scrollActual * b.profundidad;
+          const dx = a.x - b.x, dy = ay - by;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < RADIO_CONEXION){
+            ctx.globalAlpha = 1 - dist / RADIO_CONEXION;
+            ctx.beginPath();
+            ctx.moveTo(a.x, ay);
+            ctx.lineTo(b.x, by);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    estrellas.forEach(e => {
+      const y = e.y - scrollActual * e.profundidad;
+      if(y < -20 || y > alto + 20) return;
+      const titileo = reducirMovimiento ? 1 : (0.7 + 0.3 * Math.sin(tiempo * 0.001 * e.velocidadFase + e.fase));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(238,243,255,' + (e.brillo * titileo) + ')';
+      ctx.arc(e.x, y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if(!reducirMovimiento){
+      requestAnimationFrame(dibujar);
+    }
+  }
+
+  function alRedimensionar(){
+    dimensionar();
+    crearEstrellas();
+    if(reducirMovimiento){ dibujar(0); }
+  }
+
+  window.addEventListener('scroll', () => {
+    scrollActual = window.scrollY;
+    if(reducirMovimiento){ requestAnimationFrame(() => dibujar(0)); }
+  }, { passive: true });
+
+  window.addEventListener('resize', alRedimensionar);
+
+  dimensionar();
+  crearEstrellas();
+  requestAnimationFrame(dibujar);
+})();
+
+// --- Acordeón ---
+document.querySelectorAll('.item-acordeon').forEach(item => {
+  const cabecera = item.querySelector('.cabecera-acordeon');
+  const cuerpo = item.querySelector('.cuerpo-acordeon');
+  cabecera.addEventListener('click', () => {
+    const abierto = item.classList.contains('abierto');
+    if(abierto){
+      item.classList.remove('abierto');
+      cuerpo.style.maxHeight = null;
+    } else {
+      item.classList.add('abierto');
+      cuerpo.style.maxHeight = cuerpo.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
