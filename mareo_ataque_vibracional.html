@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mareo y Dificultad para Levantarse — Causas Energéticas | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-celeste: #4a7fb5;
+    --blanco-estelar: #eef2f8;
+    --azul-profundo: #0b1224;
+    --azul-profundo-2: #131b33;
+    --oro: #d4af6a;
+    --texto-suave: #c7d2e6;
+    --borde-sutil: rgba(74, 127, 181, 0.25);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, var(--azul-profundo-2) 0%, var(--azul-profundo) 60%, #060a16 100%);
+    color: var(--texto-suave);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 0 0 80px 0;
+  }
+
+  header.hero {
+    text-align: center;
+    padding: 70px 20px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, var(--blanco-estelar), transparent),
+      radial-gradient(1.5px 1.5px at 60% 15%, var(--blanco-estelar), transparent),
+      radial-gradient(2px 2px at 80% 40%, var(--azul-celeste), transparent),
+      radial-gradient(1px 1px at 40% 70%, var(--blanco-estelar), transparent),
+      radial-gradient(1.5px 1.5px at 90% 80%, var(--oro), transparent);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', cursive;
+    font-weight: 700;
+    font-size: 2.1em;
+    color: var(--blanco-estelar);
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+    text-shadow: 0 0 18px rgba(74, 127, 181, 0.5);
+  }
+
+  .subtitulo {
+    font-style: italic;
+    color: var(--oro);
+    font-size: 1.15em;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  nav.volver {
+    text-align: center;
+    margin: 20px 0 40px;
+  }
+
+  nav.volver a {
+    color: var(--azul-celeste);
+    text-decoration: none;
+    font-size: 0.95em;
+    border-bottom: 1px solid var(--borde-sutil);
+    padding-bottom: 2px;
+    transition: color 0.3s;
+  }
+
+  nav.volver a:hover { color: var(--oro); }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .intro {
+    background: rgba(19, 27, 51, 0.5);
+    border: 1px solid var(--borde-sutil);
+    border-radius: 14px;
+    padding: 26px 30px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(6px);
+  }
+
+  .intro p { margin: 0 0 12px; }
+  .intro p:last-child { margin-bottom: 0; }
+
+  .categoria {
+    margin-bottom: 20px;
+    border: 1px solid var(--borde-sutil);
+    border-radius: 14px;
+    background: rgba(19, 27, 51, 0.45);
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+  }
+
+  .categoria-titulo {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--blanco-estelar);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.05em;
+    padding: 20px 26px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .categoria-titulo .num {
+    color: var(--oro);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    margin-right: 12px;
+    font-size: 0.85em;
+  }
+
+  .categoria-titulo .flecha {
+    color: var(--azul-celeste);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .categoria.abierta .categoria-titulo .flecha {
+    transform: rotate(90deg);
+  }
+
+  .categoria-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .categoria.abierta .categoria-contenido {
+    max-height: 4000px;
+  }
+
+  .causa {
+    padding: 0 26px 26px;
+    border-top: 1px solid var(--borde-sutil);
+    margin-top: 22px;
+    padding-top: 22px;
+  }
+
+  .causa:first-child { border-top: none; margin-top: 0; }
+
+  .causa h3 {
+    color: var(--azul-celeste);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.25em;
+    margin: 0 0 8px;
+  }
+
+  .causa p { margin: 0 0 12px; }
+
+  .limpieza {
+    background: rgba(74, 127, 181, 0.08);
+    border-left: 3px solid var(--oro);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 14px;
+  }
+
+  .limpieza h4 {
+    margin: 0 0 8px;
+    color: var(--oro);
+    font-size: 0.95em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-style: normal;
+  }
+
+  .limpieza p { margin: 0 0 6px; font-size: 0.97em; }
+  .limpieza p:last-child { margin-bottom: 0; }
+
+  .enlaces {
+    margin-top: 12px;
+    font-size: 0.92em;
+  }
+
+  .enlaces a {
+    color: var(--azul-celeste);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--borde-sutil);
+    margin-right: 14px;
+  }
+
+  .enlaces a:hover { color: var(--oro); }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--texto-suave);
+    opacity: 0.6;
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5em; }
+    .categoria-titulo { padding: 16px 18px; font-size: 0.92em; }
+    .causa { padding: 0 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Mareo y Dificultad para Levantarse</h1>
+  <p class="subtitulo">Causas energéticas del desequilibrio al despertar</p>
+</header>
+
+<nav class="volver">
+  <a href="index.html">← Volver al índice</a>
+</nav>
+
+<main>
+  <section class="intro">
+    <p>El mareo persistente y la dificultad para levantarse de la cama, cuando no responden a una causa física identificable, suelen apuntar a un desajuste en el proceso de reintegración entre el cuerpo físico y los cuerpos sutiles durante el sueño.</p>
+    <p>A continuación se detallan las nueve causas energéticas más frecuentes, organizadas en cinco categorías, cada una con su correspondiente sección de limpieza y protección.</p>
+  </section>
+
+  <!-- CATEGORÍA 1 -->
+  <div class="categoria">
+    <button class="categoria-titulo" onclick="this.parentElement.classList.toggle('abierta')">
+      <span><span class="num">I.</span>Desconexión Cuerpo-Alma</span>
+      <span class="flecha">▶</span>
+    </button>
+    <div class="categoria-contenido">
+
+      <div class="causa">
+        <h3>Cordón de plata debilitado o mal reanclado</h3>
+        <p>Durante el sueño, el alma realiza proyecciones astrales naturales. Si el cordón de plata regresa debilitado o el reanclaje al cuerpo físico es incompleto, se produce una sensación de mareo y de "no estar del todo dentro" del cuerpo al despertar.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Antes de levantarte, permanece unos minutos respirando profundo con los pies en contacto con el suelo, visualizando el cordón de plata reintegrándose por completo en la base de la columna.</p>
+          <p>Invoca conscientemente el regreso total del alma al cuerpo antes de iniciar cualquier actividad.</p>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Desfase entre cuerpo etérico y cuerpo físico</h3>
+        <p>El cuerpo etérico puede reintegrarse más lentamente que el físico, generando una sensación contradictoria de pesadez y de flotar al mismo tiempo.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Frotar suavemente las manos y pasar las palmas a unos centímetros del contorno del cuerpo, de cabeza a pies, ayuda a "sellar" el etérico contra el físico.</p>
+          <p>Evitar el uso inmediato de pantallas al despertar, ya que interfieren en la reintegración etérica.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CATEGORÍA 2 -->
+  <div class="categoria">
+    <button class="categoria-titulo" onclick="this.parentElement.classList.toggle('abierta')">
+      <span><span class="num">II.</span>Ataques y Adherencias Energéticas</span>
+      <span class="flecha">▶</span>
+    </button>
+    <div class="categoria-contenido">
+
+      <div class="causa">
+        <h3>Ataques energéticos nocturnos</h3>
+        <p>Durante el sueño el sistema de defensas naturales está más relajado, lo que facilita ataques que dejan un residuo vibracional percibido como mareo y fatiga al despertar.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Establecer una invocación de protección antes de dormir, sellando los siete cuerpos sutiles.</p>
+          <p>Al despertar con estos síntomas, realizar una limpieza áurica inmediata con visualización de luz blanca descendente.</p>
+          <div class="enlaces">
+            <a href="ataques_energeticos_suenos.html">Ver: Ataques energéticos en sueños</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Implantes en capas 2-3 del aura (vital/emocional)</h3>
+        <p>Los implantes en estas capas específicas generan arrastre físico y desgano, manifestándose como pesadez para incorporarse.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Trabajo de extracción energética dirigido específicamente a las capas vital y emocional del aura, seguido de recarga con luz dorada.</p>
+          <div class="enlaces">
+            <a href="implantes_por_capa_aurica.html">Ver: Implantes por capa áurica</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Vampirismo energético nocturno</h3>
+        <p>La absorción de vitalidad por otro ser durante la noche deja una sensación de "batería descargada" que se traduce en mareo y falta de fuerza para levantarse.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Reforzar el campo áurico antes de dormir con una burbuja de protección energética que impida conexiones no autorizadas.</p>
+          <p>Evitar compartir espacio de descanso con personas o entornos de baja vibración conocida.</p>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Miasmas o cargas ajenas de sueños compartidos</h3>
+        <p>En encuentros astrales o sueños compartidos pueden adherirse cargas vibracionales ajenas que el cuerpo percibe como desequilibrio al despertar.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Ducha energética visualizada con agua de luz azul celeste, con intención específica de disolver cargas ajenas adheridas durante la noche.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CATEGORÍA 3 -->
+  <div class="categoria">
+    <button class="categoria-titulo" onclick="this.parentElement.classList.toggle('abierta')">
+      <span><span class="num">III.</span>Procesos Evolutivos Propios</span>
+      <span class="flecha">▶</span>
+    </button>
+    <div class="categoria-contenido">
+
+      <div class="causa">
+        <h3>Sobrecarga vibracional por ascensión</h3>
+        <p>Cuando el cuerpo de luz avanza más rápido que el vehículo físico, se genera una descompensación temporal que se manifiesta como mareo y necesidad de reposo prolongado.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>No forzar la actividad; honrar el ritmo de integración con descanso, hidratación abundante y contacto con la naturaleza.</p>
+          <div class="enlaces">
+            <a href="ascension_gaia_humanidad.html">Ver: Ascensión de Gaia y la humanidad</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Activación de ADN o codones durante el sueño</h3>
+        <p>El cuerpo procesa cambios internos profundos mientras se duerme, y pide reposo e integración adicional al despertar, sintiéndose como mareo pasajero.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Permitir tiempo extra en la cama tras despertar, sin exigencias inmediatas, favoreciendo la integración celular del proceso activado.</p>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Limpieza kármica o liberación emocional nocturna</h3>
+        <p>El cuerpo puede somatizar procesos de liberación kármica o emocional como fatiga y mareo al despertar, especialmente tras sueños intensos o simbólicos.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Registrar el sueño o la emoción que emerge al despertar, sin analizarla de inmediato; permitir que el proceso se complete antes de levantarse.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CATEGORÍA 4 -->
+  <div class="categoria">
+    <button class="categoria-titulo" onclick="this.parentElement.classList.toggle('abierta')">
+      <span><span class="num">IV.</span>Desconexión Telúrica</span>
+      <span class="flecha">▶</span>
+    </button>
+    <div class="categoria-contenido">
+
+      <div class="causa">
+        <h3>Bloqueo en el anclaje a la Tierra</h3>
+        <p>La poca conexión con la frecuencia telúrica genera una sensación de desequilibrio físico, similar al mareo, especialmente notoria al incorporarse.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Contacto directo con el suelo (descalzo) al levantarse, aunque sea por unos minutos, para restablecer el anclaje telúrico.</p>
+          <div class="enlaces">
+            <a href="acompanamiento_telurico.html">Ver: Acompañamiento telúrico</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Desalineación de los chakras inferiores (raíz/sacro)</h3>
+        <p>Cuando estos centros no están alineados, se dificulta "bajar" la energía al cuerpo físico, generando la sensación de mareo al despertar.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Visualización de una raíz de luz roja descendiendo desde la base de la columna hacia el centro de la Tierra, sosteniendo la conexión unos minutos antes de levantarse.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CATEGORÍA 5 -->
+  <div class="categoria">
+    <button class="categoria-titulo" onclick="this.parentElement.classList.toggle('abierta')">
+      <span><span class="num">V.</span>Interferencias Externas</span>
+      <span class="flecha">▶</span>
+    </button>
+    <div class="categoria-contenido">
+
+      <div class="causa">
+        <h3>Geopatías o líneas telúricas negativas bajo la cama</h3>
+        <p>Cruces de líneas telúricas negativas (sistema Chaumery-Bélizal) bajo el lugar de descanso pueden alterar el equilibrio energético durante la noche.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Medición radiestésica del lugar de descanso y, de confirmarse una geopatía, reubicación de la cama o neutralización con los métodos correspondientes de radiestesia.</p>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Contaminación electromagnética</h3>
+        <p>Los campos electromagnéticos cercanos al lugar de descanso (routers, cargadores, dispositivos) pueden alterar el campo áurico durante el sueño.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Retirar dispositivos electrónicos del dormitorio o apagarlos durante la noche; mantener distancia mínima de un metro con el router.</p>
+        </div>
+      </div>
+
+      <div class="causa">
+        <h3>Presencia de entidades o seres de baja vibración</h3>
+        <p>La cercanía de entidades de baja vibración durante la noche puede generar una interferencia directa en el campo energético, sentida como mareo al despertar.</p>
+        <div class="limpieza">
+          <h4>Limpieza y protección</h4>
+          <p>Sellar el espacio de descanso con una invocación de protección antes de dormir e incorporar limpieza energética regular del dormitorio (sahumado, sonido, luz).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>El Ser Uno</p>
+</footer>
+
+</body>
+</html>

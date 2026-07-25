@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques de Separación entre Seres de Luz | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-celestial: #4a7ba6;
+    --blanco-estelar: #e8eef5;
+    --azul-profundo: #0a1128;
+    --azul-medio: #16213e;
+    --dorado: #d4af6a;
+    --texto-suave: #c5d2e0;
+    --borde-glass: rgba(232, 238, 245, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: radial-gradient(ellipse at top, #16213e 0%, #0a1128 55%, #050810 100%);
+    color: var(--texto-suave);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, rgba(232,238,245,0.5), transparent),
+      radial-gradient(1px 1px at 60% 70%, rgba(232,238,245,0.4), transparent),
+      radial-gradient(2px 2px at 80% 15%, rgba(212,175,106,0.35), transparent),
+      radial-gradient(1px 1px at 40% 85%, rgba(232,238,245,0.3), transparent),
+      radial-gradient(1px 1px at 90% 50%, rgba(74,123,166,0.4), transparent);
+    background-size: 400px 400px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .contenedor {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header.portada {
+    text-align: center;
+    margin-bottom: 70px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--borde-glass);
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--dorado);
+    opacity: 0.85;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--blanco-estelar);
+    text-shadow: 0 0 30px rgba(74,123,166,0.4);
+    line-height: 1.3;
+    margin-bottom: 22px;
+  }
+
+  .subtitulo {
+    font-size: 21px;
+    font-style: italic;
+    color: var(--texto-suave);
+    max-width: 620px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+
+  .constelacion-divisor {
+    width: 200px;
+    height: 40px;
+    margin: 30px auto 0;
+    position: relative;
+  }
+  .constelacion-divisor svg { width: 100%; height: 100%; }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--dorado);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  h2::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--azul-celestial);
+    border-radius: 50%;
+    box-shadow: 0 0 12px 3px rgba(74,123,166,0.7);
+    flex-shrink: 0;
+  }
+
+  .intro-texto p { margin-bottom: 18px; }
+  .intro-texto p:last-child { margin-bottom: 0; }
+
+  .destacado {
+    background: linear-gradient(135deg, rgba(74,123,166,0.12), rgba(212,175,106,0.06));
+    border-left: 3px solid var(--dorado);
+    padding: 18px 22px;
+    border-radius: 4px;
+    font-style: italic;
+    margin: 22px 0;
+  }
+
+  /* Tarjetas glass simples (vínculos vulnerables) */
+  .grid-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .tarjeta-glass {
+    background: rgba(232, 238, 245, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--borde-glass);
+    border-radius: 10px;
+    padding: 22px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .tarjeta-glass:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,175,106,0.4);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  .tarjeta-glass h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    color: var(--blanco-estelar);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .tarjeta-glass p { font-size: 17px; opacity: 0.9; }
+
+  .tarjeta-glass a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--azul-celestial);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 15px;
+    border-bottom: 1px dotted var(--azul-celestial);
+  }
+  .tarjeta-glass a:hover { color: var(--dorado); border-color: var(--dorado); }
+
+  /* Acordeón (mecanismos de ataque) */
+  .acordeon-item {
+    background: rgba(232, 238, 245, 0.03);
+    border: 1px solid var(--borde-glass);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  .acordeon-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .acordeon-cabecera h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    color: var(--blanco-estelar);
+    font-weight: 700;
+  }
+
+  .acordeon-icono {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .acordeon-icono::before, .acordeon-icono::after {
+    content: '';
+    position: absolute;
+    background: var(--dorado);
+    transition: transform 0.3s ease;
+  }
+  .acordeon-icono::before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
+  .acordeon-icono::after { width: 2px; height: 100%; left: 50%; transform: translateX(-50%); }
+  .acordeon-item.activo .acordeon-icono::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+
+  .acordeon-cuerpo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 22px;
+  }
+
+  .acordeon-item.activo .acordeon-cuerpo {
+    max-height: 600px;
+    padding: 0 22px 22px;
+  }
+
+  .acordeon-cuerpo p { font-size: 17px; }
+
+  /* Lista de señales */
+  .lista-senales {
+    list-style: none;
+  }
+  .lista-senales li {
+    padding: 14px 0 14px 30px;
+    border-bottom: 1px solid var(--borde-glass);
+    position: relative;
+  }
+  .lista-senales li:last-child { border-bottom: none; }
+  .lista-senales li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--dorado);
+    font-size: 14px;
+    top: 16px;
+  }
+
+  /* Protección */
+  .proteccion-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .proteccion-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(74,123,166,0.06);
+    border: 1px solid var(--borde-glass);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+
+  .proteccion-item .numero {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--dorado);
+    font-size: 18px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .proteccion-item p { font-size: 17px; }
+  .proteccion-item strong { color: var(--blanco-estelar); }
+
+  /* Cierre */
+  .cierre {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--borde-glass);
+    margin-top: 60px;
+  }
+
+  .cita {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--blanco-estelar);
+    max-width: 560px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    text-shadow: 0 0 20px rgba(74,123,166,0.3);
+  }
+
+  .nav-relacionados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .nav-relacionados a {
+    color: var(--azul-celestial);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 16px;
+    border: 1px solid var(--borde-glass);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+  }
+  .nav-relacionados a:hover {
+    border-color: var(--dorado);
+    color: var(--dorado);
+    background: rgba(212,175,106,0.06);
+  }
+
+  @media (max-width: 600px) {
+    .contenedor { padding: 40px 18px 80px; }
+    body { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+  <header class="portada">
+    <div class="eyebrow">El Ser Uno · Catálogo de Ataques Energéticos</div>
+    <h1>Ataques de Separación<br>entre Seres de Luz</h1>
+    <p class="subtitulo">Cuando la unión consciente entre almas afines se convierte en blanco de disolución</p>
+    <div class="constelacion-divisor">
+      <svg viewBox="0 0 200 40">
+        <line x1="20" y1="20" x2="80" y2="10" stroke="#4a7ba6" stroke-width="1" opacity="0.5"/>
+        <line x1="80" y1="10" x2="120" y2="30" stroke="#4a7ba6" stroke-width="1" opacity="0.5"/>
+        <line x1="120" y1="30" x2="180" y2="18" stroke="#4a7ba6" stroke-width="1" opacity="0.5"/>
+        <circle cx="20" cy="20" r="2.5" fill="#d4af6a"/>
+        <circle cx="80" cy="10" r="2" fill="#e8eef5"/>
+        <circle cx="120" cy="30" r="2" fill="#e8eef5"/>
+        <circle cx="180" cy="18" r="2.5" fill="#d4af6a"/>
+      </svg>
+    </div>
+  </header>
+
+  <section id="introduccion">
+    <h2>Marco Conceptual</h2>
+    <div class="intro-texto">
+      <p>Este ataque se distingue de la <a href="separacion_llama_gemela.html" style="color:var(--azul-celestial);">separación de llama gemela</a> en que no requiere un vínculo de complementariedad energética previa. Puede darse entre cualquier par o grupo de seres de luz cuya unión —por afinidad vibracional, propósito compartido o resonancia de misión— representa una amenaza para las fuerzas oscuras.</p>
+      <p>La premisa central es simple pero profunda: la unión consciente entre seres de luz genera un campo vibracional amplificado, un efecto de resonancia colectiva que multiplica su capacidad de servicio y su luz irradiada. Romper ese vínculo no solo aísla a los individuos; colapsa el campo conjunto que generaban juntos.</p>
+      <div class="destacado">
+        Aislar a un ser de luz reduce su brillo individual. Separar a dos o más seres de luz unidos, colapsa un campo que era mayor que la suma de sus partes.
+      </div>
+    </div>
+  </section>
+
+  <section id="vinculos-vulnerables">
+    <h2>Categorías de Vínculos Vulnerables</h2>
+    <div class="grid-tarjetas">
+      <div class="tarjeta-glass">
+        <h3>Llamas Gemelas / Almas Compañeras</h3>
+        <p>El vínculo de mayor intensidad vibracional, y por eso mismo el más atacado con frecuencia y sofisticación.</p>
+        <a href="separacion_llama_gemela.html">Ver desarrollo específico →</a>
+      </div>
+      <div class="tarjeta-glass">
+        <h3>Familias del Alma</h3>
+        <p>Grupos que han encarnado juntos en múltiples vidas bajo un contrato de apoyo mutuo. El ataque busca activar patrones kármicos no resueltos entre sus miembros.</p>
+      </div>
+      <div class="tarjeta-glass">
+        <h3>Grupos de Misión Conjunta</h3>
+        <p>Equipos formados específicamente para una tarea de luz en esta encarnación. El ataque siembra desacuerdos artificiales sobre visión o método.</p>
+      </div>
+      <div class="tarjeta-glass">
+        <h3>Alianzas de Trabajo de Luz</h3>
+        <p>Comunidades, círculos de sanación, redes de activadores. Vulnerables a la fragmentación interna por rumor o desconfianza cruzada.</p>
+      </div>
+      <div class="tarjeta-glass">
+        <h3>Vínculos Maestro-Discípulo</h3>
+        <p>Se ataca la confianza en la guía recibida, generando dudas artificiales sobre la legitimidad o la intención del maestro.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mecanismos">
+    <h2>Mecanismos de Ataque</h2>
+    <div class="acordeon-lista">
+
+      <div class="acordeon-item">
+        <div class="acordeon-cabecera" onclick="toggleAcordeon(this)">
+          <h3>Interferencia Vibracional en el Vínculo</h3>
+          <div class="acordeon-icono"></div>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p>Una entidad o fuerza oscura introduce una frecuencia disonante en el espacio energético compartido entre dos seres. Cuando ambos entran en contacto —físico o mental— surge fricción sin causa lógica aparente, como una estática que distorsiona la comunicación natural del vínculo.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-cabecera" onclick="toggleAcordeon(this)">
+          <h3>Implantes de Discordia</h3>
+          <div class="acordeon-icono"></div>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p>Dispositivos etéricos instalados en capas áuricas específicas que actúan como "detonadores": se activan en presencia del otro ser, generando irritabilidad o desconfianza automática, desproporcionada a la situación real.</p>
+          <p><a href="implantes_por_capa_aurica.html" style="color:var(--azul-celestial);">Ver catálogo de implantes por capa áurica →</a></p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-cabecera" onclick="toggleAcordeon(this)">
+          <h3>Manipulación Mental / Causal</h3>
+          <div class="acordeon-icono"></div>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p>Distorsión directa de la interpretación: el ser "escucha" o "recuerda" una versión ligeramente alterada de lo que el otro dijo o hizo. La alteración es sutil, apenas perceptible, pero suficiente para sembrar una duda que antes no existía.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-cabecera" onclick="toggleAcordeon(this)">
+          <h3>Uso de Terceros como Vectores</h3>
+          <div class="acordeon-icono"></div>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p>Una tercera persona, influida o poseída energéticamente sin plena consciencia de ello, funciona como mensajera involuntaria de chismes, medias verdades o provocaciones que erosionan la confianza entre los seres de luz vinculados.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-cabecera" onclick="toggleAcordeon(this)">
+          <h3>Activación de Heridas Kármicas o del Ego</h3>
+          <div class="acordeon-icono"></div>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p>Se identifican inseguridades preexistentes —abandono, traición, sensación de no ser suficiente— y se estimulan en el momento preciso de mayor cercanía entre los seres, provocando una reactividad desproporcionada al hecho concreto que la origina.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="senales">
+    <h2>Señales de Reconocimiento</h2>
+    <ul class="lista-senales">
+      <li>El conflicto surge "de la nada", desproporcionado al hecho que lo origina.</li>
+      <li>Pensamientos rumiantes u obsesivos hacia el otro ser, especialmente en horarios de baja vibración como la madrugada.</li>
+      <li>Sensación física de opresión en el pecho o el plexo solar al pensar en la persona.</li>
+      <li>Sincronías negativas repetidas: mensajes que no llegan, malentendidos tecnológicos, "casualidades" que impiden el encuentro.</li>
+      <li>Sueños con la persona que generan desconfianza al despertar, sin correlato real en la vigilia.</li>
+    </ul>
+  </section>
+
+  <section id="proteccion">
+    <h2>Protección y Sanación</h2>
+    <div class="proteccion-lista">
+      <div class="proteccion-item">
+        <span class="numero">✦</span>
+        <p><strong>Discernimiento antes de reaccionar:</strong> pausa consciente de al menos algunas horas antes de responder a un conflicto repentino con un ser de luz afín.</p>
+      </div>
+      <div class="proteccion-item">
+        <span class="numero">✦</span>
+        <p><strong>Reconexión vibracional consciente:</strong> visualización de unión de campos áuricos, invocando al Rayo Crístico como limpiador de interferencias.</p>
+      </div>
+      <div class="proteccion-item">
+        <span class="numero">✦</span>
+        <p><strong>Comandos estelares de protección del vínculo:</strong> los siete comandos ya catalogados pueden adaptarse a la protección diádica o grupal del vínculo atacado.</p>
+      </div>
+      <div class="proteccion-item">
+        <span class="numero">✦</span>
+        <p><strong>Diálogo consciente post-limpieza:</strong> una vez limpiado el campo, retomar la comunicación desde la claridad, no desde la reactividad inicial.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cierre">
+    <p class="cita">"La unión consciente entre seres de luz es, en sí misma, un acto de resistencia luminosa. Por eso es blanco constante de disolución."</p>
+    <div class="nav-relacionados">
+      <a href="separacion_llama_gemela.html">Separación de Llama Gemela</a>
+      <a href="implantes_por_capa_aurica.html">Implantes por Capa Áurica</a>
+      <a href="rayo_cristico.html">Rayo Crístico</a>
+      <a href="comandos_estelares.html">Comandos Estelares</a>
+      <a href="tipos_ataques_energeticos.html">Catálogo Maestro de Ataques</a>
+      <a href="index.html">Volver al Índice</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleAcordeon(cabecera) {
+  const item = cabecera.parentElement;
+  const yaActivo = item.classList.contains('activo');
+  document.querySelectorAll('.acordeon-item').forEach(el => el.classList.remove('activo'));
+  if (!yaActivo) item.classList.add('activo');
+}
+</script>
+
+</body>
+</html>
