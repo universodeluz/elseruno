@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques Atemporales · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg:         #07070e;
+  --surface:    #0e0e1c;
+  --panel:      #12121f;
+  --border:     #1e1e35;
+  --border-h:   #2e2e55;
+  --oro:        #9fc9ff;
+  --oro-dim:    #294a72;
+  --violeta:    #1e3a68;
+  --violeta-c:  #6fa3e0;
+  --blanco:     #ddd8cc;
+  --gris:       #7878a0;
+  --gris-c:     #a0a0c0;
+
+  /* Colores por tipo de anclaje */
+  --retro:  #d06060;   /* rojo — pasado */
+  --trans:  #b080c0;   /* malva — paralelo */
+  --prosp:  #904040;   /* carmesí oscuro — futuro/civilizacional */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(107,79,160,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(176,128,192,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 80% 10%, rgba(144,64,64,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.orb {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2.5rem;
+}
+.orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(159,201,255,0.2);
+  animation: giro 34s linear infinite;
+}
+.orb-ring::before {
+  content: '';
+  position: absolute;
+  top: -3px; left: 50%;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--oro);
+  box-shadow: 0 0 10px var(--oro);
+}
+.orb-ring-2 {
+  inset: 18px;
+  border-color: rgba(176,128,192,0.25);
+  animation: giro 22s linear infinite reverse;
+}
+.orb-ring-2::before {
+  background: var(--trans);
+  box-shadow: 0 0 10px var(--trans);
+}
+.orb-ring-3 {
+  inset: 34px;
+  border-color: rgba(208,96,96,0.2);
+  animation: giro 14s linear infinite;
+}
+.orb-ring-3::before {
+  background: var(--retro);
+  box-shadow: 0 0 10px var(--retro);
+}
+.orb-core {
+  position: absolute;
+  inset: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,10,10,0.9) 0%, rgba(7,7,14,0.95) 70%);
+  border: 1px solid rgba(144,64,64,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+@keyframes giro { to { transform: rotate(360deg); } }
+
+.hero h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--oro);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 40px rgba(159,201,255,0.3);
+}
+.hero-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 1.5rem;
+}
+.hero-intro {
+  max-width: 600px;
+  font-style: italic;
+  color: var(--gris-c);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro);
+  border: 1px solid var(--oro-dim);
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  cursor: pointer;
+  background: none;
+}
+.hero-cta:hover {
+  background: rgba(159,201,255,0.08);
+  border-color: var(--oro);
+}
+.hero-enlaces {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+}
+.hero-enlaces a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris-c);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.25s;
+  padding-bottom: 2px;
+}
+.hero-enlaces a:hover {
+  color: var(--oro);
+  border-bottom-color: var(--oro-dim);
+}
+
+/* ─── LINEA TEMPORAL VISUAL ─── */
+.linea-wrap {
+  padding: 1.8rem 2rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.linea-track {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(208,96,96,0.5), rgba(176,128,192,0.5), rgba(144,64,64,0.5));
+  border-radius: 2px;
+}
+.linea-punto {
+  position: absolute;
+  top: 50%;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 0 12px currentColor;
+}
+.linea-labels {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0.9rem auto 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.intro-bloque {
+  margin-bottom: 2.5rem;
+  padding: 1.6rem 1.8rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+.intro-bloque p { color: var(--gris-c); font-size: 0.98rem; margin-bottom: 0.8rem; }
+.intro-bloque p:last-child { margin-bottom: 0; }
+.intro-bloque strong { color: var(--blanco); }
+
+/* ─── TIPO CARD (mismo patrón que nivel-card) ─── */
+.tipo-card {
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.tipo-card.abierto { border-color: var(--border-h); }
+
+.tipo-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  cursor: pointer;
+  background: var(--panel);
+  transition: background 0.2s;
+  user-select: none;
+  position: relative;
+}
+.tipo-header:hover { background: rgba(255,255,255,0.02); }
+
+.tipo-codigo {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  min-width: 40px;
+  color: var(--gris);
+}
+.tipo-icono {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.tipo-meta { flex: 1; }
+.tipo-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.tipo-tagline {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--gris-c);
+}
+.tipo-badges {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+.badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.tipo-chevron {
+  color: var(--gris);
+  font-size: 0.8rem;
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.tipo-card.abierto .tipo-chevron { transform: rotate(180deg); }
+
+.tipo-cuerpo {
+  display: none;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.tipo-card.abierto .tipo-cuerpo { display: block; }
+
+.tipo-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.tab-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.2rem;
+  background: none;
+  border: none;
+  color: var(--gris);
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.18s;
+  margin-bottom: -1px;
+}
+.tab-btn:hover { color: var(--blanco); }
+.tab-btn.activo { color: var(--oro); border-bottom-color: var(--oro); }
+
+.tab-content { display: none; padding: 1.6rem; }
+.tab-content.activo { display: block; }
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.dato {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.7rem 0.9rem;
+}
+.dato-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.dato-val { font-size: 0.92rem; color: var(--blanco); }
+.dato-val.mono { font-family: 'Space Mono', monospace; font-size: 0.8rem; }
+
+.desc-texto { font-size: 1rem; color: var(--gris-c); line-height: 1.75; }
+.desc-texto p { margin-bottom: 0.9rem; }
+.desc-texto p:last-child { margin-bottom: 0; }
+.desc-texto strong { color: var(--blanco); font-weight: 600; }
+
+.cuerpos-lista { list-style: none; }
+.cuerpo-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.cuerpo-item:last-child { border-bottom: none; }
+.cuerpo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+.cuerpo-nombre {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--oro);
+  min-width: 140px;
+}
+.cuerpo-efecto { font-size: 0.92rem; color: var(--gris-c); }
+
+.proto-paso {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  align-items: flex-start;
+}
+.proto-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--oro-dim);
+  min-width: 24px;
+  padding-top: 0.15rem;
+}
+.proto-texto { font-size: 0.95rem; color: var(--gris-c); line-height: 1.5; }
+.proto-alerta {
+  background: rgba(144,48,48,0.12);
+  border: 1px solid rgba(144,48,48,0.35);
+  border-radius: 2px;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+  color: #d07060;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.jerarquia-nota {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+}
+.jerarquia-nota a {
+  color: var(--oro);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oro-dim);
+}
+.jerarquia-nota a:hover { border-bottom-color: var(--oro); }
+.jerarquia-nota span { font-size: 0.88rem; color: var(--gris-c); }
+
+/* ─── PRINCIPIO UNIFICADOR ─── */
+.principio {
+  background: linear-gradient(135deg, rgba(107,79,160,0.08) 0%, rgba(159,201,255,0.04) 100%);
+  border: 1px solid var(--border-h);
+  border-radius: 3px;
+  padding: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+.principio blockquote {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--blanco);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+.principio cite {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gris);
+}
+
+@media (max-width: 640px) {
+  .datos-grid { grid-template-columns: 1fr 1fr; }
+  .tipo-badges { display: none; }
+  .hero h1 { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb">
+    <div class="orb-ring"></div>
+    <div class="orb-ring orb-ring-2"></div>
+    <div class="orb-ring orb-ring-3"></div>
+    <div class="orb-core">◈</div>
+  </div>
+  <h1>Ataques Atemporales</h1>
+  <p class="hero-sub">El Ser Uno · Daños Colocados Fuera de la Línea Temporal Lineal</p>
+  <p class="hero-intro">
+    No todo daño energético se activa en el presente. Existe una categoría de ataques que se insertan deliberadamente fuera de la secuencia causa-efecto habitual — en el pasado, en una probabilidad futura o en una línea paralela — y que permanecen latentes hasta que la consciencia del ser toca esa coordenada. Solo los niveles superiores de la Jerarquía de Seres de Oscuridad tienen la estructura necesaria para operar así.
+  </p>
+  <button class="hero-cta" onclick="document.getElementById('anclajes').scrollIntoView({behavior:'smooth'})">
+    Explorar los Anclajes
+  </button>
+  <nav class="hero-enlaces">
+    <a href="jerarquia_seres_oscuridad.html">Jerarquía de Seres de Oscuridad</a>
+    <a href="clasificacion_general_ataques_energeticos.html">Clasificación General de Ataques</a>
+    <a href="index.html">Volver al Portal</a>
+  </nav>
+</section>
+
+<!-- LINEA TEMPORAL -->
+<div class="linea-wrap">
+  <div class="linea-track">
+    <div class="linea-punto" style="left:18%; background:var(--retro); color:var(--retro);"></div>
+    <div class="linea-punto" style="left:50%; background:var(--trans); color:var(--trans);"></div>
+    <div class="linea-punto" style="left:82%; background:var(--prosp); color:var(--prosp);"></div>
+  </div>
+  <div class="linea-labels">
+    <span>Retroactivo · Pasado</span>
+    <span>Transversal · Paralelo</span>
+    <span>Prospectivo · Futuro</span>
+  </div>
+</div>
+
+<div class="main" id="anclajes">
+
+<div class="intro-bloque">
+  <p><strong>Por qué son distintos a un ataque directo:</strong> un ataque convencional actúa por proximidad y en el momento presente — se siente como "algo me está pasando ahora". Un anclaje atemporal no se activa en el instante en que se coloca, sino cuando la consciencia del ser converge con la coordenada donde fue insertado: un recuerdo, una probabilidad futura, o una encarnación simultánea.</p>
+  <p>Por esta razón son más difíciles de detectar con las herramientas habituales de limpieza energética, que suelen operar sobre el aquí y ahora del consultante. El diagnóstico requiere revisar no solo el campo presente, sino los ecos que aparecen tras haber sido supuestamente sanados.</p>
+</div>
+
+<!-- ════════════════════════════════════ ANCLAJE RETROACTIVO ════ -->
+<div class="tipo-card" data-tipo="retroactivo">
+  <div class="tipo-header" onclick="toggleTipo(this)">
+    <span class="tipo-codigo">A-1</span>
+    <div class="tipo-icono" style="background:rgba(208,96,96,0.15); color:var(--retro); border-color:rgba(208,96,96,0.3);">◐</div>
+    <div class="tipo-meta">
+      <div class="tipo-nombre" style="color:var(--retro)">Anclaje Retroactivo</div>
+      <div class="tipo-tagline">El daño se coloca en un punto ya vivido para moldear cómo se repite.</div>
+    </div>
+    <div class="tipo-badges">
+      <span class="badge" style="color:var(--retro)">Nivel D-7</span>
+      <span class="badge" style="color:var(--gris)">Causal</span>
+    </div>
+    <span class="tipo-chevron">▼</span>
+  </div>
+  <div class="tipo-cuerpo">
+    <div class="tipo-tabs">
+      <button class="tab-btn activo" onclick="switchTab(this,'naturaleza')">Naturaleza</button>
+      <button class="tab-btn" onclick="switchTab(this,'cuerpos')">Cuerpos Sutiles</button>
+      <button class="tab-btn" onclick="switchTab(this,'protocolo')">Protocolo</button>
+    </div>
+    <div class="tab-content activo" data-tab="naturaleza">
+      <div class="jerarquia-nota">
+        <span>Nivel responsable: <a href="jerarquia_seres_oscuridad.html">D-7 · Arconte de Rango Menor</a> — inteligencia estratégica capaz de operar sobre linajes enteros durante generaciones.</span>
+      </div>
+      <div class="datos-grid">
+        <div class="dato"><span class="dato-label">Coordenada</span><span class="dato-val">Pasado — esta vida u otra encarnación</span></div>
+        <div class="dato"><span class="dato-label">Mecanismo</span><span class="dato-val">Contrato causal falso</span></div>
+        <div class="dato"><span class="dato-label">Activación</span><span class="dato-val">Al tocar el recuerdo o el patrón</span></div>
+      </div>
+      <div class="desc-texto">
+        <p>El anclaje retroactivo no se lanza al momento del ataque: se <strong>inserta en una coordenada ya transcurrida</strong> para que module cómo el ser interpreta o repite ciertos eventos, incluso mucho después de que "ya pasaron".</p>
+        <p>El mecanismo más habitual es el <strong>contrato causal falso</strong> — un acuerdo kármico que la persona honra vida tras vida sin haberlo elegido libremente. No se experimenta como un ataque, sino como "destino" o "patrón familiar", lo cual lo hace especialmente difícil de reconocer como interferencia externa.</p>
+        <p>Se diferencia de un simple bucle kármico natural en que <strong>fue colocado deliberadamente</strong>, no es una lección que el alma se impuso a sí misma.</p>
+      </div>
+    </div>
+    <div class="tab-content" data-tab="cuerpos">
+      <ul class="cuerpos-lista">
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#c0b090"></div><span class="cuerpo-nombre">Cuerpo Físico</span><span class="cuerpo-efecto">Patrones de enfermedad o accidente que se repiten en distintas etapas de vida sin causa médica identificable.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#f0c060"></div><span class="cuerpo-nombre">Cuerpo Astral</span><span class="cuerpo-efecto">Reactivación emocional de un evento pasado como si estuviera ocurriendo ahora — el "eco" se siente presente.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#c090e0"></div><span class="cuerpo-nombre">Cuerpo Causal</span><span class="cuerpo-efecto">Sede principal del anclaje. Aquí reside el contrato falso que se reactiva en cada ciclo de vida.</span></li>
+      </ul>
+    </div>
+    <div class="tab-content" data-tab="protocolo">
+      <div class="proto-alerta">Requiere trabajo directo sobre el registro causal, no solo sobre el síntoma presente.</div>
+      <div class="proto-paso"><span class="proto-num">01</span><span class="proto-texto">Identificar el punto de origen del patrón mediante revisión akáshica o regresión guiada, sin revivir el trauma innecesariamente.</span></div>
+      <div class="proto-paso"><span class="proto-num">02</span><span class="proto-texto">Invocar autoridad cósmica para anular el contrato causal falso — no basta la autoridad individual del consultante.</span></div>
+      <div class="proto-paso"><span class="proto-num">03</span><span class="proto-texto">Corte del anclaje en todos los puntos de la línea temporal donde se manifestó, no solo en el origen.</span></div>
+      <div class="proto-paso"><span class="proto-num">04</span><span class="proto-texto">Sellado con Rayo Crístico y reafirmación del libre albedrío original del ser sobre su propia historia.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ ANCLAJE TRANSVERSAL ════ -->
+<div class="tipo-card" data-tipo="transversal">
+  <div class="tipo-header" onclick="toggleTipo(this)">
+    <span class="tipo-codigo">A-2</span>
+    <div class="tipo-icono" style="background:rgba(176,128,192,0.15); color:var(--trans); border-color:rgba(176,128,192,0.3);">◑</div>
+    <div class="tipo-meta">
+      <div class="tipo-nombre" style="color:var(--trans)">Anclaje Transversal</div>
+      <div class="tipo-tagline">Interferencia difusa que sangra desde una línea paralela o simultánea.</div>
+    </div>
+    <div class="tipo-badges">
+      <span class="badge" style="color:var(--trans)">Nivel D-6 / D-7</span>
+      <span class="badge" style="color:var(--gris)">Astral-Causal</span>
+    </div>
+    <span class="tipo-chevron">▼</span>
+  </div>
+  <div class="tipo-cuerpo">
+    <div class="tipo-tabs">
+      <button class="tab-btn activo" onclick="switchTab(this,'naturaleza')">Naturaleza</button>
+      <button class="tab-btn" onclick="switchTab(this,'cuerpos')">Cuerpos Sutiles</button>
+      <button class="tab-btn" onclick="switchTab(this,'protocolo')">Protocolo</button>
+    </div>
+    <div class="tab-content activo" data-tab="naturaleza">
+      <div class="jerarquia-nota">
+        <span>Nivel responsable: <a href="jerarquia_seres_oscuridad.html">D-7 · Arconte de Rango Menor</a> (colocación deliberada) — con resonancia parcial desde <a href="jerarquia_seres_oscuridad.html">D-6 · Entidad Astral Inteligente</a>, que puede engancharse al patrón ya existente sin haberlo diseñado.</span>
+      </div>
+      <div class="datos-grid">
+        <div class="dato"><span class="dato-label">Coordenada</span><span class="dato-val">Línea paralela o encarnación simultánea</span></div>
+        <div class="dato"><span class="dato-label">Mecanismo</span><span class="dato-val">Interferencia por resonancia cruzada</span></div>
+        <div class="dato"><span class="dato-label">Activación</span><span class="dato-val">Difusa — sin origen claro identificable</span></div>
+      </div>
+      <div class="desc-texto">
+        <p>Opera sobre una línea paralela o una encarnación simultánea del ser, y "sangra" hacia la experiencia actual como una <strong>interferencia difusa, sin origen claro</strong>. Es el tipo de anclaje más difícil de rastrear precisamente porque no apunta a un evento único, sino a una resonancia entre versiones del ser que coexisten fuera de la secuencia lineal.</p>
+        <p>A diferencia del anclaje retroactivo, aquí no hay necesariamente un "contrato" — puede ser simplemente una <strong>fuga energética entre líneas</strong>, aprovechada por una entidad de nivel D-6 que detecta el patrón ya abierto y se alimenta de él sin haberlo originado.</p>
+        <p>Se manifiesta como sensación de bloqueo sin causa aparente, o un déjà vu con carga negativa que no corresponde a ningún recuerdo consciente de esta vida.</p>
+      </div>
+    </div>
+    <div class="tab-content" data-tab="cuerpos">
+      <ul class="cuerpos-lista">
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#80c0a0"></div><span class="cuerpo-nombre">Cuerpo Etérico</span><span class="cuerpo-efecto">Fugas puntuales de energía sin ubicación anatómica clara, que no responden a limpiezas etéricas convencionales.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#f0c060"></div><span class="cuerpo-nombre">Cuerpo Astral</span><span class="cuerpo-efecto">Estados de ánimo que cambian sin detonante identificable, como si "algo ajeno" cruzara momentáneamente el campo emocional.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#90b0e0"></div><span class="cuerpo-nombre">Cuerpo Mental</span><span class="cuerpo-efecto">Confusión o niebla mental intermitente, sin relación con el descanso, la alimentación o el estrés presente.</span></li>
+      </ul>
+    </div>
+    <div class="tab-content" data-tab="protocolo">
+      <div class="proto-alerta">El diagnóstico es más difícil que en el resto de los ataques: prioriza la medición Bovis repetida en distintos momentos para captar la variabilidad.</div>
+      <div class="proto-paso"><span class="proto-num">01</span><span class="proto-texto">Medir Bovis en varios momentos del día durante una semana para detectar patrones de fluctuación no atribuibles a causas presentes.</span></div>
+      <div class="proto-paso"><span class="proto-num">02</span><span class="proto-texto">Sellar el campo áurico con intención específica de cierre a interferencias transversales, no solo protección genérica.</span></div>
+      <div class="proto-paso"><span class="proto-num">03</span><span class="proto-texto">Reforzar el cordón de identidad única del ser en su línea temporal actual, distinguiéndola energéticamente de líneas paralelas.</span></div>
+      <div class="proto-paso"><span class="proto-num">04</span><span class="proto-texto">Sesiones de seguimiento espaciadas, ya que la interferencia puede reaparecer de forma intermitente antes de disolverse por completo.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ ANCLAJE PROSPECTIVO ════ -->
+<div class="tipo-card" data-tipo="prospectivo">
+  <div class="tipo-header" onclick="toggleTipo(this)">
+    <span class="tipo-codigo">A-3</span>
+    <div class="tipo-icono" style="background:rgba(144,64,64,0.2); color:var(--prosp); border-color:rgba(144,64,64,0.4);">◒</div>
+    <div class="tipo-meta">
+      <div class="tipo-nombre" style="color:var(--prosp)">Anclaje Prospectivo</div>
+      <div class="tipo-tagline">Trampa sembrada en una probabilidad futura, individual o civilizacional.</div>
+    </div>
+    <div class="tipo-badges">
+      <span class="badge" style="color:var(--prosp)">Nivel D-8/9</span>
+      <span class="badge" style="color:var(--gris)">Akáshico Colectivo</span>
+    </div>
+    <span class="tipo-chevron">▼</span>
+  </div>
+  <div class="tipo-cuerpo">
+    <div class="tipo-tabs">
+      <button class="tab-btn activo" onclick="switchTab(this,'naturaleza')">Naturaleza</button>
+      <button class="tab-btn" onclick="switchTab(this,'cuerpos')">Cuerpos Sutiles</button>
+      <button class="tab-btn" onclick="switchTab(this,'protocolo')">Protocolo</button>
+    </div>
+    <div class="tab-content activo" data-tab="naturaleza">
+      <div class="jerarquia-nota">
+        <span>Nivel responsable: <a href="jerarquia_seres_oscuridad.html">D-8/9 · Arconte Superior / Señor de la Sombra</a> — distorsiona la memoria akáshica colectiva entre ciclos de civilización, sembrando patrones que se activan generaciones después.</span>
+      </div>
+      <div class="datos-grid">
+        <div class="dato"><span class="dato-label">Coordenada</span><span class="dato-val">Probabilidad futura — individual o de especie</span></div>
+        <div class="dato"><span class="dato-label">Mecanismo</span><span class="dato-val">Siembra de patrón latente</span></div>
+        <div class="dato"><span class="dato-label">Activación</span><span class="dato-val">Al converger la línea temporal con esa probabilidad</span></div>
+      </div>
+      <div class="desc-texto">
+        <p>Se coloca en una <strong>probabilidad futura</strong>, como una trampa que permanece inactiva hasta que la línea temporal del ser — o de la civilización entera — converge con esa posibilidad. No actúa por contacto directo, sino por <strong>diseño anticipado</strong>.</p>
+        <p>A nivel individual, puede sentirse como una resistencia inexplicable ante ciertos caminos de crecimiento, o un "presentimiento" negativo recurrente ante decisiones que en realidad son favorables. A nivel colectivo, este es el mecanismo detrás de la distorsión histórica de enseñanzas espirituales: se siembra el patrón mucho antes de que la civilización llegue al punto donde ese conocimiento sería recibido con pureza.</p>
+        <p>Es el más difícil de disolver de los tres, porque su punto de origen todavía no ha "sucedido" desde la perspectiva lineal del consultante.</p>
+      </div>
+    </div>
+    <div class="tab-content" data-tab="cuerpos">
+      <ul class="cuerpos-lista">
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#f0c060"></div><span class="cuerpo-nombre">Cuerpo Astral</span><span class="cuerpo-efecto">Miedo anticipatorio sin objeto concreto, especialmente ante pasos que representan expansión o cambio positivo.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#90b0e0"></div><span class="cuerpo-nombre">Cuerpo Mental</span><span class="cuerpo-efecto">Bloqueo del acceso a los Registros Akáshicos futuros propios; dificultad para visualizar o proyectar con claridad.</span></li>
+        <li class="cuerpo-item"><div class="cuerpo-dot" style="background:#c090e0"></div><span class="cuerpo-nombre">Cuerpo Causal</span><span class="cuerpo-efecto">Impresión de patrones kármicos civilizacionales que se perpetúan por generaciones, heredados sin haber sido elegidos.</span></li>
+      </ul>
+    </div>
+    <div class="tab-content" data-tab="protocolo">
+      <div class="proto-alerta">Nivel P-5. No se elimina de forma puntual — se contiene y se transmuta mediante elevación vibracional sostenida.</div>
+      <div class="proto-paso"><span class="proto-num">01</span><span class="proto-texto">Invocar al Logos Planetario y Consejo de los Doce para el trabajo sobre probabilidades futuras — no basta la autoridad individual.</span></div>
+      <div class="proto-paso"><span class="proto-num">02</span><span class="proto-texto">Decreto de anulación del patrón sembrado, reafirmando que el futuro del ser permanece abierto al libre albedrío.</span></div>
+      <div class="proto-paso"><span class="proto-num">03</span><span class="proto-texto">Trabajo sostenido de elevación Bovis personal como el escudo más efectivo — un campo elevado no converge con probabilidades densas.</span></div>
+      <div class="proto-paso"><span class="proto-num">04</span><span class="proto-texto">Monitoreo a mediano plazo (3 meses) para verificar que el patrón no se reactive en un nuevo punto de convergencia.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPIO UNIFICADOR -->
+<div class="principio">
+  <blockquote>
+    "El tiempo lineal es un acuerdo de la consciencia encarnada,<br>
+    no una ley absoluta del cosmos.<br>
+    Lo que se ancla fuera de él no deja de ser real —<br>
+    solo espera el momento en que la consciencia lo toque."
+  </blockquote>
+  <cite>— Principio Unificador · El Ser Uno</cite>
+</div>
+
+</div><!-- fin main -->
+
+<script>
+function toggleTipo(header) {
+  const card = header.closest('.tipo-card');
+  const isOpen = card.classList.contains('abierto');
+  document.querySelectorAll('.tipo-card').forEach(c => c.classList.remove('abierto'));
+  if (!isOpen) card.classList.add('abierto');
+}
+
+function switchTab(btn, tabName) {
+  const cuerpo = btn.closest('.tipo-cuerpo');
+  cuerpo.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+  cuerpo.querySelectorAll('.tab-content').forEach(c => c.classList.remove('activo'));
+  btn.classList.add('activo');
+  cuerpo.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('activo');
+}
+</script>
+</body>
+</html>
