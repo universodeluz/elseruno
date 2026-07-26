@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afectaciones por Chakra | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-celeste: #6ec6ff;
+    --blanco-estelar: #f4f8ff;
+    --azul-profundo: #0a1128;
+    --azul-medio: #16213e;
+    --dorado: #d4af6a;
+    --texto-suave: #cdd6e8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: radial-gradient(ellipse at top, #10193a 0%, #050914 70%, #000 100%);
+    color: var(--texto-suave);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 40px 20px 100px;
+  }
+
+  .contenedor { max-width: 920px; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 50px; }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    background: linear-gradient(90deg, var(--dorado), var(--azul-celeste));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .subtitulo { font-style: italic; color: var(--texto-suave); opacity: 0.85; font-size: 1.15rem; }
+
+  .volver {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--azul-celeste);
+    text-decoration: none;
+    border: 1px solid rgba(110,198,255,0.4);
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  .volver:hover { background: rgba(110,198,255,0.12); border-color: var(--azul-celeste); }
+
+  .chakra-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212,175,106,0.25);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .chakra-card:hover { border-color: rgba(212,175,106,0.5); }
+
+  .chakra-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 26px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .chakra-numero {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.6rem;
+    color: var(--color-chakra, var(--dorado));
+    min-width: 46px;
+    text-align: center;
+  }
+
+  .chakra-titulo-grupo { flex: 1; }
+
+  .chakra-nombre { font-family: 'Cinzel Decorative', serif; font-size: 1.25rem; color: var(--blanco-estelar); }
+
+  .chakra-sanskrito {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-chakra, var(--azul-celeste));
+    opacity: 0.85;
+  }
+
+  .chakra-elemento {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  .flecha { font-size: 1.3rem; color: var(--azul-celeste); transition: transform 0.3s ease; flex-shrink: 0; }
+
+  .chakra-card.abierto .flecha { transform: rotate(180deg); }
+
+  .chakra-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0 26px;
+  }
+
+  .chakra-card.abierto .chakra-contenido { max-height: 3000px; padding: 0 26px 28px; }
+
+  .bloque-doble {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 6px;
+  }
+  @media (max-width: 640px) {
+    .bloque-doble { grid-template-columns: 1fr; }
+  }
+
+  .subcaja {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--color-chakra, var(--dorado));
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .subcaja h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-chakra, var(--dorado));
+    margin-bottom: 6px;
+  }
+
+  .chakra-contenido h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.95rem;
+    color: var(--color-chakra, var(--dorado));
+    margin-top: 22px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .chakra-contenido h3:first-of-type { margin-top: 8px; }
+
+  .chakra-contenido p { margin-bottom: 6px; }
+
+  .chakra-contenido ul { padding-left: 22px; margin-bottom: 6px; }
+  .chakra-contenido ul li { margin-bottom: 4px; }
+
+  .frase-eje {
+    font-style: italic;
+    color: var(--blanco-estelar);
+    opacity: 0.9;
+    border-top: 1px dashed rgba(212,175,106,0.3);
+    padding-top: 10px;
+    margin-top: 16px;
+    font-size: 0.98rem;
+  }
+
+  .enlaces-relacionados {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(212,175,106,0.2);
+    text-align: center;
+  }
+
+  .enlaces-relacionados h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--dorado);
+    margin-bottom: 16px;
+  }
+
+  .enlaces-relacionados a {
+    display: inline-block;
+    margin: 6px 10px;
+    color: var(--azul-celeste);
+    text-decoration: none;
+    font-style: italic;
+    border-bottom: 1px dotted rgba(110,198,255,0.4);
+  }
+
+  .enlaces-relacionados a:hover { color: var(--blanco-estelar); }
+
+  footer { text-align: center; margin-top: 60px; font-size: 0.85rem; opacity: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+  <header>
+    <h1>Afectaciones por Chakra</h1>
+    <p class="subtitulo">Análisis profundo de los siete centros energéticos, sus desequilibrios y su vulnerabilidad energética</p>
+    <a href="index.html" class="volver">← Volver al índice</a>
+  </header>
+
+  <div id="lista-chakras"></div>
+
+  <div class="enlaces-relacionados">
+    <h2>Contenido relacionado</h2>
+    <a href="afectaciones_adecuacion_vibracional.html">Afectaciones de adecuación vibracional</a>
+    <a href="ataques_capas_2_5_aura.html">Ataques en capas del aura</a>
+    <a href="implantes_por_capa_aurica.html">Implantes por capa áurica</a>
+    <a href="nivel_vibracional_ser_luz.html">Nivel vibracional del Ser de Luz</a>
+    <a href="glosario.html">Glosario</a>
+  </div>
+
+  <footer>El Ser Uno</footer>
+</div>
+
+<script>
+const chakras = [
+  {
+    numero: "I", nombre: "Raíz", sanskrito: "Muladhara", elemento: "Elemento Tierra · color rojo",
+    color: "#c0392b",
+    exceso: [
+      "Apego excesivo a lo material como forma de seguridad",
+      "Rigidez, resistencia extrema al cambio",
+      "Acumulación compulsiva (dinero, objetos, comida)",
+      "Agresividad territorial o defensiva"
+    ],
+    defecto: [
+      "Sensación de no tener \"derecho a estar aquí\"",
+      "Desconexión del cuerpo físico, sentirse \"flotando\" sin anclaje",
+      "Modo de alerta constante ante la supervivencia",
+      "Miedo difuso y persistente sin causa aparente"
+    ],
+    fisico: "Columna lumbar, piernas, pies fríos, problemas de circulación, estreñimiento, fatiga crónica, sistema inmune debilitado.",
+    relacional: "Dificultad para comprometerse en lo estable (trabajo, hogar, pareja); necesidad de huir ante cualquier amenaza percibida a la estabilidad.",
+    causas: [
+      "Trauma de nacimiento o gestación difícil",
+      "Desarraigo familiar, migratorio o cultural",
+      "Carencias materiales o afectivas en la infancia temprana",
+      "Memorias kármicas de muerte violenta, hambruna o destierro"
+    ],
+    vulnerabilidad: "Facilita implantes de miedo y escasez; es la puerta de entrada más común para ataques de tipo vibracional bajo, porque un Ser desconectado de la tierra es más fácil de desestabilizar y de desviar de su misión encarnada.",
+    reintegracion: "Anclaje consciente a la Tierra, contacto físico con la naturaleza, rutinas corporales estables, trabajo de confianza básica en la vida.",
+    eje: "El eje de este chakra es la pregunta: ¿tengo derecho a existir y a estar sostenido por la vida?"
+  },
+  {
+    numero: "II", nombre: "Sacro", sanskrito: "Svadhisthana", elemento: "Elemento Agua · color naranja",
+    color: "#e67e22",
+    exceso: [
+      "Búsqueda compulsiva de placer como huida emocional",
+      "Sexualidad usada como validación o control",
+      "Emocionalidad desbordada, dramatismo",
+      "Dependencia afectiva intensa"
+    ],
+    defecto: [
+      "Dificultad para disfrutar sin culpa",
+      "Creatividad bloqueada o negada",
+      "Rigidez emocional, frialdad como defensa",
+      "Desconexión del propio deseo"
+    ],
+    fisico: "Zona lumbar-sacra, órganos reproductivos, riñones, vejiga, desequilibrios hormonales, retención de líquidos.",
+    relacional: "Vínculos marcados por la fusión o el rescate mutuo; dificultad para diferenciar el propio placer del ajeno.",
+    causas: [
+      "Abuso o represión sexual",
+      "Culpa heredada culturalmente en torno al placer y el cuerpo",
+      "Traumas de pareja o vínculos tóxicos repetidos",
+      "Negación de la propia creatividad en la infancia"
+    ],
+    vulnerabilidad: "Zona vulnerable a cordones energéticos y ataques de tipo \"succión\" por vínculos afectivos no resueltos; puerta de entrada para implantes de dependencia emocional.",
+    reintegracion: "Reconciliación con el cuerpo y el placer sano, expresión creativa libre, trabajo de límites en vínculos afectivos.",
+    eje: "El eje de este chakra es la pregunta: ¿me permito sentir y crear sin culpa?"
+  },
+  {
+    numero: "III", nombre: "Plexo Solar", sanskrito: "Manipura", elemento: "Elemento Fuego · color amarillo",
+    color: "#f1c40f",
+    exceso: [
+      "Necesidad compulsiva de controlar personas y situaciones",
+      "Ira explosiva o autoritarismo",
+      "Perfeccionismo como forma de dominio sobre el error",
+      "Competitividad extrema"
+    ],
+    defecto: [
+      "Sometimiento constante a la voluntad ajena",
+      "Baja autoestima, indecisión crónica",
+      "Ira reprimida que se somatiza",
+      "Sensación de no tener poder sobre la propia vida"
+    ],
+    fisico: "Digestión, hígado, páncreas, tensión abdominal, gastritis, colon irritable.",
+    relacional: "Roles de poder desequilibrados: dominación o sumisión en vínculos familiares, de pareja o laborales.",
+    causas: [
+      "Humillaciones repetidas en la infancia o adolescencia",
+      "Pérdida de autonomía por figuras de autoridad rígidas",
+      "Entrega del propio poder decisional a otros por miedo al conflicto"
+    ],
+    vulnerabilidad: "Centro predilecto de implantes de sumisión y manipulación; cuando está debilitado, la persona queda expuesta a que otros —encarnados o no— dirijan su voluntad y decisiones.",
+    reintegracion: "Recuperación de la autonomía en decisiones pequeñas y grandes, trabajo de autoestima, canalización sana de la fuerza de voluntad.",
+    eje: "El eje de este chakra es la pregunta: ¿soy dueño de mi propia voluntad?"
+  },
+  {
+    numero: "IV", nombre: "Corazón", sanskrito: "Anahata", elemento: "Elemento Aire · color verde/rosa",
+    color: "#2ecc71",
+    exceso: [
+      "Entrega excesiva que anula los propios límites",
+      "Necesidad de salvar o rescatar a otros",
+      "Idealización afectiva, negación de lo doloroso en el vínculo",
+      "Apego posesivo disfrazado de amor"
+    ],
+    defecto: [
+      "Corazón \"acorazado\", cerrado al vínculo profundo",
+      "Amor condicionado al control o a la utilidad del otro",
+      "Incapacidad de recibir sin sentir deuda",
+      "Duelos que nunca cierran del todo"
+    ],
+    fisico: "Tensión torácica, arritmias, problemas respiratorios, hombros y espalda alta cargados, presión arterial irregular.",
+    relacional: "Vínculos donde se ama desde la carencia o el miedo a la pérdida, no desde la libertad; dificultad para sostener intimidad sostenida.",
+    causas: [
+      "Traiciones significativas en vínculos cercanos",
+      "Pérdidas o duelos no elaborados",
+      "Patrones de abandono transgeneracionales",
+      "Primeras experiencias de amor condicionado en la infancia"
+    ],
+    vulnerabilidad: "Un corazón cerrado bloquea el Rayo Crístico y dificulta la conexión con la propia Esencia del Ser; es también el punto donde los cordones energéticos de terceros se sostienen con más fuerza.",
+    reintegracion: "Perdón consciente (no como obligación sino como liberación propia), duelo elaborado, práctica de amor sin condición hacia uno mismo primero.",
+    eje: "El eje de este chakra es la pregunta: ¿puedo amar y ser amado sin perderme?"
+  },
+  {
+    numero: "V", nombre: "Garganta", sanskrito: "Vishuddha", elemento: "Elemento Éter · color azul",
+    color: "#3498db",
+    exceso: [
+      "Hablar en exceso sin decir nada auténtico",
+      "Imposición verbal de la propia verdad sobre la ajena",
+      "Chismorreo o crítica compulsiva",
+      "Necesidad de tener siempre la última palabra"
+    ],
+    defecto: [
+      "Nudo en la garganta al querer hablar con honestidad",
+      "Voz que se apaga en los momentos clave",
+      "Dificultad para poner límites verbales",
+      "Silencio como estrategia de supervivencia emocional"
+    ],
+    fisico: "Tiroides, ronquera, tensión mandibular y cervical, dificultad para tragar, rechinar de dientes.",
+    relacional: "Vínculos sostenidos sobre verdades a medias; dificultad para expresar desacuerdo sin miedo al conflicto o al abandono.",
+    causas: [
+      "Haber sido silenciado de niño (\"cállate\", \"eso no se dice\")",
+      "Mentiras sostenidas por supervivencia emocional",
+      "Miedo al rechazo por mostrar la verdad propia",
+      "Ambientes familiares donde la palabra propia no tenía valor"
+    ],
+    vulnerabilidad: "Puerta de entrada para implantes de silenciamiento, especialmente en Seres con misión de transmitir, enseñar o comunicar una verdad más amplia.",
+    reintegracion: "Práctica progresiva de expresión honesta en contextos seguros, trabajo vocal y corporal (canto, respiración), reconciliación con la propia voz interior.",
+    eje: "El eje de este chakra es la pregunta: ¿me permito decir mi verdad?"
+  },
+  {
+    numero: "VI", nombre: "Tercer Ojo", sanskrito: "Ajna", elemento: "Elemento Luz · color índigo",
+    color: "#6c5ce7",
+    exceso: [
+      "Sobreanálisis mental como defensa ante la incertidumbre",
+      "Fantasía desconectada de lo real",
+      "Rigidez de creencias, dogmatismo espiritual o intelectual",
+      "Desconfianza hacia toda información externa"
+    ],
+    defecto: [
+      "Desconfianza crónica de la propia intuición",
+      "Visiones o percepciones confusas e intermitentes",
+      "Confusión mental persistente, dificultad para discernir",
+      "Negación de las propias capacidades perceptivas"
+    ],
+    fisico: "Migrañas, tensión ocular, presión en la frente, vista cansada, alteraciones del sueño ligadas a sobreactividad mental.",
+    relacional: "Dificultad para confiar en el propio criterio dentro de vínculos, dependencia de la validación externa para decidir qué es verdad.",
+    causas: [
+      "Invalidación de la intuición desde la infancia (\"eso no es real\", \"son imaginaciones tuyas\")",
+      "Condicionamiento racionalista extremo",
+      "Uso indebido de capacidades perceptivas en encarnaciones pasadas",
+      "Sobrecarga de estímulos mentales sin espacio de integración"
+    ],
+    vulnerabilidad: "Muy sensible a interferencias vibracionales externas que buscan distorsionar la percepción, inducir confusión o sembrar dudas sobre el propio discernimiento.",
+    reintegracion: "Práctica de silencio mental, validación progresiva de percepciones propias mediante confirmación en la vida diaria, discernimiento sin negar ni idealizar lo percibido.",
+    eje: "El eje de este chakra es la pregunta: ¿confío en lo que percibo más allá de lo evidente?"
+  },
+  {
+    numero: "VII", nombre: "Corona", sanskrito: "Sahasrara", elemento: "Elemento Consciencia · color violeta/blanco",
+    color: "#d4af6a",
+    exceso: [
+      "Disociación por vivir \"en las nubes\" sin anclaje terrenal",
+      "Espiritualidad usada para evadir la vida cotidiana",
+      "Sensación de superioridad espiritual",
+      "Búsqueda incesante de experiencias trascendentes sin integración"
+    ],
+    defecto: [
+      "Sensación de vacío existencial",
+      "Desconexión de propósito o misión de vida",
+      "Materialismo extremo como negación de lo trascendente",
+      "Sentimiento de aislamiento respecto a algo más grande"
+    ],
+    fisico: "Insomnio, sensación de \"capa\" o niebla mental, presión en la coronilla, agotamiento sin causa física clara.",
+    relacional: "Dificultad para compartir la propia búsqueda espiritual, sensación de soledad incluso rodeado de otros, choque con entornos que no comparten esta dimensión.",
+    causas: [
+      "Desconexión prolongada de la propia misión de Ser",
+      "Saturación por exceso de información sin integración real",
+      "Rigidez dogmática que cierra la expansión de consciencia",
+      "Experiencias de rechazo al compartir percepciones espirituales"
+    ],
+    vulnerabilidad: "Cuando este chakra está afectado, se debilita el canal de comunicación con niveles superiores de consciencia y con el Logos Planetario, dejando al Ser más aislado y expuesto ante interferencias de baja vibración.",
+    reintegracion: "Integración —no solo acumulación— de conocimiento espiritual, anclaje simultáneo en cuerpo y propósito, práctica de conexión regular sin urgencia ni ansiedad de \"llegar\".",
+    eje: "El eje de este chakra es la pregunta: ¿me siento parte de algo mayor sin dejar de estar presente aquí?"
+  }
+];
+
+const contenedor = document.getElementById('lista-chakras');
+
+chakras.forEach((c, i) => {
+  const card = document.createElement('div');
+  card.className = 'chakra-card';
+  card.style.setProperty('--color-chakra', c.color);
+
+  card.innerHTML = `
+    <div class="chakra-header">
+      <div class="chakra-numero">${c.numero}</div>
+      <div class="chakra-titulo-grupo">
+        <div class="chakra-nombre">Chakra ${i+1} — ${c.nombre}</div>
+        <div class="chakra-sanskrito">${c.sanskrito}</div>
+        <div class="chakra-elemento">${c.elemento}</div>
+      </div>
+      <div class="flecha">▾</div>
+    </div>
+    <div class="chakra-contenido">
+      <h3>Manifestaciones</h3>
+      <div class="bloque-doble">
+        <div class="subcaja">
+          <h4>Por exceso</h4>
+          <ul>${c.exceso.map(m => `<li>${m}</li>`).join('')}</ul>
+        </div>
+        <div class="subcaja">
+          <h4>Por defecto</h4>
+          <ul>${c.defecto.map(m => `<li>${m}</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <h3>Físico</h3>
+      <p>${c.fisico}</p>
+
+      <h3>Dimensión relacional</h3>
+      <p>${c.relacional}</p>
+
+      <h3>Causas profundas</h3>
+      <ul>${c.causas.map(m => `<li>${m}</li>`).join('')}</ul>
+
+      <h3>Vulnerabilidad energética</h3>
+      <p>${c.vulnerabilidad}</p>
+
+      <h3>Vía de reintegración</h3>
+      <p>${c.reintegracion}</p>
+
+      <p class="frase-eje">${c.eje}</p>
+    </div>
+  `;
+  card.querySelector('.chakra-header').addEventListener('click', () => {
+    card.classList.toggle('abierto');
+  });
+
+  contenedor.appendChild(card);
+});
+</script>
+
+</body>
+</html>
