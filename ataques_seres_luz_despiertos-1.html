@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques a Seres de Luz Despiertos | El Ser Uno</title>
+<meta name="description" content="Catálogo de ataques energéticos específicos dirigidos a seres de luz despiertos y encarnados en la Tierra, según el marco cosmológico de El Ser Uno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-celeste:#5fa8d3;
+    --azul-celeste-claro:#9fc9ff;
+    --blanco-estelar:#f4f7fb;
+    --blanco-estelar-2:#eef6ff;
+    --navy:#0a0e1a;
+    --navy-2:#0d1224;
+    --oro:#d4af6a;
+    --oro-suave:#e6c88a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:radial-gradient(ellipse at 20% 0%, #10182e 0%, var(--navy) 45%, #05070d 100%);
+    color:var(--blanco-estelar);
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    line-height:1.75;
+    overflow-x:hidden;
+    position:relative;
+  }
+  #estrellas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+  .contenido{position:relative;z-index:1;}
+  h1,h2,h3,.titulo-seccion{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--oro-suave);
+    letter-spacing:0.02em;
+  }
+  a{color:var(--azul-celeste-claro);text-decoration:none;}
+  a:hover{color:var(--oro-suave);}
+
+  header.hero{
+    min-height:70vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 1.5rem 4rem;
+    background:radial-gradient(circle at 50% 30%, rgba(95,168,211,0.15), transparent 60%);
+  }
+  header.hero h1{
+    font-size:clamp(1.8rem, 4vw, 3rem);
+    max-width:900px;
+    margin-bottom:1.2rem;
+    text-shadow:0 0 25px rgba(212,175,106,0.25);
+  }
+  header.hero p.subtitulo{
+    max-width:700px;
+    font-size:1.3rem;
+    color:var(--azul-celeste-claro);
+    font-style:italic;
+  }
+
+  section{
+    max-width:960px;
+    margin:0 auto;
+    padding:3.5rem 1.5rem;
+  }
+
+  .card{
+    background:rgba(20,28,50,0.55);
+    border:1px solid rgba(159,201,255,0.15);
+    border-radius:18px;
+    padding:2rem 2.2rem;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+    margin-bottom:2rem;
+  }
+
+  .titulo-seccion{
+    font-size:1.7rem;
+    margin-bottom:1.5rem;
+    text-align:center;
+  }
+
+  .intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.5rem;
+  }
+  @media(max-width:700px){.intro-grid{grid-template-columns:1fr;}}
+
+  /* Acordeón */
+  .acordeon-item{
+    background:rgba(15,22,42,0.6);
+    border:1px solid rgba(212,175,106,0.2);
+    border-radius:14px;
+    margin-bottom:1rem;
+    overflow:hidden;
+  }
+  .acordeon-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.2rem 1.6rem;
+    cursor:pointer;
+    font-family:'Cinzel Decorative', serif;
+    color:var(--blanco-estelar-2);
+    font-size:1.05rem;
+  }
+  .acordeon-header:hover{color:var(--oro-suave);}
+  .acordeon-header .icono{
+    color:var(--oro);
+    font-size:1.4rem;
+    transition:transform 0.3s ease;
+  }
+  .acordeon-item.abierto .icono{transform:rotate(45deg);}
+  .acordeon-cuerpo{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease, padding 0.4s ease;
+    padding:0 1.6rem;
+    color:var(--blanco-estelar-2);
+    font-size:1.08rem;
+  }
+  .acordeon-item.abierto .acordeon-cuerpo{
+    padding:0 1.6rem 1.4rem;
+  }
+  .acordeon-cuerpo .etiqueta{
+    color:var(--azul-celeste-claro);
+    font-weight:600;
+  }
+
+  /* Tabla */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:1.02rem;
+  }
+  th,td{
+    padding:0.9rem 0.8rem;
+    text-align:left;
+    border-bottom:1px solid rgba(159,201,255,0.15);
+  }
+  th{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--oro-suave);
+    font-size:0.95rem;
+  }
+  tr:hover td{background:rgba(95,168,211,0.06);}
+
+  ul.lista-senales li, ul.lista-protocolo li{
+    margin-bottom:0.7rem;
+    padding-left:1.6rem;
+    position:relative;
+  }
+  ul.lista-senales li::before{
+    content:"✦";
+    position:absolute;
+    left:0;
+    color:var(--oro);
+  }
+  ul.lista-protocolo li::before{
+    content:"◆";
+    position:absolute;
+    left:0;
+    color:var(--azul-celeste);
+  }
+
+  .enlaces-relacionados{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    justify-content:center;
+  }
+  .enlaces-relacionados a{
+    display:inline-block;
+    padding:0.7rem 1.4rem;
+    border:1px solid rgba(212,175,106,0.35);
+    border-radius:30px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.85rem;
+    color:var(--blanco-estelar-2);
+    transition:all 0.3s ease;
+  }
+  .enlaces-relacionados a:hover{
+    background:rgba(212,175,106,0.15);
+    border-color:var(--oro-suave);
+    color:var(--oro-suave);
+  }
+
+  footer{
+    text-align:center;
+    padding:3rem 1.5rem;
+    color:rgba(238,246,255,0.5);
+    font-size:0.95rem;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="estrellas"></canvas>
+
+<div class="contenido">
+
+  <header class="hero">
+    <h1>Ataques a Seres de Luz Despiertos Encarnados</h1>
+    <p class="subtitulo">Cuando la vibración se eleva, la resistencia oscura se intensifica — fundamentos según El Ser Uno</p>
+  </header>
+
+  <section id="introduccion">
+    <div class="card">
+      <h2 class="titulo-seccion">¿Qué es un ser de luz despierto encarnado?</h2>
+      <p>Dentro del marco de <strong>El Ser Uno</strong>, un ser de luz despierto encarnado es aquel que ha activado —parcial o totalmente— la memoria de su origen estelar o de su función como Rayo Crístico manifestado en la Tierra. Su presencia actúa como un punto de anclaje vibracional para Gaia y para el Logos Planetario, sosteniendo frecuencias que facilitan la transición evolutiva colectiva hacia niveles superiores.</p>
+      <br>
+      <p>Precisamente por esta función de anclaje, estos seres se convierten en objetivos prioritarios de las jerarquías de seres oscuros, cuyo propósito es retrasar, desviar o neutralizar el cumplimiento de su misión antes de que su influencia se expanda al colectivo.</p>
+    </div>
+  </section>
+
+  <section id="por-que-atacados">
+    <h2 class="titulo-seccion">Por qué son atacados</h2>
+    <div class="intro-grid">
+      <div class="card">
+        <h3>Función de anclaje</h3>
+        <p>Sostienen codigos de luz y nimeos sagrados que estabilizan la retícula energética planetaria.</p>
+      </div>
+      <div class="card">
+        <h3>Misión activa</h3>
+        <p>Portan un propósito específico ligado a su equipo de almas o su Logos de origen, que interfiere con la agenda de control oscura.</p>
+      </div>
+      <div class="card">
+        <h3>Elevación vibracional</h3>
+        <p>Su frecuencia asciende de forma sostenida, lo cual genera fricción directa con entidades de baja densidad.</p>
+      </div>
+      <div class="card">
+        <h3>Efecto expansivo</h3>
+        <p>Su despertar tiende a activar a otros seres cercanos, multiplicando el impacto que las fuerzas oscuras buscan contener.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo-ataques">
+    <h2 class="titulo-seccion">Catálogo de Ataques Específicos</h2>
+    <div class="acordeon">
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>1. Separación de Seres de Luz</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> aislamiento energético del ser respecto a su alma gemela, equipo de misión o comunidad afín, generando sensación de soledad y desconexión de propósito.</p>
+          <p><span class="etiqueta">Capa afectada:</span> 4ª capa áurica (emocional-relacional) y chakra del corazón.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>2. Cordones Vampíricos Reforzados</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> drenaje energético intensificado, activado justo en fases de expansión vibracional o previo a una activación importante.</p>
+          <p><span class="etiqueta">Capa afectada:</span> capa etérica y plexo solar.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>3. Interferencia en Activación de Códigos y Nimeos Sagrados</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> bloqueos sutiles que retrasan el despliegue de códigos Agesta u otros nimeos internos de activación, generando confusión mental o bloqueos de memoria.</p>
+          <p><span class="etiqueta">Capa afectada:</span> 6ª y 7ª capa áurica, chakra corona y tercer ojo.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>4. Ataque Atemporal</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> alteración de la percepción lineal del tiempo, generando desincronización entre el ser y los eventos clave de su propósito encarnado.</p>
+          <p><span class="etiqueta">Capa afectada:</span> capa mental y cuerpo causal.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>5. Implantes de Auto-sabotaje</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> instalación de patrones de duda, autocrítica excesiva o impulsos de abandono de la misión, especialmente activos antes de un salto vibracional relevante.</p>
+          <p><span class="etiqueta">Capa afectada:</span> 3ª capa áurica y plexo solar.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>6. Bloqueo del Rayo Crístico</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> interferencia directa sobre el canal de conexión con la fuente, debilitando la claridad de guía interior y la percepción de propósito.</p>
+          <p><span class="etiqueta">Capa afectada:</span> 7ª capa áurica y chakra corona.</p>
+        </div>
+      </div>
+
+      <div class="acordeon-item">
+        <div class="acordeon-header" onclick="toggleAcordeon(this)">
+          <span>7. Ataques Progresivos por Capa Áurica según Nivel de Despertar</span>
+          <span class="icono">+</span>
+        </div>
+        <div class="acordeon-cuerpo">
+          <p><span class="etiqueta">Mecanismo:</span> a mayor despertar, el ataque se desplaza de las capas superficiales (etérica, emocional) hacia las capas más profundas (causal, cetimico, ketérico), buscando afectar la conexión con la fuente misma.</p>
+          <p><span class="etiqueta">Capa afectada:</span> variable, progresivamente más profunda conforme avanza el despertar.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="tabla-comparativa">
+    <h2 class="titulo-seccion">Cuadro Comparativo</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo de Ataque</th>
+            <th>Capa/Chakra Afectado</th>
+            <th>Síntoma Principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Separación de seres de luz</td><td>4ª capa / corazón</td><td>Soledad, desconexión de equipo</td></tr>
+          <tr><td>Cordones vampíricos reforzados</td><td>Etérica / plexo solar</td><td>Fatiga súbita, agotamiento</td></tr>
+          <tr><td>Interferencia en códigos y nimeos</td><td>6ª-7ª capa / corona-tercer ojo</td><td>Confusión, bloqueo de memoria</td></tr>
+          <tr><td>Ataque atemporal</td><td>Mental / cuerpo causal</td><td>Desincronización, pérdida de foco</td></tr>
+          <tr><td>Implantes de auto-sabotaje</td><td>3ª capa / plexo solar</td><td>Duda, autocrítica, deseo de abandono</td></tr>
+          <tr><td>Bloqueo del Rayo Crístico</td><td>7ª capa / corona</td><td>Pérdida de claridad interior</td></tr>
+          <tr><td>Ataques progresivos por capa</td><td>Variable, profundizando</td><td>Síntomas cambiantes según etapa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="senales">
+    <h2 class="titulo-seccion">Señales de Reconocimiento</h2>
+    <div class="card">
+      <ul class="lista-senales">
+        <li>Fatiga desproporcionada tras momentos de expansión o activación interior.</li>
+        <li>Dudas repentinas sobre la propia misión o valor, sin causa externa clara.</li>
+        <li>Sensación de aislamiento de personas afines o del equipo de almas.</li>
+        <li>Confusión mental o bloqueos de memoria al intentar recordar información relevante.</li>
+        <li>Alteración en la percepción del tiempo, sensación de estar "fuera de sincronía".</li>
+        <li>Debilitamiento de la conexión interior con la fuente o guía intuitiva.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="protocolo">
+    <h2 class="titulo-seccion">Protocolo de Protección y Limpieza</h2>
+    <div class="card">
+      <ul class="lista-protocolo">
+        <li>Invocación diaria del Rayo Crístico para reforzar el canal de conexión con la fuente.</li>
+        <li>Sellado áurico consciente al iniciar y cerrar el día, con intención de blindaje en las 7 capas.</li>
+        <li>Corte de cordones energéticos mediante visualización o trabajo con péndulo radiestésico.</li>
+        <li>Reconexión intencional con el equipo de almas o comunidad afín, evitando el aislamiento.</li>
+        <li>Registro de sincronías y eventos para contrarrestar la desincronización temporal.</li>
+        <li>Observación sin juicio de pensamientos de autocrítica, reconociéndolos como posibles implantes externos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="enlaces">
+    <h2 class="titulo-seccion">Contenido Relacionado</h2>
+    <div class="enlaces-relacionados">
+      <a href="tipos_ataques_energeticos.html">Catálogo Maestro de Ataques</a>
+      <a href="jerarquia_seres_luz.html">Jerarquía de Seres de Luz</a>
+      <a href="jerarquia_seres_oscuridad.html">Jerarquía de Seres de Oscuridad</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  El Ser Uno · Biblioteca Esotérica Digital
+</footer>
+
+<script>
+  // Acordeón
+  function toggleAcordeon(header){
+    const item = header.parentElement;
+    const abierto = item.classList.contains('abierto');
+    document.querySelectorAll('.acordeon-item').forEach(i => i.classList.remove('abierto'));
+    if(!abierto){ item.classList.add('abierto'); }
+  }
+
+  // Campo estelar animado
+  const canvas = document.getElementById('estrellas');
+  const ctx = canvas.getContext('2d');
+  let w, h, estrellas = [];
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = document.body.scrollHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function crearEstrellas(n){
+    estrellas = [];
+    for(let i=0;i<n;i++){
+      estrellas.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.4+0.3,
+        alpha: Math.random(),
+        delta: (Math.random()*0.02)+0.005
+      });
+    }
+  }
+  crearEstrellas(180);
+
+  function animar(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = 'rgba(244,247,251,';
+    estrellas.forEach(e=>{
+      e.alpha += e.delta;
+      if(e.alpha>1||e.alpha<0) e.delta*=-1;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(244,247,251,${Math.abs(e.alpha)})`;
+      ctx.arc(e.x, e.y, e.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animar);
+  }
+  animar();
+
+  // Parallax suave
+  window.addEventListener('scroll', ()=>{
+    const scrollY = window.scrollY;
+    canvas.style.transform = `translateY(${scrollY*0.15}px)`;
+  });
+</script>
+
+</body>
+</html>

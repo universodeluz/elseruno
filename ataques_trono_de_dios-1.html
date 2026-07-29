@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques Contra el Trono de Dios | El Ser Uno</title>
+<meta name="description" content="Análisis esotérico de las interferencias vibracionales dirigidas al Trono de Dios: razas estelares implicadas, infiltrados en la jerarquía celeste, consecuencias en el orden mundial y ataques energéticos derivados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --celestial-blue: #5fa8d3;
+    --celestial-blue-light: #9fc9ff;
+    --stellar-white: #f4f7fb;
+    --stellar-white-soft: #eef6ff;
+    --deep-navy: #060a18;
+    --deep-navy-2: #0b1330;
+    --gold: #d4af6a;
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(159, 201, 255, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at 20% 10%, #101c40 0%, var(--deep-navy) 55%, #030509 100%);
+    color: var(--stellar-white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  #estrellas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .contenedor {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 120px;
+  }
+
+  nav.volver {
+    display: block;
+    margin-bottom: 40px;
+    font-size: 16px;
+  }
+  nav.volver a {
+    color: var(--celestial-blue-light);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--celestial-blue);
+  }
+  nav.volver a:hover { color: var(--gold); }
+
+  header.portada {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 46px);
+    background: linear-gradient(180deg, var(--gold) 0%, var(--stellar-white-soft) 60%, var(--celestial-blue-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 18px;
+    letter-spacing: 1px;
+  }
+
+  .subtitulo {
+    font-style: italic;
+    color: var(--celestial-blue-light);
+    font-size: 22px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .intro {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 28px 32px;
+    margin-bottom: 50px;
+  }
+
+  h2.seccion {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 3.4vw, 30px);
+    color: var(--gold);
+    margin: 70px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  h2.seccion .numero {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--celestial-blue-light);
+    font-size: 18px;
+    opacity: 0.8;
+  }
+
+  .card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 30px 34px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  }
+
+  h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 19px;
+    color: var(--celestial-blue-light);
+    margin: 0 0 12px;
+    font-weight: 400;
+  }
+
+  ul.lista-mistica {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+  ul.lista-mistica li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 14px;
+  }
+  ul.lista-mistica li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .acordeon {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .acordeon-cabecera {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--stellar-white);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 17px;
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .acordeon-cabecera:hover { color: var(--gold); }
+  .acordeon-icono {
+    color: var(--celestial-blue);
+    transition: transform 0.3s ease;
+    font-size: 20px;
+  }
+  .acordeon.activo .acordeon-icono { transform: rotate(45deg); color: var(--gold); }
+  .acordeon-cuerpo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 24px;
+    color: var(--stellar-white-soft);
+  }
+  .acordeon.activo .acordeon-cuerpo {
+    max-height: 400px;
+    padding: 0 24px 22px;
+  }
+
+  .tabla-correspondencias {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+  }
+  .tabla-correspondencias th, .tabla-correspondencias td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 18px;
+  }
+  .tabla-correspondencias th {
+    color: var(--gold);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .nota-final {
+    margin-top: 60px;
+    text-align: center;
+    font-style: italic;
+    color: var(--celestial-blue-light);
+    opacity: 0.85;
+  }
+
+  .enlaces-cruzados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .enlaces-cruzados a {
+    color: var(--deep-navy);
+    background: var(--celestial-blue-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  .enlaces-cruzados a:hover { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<canvas id="estrellas"></canvas>
+
+<div class="contenedor">
+
+  <nav class="volver">
+    <a href="index.html">&larr; Volver al índice de El Ser Uno</a>
+  </nav>
+
+  <header class="portada">
+    <h1>Ataques Contra el Trono de Dios</h1>
+    <p class="subtitulo">Interferencias vibracionales sobre la sede más elevada de la jerarquía espiritual de Gaia, las razas estelares implicadas y su proyección en el orden mundial</p>
+  </header>
+
+  <div class="intro">
+    <p>El <strong>Trono de Dios</strong>, dentro de la cosmovisión de El Ser Uno, no representa un lugar físico ni una figura antropomórfica, sino el punto de mayor anclaje vibracional del sistema de gobierno espiritual planetario: la sede desde donde el <strong>Logos Planetario</strong> y la proyección directa de <strong>Eloín</strong> sostienen el orden legítimo de Gaia. Un ataque contra este punto no busca destruirlo — algo vibracionalmente imposible desde niveles inferiores — sino distorsionar su señal, infiltrar su estructura y sustituir, aunque sea parcialmente, la autoridad legítima por una autoridad impostora.</p>
+  </div>
+
+  <h2 class="seccion"><span class="numero">I.</span> Naturaleza del Trono</h2>
+  <div class="card">
+    <p>El Trono opera como un punto de convergencia entre la Fuente y la jerarquía descendente de custodios encarnados y no encarnados. No es "atacable" en su esencia, pero sí en su <strong>expresión intermedia</strong>: las funciones, canales y asientos delegados que traducen su frecuencia hacia los planos inferiores. Es en esos puntos intermedios donde toda interferencia se vuelve posible.</p>
+  </div>
+
+  <h2 class="seccion"><span class="numero">II.</span> Razas Estelares Implicadas</h2>
+  <div class="card">
+    <h3>Facciones interferentes</h3>
+    <p>Las facciones de mayor jerarquía oscura (afines a los niveles D-7 a D-9 ya catalogados) no actúan directamente, sino a través de intermediarios con capacidad vibracional suficiente para acercarse a frecuencias tan elevadas sin ser detectados de inmediato.</p>
+  </div>
+  <div class="card">
+    <h3>Custodios y defensores</h3>
+    <p>Los <strong>Ayaplianos</strong> y la corriente del <strong>Rayo Crístico</strong> sostienen el contrapeso vibracional, actuando como sistema inmunológico espiritual que identifica y expulsa las suplantaciones antes de que se consoliden.</p>
+    <table class="tabla-correspondencias">
+      <tr><th>Función</th><th>Raza / Corriente</th><th>Rol</th></tr>
+      <tr><td>Interferencia</td><td>Facción disidente afín a D-7/D-9</td><td>Intento de suplantación vibracional</td></tr>
+      <tr><td>Custodia</td><td>Ayaplianos</td><td>Sostén y discernimiento del canal</td></tr>
+      <tr><td>Restauración</td><td>Rayo Crístico</td><td>Purificación de la señal original</td></tr>
+    </table>
+  </div>
+
+  <h2 class="seccion"><span class="numero">III.</span> Infiltrados en el Trono</h2>
+  <p style="color: var(--stellar-white-soft); margin-bottom: 24px;">A diferencia de una infiltración hacia el plano físico, aquí la usurpación ocurre dentro de la propia estructura celeste, en sus asientos y canales delegados.</p>
+
+  <div class="acordeon">
+    <button class="acordeon-cabecera" onclick="alternarAcordeon(this)">
+      Suplantación vibracional
+      <span class="acordeon-icono">+</span>
+    </button>
+    <div class="acordeon-cuerpo">
+      <p>La entidad infiltrada emite una frecuencia que imita la firma energética del Logos Planetario o de Eloín, lo suficientemente cercana como para pasar desapercibida salvo ante un discernimiento muy fino y sostenido.</p>
+    </div>
+  </div>
+
+  <div class="acordeon">
+    <button class="acordeon-cabecera" onclick="alternarAcordeon(this)">
+      Ocupación de asiento o función
+      <span class="acordeon-icono">+</span>
+    </button>
+    <div class="acordeon-cuerpo">
+      <p>No se reemplaza el Trono completo, sino que se ocupa una de sus funciones o "asientos" delegados, desde donde se emiten directivas distorsionadas que descienden por la jerarquía como si fueran legítimas.</p>
+    </div>
+  </div>
+
+  <div class="acordeon">
+    <button class="acordeon-cabecera" onclick="alternarAcordeon(this)">
+      Corrupción del canal de transmisión
+      <span class="acordeon-icono">+</span>
+    </button>
+    <div class="acordeon-cuerpo">
+      <p>El infiltrado no ocupa el Trono mismo, sino el canal que lo conecta con los planos inferiores, alterando el mensaje en el trayecto sin necesidad de tocar la fuente original.</p>
+    </div>
+  </div>
+
+  <h2 class="seccion"><span class="numero">IV.</span> Consecuencias en el Orden Mundial</h2>
+  <div class="card">
+    <p>Lo que se observa como distorsión en las instituciones humanas, en la arquitectura encubierta de poder o en la manipulación de líneas telúricas y portales, no es un ataque paralelo, sino el <strong>efecto visible</strong> de un Trono cuyo canal ya se encuentra parcialmente infiltrado. El plano físico refleja, con retraso, lo que ocurre primero en el plano causal.</p>
+  </div>
+
+  <h2 class="seccion"><span class="numero">V.</span> Ataques Energéticos Derivados</h2>
+  <div class="card">
+    <h3>Corona y capa causal</h3>
+    <p>A nivel individual, este tipo de interferencia se manifiesta como un ataque "desde arriba", dirigido principalmente al <strong>chakra corona (séptimo centro)</strong> y a la <strong>capa áurica causal/espiritual</strong>, buscando desconectar al ser de su propia autoridad interior y de su vínculo directo con la Fuente.</p>
+    <ul class="lista-mistica">
+      <li>Sensación de desconexión súbita con la propia guía interior</li>
+      <li>Dudas persistentes sobre la legitimidad de la propia percepción espiritual</li>
+      <li>Necesidad de validación externa constante en temas de discernimiento</li>
+    </ul>
+  </div>
+
+  <div class="enlaces-cruzados">
+    <a href="jerarquia_seres_oscuridad.html">Jerarquía de Seres de Oscuridad</a>
+    <a href="jerarquia_seres_luz.html">Jerarquía de Seres de Luz</a>
+    <a href="tipos_ataques_energeticos.html">Catálogo de Ataques Energéticos</a>
+  </div>
+
+  <p class="nota-final">El discernimiento sostenido es la única defensa real ante toda suplantación: ningún impostor puede sostener indefinidamente una frecuencia que no le pertenece.</p>
+
+</div>
+
+<script>
+function alternarAcordeon(boton) {
+  const acordeon = boton.parentElement;
+  const yaActivo = acordeon.classList.contains('activo');
+  document.querySelectorAll('.acordeon').forEach(a => a.classList.remove('activo'));
+  if (!yaActivo) acordeon.classList.add('activo');
+}
+
+// Campo de estrellas animado
+const canvas = document.getElementById('estrellas');
+const ctx = canvas.getContext('2d');
+let estrellas = [];
+
+function ajustarCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', ajustarCanvas);
+ajustarCanvas();
+
+function crearEstrellas() {
+  estrellas = [];
+  const cantidad = Math.floor((canvas.width * canvas.height) / 9000);
+  for (let i = 0; i < cantidad; i++) {
+    estrellas.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radio: Math.random() * 1.3 + 0.2,
+      alpha: Math.random(),
+      velocidad: Math.random() * 0.015 + 0.003
+    });
+  }
+}
+crearEstrellas();
+window.addEventListener('resize', crearEstrellas);
+
+function animar() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  estrellas.forEach(e => {
+    e.alpha += e.velocidad;
+    if (e.alpha > 1 || e.alpha < 0) e.velocidad *= -1;
+    ctx.beginPath();
+    ctx.arc(e.x, e.y, e.radio, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(244, 247, 251, ${Math.abs(e.alpha)})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(animar);
+}
+animar();
+</script>
+
+</body>
+</html>
