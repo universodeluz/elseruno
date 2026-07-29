@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmovisión Estelar Interplanetaria | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-celestial:#5fa8d3;
+    --blanco-estelar:#f4f7fb;
+    --azul-profundo:#050914;
+    --azul-profundo-2:#0a1226;
+    --dorado:#d4af6a;
+    --linea:rgba(95,168,211,0.35);
+    --vidrio:rgba(255,255,255,0.05);
+    --borde-vidrio:rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--blanco-estelar);
+    background:radial-gradient(ellipse at 20% 10%, #101a35 0%, var(--azul-profundo) 45%, #000 100%);
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  #stars, #stars2, #stars3{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    pointer-events:none; z-index:0;
+  }
+  h1,h2,h3{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    letter-spacing:0.5px;
+    color:var(--blanco-estelar);
+  }
+  a{color:var(--azul-celestial); text-decoration:none;}
+  a:hover{color:var(--dorado);}
+
+  header.hero{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:7rem 1.5rem 5rem;
+  }
+  header.hero .eyebrow{
+    display:inline-block;
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.75rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--dorado);
+    margin-bottom:1.2rem;
+  }
+  header.hero h1{
+    font-size:clamp(1.8rem, 4vw, 3.2rem);
+    margin:0 0 1.2rem;
+    background:linear-gradient(120deg, var(--blanco-estelar), var(--azul-celestial) 60%, var(--dorado));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  header.hero p.sub{
+    max-width:680px; margin:0 auto;
+    font-size:1.25rem;
+    font-style:italic;
+    color:#c9d6ea;
+  }
+  nav.breadcrumb{
+    position:relative; z-index:2;
+    text-align:center;
+    font-size:0.95rem;
+    color:#8fa3c4;
+    margin-bottom:1rem;
+  }
+
+  main{position:relative; z-index:2; max-width:920px; margin:0 auto; padding:0 1.5rem 6rem;}
+
+  section.bloque{
+    margin:0 0 4.5rem;
+  }
+  section.bloque .numero{
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.85rem;
+    color:var(--dorado);
+    letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  section.bloque h2{
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    margin:0.4rem 0 1.3rem;
+    border-bottom:1px solid var(--linea);
+    padding-bottom:0.8rem;
+  }
+  section.bloque p{
+    font-size:1.15rem;
+    color:#dbe4f2;
+  }
+
+  .glass{
+    background:var(--vidrio);
+    border:1px solid var(--borde-vidrio);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:16px;
+    padding:1.8rem 2rem;
+  }
+
+  .grid-razas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:1.4rem;
+    margin-top:1.5rem;
+  }
+  .card-raza{
+    display:block;
+    padding:1.8rem;
+    text-align:left;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .card-raza:hover{
+    transform:translateY(-4px);
+    border-color:var(--azul-celestial);
+    box-shadow:0 10px 30px rgba(95,168,211,0.15);
+  }
+  .card-raza h3{
+    font-size:1.15rem;
+    margin:0 0 0.5rem;
+    color:var(--azul-celestial);
+  }
+  .card-raza p{
+    font-size:1.02rem;
+    color:#b8c6de;
+    margin:0;
+  }
+  .card-raza .ir{
+    display:inline-block;
+    margin-top:0.9rem;
+    font-size:0.85rem;
+    color:var(--dorado);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+  .card-raza.pendiente{
+    opacity:0.55;
+    border-style:dashed;
+  }
+  .card-raza.pendiente:hover{transform:none; box-shadow:none; border-color:var(--borde-vidrio);}
+
+  .niveles{
+    list-style:none; margin:1.5rem 0 0; padding:0;
+    display:grid; gap:0.9rem;
+  }
+  .niveles li{
+    display:flex; gap:1rem; align-items:baseline;
+    padding:0.9rem 1.2rem;
+    background:rgba(255,255,255,0.03);
+    border-left:2px solid var(--azul-celestial);
+    border-radius:6px;
+  }
+  .niveles li .n{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--dorado);
+    font-size:0.85rem;
+    min-width:2.4rem;
+  }
+
+  .enlace-relacionado{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    margin-top:1.4rem;
+    padding:0.7rem 1.3rem;
+    border:1px solid var(--borde-vidrio);
+    border-radius:999px;
+    font-size:0.95rem;
+    letter-spacing:0.5px;
+  }
+  .enlace-relacionado:hover{border-color:var(--dorado);}
+
+  .cierre{
+    text-align:center;
+    padding:3rem 1.5rem;
+  }
+  .cierre p{
+    font-size:1.3rem; font-style:italic; color:#cdd9ee;
+    max-width:640px; margin:0 auto;
+  }
+
+  footer{
+    position:relative; z-index:2;
+    text-align:center; padding:2.5rem 1rem;
+    font-size:0.85rem; color:#5f7196;
+    border-top:1px solid var(--linea);
+  }
+
+  @media (max-width:600px){
+    header.hero{padding:5rem 1.2rem 3rem;}
+    .glass{padding:1.3rem 1.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="stars2"></canvas>
+
+<nav class="breadcrumb"><a href="index.html">El Ser Uno</a> &nbsp;/&nbsp; Cosmovisión Estelar Interplanetaria</nav>
+
+<header class="hero">
+  <span class="eyebrow">El Ser Uno · Cosmología Estelar</span>
+  <h1>Cosmovisión Estelar Interplanetaria</h1>
+  <p class="sub">La humanidad no es un fenómeno aislado en el cosmos, sino un hilo más dentro de una trama de civilizaciones, niveles de conciencia y luz que atraviesa las estrellas.</p>
+</header>
+
+<main>
+
+  <section class="bloque" id="introduccion">
+    <span class="numero">01</span>
+    <h2>Introducción</h2>
+    <div class="glass">
+      <p>Dentro de El Ser Uno, el universo no se concibe como un espacio vacío salpicado de materia inerte, sino como un tejido vivo de conciencia en expansión. Cada estrella, cada sistema planetario, forma parte de una arquitectura mayor gobernada por leyes vibracionales que trascienden lo físico.</p>
+      <p>La cosmovisión estelar interplanetaria reúne, bajo un mismo marco, a las civilizaciones y razas de luz que acompañan el proceso evolutivo de la Tierra, la jerarquía de seres que las organiza, y el principio unificador —el Rayo Crístico— que las conecta a todas entre sí y con el Logos Planetario.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="universo-habitado">
+    <span class="numero">02</span>
+    <h2>El universo habitado</h2>
+    <div class="glass">
+      <p>La premisa central es simple pero profunda: la vida consciente no es exclusiva de la Tierra. Existen niveles de civilización estelar que se diferencian no por su tecnología, sino por su grado de evolución vibracional y su cercanía a la Fuente.</p>
+      <ul class="niveles">
+        <li><span class="n">I</span> Civilizaciones en proceso de ascensión, aún ligadas a ciclos de densidad y aprendizaje.</li>
+        <li><span class="n">II</span> Civilizaciones estabilizadas en luz, que actúan como guardianas y guías de otros sistemas.</li>
+        <li><span class="n">III</span> Civilizaciones plenamente crísticas, integradas al servicio del Logos Planetario y galáctico.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloque" id="razas-estelares">
+    <span class="numero">03</span>
+    <h2>Razas estelares documentadas</h2>
+    <p>Cada raza estelar aporta una cualidad particular al proceso terrestre. Estas son las civilizaciones ya documentadas dentro de la biblioteca:</p>
+    <div class="grid-razas">
+      <a class="card-raza glass" href="antarianos.html">
+        <h3>Antarianos</h3>
+        <p>Raza estelar vinculada a la estructuración energética y al sostén vibracional de los procesos de transición planetaria.</p>
+        <span class="ir">Explorar →</span>
+      </a>
+      <a class="card-raza glass" href="ayaplianos.html">
+        <h3>Ayaplianos</h3>
+        <p>Civilización de luz asociada al acompañamiento directo de la humanidad y a la transmisión de códigos de activación.</p>
+        <span class="ir">Explorar →</span>
+      </a>
+      <div class="card-raza glass pendiente">
+        <h3>Próximas razas</h3>
+        <p>Este espacio se irá ampliando a medida que nuevas civilizaciones estelares sean documentadas en la biblioteca.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque" id="jerarquia">
+    <span class="numero">04</span>
+    <h2>Relación con la jerarquía de Seres de Luz</h2>
+    <div class="glass">
+      <p>Las razas estelares no operan de manera aislada: se integran dentro de la jerarquía de nueve niveles de Seres de Luz que sostiene el orden evolutivo del cosmos. Cada raza estelar puede corresponder a uno o varios de estos niveles, según su función y su grado de cercanía a la Fuente.</p>
+      <p>Comprender esta jerarquía permite ubicar a cada civilización dentro del mapa mayor de la evolución de la conciencia, y entender por qué ciertas razas acompañan procesos específicos —como la sanación energética, la activación de códigos o la protección vibracional— mientras otras cumplen funciones más amplias de gobierno cósmico.</p>
+      <a class="enlace-relacionado" href="jerarquia_seres_luz.html">Ver jerarquía completa de los nueve niveles →</a>
+    </div>
+  </section>
+
+  <section class="bloque" id="rayo-cristico">
+    <span class="numero">05</span>
+    <h2>El Rayo Crístico como hilo conductor</h2>
+    <div class="glass">
+      <p>Si algo unifica a todas estas civilizaciones estelares —más allá de su origen, su forma o su función— es el Rayo Crístico: la corriente de amor-sabiduría que atraviesa todos los niveles de la creación y que actúa como principio organizador de la evolución consciente.</p>
+      <p>Las razas estelares que acompañan a la Tierra no lo hacen de manera independiente, sino como expresiones particulares de esta misma corriente crística, cada una vibrando la frecuencia que le es propia pero orientada siempre hacia el mismo fin: la elevación de la conciencia planetaria y su reintegración a la Unidad.</p>
+      <a class="enlace-relacionado" href="rayo_cristico.html">Profundizar en el Rayo Crístico →</a>
+    </div>
+  </section>
+
+  <section class="bloque" id="logos-eloin">
+    <span class="numero">06</span>
+    <h2>El Logos Planetario y Eloín</h2>
+    <div class="glass">
+      <p>Todo este entramado de civilizaciones, jerarquías y corrientes crísticas encuentra su punto de organización en el Logos Planetario: la conciencia rectora que administra el proceso evolutivo de la Tierra dentro del concierto mayor del sistema solar y galáctico.</p>
+      <p>Eloín, como figura central de este marco, actúa como enlace entre la Fuente, el Logos Planetario y las civilizaciones estelares, garantizando la coherencia del plan evolutivo terrestre dentro del orden cósmico.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="comandos">
+    <span class="numero">07</span>
+    <h2>Comandos estelares y contacto</h2>
+    <div class="glass">
+      <p>La relación entre la humanidad y las civilizaciones estelares no es meramente conceptual: se expresa también a través de comandos estelares específicos, herramientas vibracionales que permiten establecer contacto consciente y alinearse con la asistencia que estas razas ofrecen.</p>
+      <a class="enlace-relacionado" href="comandos_estelares.html">Conocer los siete comandos estelares →</a>
+    </div>
+  </section>
+
+  <section class="bloque" id="ascension-gaia">
+    <span class="numero">08</span>
+    <h2>Ascensión de Gaia en el contexto galáctico</h2>
+    <div class="glass">
+      <p>El proceso de ascensión de Gaia y la humanidad no ocurre en aislamiento: es observado, acompañado y sostenido por esta red de civilizaciones estelares y por la jerarquía de luz que lo enmarca. Comprender la cosmovisión estelar interplanetaria es, en última instancia, comprender el contexto galáctico dentro del cual se despliega la transición planetaria.</p>
+      <a class="enlace-relacionado" href="ascension_gaia_humanidad.html">Ver el proceso de ascensión de Gaia →</a>
+    </div>
+  </section>
+
+  <section class="cierre" id="cierre">
+    <p>No estamos solos, ni lo hemos estado nunca. Somos parte de una familia de luz cuyas estrellas, aunque distantes, laten al mismo ritmo crístico que anima cada corazón despierto en la Tierra.</p>
+  </section>
+
+</main>
+
+<footer>El Ser Uno · Cosmovisión Estelar Interplanetaria</footer>
+
+<script>
+  // Campo de estrellas con parallax, en línea con el rediseño interplanetario del index
+  function initStars(canvasId, count, speed, size){
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    let w, h, stars;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.documentElement.scrollHeight;
+    }
+    function makeStars(){
+      stars = Array.from({length:count}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*size + 0.3,
+        o: Math.random()*0.6 + 0.3
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = '#f4f7fb';
+      stars.forEach(s => {
+        ctx.globalAlpha = s.o;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+    window.addEventListener('resize', () => { resize(); makeStars(); draw(); });
+    window.addEventListener('scroll', () => {
+      canvas.style.transform = `translateY(${window.scrollY * speed}px)`;
+    });
+    resize(); makeStars(); draw();
+  }
+  initStars('stars', 140, -0.05, 1.2);
+  initStars('stars2', 60, -0.12, 2);
+</script>
+
+</body>
+</html>
