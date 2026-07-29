@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Razas Estelares de Luz | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-celestial:#5fa8d3;
+    --azul-celestial-2:#9fc9ff;
+    --blanco-estelar:#f4f7fb;
+    --azul-profundo:#050914;
+    --dorado:#d4af6a;
+    --linea:rgba(95,168,211,0.35);
+    --vidrio:rgba(255,255,255,0.05);
+    --borde-vidrio:rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--blanco-estelar);
+    background:radial-gradient(ellipse at 20% 10%, #101a35 0%, var(--azul-profundo) 45%, #000 100%);
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  #stars, #stars2{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    pointer-events:none; z-index:0;
+  }
+  h1,h2,h3{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    letter-spacing:0.5px;
+    color:var(--blanco-estelar);
+  }
+  a{color:var(--azul-celestial); text-decoration:none;}
+  a:hover{color:var(--dorado);}
+
+  header.hero{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:7rem 1.5rem 5rem;
+  }
+  header.hero .eyebrow{
+    display:inline-block;
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.75rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--dorado);
+    margin-bottom:1.2rem;
+  }
+  header.hero h1{
+    font-size:clamp(1.8rem, 4vw, 3.2rem);
+    margin:0 0 1.2rem;
+    background:linear-gradient(120deg, var(--blanco-estelar), var(--azul-celestial) 60%, var(--dorado));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  header.hero p.sub{
+    max-width:680px; margin:0 auto;
+    font-size:1.25rem;
+    font-style:italic;
+    color:#c9d6ea;
+  }
+  nav.breadcrumb{
+    position:relative; z-index:2;
+    text-align:center;
+    font-size:0.95rem;
+    color:#8fa3c4;
+    margin-bottom:1rem;
+  }
+
+  main{position:relative; z-index:2; max-width:960px; margin:0 auto; padding:0 1.5rem 6rem;}
+
+  section.bloque{margin:0 0 4.5rem;}
+  section.bloque .numero{
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.85rem;
+    color:var(--dorado);
+    letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  section.bloque h2{
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    margin:0.4rem 0 1.3rem;
+    border-bottom:1px solid var(--linea);
+    padding-bottom:0.8rem;
+  }
+  section.bloque p{font-size:1.15rem; color:#dbe4f2;}
+
+  .glass{
+    background:var(--vidrio);
+    border:1px solid var(--borde-vidrio);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:16px;
+    padding:1.8rem 2rem;
+  }
+
+  /* Mapa de niveles */
+  .mapa-niveles{
+    display:grid; gap:0.9rem; margin-top:1.5rem;
+  }
+  .mapa-niveles .fila{
+    display:flex; gap:1rem; align-items:baseline;
+    padding:0.9rem 1.2rem;
+    background:rgba(255,255,255,0.03);
+    border-left:2px solid var(--azul-celestial);
+    border-radius:6px;
+    flex-wrap:wrap;
+  }
+  .mapa-niveles .n{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--dorado);
+    font-size:0.85rem;
+    min-width:2.4rem;
+  }
+  .mapa-niveles .razas-nivel{
+    font-size:0.95rem; color:var(--azul-celestial-2);
+  }
+
+  /* Tarjetas de razas — sistema unificado con acordeón */
+  .lista-razas{display:grid; gap:1.1rem; margin-top:1.5rem;}
+  .raza{
+    border:1px solid var(--borde-vidrio);
+    border-radius:14px;
+    background:var(--vidrio);
+    overflow:hidden;
+  }
+  .raza summary{
+    list-style:none;
+    cursor:pointer;
+    padding:1.3rem 1.6rem;
+    display:flex; justify-content:space-between; align-items:center;
+    gap:1rem;
+  }
+  .raza summary::-webkit-details-marker{display:none;}
+  .raza summary h3{
+    margin:0; font-size:1.2rem; color:var(--azul-celestial-2);
+  }
+  .raza summary .nivel-tag{
+    font-size:0.75rem; letter-spacing:1px; text-transform:uppercase;
+    color:var(--dorado); white-space:nowrap;
+  }
+  .raza summary .flecha{
+    font-size:1rem; color:var(--azul-celestial);
+    transition:transform .25s ease;
+  }
+  .raza[open] summary .flecha{transform:rotate(90deg);}
+  .raza .contenido{
+    padding:0 1.6rem 1.6rem;
+    border-top:1px solid rgba(255,255,255,0.06);
+  }
+  .raza .contenido dl{margin:1rem 0 0; display:grid; gap:0.7rem;}
+  .raza .contenido dt{
+    font-family:'Cinzel Decorative', serif; font-size:0.75rem;
+    letter-spacing:1.5px; text-transform:uppercase; color:var(--dorado);
+    margin-top:0.8rem;
+  }
+  .raza .contenido dd{margin:0.2rem 0 0; font-size:1.05rem; color:#dbe4f2;}
+  .raza .enlace-individual{
+    display:inline-block; margin-top:1rem;
+    font-size:0.9rem; color:var(--azul-celestial);
+    border-bottom:1px dotted var(--azul-celestial);
+  }
+
+  .enlace-relacionado{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    margin-top:1.4rem;
+    padding:0.7rem 1.3rem;
+    border:1px solid var(--borde-vidrio);
+    border-radius:999px;
+    font-size:0.95rem;
+    letter-spacing:0.5px;
+  }
+  .enlace-relacionado:hover{border-color:var(--dorado);}
+
+  .cierre{text-align:center; padding:3rem 1.5rem;}
+  .cierre p{font-size:1.3rem; font-style:italic; color:#cdd9ee; max-width:640px; margin:0 auto;}
+
+  footer{
+    position:relative; z-index:2;
+    text-align:center; padding:2.5rem 1rem;
+    font-size:0.85rem; color:#5f7196;
+    border-top:1px solid var(--linea);
+  }
+
+  @media (max-width:600px){
+    header.hero{padding:5rem 1.2rem 3rem;}
+    .glass{padding:1.3rem 1.4rem;}
+    .raza summary{padding:1.1rem 1.2rem;}
+    .raza .contenido{padding:0 1.2rem 1.3rem;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="stars2"></canvas>
+
+<nav class="breadcrumb"><a href="index.html">El Ser Uno</a> &nbsp;/&nbsp; Sistema de Razas Estelares de Luz</nav>
+
+<header class="hero">
+  <span class="eyebrow">El Ser Uno · Cosmología Estelar</span>
+  <h1>Sistema de Razas Estelares de Luz</h1>
+  <p class="sub">Un cuerpo unificado de civilizaciones que, desde distintos niveles de la jerarquía de luz, acompañan a Gaia y a la humanidad como expresiones particulares de una misma corriente crística.</p>
+</header>
+
+<main>
+
+  <section class="bloque" id="introduccion">
+    <span class="numero">01</span>
+    <h2>Introducción</h2>
+    <div class="glass">
+      <p>Las razas estelares de luz documentadas en El Ser Uno no son entidades aisladas ni jerarquías de poder: son manifestaciones diversas de una misma inteligencia crística que se expresa de formas distintas según la función evolutiva que cumplen junto a la Tierra.</p>
+      <p>Este sistema reúne, bajo un mismo mapa, a las siete razas estelares de luz reconocidas dentro del marco cosmológico de El Ser Uno, ubicándolas dentro de la jerarquía de nueve niveles y mostrando cómo se complementan entre sí en el acompañamiento del proceso ascensional de Gaia.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="mapa-sistema">
+    <span class="numero">02</span>
+    <h2>Mapa del sistema</h2>
+    <p>Cada raza estelar se ubica dentro de uno o más de los nueve niveles descritos en <a href="jerarquia_seres_luz.html">la jerarquía de Seres de Luz</a>. Este mapa ofrece una lectura orientativa de esa correspondencia:</p>
+    <div class="glass">
+      <div class="mapa-niveles">
+        <div class="fila"><span class="n">N. I–III</span><span class="razas-nivel">Antarianos · Ayaplianos — sostén vibracional directo y transmisión de códigos</span></div>
+        <div class="fila"><span class="n">N. IV–V</span><span class="razas-nivel">Sirianos de Luz · Pleyadianos — sanación, geometría sagrada y acompañamiento afectivo</span></div>
+        <div class="fila"><span class="n">N. VI–VII</span><span class="razas-nivel">Arcturianos · Andromedanos — tecnología vibracional y expansión de conciencia</span></div>
+        <div class="fila"><span class="n">N. VIII–IX</span><span class="razas-nivel">Lirianos — memoria ancestral y raíz de la semilla estelar humana</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque" id="las-razas">
+    <span class="numero">03</span>
+    <h2>Las siete razas</h2>
+    <p>Cada raza puede explorarse en detalle a continuación. Antarianos y Ayaplianos cuentan además con página propia, ampliada.</p>
+
+    <div class="lista-razas">
+
+      <details class="raza">
+        <summary>
+          <h3>Antarianos</h3>
+          <span class="nivel-tag">Nivel I–III</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización estelar vinculada a sistemas de estructuración energética profunda.</dd>
+            <dt>Función</dt><dd>Sostén vibracional de los procesos de transición planetaria, estabilizando campos energéticos en momentos de cambio acelerado.</dd>
+            <dt>Cualidad vibracional</dt><dd>Firmeza, estructura, orden energético.</dd>
+            <dt>Relación con Gaia</dt><dd>Actúan como columna vertebral energética durante los reajustes vibracionales del planeta.</dd>
+          </dl>
+          <a class="enlace-individual" href="antarianos.html">Ver página completa de los Antarianos →</a>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Ayaplianos</h3>
+          <span class="nivel-tag">Nivel I–III</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización de luz de cercanía directa con los procesos humanos.</dd>
+            <dt>Función</dt><dd>Acompañamiento directo y transmisión de códigos de activación para el despertar de conciencia.</dd>
+            <dt>Cualidad vibracional</dt><dd>Cercanía, activación, transmisión.</dd>
+            <dt>Relación con Gaia</dt><dd>Facilitan la recepción de códigos evolutivos por parte de la humanidad encarnada.</dd>
+          </dl>
+          <a class="enlace-individual" href="ayaplianos.html">Ver página completa de los Ayaplianos →</a>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Sirianos de Luz</h3>
+          <span class="nivel-tag">Nivel IV–V</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización guardiana del conocimiento sagrado y de la geometría que sostiene la creación.</dd>
+            <dt>Función</dt><dd>Custodia de templos de luz y transmisión de conocimientos de sanación a través de la geometría sagrada.</dd>
+            <dt>Cualidad vibracional</dt><dd>Sabiduría, precisión geométrica, sanación.</dd>
+            <dt>Relación con Gaia</dt><dd>Sostienen los patrones geométricos que subyacen a las redes energéticas planetarias.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Arcturianos</h3>
+          <span class="nivel-tag">Nivel VI–VII</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización de alta vibración especializada en tecnología energética avanzada.</dd>
+            <dt>Función</dt><dd>Sanación multidimensional y asistencia en la reconfiguración del ADN energético humano.</dd>
+            <dt>Cualidad vibracional</dt><dd>Precisión, tecnología consciente, reparación profunda.</dd>
+            <dt>Relación con Gaia</dt><dd>Colaboran en la recalibración energética de las estructuras sutiles del planeta y sus habitantes.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Pleyadianos</h3>
+          <span class="nivel-tag">Nivel IV–V</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización de cercanía afectiva y vínculo emocional con la experiencia humana.</dd>
+            <dt>Función</dt><dd>Acompañamiento en el despertar del corazón y en la sanación de los vínculos relacionales.</dd>
+            <dt>Cualidad vibracional</dt><dd>Ternura, empatía, apertura emocional.</dd>
+            <dt>Relación con Gaia</dt><dd>Sostienen el proceso de apertura del corazón colectivo durante la ascensión planetaria.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Andromedanos</h3>
+          <span class="nivel-tag">Nivel VI–VII</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización asociada a la expansión de conciencia más allá de los límites conocidos.</dd>
+            <dt>Función</dt><dd>Ruptura de estructuras mentales limitantes y conexión con la Fuente a escala galáctica.</dd>
+            <dt>Cualidad vibracional</dt><dd>Expansión, apertura mental, visión galáctica.</dd>
+            <dt>Relación con Gaia</dt><dd>Impulsan la expansión de la conciencia colectiva más allá de los paradigmas terrestres.</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="raza">
+        <summary>
+          <h3>Lirianos</h3>
+          <span class="nivel-tag">Nivel VIII–IX</span>
+          <span class="flecha">›</span>
+        </summary>
+        <div class="contenido">
+          <dl>
+            <dt>Origen</dt><dd>Civilización ancestral considerada raíz original de la semilla estelar humana.</dd>
+            <dt>Función</dt><dd>Custodia de la memoria original de la humanidad y de su propósito evolutivo primigenio.</dd>
+            <dt>Cualidad vibracional</dt><dd>Memoria, origen, propósito.</dd>
+            <dt>Relación con Gaia</dt><dd>Sostienen el recuerdo del pacto original entre la humanidad y la Tierra.</dd>
+          </dl>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <section class="bloque" id="rayo-cristico">
+    <span class="numero">04</span>
+    <h2>El Rayo Crístico como corriente unificadora</h2>
+    <div class="glass">
+      <p>Más allá de sus funciones y niveles particulares, todas estas razas estelares comparten un mismo origen vibracional: el Rayo Crístico, la corriente de amor-sabiduría que las atraviesa y que garantiza la coherencia de su labor conjunta.</p>
+      <a class="enlace-relacionado" href="rayo_cristico.html">Profundizar en el Rayo Crístico →</a>
+    </div>
+  </section>
+
+  <section class="bloque" id="relacion-entre-razas">
+    <span class="numero">05</span>
+    <h2>Cómo se relacionan entre sí</h2>
+    <div class="glass">
+      <p>Ninguna raza estelar de luz ocupa una posición de "mayor poder" respecto a las demás. La jerarquía de niveles describe cercanía funcional a la Fuente, no superioridad. Cada civilización aporta una cualidad complementaria: donde una estructura, otra activa; donde una sana, otra recuerda; donde una expande, otra sostiene.</p>
+      <p>Esta complementariedad es la que permite que el acompañamiento a Gaia sea integral: cada raza cubre una dimensión distinta del proceso ascensional, sin que ninguna sea prescindible.</p>
+    </div>
+  </section>
+
+  <section class="cierre" id="cierre">
+    <p>Muchas voces, una sola corriente. Las estrellas que acompañan a Gaia no compiten entre sí: se armonizan, como las notas de un mismo canto crístico que despierta a la Tierra.</p>
+  </section>
+
+</main>
+
+<footer>El Ser Uno · Sistema de Razas Estelares de Luz</footer>
+
+<script>
+  function initStars(canvasId, count, speed, size){
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    let w, h, stars;
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.documentElement.scrollHeight;
+    }
+    function makeStars(){
+      stars = Array.from({length:count}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*size + 0.3,
+        o: Math.random()*0.6 + 0.3
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = '#f4f7fb';
+      stars.forEach(s => {
+        ctx.globalAlpha = s.o;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+    window.addEventListener('resize', () => { resize(); makeStars(); draw(); });
+    window.addEventListener('scroll', () => {
+      canvas.style.transform = `translateY(${window.scrollY * speed}px)`;
+    });
+    resize(); makeStars(); draw();
+  }
+  initStars('stars', 140, -0.05, 1.2);
+  initStars('stars2', 60, -0.12, 2);
+</script>
+
+</body>
+</html>
