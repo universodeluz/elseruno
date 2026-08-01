@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dispensador y Amplificador de Dolencias | El Ser Uno</title>
+<meta name="description" content="Implante energético dispensador y amplificador de dolencias: mecanismo, origen en la jerarquía oscura y comandos estelares, síntomas de detección.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-celeste:#5fa8d3;
+    --azul-claro:#9fc9ff;
+    --blanco-estelar:#f4f7fb;
+    --blanco-suave:#eef6ff;
+    --navy:#0a0e1a;
+    --navy-2:#0d1224;
+    --oro:#d4af6a;
+    --oro-suave:#e8cf9c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(95,168,211,0.12), transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(212,175,106,0.08), transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(159,201,255,0.08), transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--blanco-suave);
+    font-family: 'Cormorant Garamond', serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  #stars{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+  .contenido{
+    position:relative; z-index:1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 24px 120px;
+  }
+  header.hero{
+    text-align:center;
+    padding: 40px 0 50px;
+  }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    background: linear-gradient(135deg, var(--oro-suave), var(--azul-claro));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:1px;
+    line-height:1.3;
+    margin-bottom:18px;
+  }
+  .subtitulo{
+    font-size:1.25rem;
+    font-style:italic;
+    color: var(--azul-claro);
+    opacity:0.9;
+  }
+  .volver{
+    display:inline-block;
+    margin-top:22px;
+    font-size:0.95rem;
+    color: var(--oro);
+    text-decoration:none;
+    border:1px solid rgba(212,175,106,0.35);
+    padding:8px 18px;
+    border-radius:30px;
+    transition:all 0.3s ease;
+  }
+  .volver:hover{
+    background: rgba(212,175,106,0.12);
+    border-color: var(--oro);
+  }
+  .card{
+    background: rgba(244,247,251,0.04);
+    border:1px solid rgba(159,201,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 32px 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  }
+  h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.35rem;
+    color: var(--azul-claro);
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  h2 .icono{ font-size:1.1rem; }
+  p{
+    font-size:1.15rem;
+    line-height:1.75;
+    color: var(--blanco-suave);
+    margin-bottom:14px;
+  }
+  p:last-child{margin-bottom:0;}
+  strong{ color: var(--oro-suave); font-weight:600; }
+  ul.lista{
+    list-style:none;
+    margin: 10px 0;
+  }
+  ul.lista li{
+    font-size:1.1rem;
+    line-height:1.7;
+    padding-left:26px;
+    position:relative;
+    margin-bottom:10px;
+    color: var(--blanco-suave);
+  }
+  ul.lista li::before{
+    content:"✦";
+    position:absolute;
+    left:0;
+    color: var(--oro);
+  }
+  .etiqueta-severidad{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: rgba(95,168,211,0.1);
+    border:1px solid rgba(95,168,211,0.3);
+    padding:6px 16px;
+    border-radius:20px;
+    font-size:0.95rem;
+    color: var(--azul-claro);
+    margin-bottom:8px;
+  }
+  .acordeon{
+    border:1px solid rgba(159,201,255,0.15);
+    border-radius:14px;
+    margin-bottom:14px;
+    overflow:hidden;
+    background: rgba(244,247,251,0.03);
+  }
+  .acordeon-titulo{
+    padding:18px 24px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.05rem;
+    color: var(--oro-suave);
+    user-select:none;
+    transition: background 0.3s ease;
+  }
+  .acordeon-titulo:hover{ background: rgba(212,175,106,0.06); }
+  .acordeon-titulo .flecha{
+    transition: transform 0.3s ease;
+    color: var(--azul-celeste);
+  }
+  .acordeon-titulo.activo .flecha{ transform: rotate(180deg); }
+  .acordeon-contenido{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.4s ease;
+    padding:0 24px;
+  }
+  .acordeon-contenido.abierto{
+    max-height: 600px;
+    padding: 0 24px 22px;
+  }
+  .relacionados{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:8px;
+  }
+  .relacionados a{
+    color: var(--azul-claro);
+    text-decoration:none;
+    font-size:1rem;
+    border:1px solid rgba(95,168,211,0.3);
+    padding:8px 16px;
+    border-radius:20px;
+    transition: all 0.3s ease;
+  }
+  .relacionados a:hover{
+    background: rgba(95,168,211,0.12);
+    border-color: var(--azul-celeste);
+  }
+  .nota-final{
+    text-align:center;
+    font-style:italic;
+    color: var(--azul-claro);
+    opacity:0.85;
+    font-size:1.05rem;
+    margin-top:40px;
+    padding-top:24px;
+    border-top:1px solid rgba(159,201,255,0.15);
+  }
+  @media (max-width:600px){
+    .contenido{padding:40px 16px 90px;}
+    .card{padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="contenido">
+
+  <header class="hero">
+    <h1>Dispensador y Amplificador de Dolencias</h1>
+    <p class="subtitulo">Implante energético de acción directa sobre el cuerpo físico y sutil</p>
+    <a class="volver" href="../index.html">← Volver al índice general</a>
+  </header>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Naturaleza del implante</h2>
+    <p>El <strong>Dispensador y Amplificador de Dolencias</strong> es un implante energético diseñado para actuar sobre las <strong>zonas sensibles del cuerpo</strong> físico y sutil de la persona afectada. A diferencia de otros mecanismos que operan sobre un chakra o capa áurica fija, este implante se ancla de forma variable, buscando siempre el punto de mayor vulnerabilidad orgánica o energética disponible en el momento.</p>
+    <p>Su función es doble: <strong>dispensar</strong> —es decir, liberar o activar— dolencias latentes, y simultáneamente <strong>amplificar</strong> su efecto una vez manifestadas.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Mecanismo de acción</h2>
+    <p>El implante trabaja acortando el tiempo natural de manifestación de una dolencia. Lo que en condiciones normales tardaría en aparecer o agravarse, se precipita de forma abrupta.</p>
+    <p>La amplificación puede expresarse de <strong>dos formas</strong>, dependiendo de la intensidad del ataque:</p>
+    <ul class="lista">
+      <li><strong>Amplificación de intensidad:</strong> el malestar o dolor se vive con una fuerza desproporcionada respecto a su causa física real.</li>
+      <li><strong>Amplificación de duración:</strong> la dolencia se prolonga más allá de su curso habitual, resistiéndose a tratamientos que normalmente serían efectivos.</li>
+    </ul>
+    <p>En ataques de mayor intensidad, ambas formas pueden presentarse de manera simultánea.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Origen</h2>
+    <span class="etiqueta-severidad">⚠ Alta jerarquía oscura</span>
+    <p>Este implante no proviene de entidades menores ni de adherencias energéticas comunes. Su instalación es propia de <strong>seres de alta jerarquía</strong> dentro de la estructura de oscuridad, así como de <strong>comandos estelares de oscuridad</strong> —agrupaciones organizadas con capacidad de acción coordinada sobre el cuerpo físico del ser humano.</p>
+    <p>Esto lo distingue de ataques más difusos o aislados: responde a una intención dirigida y sostenida, no a un desequilibrio energético circunstancial.</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Síntomas de detección</h2>
+    <ul class="lista">
+      <li>Dolencias que empeoran sin causa médica clara ni progresión lógica.</li>
+      <li>Recaídas rápidas tras una mejoría, sin motivo aparente.</li>
+      <li>Dolor que migra de una zona del cuerpo a otra, sin patrón anatómico coherente.</li>
+      <li>Malestares que se resisten a tratamientos convencionales que deberían ser efectivos.</li>
+      <li>Sensación de que el cuerpo "no responde" como antes ante estímulos de sanación.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Preguntas frecuentes</h2>
+
+    <div class="acordeon">
+      <div class="acordeon-titulo" onclick="toggleAcordeon(this)">
+        ¿Se puede detectar mediante radiestesia? <span class="flecha">▾</span>
+      </div>
+      <div class="acordeon-contenido">
+        <p>Sí. Al ser un implante de origen jerárquico alto, requiere un péndulo bien calibrado y preguntas precisas dirigidas específicamente a la zona sensible del cuerpo donde se sospecha su presencia.</p>
+      </div>
+    </div>
+
+    <div class="acordeon">
+      <div class="acordeon-titulo" onclick="toggleAcordeon(this)">
+        ¿Actúa solo o junto a otros ataques energéticos? <span class="flecha">▾</span>
+      </div>
+      <div class="acordeon-contenido">
+        <p>Puede actuar de forma aislada, pero es frecuente que se instale junto a cordones vampíricos u otros mecanismos de debilitamiento, ya que un cuerpo con dolencias amplificadas pierde vitalidad más rápido y queda más expuesto a otras formas de ataque.</p>
+      </div>
+    </div>
+
+    <div class="acordeon">
+      <div class="acordeon-titulo" onclick="toggleAcordeon(this)">
+        ¿Su remoción es distinta a la de otros implantes? <span class="flecha">▾</span>
+      </div>
+      <div class="acordeon-contenido">
+        <p>Al provenir de alta jerarquía y comandos estelares organizados, su desactivación suele requerir un trabajo más sostenido y consciente que el de implantes menores, junto con protección energética que evite su reinstalación.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="card">
+    <h2><span class="icono">◈</span> Temas relacionados</h2>
+    <div class="relacionados">
+      <a href="tipos_ataques_energeticos.html">Tipos de ataques energéticos</a>
+      <a href="jerarquia_seres_oscuridad.html">Jerarquía de seres de oscuridad</a>
+    </div>
+  </section>
+
+  <p class="nota-final">La conciencia y el discernimiento son la primera forma de protección ante cualquier interferencia energética.</p>
+
+</div>
+
+<script>
+  function toggleAcordeon(el){
+    el.classList.toggle('activo');
+    const contenido = el.nextElementSibling;
+    contenido.classList.toggle('abierto');
+  }
+
+  // Campo de estrellas animado
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars = [];
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for(let i=0;i<160;i++){
+    stars.push({
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.4 + 0.3,
+      alpha: Math.random(),
+      speed: Math.random()*0.015 + 0.003
+    });
+  }
+
+  function drawStars(){
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      s.alpha += s.speed;
+      if(s.alpha > 1 || s.alpha < 0) s.speed *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(244,247,251,${Math.abs(Math.sin(s.alpha))})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+</script>
+
+</body>
+</html>
