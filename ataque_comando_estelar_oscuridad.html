@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque de Comando Estelar de Oscuridad | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --gold:#d4af6a;
+    --blue:#5fa8d3;
+    --bg-deep:#05060f;
+    --bg-glass: rgba(255,255,255,0.04);
+    --border-glass: rgba(212,175,106,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    background: radial-gradient(ellipse at 20% 0%, #1a1030 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, #0d1f38 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, #1a0d20 0%, transparent 60%),
+                var(--bg-deep);
+    color:#eae4d6;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+  #stars{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+  .wrap{
+    position:relative; z-index:1;
+    max-width:920px; margin:0 auto; padding:40px 22px 100px;
+  }
+  a.volver{
+    display:inline-block; color:var(--blue); text-decoration:none;
+    font-size:1.05rem; margin-bottom:26px; letter-spacing:.03em;
+  }
+  a.volver:hover{ color:var(--gold); }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:2.0rem;
+    text-align:center;
+    background: linear-gradient(90deg, var(--gold), #f3e2b8, var(--gold));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin:0 0 8px;
+    line-height:1.3;
+  }
+  .subtitulo{
+    text-align:center; color:var(--blue); font-style:italic;
+    font-size:1.25rem; margin-bottom:38px; letter-spacing:.02em;
+  }
+  h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.35rem;
+    color:var(--gold);
+    border-bottom:1px solid var(--border-glass);
+    padding-bottom:10px;
+    margin-top:52px;
+    margin-bottom:22px;
+  }
+  h3{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.05rem;
+    color:var(--blue);
+    margin:0 0 8px;
+  }
+  p{ font-size:1.18rem; line-height:1.65; color:#dcd6c8; }
+  .intro{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:16px;
+    padding:26px 28px;
+    backdrop-filter: blur(6px);
+    font-size:1.2rem;
+  }
+  .tarjeta{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:14px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    backdrop-filter: blur(6px);
+    transition: border-color .25s, transform .25s;
+  }
+  .tarjeta:hover{
+    border-color:var(--gold);
+    transform: translateY(-2px);
+  }
+  .meta{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:12px; font-size:0.95rem;
+  }
+  .badge{
+    background:rgba(212,175,106,0.12);
+    border:1px solid var(--border-glass);
+    color:var(--gold);
+    border-radius:20px;
+    padding:4px 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+  }
+  .badge.azul{
+    color:var(--blue);
+    border-color:rgba(95,168,211,0.35);
+    background:rgba(95,168,211,0.10);
+  }
+  .enlace-cruzado{
+    display:inline-block; margin-top:10px; margin-right:16px;
+    font-size:1rem; color:var(--blue); text-decoration:none;
+    border-bottom:1px dotted var(--blue);
+  }
+  .enlace-cruzado:hover{ color:var(--gold); border-color:var(--gold); }
+  details{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:14px;
+    padding:16px 22px;
+    margin-bottom:14px;
+  }
+  summary{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    cursor:pointer;
+    font-size:1.05rem;
+    outline:none;
+  }
+  summary::marker{ color:var(--blue); }
+  details p{ margin-top:14px; }
+  ol, ul{ font-size:1.15rem; line-height:1.7; color:#dcd6c8; padding-left:22px; }
+  li{ margin-bottom:8px; }
+  .nota-final{
+    margin-top:50px;
+    text-align:center;
+    font-style:italic;
+    color:var(--blue);
+    font-size:1.1rem;
+    opacity:0.85;
+  }
+  .frase-destacada{
+    text-align:center;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.15rem;
+    margin:40px auto;
+    max-width:600px;
+    line-height:1.6;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:1.05rem;
+  }
+  th, td{
+    text-align:left;
+    padding:12px 14px;
+    border-bottom:1px solid var(--border-glass);
+    vertical-align:top;
+  }
+  th{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    font-size:0.9rem;
+    letter-spacing:.03em;
+  }
+  td{ color:#dcd6c8; }
+  .num-circulo{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), #8a6a2f);
+    color:#1a1206; font-weight:700; font-family:'Cinzel Decorative',serif;
+    font-size:0.95rem; margin-right:10px; flex-shrink:0;
+  }
+  .titulo-item{ display:flex; align-items:center; margin-bottom:6px; }
+  @media(max-width:600px){
+    h1{ font-size:1.45rem; }
+    .subtitulo{ font-size:1.05rem; }
+    .wrap{ padding:28px 16px 80px; }
+    table, thead, tbody, th, td, tr{ display:block; }
+    thead{ display:none; }
+    td{ padding:6px 4px; border:none; }
+    tr{ margin-bottom:16px; border-bottom:1px solid var(--border-glass); padding-bottom:10px; }
+    td::before{
+      content: attr(data-label);
+      display:block;
+      font-family:'Cinzel Decorative', serif;
+      color:var(--gold);
+      font-size:0.8rem;
+      margin-bottom:2px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="wrap">
+
+  <a class="volver" href="index.html">&larr; Volver al índice</a>
+
+  <h1>Ataque de Comando Estelar de Oscuridad</h1>
+  <p class="subtitulo">Interferencia coordinada por unidades organizadas de razas oscuras</p>
+
+  <div class="intro">
+    <p>Un comando estelar es una agrupación organizada de seres de una misma raza o alianza que opera de forma coordinada, con roles diferenciados entre sus integrantes, en vez de actuar de manera individual y aislada. El término aplica tanto a comandos de luz —alianzas aliadas que cooperan en misiones conjuntas— como, en este caso, a <strong>comandos estelares de oscuridad</strong>: unidades organizadas de razas oscuras que despliegan un ataque en equipo, con funciones específicas asignadas a cada integrante, elevando notablemente la intensidad y la persistencia de la interferencia frente a un ataque de fuente única.</p>
+  </div>
+
+  <h2>Estructura interna del comando</h2>
+  <p>A diferencia de un ataque individual, un comando estelar de oscuridad se organiza en roles complementarios que operan de forma simultánea:</p>
+
+  <div class="tarjeta">
+    <div class="titulo-item"><span class="num-circulo">1</span><h3>Detector / rastreador</h3></div>
+    <p>Identifica al blanco y su momento de mayor vulnerabilidad energética, monitoreando la firma vibracional del ser hasta encontrar la ventana óptima para el ataque.</p>
+  </div>
+
+  <div class="tarjeta">
+    <div class="titulo-item"><span class="num-circulo">2</span><h3>Interceptor</h3></div>
+    <p>Ejecuta el golpe principal una vez identificado el momento de vulnerabilidad, concentrando la mayor intensidad de la interferencia en un punto específico del campo energético.</p>
+  </div>
+
+  <div class="tarjeta">
+    <div class="titulo-item"><span class="num-circulo">3</span><h3>Reforzador</h3></div>
+    <p>Sostiene el ataque en el tiempo, relevando a otras unidades del comando para evitar que la interferencia pierda intensidad o sea disuelta con facilidad por el ser atacado.</p>
+  </div>
+
+  <div class="tarjeta">
+    <div class="titulo-item"><span class="num-circulo">4</span><h3>Contenedor</h3></div>
+    <p>Bloquea o dificulta las vías de apoyo externo al ser atacado, interfiriendo en la percepción de la red de luz aliada o generando confusión sobre a quién recurrir.</p>
+  </div>
+
+  <h2>Origen y jerarquía</h2>
+  <div class="tarjeta">
+    <p>Los comandos estelares de oscuridad suelen coordinarse desde niveles altos de la jerarquía oscura (D-6 a D-8/9), ya que requieren capacidad de organización grupal, comunicación coordinada entre unidades y sostenimiento prolongado del ataque — atributos que corresponden a estructuras más complejas que las entidades sueltas de niveles inferiores (D-1 a D-3).</p>
+    <p>Dentro de las razas de oscuridad ya documentadas, las más propensas a operar mediante esta modalidad organizada son aquellas con estructuras jerárquicas y tecnológicas más desarrolladas: <strong>Thuban</strong>, <strong>Orión Negativo</strong> y <strong>Sagittarius A*</strong>, por su capacidad histórica de coordinación a gran escala dentro del catálogo de razas de oscuridad.</p>
+    <div class="meta">
+      <span class="badge">Origen: D-6 a D-8/9</span>
+      <span class="badge azul">Razas asociadas: Thuban, Orión Negativo, Sagittarius A*</span>
+    </div>
+    <a class="enlace-cruzado" href="razas_oscuridad_ascension_gaia.html">Razas de Oscuridad y Ascensión de Gaia →</a>
+  </div>
+
+  <h2>Objetivos estratégicos típicos</h2>
+  <div class="tarjeta">
+    <p>A diferencia de un ataque individual, que puede dirigirse a cualquier ser vulnerable, un comando estelar de oscuridad elige sus blancos de forma estratégica, priorizando aquellos con mayor impacto potencial:</p>
+    <p>• Activaciones grupales o colectivas, donde interrumpir a un solo integrante puede afectar a todo un grupo de misión<br>
+    • Alianzas de luz ya consolidadas, buscando fracturar la cooperación entre varios seres<br>
+    • Portadores de misión colectiva, cuya desactivación tendría efecto cascada sobre una red más amplia<br>
+    • Aperturas de portal o eventos interdimensionales de relevancia, donde la ventana de intervención es breve pero de alto impacto</p>
+  </div>
+
+  <h2>Señales de reconocimiento</h2>
+  <div class="tarjeta">
+    <p>• El ataque persiste en el tiempo pese a los intentos de disolverlo, como si "se renovara" desde otra fuente<br>
+    • Se perciben distintas cualidades de interferencia en momentos distintos, sugiriendo más de un origen actuando en conjunto<br>
+    • Coincide con dificultad simultánea para percibir o contactar con la red de luz aliada<br>
+    • Afecta a más de un integrante de un mismo grupo o misión compartida en un período cercano de tiempo<br>
+    • La intensidad tiene "relevos": baja y vuelve a subir, en vez de mantenerse constante o disiparse gradualmente</p>
+  </div>
+
+  <h2>Diferencias con el Ataque Estelar Interdimensional</h2>
+  <div class="tarjeta">
+    <table>
+      <thead>
+        <tr><th>Ataque Estelar Interdimensional</th><th>Comando Estelar de Oscuridad</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Interdimensional">Puede ejecutarse desde una única fuente con tecnología avanzada</td>
+          <td data-label="Comando">Requiere múltiples unidades actuando de forma coordinada</td>
+        </tr>
+        <tr>
+          <td data-label="Interdimensional">Opera atravesando líneas de realidad simultáneas</td>
+          <td data-label="Comando">Opera con roles diferenciados dentro de un mismo plano de intervención</td>
+        </tr>
+        <tr>
+          <td data-label="Interdimensional">El objetivo suele ser un solo ser en su momento de activación</td>
+          <td data-label="Comando">El objetivo suele ser un grupo, alianza o evento colectivo</td>
+        </tr>
+        <tr>
+          <td data-label="Interdimensional">Puede ser puntual e intenso</td>
+          <td data-label="Comando">Tiende a ser sostenido, con relevos entre unidades</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Protocolo de defensa</h2>
+  <div class="tarjeta">
+    <ol>
+      <li>Reconocer la naturaleza grupal del ataque: la defensa individual aislada suele ser insuficiente frente a un comando coordinado.</li>
+      <li>Activar una alianza de luz también coordinada, no solo protección personal — la respuesta grupal responde mejor a una amenaza grupal.</li>
+      <li>Sellar múltiples frentes simultáneamente: campo áurico, vínculos con la red de luz, y punto de anclaje a tierra, ya que el comando puede atacar más de un frente a la vez.</li>
+      <li>Invocar el Rayo Crístico de forma sostenida, no puntual, dado que el ataque puede tener relevos que requieren protección continua, no un sello único.</li>
+      <li>Reforzar la comunicación consciente con otros integrantes del grupo o misión compartida, ya que el contenedor del comando busca justamente aislar al ser de ese apoyo.</li>
+      <li>Verificar periódicamente mediante péndulo o radiestesia la persistencia del ataque, dado que puede disminuir temporalmente y reactivarse desde otra unidad del comando.</li>
+    </ol>
+  </div>
+
+  <p class="frase-destacada">"Ningún comando, por coordinado que esté, puede sostenerse frente a una alianza de luz que responde con la misma unidad con la que fue atacada."</p>
+
+  <h2>Temas relacionados</h2>
+  <div class="tarjeta">
+    <a class="enlace-cruzado" href="ataques_prioritarios_seres_luz_mision.html">Ataques Prioritarios a Seres de Luz en Misión →</a>
+    <a class="enlace-cruzado" href="ataque_estelar_interdimensional.html">Ataque Estelar Interdimensional →</a>
+    <a class="enlace-cruzado" href="razas_oscuridad_ascension_gaia.html">Razas de Oscuridad y Ascensión de Gaia →</a>
+    <a class="enlace-cruzado" href="tipos_ataques_energeticos.html">Catálogo general de ataques →</a>
+    <a class="enlace-cruzado" href="rayo_cristico.html">Rayo Crístico →</a>
+  </div>
+
+  <p class="nota-final">El Ser Uno · Ataque de Comando Estelar de Oscuridad</p>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({length: 140}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.4 + 0.2,
+      a: Math.random(),
+      speed: Math.random()*0.015 + 0.003
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#f3e2b8';
+    stars.forEach(s=>{
+      s.a += s.speed;
+      const alpha = (Math.sin(s.a)+1)/2;
+      ctx.globalAlpha = 0.15 + alpha*0.65;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+</script>
+
+</body>
+</html>

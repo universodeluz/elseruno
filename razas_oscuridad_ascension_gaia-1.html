@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Razas de Oscuridad y su Rol en la Ascensión de Gaia | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --gold:#d4af6a;
+    --blue:#5fa8d3;
+    --bg-deep:#05060f;
+    --bg-glass: rgba(255,255,255,0.04);
+    --border-glass: rgba(212,175,106,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    background: radial-gradient(ellipse at 20% 0%, #1a1030 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, #0d1f38 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, #1a0d20 0%, transparent 60%),
+                var(--bg-deep);
+    color:#eae4d6;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+  #stars{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+  .wrap{
+    position:relative; z-index:1;
+    max-width:920px; margin:0 auto; padding:40px 22px 100px;
+  }
+  a.volver{
+    display:inline-block; color:var(--blue); text-decoration:none;
+    font-size:1.05rem; margin-bottom:26px; letter-spacing:.03em;
+  }
+  a.volver:hover{ color:var(--gold); }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:1.85rem;
+    text-align:center;
+    background: linear-gradient(90deg, var(--gold), #f3e2b8, var(--gold));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin:0 0 8px;
+    line-height:1.3;
+  }
+  .subtitulo{
+    text-align:center; color:var(--blue); font-style:italic;
+    font-size:1.2rem; margin-bottom:38px; letter-spacing:.02em;
+  }
+  h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.35rem;
+    color:var(--gold);
+    border-bottom:1px solid var(--border-glass);
+    padding-bottom:10px;
+    margin-top:52px;
+    margin-bottom:22px;
+  }
+  h3{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.05rem;
+    color:var(--blue);
+    margin:0 0 8px;
+  }
+  p{ font-size:1.18rem; line-height:1.65; color:#dcd6c8; }
+  .intro{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:16px;
+    padding:26px 28px;
+    backdrop-filter: blur(6px);
+    font-size:1.2rem;
+  }
+  .tarjeta{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:14px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    backdrop-filter: blur(6px);
+    transition: border-color .25s, transform .25s;
+  }
+  .tarjeta:hover{
+    border-color:var(--gold);
+    transform: translateY(-2px);
+  }
+  .meta{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:12px; font-size:0.95rem;
+  }
+  .badge{
+    background:rgba(212,175,106,0.12);
+    border:1px solid var(--border-glass);
+    color:var(--gold);
+    border-radius:20px;
+    padding:4px 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+  }
+  .badge.azul{
+    color:var(--blue);
+    border-color:rgba(95,168,211,0.35);
+    background:rgba(95,168,211,0.10);
+  }
+  .enlace-cruzado{
+    display:inline-block; margin-top:10px; margin-right:16px;
+    font-size:1rem; color:var(--blue); text-decoration:none;
+    border-bottom:1px dotted var(--blue);
+  }
+  .enlace-cruzado:hover{ color:var(--gold); border-color:var(--gold); }
+  ol, ul{ font-size:1.15rem; line-height:1.7; color:#dcd6c8; padding-left:22px; }
+  li{ margin-bottom:8px; }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:1.05rem;
+  }
+  th, td{
+    text-align:left;
+    padding:12px 14px;
+    border-bottom:1px solid var(--border-glass);
+    vertical-align:top;
+  }
+  th{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    font-size:0.9rem;
+    letter-spacing:.03em;
+  }
+  td{ color:#dcd6c8; }
+  .nota-final{
+    margin-top:50px;
+    text-align:center;
+    font-style:italic;
+    color:var(--blue);
+    font-size:1.1rem;
+    opacity:0.85;
+  }
+  .frase-destacada{
+    text-align:center;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.15rem;
+    margin:40px auto;
+    max-width:600px;
+    line-height:1.6;
+  }
+  @media(max-width:600px){
+    h1{ font-size:1.35rem; }
+    .subtitulo{ font-size:1.05rem; }
+    .wrap{ padding:28px 16px 80px; }
+    table, thead, tbody, th, td, tr{ display:block; }
+    thead{ display:none; }
+    td{ padding:6px 4px; border:none; }
+    tr{ margin-bottom:16px; border-bottom:1px solid var(--border-glass); padding-bottom:10px; }
+    td::before{
+      content: attr(data-label);
+      display:block;
+      font-family:'Cinzel Decorative', serif;
+      color:var(--gold);
+      font-size:0.8rem;
+      margin-bottom:2px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="wrap">
+
+  <a class="volver" href="index.html">&larr; Volver al índice</a>
+
+  <h1>Razas de Oscuridad y su Rol en la Ascensión de Gaia</h1>
+  <p class="subtitulo">Catálogo unificado de razas de polaridad involutiva y su ubicación en la jerarquía D-1 a D-9</p>
+
+  <div class="intro">
+    <p>Dentro de El Ser Uno, las razas de oscuridad no se entienden como una fuerza opuesta sin función dentro del proceso evolutivo, sino como <strong>polaridad involutiva</strong>: entidades y civilizaciones que, a través de la resistencia, la interferencia o el desafío directo, generan las condiciones de contraste necesarias para que la ascensión de Gaia y de sus seres de luz adquiera solidez real, no solo teórica. Esta página reúne el catálogo unificado de razas ya documentadas en el sitio, ubicándolas dentro de la jerarquía D-1 a D-9 y explicando su implicación específica en el proceso ascensional.</p>
+  </div>
+
+  <h2>La jerarquía D-1 a D-9</h2>
+  <div class="tarjeta">
+    <p>La jerarquía de seres de oscuridad se organiza en una escala ascendente de complejidad y alcance de intervención:</p>
+    <p>• <strong>D-1:</strong> larvas astrales — entidades de menor complejidad, generalmente reactivas y de bajo alcance individual<br>
+    • <strong>D-2 a D-3:</strong> entidades de interferencia puntual, con capacidad limitada de coordinación<br>
+    • <strong>D-4 a D-5:</strong> estructuras con mayor organización, capaces de sostener ataques prolongados o vínculos de drenaje<br>
+    • <strong>D-6 a D-7:</strong> razas con capacidad de coordinación grupal y acceso a tecnología de intervención dimensional<br>
+    • <strong>D-8/9:</strong> matrices de origen — el nivel más elevado, asociado a lo que se denomina el Señor de la Sombra, con capacidad de influencia sobre estructuras completas, no solo sobre seres individuales</p>
+  </div>
+
+  <h2>Catálogo de razas documentadas</h2>
+  <div class="tarjeta">
+    <table>
+      <thead>
+        <tr><th>Raza</th><th>Nivel aproximado</th><th>Rol en el proceso ascensional</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Raza">Thuban</td>
+          <td data-label="Nivel">D-6 a D-8</td>
+          <td data-label="Rol">Coordinación de comandos estelares organizados; desafía la capacidad de cohesión de las alianzas de luz.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Mu / Hiperbórea</td>
+          <td data-label="Nivel">D-4 a D-6</td>
+          <td data-label="Rol">Vinculada a memorias ancestrales de civilizaciones caídas; su resistencia obliga a la humanidad a reconciliar patrones históricos no resueltos.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Elhoimianos</td>
+          <td data-label="Nivel">D-5 a D-7</td>
+          <td data-label="Rol">Interferencia sobre procesos de activación colectiva, poniendo a prueba la solidez de los códigos de misión grupal.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Hadar</td>
+          <td data-label="Nivel">D-4 a D-6</td>
+          <td data-label="Rol">Asociada a interferencias sobre vínculos y cordones energéticos, desafiando la calidad de las relaciones humanas en el proceso evolutivo.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Canopus</td>
+          <td data-label="Nivel">D-5 a D-7</td>
+          <td data-label="Rol">Intervención en procesos de expansión de conciencia, generando resistencia que fortalece la determinación de quienes la atraviesan.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Epsilon Eridani</td>
+          <td data-label="Nivel">D-4 a D-6</td>
+          <td data-label="Rol">Interferencia tecnológica y mental, desafiando la claridad de discernimiento de los seres en proceso de despertar.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Orión Negativo</td>
+          <td data-label="Nivel">D-6 a D-8/9</td>
+          <td data-label="Rol">Una de las estructuras más organizadas y persistentes; motor de gran parte de los comandos estelares de oscuridad documentados en este catálogo.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Híbridos</td>
+          <td data-label="Nivel">D-3 a D-5</td>
+          <td data-label="Rol">Resultado de cruces entre polaridades; su presencia desafía la claridad de discernimiento entre luz y sombra en procesos de contacto.</td>
+        </tr>
+        <tr>
+          <td data-label="Raza">Sagittarius A*</td>
+          <td data-label="Nivel">D-7 a D-8/9</td>
+          <td data-label="Rol">Asociada al núcleo galáctico como punto de origen de estructuras de mayor alcance; su influencia opera sobre patrones colectivos de gran escala.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Implicaciones en el proceso ascensional</h2>
+  <div class="tarjeta">
+    <p>Desde la perspectiva de El Ser Uno, el rol de estas razas —sin minimizar la realidad de sus interferencias ni justificar el daño que generan— es actuar como <strong>fuerza de contraste evolutivo</strong>: cada resistencia superada por un ser de luz o por la humanidad colectiva fortalece la solidez del proceso ascensional, de la misma manera en que un músculo se fortalece frente a la resistencia, no en su ausencia.</p>
+    <p>Esto no implica pasividad frente a sus ataques —de ahí la importancia de los protocolos de protección y neutralización documentados en el resto del catálogo— sino comprender que la ascensión de Gaia no ocurre en un vacío sin desafío, y que reconocer la función estructural de la polaridad involutiva ayuda a sostener la frecuencia sin caer en el miedo paralizante frente a su existencia.</p>
+  </div>
+
+  <p class="frase-destacada">"La sombra no detiene la luz que avanza; la obliga a volverse más consciente de sí misma en cada paso."</p>
+
+  <h2>Temas relacionados</h2>
+  <div class="tarjeta">
+    <a class="enlace-cruzado" href="jerarquia_seres_oscuridad.html">Jerarquía de Seres de Oscuridad →</a>
+    <a class="enlace-cruzado" href="ataque_comando_estelar_oscuridad.html">Ataque de Comando Estelar de Oscuridad →</a>
+    <a class="enlace-cruzado" href="ascension_gaia_humanidad.html">La Ascensión de Gaia y la Humanidad →</a>
+    <a class="enlace-cruzado" href="tabla_radiestesica_seres_oscuridad.html">Tabla Radiestésica de Seres de Oscuridad →</a>
+    <a class="enlace-cruzado" href="proteccion_seres_alta_frecuencia.html">Protección de Seres de Alta Frecuencia →</a>
+  </div>
+
+  <p class="nota-final">El Ser Uno · Razas de Oscuridad y su Rol en la Ascensión de Gaia</p>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({length: 140}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.4 + 0.2,
+      a: Math.random(),
+      speed: Math.random()*0.015 + 0.003
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#f3e2b8';
+    stars.forEach(s=>{
+      s.a += s.speed;
+      const alpha = (Math.sin(s.a)+1)/2;
+      ctx.globalAlpha = 0.15 + alpha*0.65;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+</script>
+
+</body>
+</html>
