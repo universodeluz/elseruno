@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seres de Alta Frecuencia | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --gold:#d4af6a;
+    --blue:#5fa8d3;
+    --bg-deep:#05060f;
+    --bg-glass: rgba(255,255,255,0.04);
+    --border-glass: rgba(212,175,106,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    background: radial-gradient(ellipse at 20% 0%, #1a1030 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, #0d1f38 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, #1a0d20 0%, transparent 60%),
+                var(--bg-deep);
+    color:#eae4d6;
+    min-height:100vh;
+    position:relative;
+    overflow-x:hidden;
+  }
+  #stars{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+  .wrap{
+    position:relative; z-index:1;
+    max-width:920px; margin:0 auto; padding:40px 22px 100px;
+  }
+  a.volver{
+    display:inline-block; color:var(--blue); text-decoration:none;
+    font-size:1.05rem; margin-bottom:26px; letter-spacing:.03em;
+  }
+  a.volver:hover{ color:var(--gold); }
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:2.1rem;
+    text-align:center;
+    background: linear-gradient(90deg, var(--gold), #f3e2b8, var(--gold));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin:0 0 8px;
+    line-height:1.3;
+  }
+  .subtitulo{
+    text-align:center; color:var(--blue); font-style:italic;
+    font-size:1.2rem; margin-bottom:38px; letter-spacing:.02em;
+  }
+  h2{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.35rem;
+    color:var(--gold);
+    border-bottom:1px solid var(--border-glass);
+    padding-bottom:10px;
+    margin-top:52px;
+    margin-bottom:22px;
+  }
+  h3{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1.05rem;
+    color:var(--blue);
+    margin:0 0 8px;
+  }
+  p{ font-size:1.18rem; line-height:1.65; color:#dcd6c8; }
+  .intro{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:16px;
+    padding:26px 28px;
+    backdrop-filter: blur(6px);
+    font-size:1.2rem;
+  }
+  .tarjeta{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:14px;
+    padding:20px 24px;
+    margin-bottom:16px;
+    backdrop-filter: blur(6px);
+    transition: border-color .25s, transform .25s;
+  }
+  .tarjeta:hover{
+    border-color:var(--gold);
+    transform: translateY(-2px);
+  }
+  .meta{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:12px; font-size:0.95rem;
+  }
+  .badge{
+    background:rgba(212,175,106,0.12);
+    border:1px solid var(--border-glass);
+    color:var(--gold);
+    border-radius:20px;
+    padding:4px 14px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+  }
+  .badge.azul{
+    color:var(--blue);
+    border-color:rgba(95,168,211,0.35);
+    background:rgba(95,168,211,0.10);
+  }
+  .enlace-cruzado{
+    display:inline-block; margin-top:10px; margin-right:16px;
+    font-size:1rem; color:var(--blue); text-decoration:none;
+    border-bottom:1px dotted var(--blue);
+  }
+  .enlace-cruzado:hover{ color:var(--gold); border-color:var(--gold); }
+  details{
+    background:var(--bg-glass);
+    border:1px solid var(--border-glass);
+    border-radius:14px;
+    padding:16px 22px;
+    margin-bottom:14px;
+  }
+  summary{
+    font-family:'Cinzel Decorative', serif;
+    color:var(--gold);
+    cursor:pointer;
+    font-size:1.05rem;
+    outline:none;
+  }
+  summary::marker{ color:var(--blue); }
+  details p{ margin-top:14px; }
+  ol, ul{ font-size:1.15rem; line-height:1.7; color:#dcd6c8; padding-left:22px; }
+  li{ margin-bottom:8px; }
+  .nota-final{
+    margin-top:50px;
+    text-align:center;
+    font-style:italic;
+    color:var(--blue);
+    font-size:1.1rem;
+    opacity:0.85;
+  }
+  .frase-destacada{
+    text-align:center;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.15rem;
+    margin:40px auto;
+    max-width:600px;
+    line-height:1.6;
+  }
+  @media(max-width:600px){
+    h1{ font-size:1.55rem; }
+    .subtitulo{ font-size:1.05rem; }
+    .wrap{ padding:28px 16px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="wrap">
+
+  <a class="volver" href="index.html">&larr; Volver al índice</a>
+
+  <h1>Seres de Alta Frecuencia</h1>
+  <p class="subtitulo">Naturaleza, características y función dentro del Ser Uno</p>
+
+  <div class="intro">
+    <p>Los seres de alta frecuencia son aquellas entidades, guías o encarnaciones cuya vibración energética se sitúa en los niveles superiores de la jerarquía de luz — desde Maestros Ascendidos y la Jerarquía Angélica, hasta seres humanos de luz encarnados que han elevado su frecuencia de forma sostenida a través de su proceso evolutivo. No se trata de un estatus fijo o exclusivo de ciertas entidades no encarnadas: cualquier ser, incluyendo seres humanos en el plano físico, puede sostener una alta frecuencia como resultado de su trabajo interno, su coherencia y su conexión con el propósito de misión.</p>
+  </div>
+
+  <h2>Qué caracteriza a un ser de alta frecuencia</h2>
+  <div class="tarjeta">
+    <p>• <strong>Coherencia entre pensamiento, palabra y acción</strong> — la frecuencia se sostiene cuando no hay disonancia entre lo que el ser piensa, dice y hace.<br>
+    • <strong>Capacidad de sostener claridad de propósito</strong> incluso frente a interferencia o adversidad, sin perder de vista la misión.<br>
+    • <strong>Sensibilidad energética elevada</strong> — mayor percepción de sutilezas en el entorno, en otros seres y en el propio campo energético, lo cual puede sentirse como un don y, al mismo tiempo, como mayor exposición.<br>
+    • <strong>Capacidad de servicio desinteresado</strong> — la alta frecuencia rara vez se sostiene en el aislamiento; suele expresarse en la disposición a acompañar, guiar o sostener a otros seres.<br>
+    • <strong>Anclaje a tierra sólido</strong> — a diferencia de una frecuencia elevada pero desconectada de lo físico, un ser de alta frecuencia sostenible combina vibración elevada con capacidad real de manifestación en el plano material.</p>
+  </div>
+
+  <h2>Por qué son un blanco frecuente de interferencia</h2>
+  <div class="tarjeta">
+    <p>Precisamente por su claridad y su capacidad de impacto, los seres de alta frecuencia —especialmente aquellos con misión activa— son un objetivo prioritario de las jerarquías oscuras, tal como se documenta en detalle en <a href="ataques_prioritarios_seres_luz_mision.html">Ataques Prioritarios a Seres de Luz en Misión</a>. Cuanto mayor es la frecuencia sostenida, mayor es también la visibilidad energética del ser, y mayor el efecto potencial de desactivarlo o desviarlo de su propósito.</p>
+    <p>Por eso la protección de estos seres no es un tema secundario dentro de El Ser Uno, sino una alianza estructurada de sostén, desarrollada en profundidad en <a href="proteccion_seres_alta_frecuencia.html">Protección de Seres de Alta Frecuencia</a>.</p>
+  </div>
+
+  <h2>Niveles de la jerarquía de luz asociados</h2>
+  <div class="tarjeta">
+    <p>Dentro del sistema de El Ser Uno, la alta frecuencia se distribuye a lo largo de varios niveles de la jerarquía de luz, cada uno con su función específica:</p>
+    <p>• <strong>Eloín</strong> — fuente originaria de máxima coherencia<br>
+    • <strong>Logos Planetario</strong> — conciencia rectora de Gaia<br>
+    • <strong>Ayaplianos</strong> — acompañamiento directo y transmisión de códigos<br>
+    • <strong>Portadores del Rayo Crístico</strong> — sostén activo de la frecuencia crística en el plano físico y sutil<br>
+    • <strong>Maestros Ascendidos</strong> — guía basada en la experiencia de procesos evolutivos ya completados<br>
+    • <strong>Jerarquía Angélica</strong> — sostén y protección estructural<br>
+    • <strong>Devas</strong> — custodia de los procesos de la naturaleza y lo elemental<br>
+    • <strong>Seres Humanos de Luz Encarnados</strong> — la frecuencia elevada sostenida en la experiencia física directa<br>
+    • <strong>Guías / Custodios Akáshicos</strong> — sostén de la memoria y el registro evolutivo</p>
+  </div>
+
+  <h2>Cómo se sostiene y fortalece la frecuencia</h2>
+  <div class="tarjeta">
+    <ol>
+      <li>Coherencia diaria entre valores, palabra y acción, revisada con honestidad, no con autocrítica excesiva.</li>
+      <li>Invocación regular del Rayo Crístico como sostén activo, no solo en momentos de crisis.</li>
+      <li>Anclaje a tierra constante, evitando la desconexión entre la claridad interna y la capacidad de manifestación física.</li>
+      <li>Limpieza periódica de cuerdas, implantes y constructos que puedan drenar o distorsionar la frecuencia sostenida.</li>
+      <li>Conexión activa con la red de luz aliada, evitando el aislamiento como respuesta a la interferencia.</li>
+    </ol>
+  </div>
+
+  <p class="frase-destacada">"La alta frecuencia no es un destino alcanzado una sola vez, sino un estado que se sostiene, se cuida y se renueva en cada elección consciente."</p>
+
+  <h2>Temas relacionados</h2>
+  <div class="tarjeta">
+    <a class="enlace-cruzado" href="proteccion_seres_alta_frecuencia.html">Protección de Seres de Alta Frecuencia →</a>
+    <a class="enlace-cruzado" href="ataques_prioritarios_seres_luz_mision.html">Ataques Prioritarios a Seres de Luz en Misión →</a>
+    <a class="enlace-cruzado" href="nivel_vibracional_ser_luz.html">Nivel Vibracional del Ser de Luz →</a>
+    <a class="enlace-cruzado" href="seres_humanos_luz.html">Seres Humanos de Luz →</a>
+    <a class="enlace-cruzado" href="rayo_cristico.html">Rayo Crístico →</a>
+  </div>
+
+  <p class="nota-final">El Ser Uno · Seres de Alta Frecuencia</p>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({length: 140}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.4 + 0.2,
+      a: Math.random(),
+      speed: Math.random()*0.015 + 0.003
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#f3e2b8';
+    stars.forEach(s=>{
+      s.a += s.speed;
+      const alpha = (Math.sin(s.a)+1)/2;
+      ctx.globalAlpha = 0.15 + alpha*0.65;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+</script>
+
+</body>
+</html>
