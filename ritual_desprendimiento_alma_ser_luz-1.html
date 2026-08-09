@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritual Maya de Desprendimiento del Alma — Ser de Luz | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: radial-gradient(ellipse at top, #1a1035 0%, #0a0518 45%, #030109 100%);
+    color: #e8e0f5;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+    background: linear-gradient(135deg, #d4af6a 0%, #f4e4b8 50%, #d4af6a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    color: #5fa8d3;
+    font-style: italic;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .breadcrumb {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+  }
+  .breadcrumb a { color: #5fa8d3; text-decoration: none; }
+  .breadcrumb a:hover { color: #d4af6a; }
+
+  .card {
+    background: rgba(30, 20, 55, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 106, 0.25);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .card h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.3rem;
+    color: #d4af6a;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.05rem;
+    color: #5fa8d3;
+    margin: 18px 0 8px;
+  }
+
+  p { margin-bottom: 12px; color: #d8cef0; }
+
+  .intro-text {
+    font-size: 1.15rem;
+    text-align: center;
+    color: #cbbfe8;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  /* Tabla de correspondencias */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 106, 0.2);
+  }
+  th {
+    color: #d4af6a;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td { color: #d8cef0; }
+  tr:last-child td { border-bottom: none; }
+
+  /* Escala D */
+  .d-scale {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(95, 168, 211, 0.15);
+    border: 1px solid rgba(95, 168, 211, 0.4);
+    color: #7fc4ed;
+  }
+
+  /* Accordion */
+  details {
+    background: rgba(20, 12, 40, 0.5);
+    border: 1px solid rgba(95, 168, 211, 0.25);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 16px 20px;
+    transition: border-color 0.3s;
+  }
+  details[open] { border-color: rgba(212, 175, 106, 0.5); }
+
+  summary {
+    cursor: pointer;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: #f4e4b8;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: #d4af6a;
+    transition: transform 0.3s;
+  }
+  details[open] summary::after { content: '−'; }
+
+  .accordion-body { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(212, 175, 106, 0.15); }
+
+  .fase-tag {
+    display: inline-block;
+    background: rgba(212, 175, 106, 0.15);
+    border: 1px solid rgba(212, 175, 106, 0.4);
+    color: #d4af6a;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .rumbo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .rumbo-item {
+    background: rgba(20, 12, 40, 0.6);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid rgba(95, 168, 211, 0.2);
+  }
+  .rumbo-item .color-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+  }
+  .rumbo-item .rumbo-name { color: #f4e4b8; font-family: 'Cinzel Decorative', serif; font-size: 0.9rem; }
+  .rumbo-item .raza { color: #7fc4ed; font-size: 0.85rem; margin-top: 4px; }
+
+  .nota {
+    background: rgba(95, 168, 211, 0.08);
+    border-left: 3px solid #5fa8d3;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .cross-links {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .cross-links a {
+    display: inline-block;
+    color: #5fa8d3;
+    text-decoration: none;
+    margin: 6px 14px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .cross-links a:hover { border-color: #5fa8d3; }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    color: #6a5f8a;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Inicio</a> &nbsp;›&nbsp; Acompañamiento y Sanación Colectiva &nbsp;›&nbsp; Desprendimiento del Alma
+  </div>
+
+  <header>
+    <h1>Ritual Maya de Desprendimiento del Alma</h1>
+    <div class="subtitle">Aplicado a un Ser de Luz con encargo de corrección terrestre</div>
+  </header>
+
+  <p class="intro-text">
+    Protocolo de cierre para vínculos residuales generados por el servicio consciente de un Ser de Luz
+    en la densidad terrestre — no como sanación de un daño, sino como culminación honrada de una misión cumplida.
+  </p>
+
+  <div class="card">
+    <h2>🌘 Fundamento: el Ch'ulel y su desprendibilidad</h2>
+    <p>
+      En la cosmovisión maya, el <strong>ch'ulel</strong> es la esencia anímica, compartimentada en trece partes distribuidas
+      por el cuerpo, capaz de fragmentarse o adherirse a lugares, entidades o pactos. El ritual original no destruye
+      esta esencia: la reconduce, separándola de un vínculo que ya cumplió su propósito para que pueda reintegrarse
+      a su totalidad.
+    </p>
+    <p>
+      Aplicado a un Ser de Luz, este desprendimiento no corresponde a un alma fragmentada por trauma, sino a una
+      <strong>conciencia de alta frecuencia parcialmente enredada</strong> en estructuras de menor densidad como
+      consecuencia directa de su labor de profundización y corrección en la Tierra.
+    </p>
+    <div class="nota">
+      El vínculo que se desprende no es un error a purgar. Es el desgaste natural de una herramienta usada correctamente
+      en el cumplimiento de un encargo.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🧭 Los Cuatro Rumbos y sus Guardianes</h2>
+    <p>El espacio ritual se abre invocando los cuatro Bacabes tradicionales, aquí correspondidos con las razas estelares del sistema:</p>
+    <div class="rumbo-grid">
+      <div class="rumbo-item">
+        <div class="color-dot" style="background:#c0392b;"></div>
+        <div class="rumbo-name">Este · Rojo</div>
+        <div class="raza">Arcturianos</div>
+        <div style="font-size:0.8rem;color:#a89bc4;margin-top:4px;">Apertura y claridad estructural</div>
+      </div>
+      <div class="rumbo-item">
+        <div class="color-dot" style="background:#ecf0f1;"></div>
+        <div class="rumbo-name">Norte · Blanco</div>
+        <div class="raza">Ayaplianos</div>
+        <div style="font-size:0.8rem;color:#a89bc4;margin-top:4px;">Sostén y pureza vibracional</div>
+      </div>
+      <div class="rumbo-item">
+        <div class="color-dot" style="background:#2c3e50;"></div>
+        <div class="rumbo-name">Oeste · Negro</div>
+        <div class="raza">Pleyadianos</div>
+        <div style="font-size:0.8rem;color:#a89bc4;margin-top:4px;">Transmutación emocional</div>
+      </div>
+      <div class="rumbo-item">
+        <div class="color-dot" style="background:#f1c40f;"></div>
+        <div class="rumbo-name">Sur · Amarillo</div>
+        <div class="raza">Sirianos</div>
+        <div style="font-size:0.8rem;color:#a89bc4;margin-top:4px;">Activación y fuerza vital</div>
+      </div>
+    </div>
+    <div class="nota">Centro: Logos Planetario / Ser Uno — testigo y sello final del ritual.</div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Taxonomía de Encargos Terrestres</h2>
+    <p>El tipo de residuo a desprender depende del tipo de labor realizada. Cuatro categorías principales:</p>
+
+    <details>
+      <summary>Anclaje Vibracional <span class="d-scale">D-2 a D-4</span></summary>
+      <div class="accordion-body">
+        <p>El Ser de Luz sostiene una frecuencia elevada en un punto geográfico, colectivo o red energética, actuando como punto fijo que evita el colapso vibracional de la zona.</p>
+        <p><strong>Residuo:</strong> cordón de sostén activo — el sistema anclado puede volverse dependiente de esa frecuencia externa.</p>
+        <span class="fase-tag">Fase añadida: transferencia previa del ancla</span>
+        <p>Antes de cortar, se transfiere el sostén a una fuente autosostenible (red de luz local, grupo humano despierto) para evitar el colapso del punto al soltar el vínculo.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Corrección de Líneas Temporales <span class="d-scale">D-3 a D-7</span></summary>
+      <div class="accordion-body">
+        <p>Intervención en bifurcaciones probabilísticas, empujando sutilmente una línea temporal hacia el desenlace de mayor coherencia.</p>
+        <p><strong>Residuo:</strong> impronta causal distribuida — entrelazamiento con las ramificaciones temporales tocadas, incluidas las descartadas. El tipo de adherencia más sutil y difícil de detectar.</p>
+        <span class="fase-tag">Fase añadida: verificación de cierre reforzada</span>
+        <p>Una línea temporal puede parecer estabilizada y aún estar en proceso. Aquí el riesgo de corte prematuro es el más alto de las cuatro categorías.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Transmutación de Campos Densos <span class="d-scale">D-4 a D-7</span></summary>
+      <div class="accordion-body">
+        <p>Absorción deliberada de cargas densas —emocionales, colectivas, kármicas— ajenas, para procesarlas y liberarlas transmutadas.</p>
+        <p><strong>Residuo:</strong> adherencia de carga sin procesar por completo, similar a un implante pero de origen voluntario y funcional, no impuesto por ataque.</p>
+        <span class="fase-tag">Fase añadida: purga explícita post-corte</span>
+        <p>El corte debe ir acompañado de purga activa para asegurar que no queden residuos de la carga absorbida alojados en las capas áuricas.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Sostén de Individuo o Grupo Humano <span class="d-scale">D-1 a D-5</span></summary>
+      <div class="accordion-body">
+        <p>Acompañamiento encarnado (con velo de olvido parcial o total) o velado de una persona o grupo durante su proceso evolutivo.</p>
+        <p><strong>Residuo:</strong> cordón afectivo-vibracional genuino — el más delicado de soltar por su componente relacional real.</p>
+        <span class="fase-tag">Fase añadida: honra del vínculo antes del corte</span>
+        <p>Requiere reconocer explícitamente lo vivido en el acompañamiento antes de transmutarlo. Es el único tipo con un componente de despedida consciente.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>🕯️ Protocolo Ritual — Cinco Fases + Fase 0</h2>
+
+    <details>
+      <summary>Fase 0 · Verificación de cierre de encargo</summary>
+      <div class="accordion-body">
+        <p>Previa y obligatoria. Se confirma mediante Bovis o radiestesia que la corrección terrestre alcanzó su punto de estabilización. Cortar un vínculo de misión activa deja la corrección a medias y puede generar rebote D-6/D-7.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase I · Reconocimiento del vínculo</summary>
+      <div class="accordion-body">
+        <p>Se identifica con precisión el tipo de atadura (según la taxonomía de encargos) y su intensidad. No se corta igual un hilo residual que un implante activo con carga D-6+.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase II · Apertura de los cuatro rumbos + centro</summary>
+      <div class="accordion-body">
+        <p>Invocación de los guardianes estelares correspondientes a cada dirección, estableciendo el campo protegido. El centro se reserva para el Logos Planetario o el Ser Uno como testigo y ancla de coherencia.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase III · Nombrar el vínculo en voz alta</summary>
+      <div class="accordion-body">
+        <p>El nombre tiene poder de disolución. Nombrar sin precisión deja el vínculo parcialmente activo. Se declara explícitamente el tipo de encargo, la carga o la relación de la que se libera.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase IV · El corte / transmutación</summary>
+      <div class="accordion-body">
+        <p>El paso de la Llama Violeta a través del cordón identificado, sellado con luz dorada o azul celeste para evitar reapertura. Aquí se aplica la fase adicional correspondiente al tipo de encargo (transferencia, verificación, purga u honra, según corresponda).</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase V · Reintegración</summary>
+      <div class="accordion-body">
+        <p>El fragmento liberado se redirige conscientemente hacia el Rayo de origen del Ser de Luz o hacia el Logos que lo sostiene, cerrando el ciclo con una afirmación de totalidad.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>📊 Tabla Resumen</h2>
+    <table>
+      <tr>
+        <th>Tipo de encargo</th>
+        <th>Residuo</th>
+        <th>Escala D</th>
+        <th>Fase añadida</th>
+      </tr>
+      <tr>
+        <td>Anclaje Vibracional</td>
+        <td>Cordón de sostén activo</td>
+        <td><span class="d-scale">D-2 a D-4</span></td>
+        <td>Transferencia previa</td>
+      </tr>
+      <tr>
+        <td>Corrección Temporal</td>
+        <td>Impronta causal distribuida</td>
+        <td><span class="d-scale">D-3 a D-7</span></td>
+        <td>Verificación reforzada</td>
+      </tr>
+      <tr>
+        <td>Transmutación de Campos</td>
+        <td>Adherencia de carga sin procesar</td>
+        <td><span class="d-scale">D-4 a D-7</span></td>
+        <td>Purga post-corte</td>
+      </tr>
+      <tr>
+        <td>Sostén de Individuo/Grupo</td>
+        <td>Cordón afectivo-vibracional</td>
+        <td><span class="d-scale">D-1 a D-5</span></td>
+        <td>Honra del vínculo</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="cross-links">
+    <a href="rayo_cristico.html">Rayo Crístico</a>
+    <a href="tipos_ataques_energeticos.html">Catálogo de Ataques Energéticos</a>
+    <a href="glosario.html">Glosario</a>
+    <a href="razas_estelares.html">Razas Estelares</a>
+  </div>
+
+  <footer>
+    El Ser Uno · Biblioteca Esotérica
+  </footer>
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    stars = Array.from({length: 150}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.4 + 0.3,
+      speed: Math.random() * 0.3 + 0.05,
+      alpha: Math.random()
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => {
+      s.alpha += (Math.random() - 0.5) * 0.02;
+      s.alpha = Math.max(0.1, Math.min(1, s.alpha));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 106, ${s.alpha * 0.8})`;
+      ctx.fill();
+      s.y += s.speed;
+      if (s.y > h) s.y = 0;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+</script>
+</body>
+</html>
