@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque de Fractura Energética en la Columna | El Ser Uno</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: radial-gradient(ellipse at top, #1a1230 0%, #0a0715 55%, #05030a 100%);
+    color: #e8e0f0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  #stars { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+
+  .contenedor { max-width: 880px; margin: 0 auto; padding: 40px 20px 100px; }
+
+  a.volver {
+    display:inline-block; margin-bottom:30px; color:#5fa8d3; text-decoration:none;
+    font-size:16px; letter-spacing:0.5px; opacity:0.85; transition:opacity .3s;
+  }
+  a.volver:hover { opacity:1; }
+
+  h1 {
+    font-family:'Cinzel Decorative', serif; font-weight:700;
+    font-size:2.1em; text-align:center; color:#d4af6a;
+    text-shadow: 0 0 25px rgba(212,175,106,0.4);
+    margin-bottom:10px; line-height:1.3;
+  }
+
+  .subtitulo {
+    text-align:center; font-style:italic; color:#a89bc4;
+    margin-bottom:40px; font-size:1.1em;
+  }
+
+  .badge-nivel {
+    display:inline-block; background:linear-gradient(135deg,#5fa8d3,#3d6f94);
+    color:#0a0715; font-family:'Cinzel Decorative',serif; font-weight:700;
+    padding:6px 18px; border-radius:20px; font-size:0.85em; letter-spacing:1px;
+    margin: 0 auto 30px; display:block; width:fit-content;
+  }
+
+  .tarjeta {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212,175,106,0.2);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 26px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  }
+
+  .tarjeta.confirmacion {
+    border-color: rgba(212,175,106,0.5);
+    background: rgba(212,175,106,0.06);
+  }
+
+  h2 {
+    font-family:'Cinzel Decorative', serif; font-weight:400;
+    color:#d4af6a; font-size:1.4em; margin-bottom:16px;
+    border-bottom:1px solid rgba(212,175,106,0.25); padding-bottom:10px;
+  }
+
+  h3 {
+    font-family:'Cinzel Decorative', serif; font-weight:400;
+    color:#5fa8d3; font-size:1.1em; margin:18px 0 10px;
+  }
+
+  p { margin-bottom:14px; }
+
+  ul, ol { margin: 10px 0 14px 24px; }
+  li { margin-bottom:8px; }
+
+  .aviso-medico {
+    background: rgba(180,60,60,0.12);
+    border: 1px solid rgba(220,100,100,0.4);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 0.95em;
+  }
+  .aviso-medico strong { color:#e89a9a; }
+
+  details {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(95,168,211,0.25);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 16px 20px;
+  }
+  summary {
+    font-family:'Cinzel Decorative', serif; font-size:1em;
+    color:#5fa8d3; cursor:pointer; outline:none; list-style:none;
+  }
+  summary::-webkit-details-marker { display:none; }
+  summary::before { content:"◈ "; color:#d4af6a; }
+  details[open] summary { margin-bottom:12px; }
+
+  .fase {
+    display:flex; gap:16px; margin-bottom:18px; align-items:flex-start;
+  }
+  .fase-num {
+    font-family:'Cinzel Decorative', serif; color:#0a0715;
+    background:linear-gradient(135deg,#d4af6a,#a8823f);
+    min-width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.95em; font-weight:700; flex-shrink:0;
+  }
+
+  .enlaces-relacionados {
+    display:flex; flex-wrap:wrap; gap:12px; margin-top:16px;
+  }
+  .enlaces-relacionados a {
+    color:#5fa8d3; text-decoration:none; font-size:0.95em;
+    border:1px solid rgba(95,168,211,0.35); padding:8px 14px;
+    border-radius:20px; transition: all .3s;
+  }
+  .enlaces-relacionados a:hover {
+    background:rgba(95,168,211,0.15); border-color:#5fa8d3;
+  }
+
+  .cierre {
+    text-align:center; font-style:italic; color:#a89bc4;
+    margin-top:40px; font-size:1.05em;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="contenedor">
+  <a class="volver" href="/elseruno/index.html">← Volver al índice</a>
+
+  <h1>Ataque de Fractura Energética en la Columna</h1>
+  <p class="subtitulo">Cuando el dolor se siente "como si la columna estuviera partida" tras una agresión energética</p>
+  <span class="badge-nivel">Nivel D-4 a D-6</span>
+
+  <div class="tarjeta confirmacion">
+    <h2>Confirmación: origen energético, no físico</h2>
+    <p>Este tipo de dolor —descrito característicamente como si la columna estuviera "partida" o "cortada" en un punto exacto, de aparición súbita tras percibir o sospechar un ataque, sin antecedente de esfuerzo físico, caída o movimiento brusco— corresponde a un <strong>ataque directo a la corriente Kundalínica</strong>, que asciende por el canal central (Sushumna) a lo largo del eje espinal, y no a una lesión estructural.</p>
+    <p>Señales que confirman el origen energético frente al físico:</p>
+    <ul>
+      <li>Aparece de forma súbita, sin gesto, esfuerzo o trauma que lo justifique</li>
+      <li>Se percibe como una línea o corte exacto, más que como un dolor muscular difuso</li>
+      <li>Suele coincidir con horas de mayor actividad energética (madrugada, horas espejo, momentos de meditación profunda)</li>
+      <li>Puede ir acompañado de frío repentino en la zona, sensación de vacío interno o pérdida momentánea de fuerza en las piernas</li>
+      <li>No mejora con calor, estiramiento ni analgésicos convencionales de forma proporcional</li>
+      <li>Suele coincidir con otros signos de ataque: opresión en el pecho, alteración del sueño, sensación de presencia</li>
+    </ul>
+  </div>
+
+  <div class="aviso-medico">
+    <strong>Nota importante:</strong> este es un trabajo de acompañamiento energético. Si el dolor es agudo, persiste más de 24-48 horas, se irradia a brazos o piernas, o se acompaña de pérdida de fuerza o sensibilidad, se debe descartar causa física con un profesional de salud en paralelo al trabajo energético.
+  </div>
+
+  <div class="tarjeta">
+    <h2>Naturaleza del ataque</h2>
+    <p>El eje espinal es el canal físico donde discurre la corriente Kundalínica y donde se articulan los principales nodos energéticos del cuerpo sutil. Un ataque a la Kundalini busca interrumpir esa corriente en su ascenso, generando la sensación de "corte" o "fractura" en el punto exacto de interferencia.</p>
+    <p>Puede manifestarse de tres formas principales:</p>
+
+    <details>
+      <summary>Corte de la corriente Kundalínica</summary>
+      <p>Intento de seccionar el ascenso de la Kundalini por el canal Sushumna en un punto específico, generalmente a la altura de un chakra mayor (cervical, dorsal o lumbar). Es el más común cuando el dolor se percibe muy localizado.</p>
+    </details>
+
+    <details>
+      <summary>Implante de compresión vertebral</summary>
+      <p>Estructura energética densa insertada entre dos vértebras etéricas, que genera sensación de presión y "quiebre" al moverse o respirar profundo.</p>
+    </details>
+
+    <details>
+      <summary>Cordaje anclado al eje espinal</summary>
+      <p>Cordón energético de succión anclado directamente en la columna en lugar de en un chakra, lo que produce un dolor más sostenido y una fatiga que empeora hacia la noche.</p>
+    </details>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Protocolo de sanación</h2>
+
+    <div class="fase">
+      <div class="fase-num">1</div>
+      <div>
+        <h3>Identificación del punto exacto</h3>
+        <p>Con péndulo o percepción directa, localizar la vértebra o zona precisa donde se interrumpe el ascenso de la Kundalini. Preguntar el nivel D de origen (D-1 a D-8/9) para calibrar la intensidad del trabajo siguiente.</p>
+      </div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-num">2</div>
+      <div>
+        <h3>Corte de cordaje o extracción de implante</h3>
+        <p>Si se confirma cordaje, cortar con intención firme en el punto de anclaje espinal, sellando ambos extremos. Si se confirma implante, solicitar su extracción total con ayuda del Rayo Crístico, sin dejar residuo.</p>
+      </div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-num">3</div>
+      <div>
+        <h3>Sellado del canal Kundalínico</h3>
+        <p>Barrido de Llama Violeta o Rayo Crístico recorriendo toda la columna, de coxis a coronilla, sosteniendo unos minutos adicionales en el punto donde estaba el corte, visualizando la corriente Kundalínica restablecida en ascenso continuo, sin interrupciones.</p>
+      </div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-num">4</div>
+      <div>
+        <h3>Reforzado de las tres capas áuricas cercanas</h3>
+        <p>Sellado de las capas etérica, emocional y mental en la franja que rodea la columna, para evitar reincidencia del ataque en el mismo punto.</p>
+      </div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-num">5</div>
+      <div>
+        <h3>Verificación posterior</h3>
+        <p>A las 24-48 horas, verificar con péndulo si el canal permanece limpio y si el dolor físico remanente corresponde solo a la memoria celular del cuerpo (que se disuelve en 1-3 días) o si persiste actividad energética activa, en cuyo caso se repite el protocolo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Apoyo complementario</h2>
+    <ul>
+      <li>Evitar exponerse a información o estímulos de baja frecuencia mientras dura la recuperación</li>
+      <li>Hidratación abundante para facilitar la descarga de la memoria celular del cuerpo físico</li>
+      <li>Contacto con tierra (caminar descalzo, si es posible) para anclar la reconstitución del eje</li>
+      <li>Reposo del cuerpo físico sin forzar movimientos que repliquen la sensación de "quiebre"</li>
+    </ul>
+
+    <div class="enlaces-relacionados">
+      <a href="/elseruno/tipos_ataques_energeticos.html">Catálogo de ataques energéticos</a>
+      <a href="/elseruno/afectaciones_chakras.html">Afectaciones en chakras</a>
+      <a href="/elseruno/rayo_cristico.html">Rayo Crístico</a>
+    </div>
+  </div>
+
+  <p class="cierre">El eje que sostiene la luz no se quiebra: se recuerda a sí mismo.</p>
+</div>
+
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const estrellas = Array.from({length:150}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    r: Math.random()*1.3+0.2, alpha: Math.random(), speed: Math.random()*0.02
+  }));
+  function animar(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    estrellas.forEach(e=>{
+      e.alpha += e.speed * (Math.random()>0.5?1:-1);
+      e.alpha = Math.max(0.1, Math.min(1, e.alpha));
+      ctx.beginPath();
+      ctx.arc(e.x, e.y, e.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(212,175,106,${e.alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animar);
+  }
+  animar();
+</script>
+
+</body>
+</html>
