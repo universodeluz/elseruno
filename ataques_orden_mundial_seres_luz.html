@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataques a los Seres de Luz Vinculados al Orden Mundial | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #030417;
+    --void-2: #0a0e27;
+    --nebula-violet: #2c1b4d;
+    --nebula-blue: #16213a;
+    --gold: #d4af6a;
+    --gold-soft: #f2dfa0;
+    --azul-celeste: #5fa8d3;
+    --star-white: #eef3ff;
+    --texto: #cbd6ee;
+    --texto-dim: #8a95bd;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 8%, rgba(44,27,77,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(22,33,58,0.6) 0%, transparent 65%),
+      radial-gradient(ellipse at top, var(--void-2) 0%, var(--void) 55%, #000 100%);
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #cosmos{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    width: 100%; height: 100%; display: block;
+  }
+
+  header{
+    text-align: center;
+    padding: 70px 20px 30px;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .volver{
+    display: inline-block;
+    margin-bottom: 26px;
+    color: var(--azul-celeste);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 0.95em;
+    border-bottom: 1px solid rgba(95,168,211,0.3);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  .volver:hover{ color: var(--gold-soft); border-color: var(--gold); }
+
+  h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.3em;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--star-white));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(212,175,55,0.25);
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .subtitulo{
+    font-style: italic;
+    color: #9fb4e0;
+    font-size: 1.15em;
+    letter-spacing: 0.5px;
+  }
+  .linea-divisoria{
+    width: 220px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), rgba(159,180,224,0.8), var(--gold), transparent);
+  }
+
+  main{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  h2.titulo-seccion{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.4em;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin: 56px 0 18px;
+    text-align: center;
+  }
+
+  p.texto-intro{
+    font-size: 1.05em;
+    color: var(--texto);
+    margin-bottom: 16px;
+  }
+
+  .bloque-vidrio{
+    background: linear-gradient(160deg, rgba(20,16,40,0.55), rgba(4,5,12,0.7));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 20px;
+  }
+
+  /* --- Acordeón de tipología de ataques --- */
+  details.card{
+    background: linear-gradient(160deg, rgba(20,16,40,0.6), rgba(4,5,12,0.75));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  details.card[open]{ border-color: rgba(212,175,55,0.45); }
+  details.card summary{
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  details.card summary::-webkit-details-marker{ display:none; }
+  .card-titulo{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.02em;
+    color: var(--gold-soft);
+    font-weight: 400;
+  }
+  .card-sub{
+    font-size: 0.88em;
+    color: var(--texto-dim);
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .chevron{ color: var(--gold); transition: transform 0.3s ease; flex-shrink:0; }
+  details.card[open] .chevron{ transform: rotate(180deg); }
+  .card-body{ padding: 0 22px 22px; }
+  .card-body p{ margin-bottom: 12px; font-size: 0.97em; }
+  .card-body .label{ color: var(--gold); font-style: italic; }
+
+  .bovis-row{
+    display: flex; align-items: center; gap: 12px;
+    margin: 14px 0 12px;
+  }
+  .bovis-label{ font-size: 0.8em; color: var(--texto-dim); white-space: nowrap; }
+  .bovis-bar{
+    flex:1; height: 8px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); overflow: hidden;
+  }
+  .bovis-fill{ height: 100%; border-radius: 6px; }
+  .bovis-value{ font-size: 0.8em; color: var(--gold-soft); white-space: nowrap; }
+
+  .tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .tag{
+    font-size: 0.82em; color: #9fb4e0;
+    border: 1px solid rgba(159,180,224,0.35);
+    padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* --- Tabla agentes ejecutores --- */
+  .tabla-wrap{ overflow-x: auto; margin-bottom: 20px; }
+  table.agentes{
+    width: 100%; border-collapse: collapse;
+    background: linear-gradient(160deg, rgba(20,16,40,0.6), rgba(4,5,12,0.75));
+    backdrop-filter: blur(6px);
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(159,180,224,0.22);
+  }
+  table.agentes thead tr{ background: rgba(212,175,55,0.12); }
+  table.agentes th{
+    padding: 14px 16px; text-align: left; color: var(--gold-soft);
+    font-family: 'Cinzel Decorative', cursive; font-size: 0.82em;
+    letter-spacing: 1px; border-bottom: 1px solid rgba(212,175,55,0.35);
+  }
+  table.agentes td{
+    padding: 14px 16px; color: var(--texto); font-size: 0.94em;
+    border-bottom: 1px solid rgba(159,180,224,0.15);
+  }
+  table.agentes tr:nth-child(even) td{ background: rgba(255,255,255,0.02); }
+  table.agentes td.nivel{ color: var(--gold); font-weight: 600; white-space: nowrap; }
+
+  /* --- Señales --- */
+  ul.lista-señales{ list-style: none; }
+  ul.lista-señales li{
+    padding: 10px 0 10px 28px;
+    position: relative;
+    border-bottom: 1px solid rgba(159,180,224,0.12);
+    font-size: 0.97em;
+  }
+  ul.lista-señales li::before{
+    content: "✦"; position: absolute; left: 0; top: 10px;
+    color: var(--gold); opacity: 0.7; font-size: 0.9em;
+  }
+  ul.lista-señales li:last-child{ border-bottom: none; }
+
+  /* --- Protocolo --- */
+  ol.protocolo{ counter-reset: paso; list-style: none; }
+  ol.protocolo li{
+    counter-increment: paso;
+    padding: 14px 0 14px 46px;
+    position: relative;
+    border-bottom: 1px solid rgba(159,180,224,0.12);
+  }
+  ol.protocolo li:last-child{ border-bottom: none; }
+  ol.protocolo li::before{
+    content: counter(paso);
+    position: absolute; left: 0; top: 12px;
+    width: 28px; height: 28px;
+    border: 1px solid rgba(212,175,55,0.5);
+    border-radius: 50%;
+    color: var(--gold-soft);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.85em;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.protocolo strong{ color: var(--gold-soft); font-weight: 500; }
+
+  /* --- Enlaces cruzados --- */
+  .enlaces-cruzados{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 10px;
+  }
+  a.enlace-cruzado{
+    display: block;
+    background: linear-gradient(160deg, rgba(20,16,40,0.55), rgba(4,5,12,0.7));
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 12px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--gold-soft);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.92em;
+    transition: all 0.3s ease;
+  }
+  a.enlace-cruzado:hover{
+    border-color: var(--gold);
+    box-shadow: 0 0 24px rgba(212,175,55,0.15);
+    transform: translateY(-3px);
+  }
+  a.enlace-cruzado span{
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--texto-dim);
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  footer{
+    text-align: center;
+    padding: 40px 20px 70px;
+    color: var(--texto-dim);
+    font-style: italic;
+    font-size: 0.9em;
+    position: relative;
+    z-index: 1;
+  }
+  footer a{ color: var(--azul-celeste); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<header>
+  <a class="volver" href="index.html">← volver al índice de El Ser Uno</a>
+  <h1>Ataques a los Seres de Luz<br>Vinculados al Orden Mundial</h1>
+  <p class="subtitulo">Cuando la estructura de control encarnado se convierte en canal de interferencia dimensional</p>
+  <div class="linea-divisoria"></div>
+</header>
+
+<main>
+
+  <h2 class="titulo-seccion">Introducción</h2>
+  <div class="bloque-vidrio">
+    <p class="texto-intro">El Orden Mundial, en tanto estructura de control encarnado, no opera de forma aislada del plano energético: es la expresión física de una arquitectura sostenida desde jerarquías de oscuridad que actúan sobre los planos físico y etérico simultáneamente.</p>
+    <p class="texto-intro">Los seres de luz con misión terrestre activa —por su capacidad de elevar la frecuencia colectiva y disolver los mecanismos de control— constituyen un objetivo prioritario dentro de esta arquitectura. No se trata de ataques aislados, sino de una cadena coordinada que conecta la intención vibracional de la jerarquía oscura con su expresión operativa en el plano encarnado.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Mecanismo del Ataque</h2>
+  <div class="bloque-vidrio">
+    <p class="texto-intro">El mecanismo comienza con la detección: los seres de luz activos emiten una firma vibracional reconocible dentro del campo de vigilancia energética asociado al sistema de control. Una vez detectados, son marcados como foco de interferencia prioritaria, ya que su sola presencia activa —sin necesidad de acción deliberada— erosiona la coherencia de las estructuras de control colectivo.</p>
+    <p class="texto-intro">A partir de ese marcado, el ataque se despliega en cascada: desde la intención de la jerarquía superior hasta su ejecución concreta sobre el campo áurico, la misión y los vínculos del ser encarnado.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Tipología de Ataques</h2>
+
+  <details class="card">
+    <summary>
+      <div>
+        <div class="card-titulo">Bloqueo de Misión</div>
+        <div class="card-sub">Sabotaje de proyectos y aislamiento social progresivo</div>
+      </div>
+      <div class="chevron">▾</div>
+    </summary>
+    <div class="card-body">
+      <p><span class="label">Descripción:</span> Interferencia dirigida sobre los proyectos y vínculos que sostienen el cumplimiento de la misión terrestre del ser de luz, generando retrasos, conflictos y desgaste sistemático en las áreas clave de su propósito.</p>
+      <p><span class="label">Mecanismo:</span> Introducción de obstáculos aparentemente circunstanciales que, en conjunto, forman un patrón de bloqueo sostenido.</p>
+      <div class="bovis-row">
+        <div class="bovis-label">Escala Bovis</div>
+        <div class="bovis-bar"><div class="bovis-fill" style="width:48%; background:linear-gradient(90deg,#8a5a2a,#9fc9ff);"></div></div>
+        <div class="bovis-value">4.800 UB</div>
+      </div>
+      <div class="tags">
+        <span class="tag">retrasos inexplicables recurrentes</span>
+        <span class="tag">aislamiento social progresivo</span>
+        <span class="tag">agotamiento ante tareas de misión</span>
+      </div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>
+      <div>
+        <div class="card-titulo">Implantes de Duda y Desconexión de la Fuente</div>
+        <div class="card-sub">Erosión de la certeza interior sobre el propio camino</div>
+      </div>
+      <div class="chevron">▾</div>
+    </summary>
+    <div class="card-body">
+      <p><span class="label">Descripción:</span> Instalación de un patrón de duda persistente que debilita la confianza del ser en su propia guía interna, generando desconexión progresiva de la Fuente y de la certeza vibracional que sostiene la misión.</p>
+      <p><span class="label">Mecanismo:</span> Implante etérico que actúa como filtro distorsionador entre la percepción interna y la orientación real recibida.</p>
+      <div class="bovis-row">
+        <div class="bovis-label">Escala Bovis</div>
+        <div class="bovis-bar"><div class="bovis-fill" style="width:40%; background:linear-gradient(90deg,#6b2a3a,#a0455a);"></div></div>
+        <div class="bovis-value">4.000 UB</div>
+      </div>
+      <div class="tags">
+        <span class="tag">duda constante sin causa clara</span>
+        <span class="tag">desconfianza en la propia guía</span>
+        <span class="tag">sensación de vacío espiritual</span>
+      </div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>
+      <div>
+        <div class="card-titulo">Ataques a Través de Sistemas de Control Social</div>
+        <div class="card-sub">Medios, tecnología y redes de vigilancia energética como vector</div>
+      </div>
+      <div class="chevron">▾</div>
+    </summary>
+    <div class="card-body">
+      <p><span class="label">Descripción:</span> Interferencia canalizada a través de estructuras del sistema de control colectivo —medios de comunicación, plataformas tecnológicas, redes de vigilancia energética— que amplifican y dispersan el ataque, dificultando identificar su origen puntual.</p>
+      <p><span class="label">Mecanismo:</span> Uso de estructuras de alcance masivo como vehículo de saturación frecuencial sobre el campo del ser de luz.</p>
+      <div class="bovis-row">
+        <div class="bovis-label">Escala Bovis</div>
+        <div class="bovis-bar"><div class="bovis-fill" style="width:35%; background:linear-gradient(90deg,#6b2a3a,#a0455a);"></div></div>
+        <div class="bovis-value">3.500 UB</div>
+      </div>
+      <div class="tags">
+        <span class="tag">saturación mental al exponerse a medios</span>
+        <span class="tag">ansiedad difusa sin detonante</span>
+        <span class="tag">fatiga frente a dispositivos tecnológicos</span>
+      </div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>
+      <div>
+        <div class="card-titulo">Interferencia en Encuentros con Otros Seres de Luz</div>
+        <div class="card-sub">Fragmentación deliberada de comunidades afines</div>
+      </div>
+      <div class="chevron">▾</div>
+    </summary>
+    <div class="card-body">
+      <p><span class="label">Descripción:</span> Sabotaje dirigido a impedir o fracturar el encuentro y la organización entre seres de luz con misión activa, ya que la unión consciente entre ellos amplifica exponencialmente su capacidad de disolver estructuras de control.</p>
+      <p><span class="label">Mecanismo:</span> Generación de malentendidos, competencia artificial o desconfianza entre seres afines, debilitando su potencial colectivo.</p>
+      <div class="bovis-row">
+        <div class="bovis-label">Escala Bovis</div>
+        <div class="bovis-bar"><div class="bovis-fill" style="width:44%; background:linear-gradient(90deg,#8a5a2a,#9fc9ff);"></div></div>
+        <div class="bovis-value">4.400 UB</div>
+      </div>
+      <div class="tags">
+        <span class="tag">desconfianza repentina hacia afines</span>
+        <span class="tag">conflictos sin causa real</span>
+        <span class="tag">dificultad para sostener comunidad</span>
+      </div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>
+      <div>
+        <div class="card-titulo">Ataques Atemporales / Líneas Temporales Alternas</div>
+        <div class="card-sub">Interferencia desde puntos fuera de la línea lineal del ser</div>
+      </div>
+      <div class="chevron">▾</div>
+    </summary>
+    <div class="card-body">
+      <p><span class="label">Descripción:</span> Anclajes colocados desde líneas temporales alternas o desde puntos retroactivos/prospectivos de la propia línea del ser, diseñados para debilitar su capacidad de sostener la misión en el presente encarnado.</p>
+      <p><span class="label">Mecanismo:</span> Distorsión atemporal que ancla una carga negativa en un punto no lineal de la biografía energética del ser.</p>
+      <div class="bovis-row">
+        <div class="bovis-label">Escala Bovis</div>
+        <div class="bovis-bar"><div class="bovis-fill" style="width:30%; background:linear-gradient(90deg,#6b2a3a,#a0455a);"></div></div>
+        <div class="bovis-value">3.000 UB</div>
+      </div>
+      <div class="tags">
+        <span class="tag">sensación de peso sin origen presente</span>
+        <span class="tag">déjà vu de carga negativa</span>
+        <span class="tag">bloqueo que no responde a causa actual</span>
+      </div>
+    </div>
+  </details>
+
+  <h2 class="titulo-seccion">Agentes Ejecutores del Orden Mundial — Escala de Densidad</h2>
+
+  <div class="tabla-wrap">
+  <table class="agentes">
+    <thead>
+      <tr>
+        <th>Nivel D</th>
+        <th>Tipo de Agente</th>
+        <th>Función en la Cadena</th>
+        <th>Modo de Actuación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="nivel">D-8/9</td>
+        <td>Jerarquía oscura de mando</td>
+        <td>Arquitectos del diseño de control planetario. No ejecutan: fijan la intención vibracional origen.</td>
+        <td>Emisión de orden a distancia, sin contacto directo con el objetivo.</td>
+      </tr>
+      <tr>
+        <td class="nivel">D-6/7</td>
+        <td>Egrégores del sistema</td>
+        <td>Cuerpo intermedio acumulado por consenso inconsciente colectivo (instituciones financieras, mediáticas, políticas).</td>
+        <td>Ataque disperso y difuso; masa energética dirigida, difícil de rastrear a fuente única.</td>
+      </tr>
+      <tr>
+        <td class="nivel">D-5</td>
+        <td>Entidades ejecutoras directas</td>
+        <td>Brazo operativo en el plano etérico. Implantan, drenan, fracturan canales.</td>
+        <td>Ataque directo a la corriente Kundalini, cuerpos sutiles y campo áurico.</td>
+      </tr>
+      <tr>
+        <td class="nivel">D-4</td>
+        <td>Tecnología de control como vector</td>
+        <td>Redes de vigilancia energética que amplifican el alcance de los egrégores.</td>
+        <td>Antena de detección de seres de alta frecuencia; amplificación silenciosa.</td>
+      </tr>
+      <tr>
+        <td class="nivel">D-3</td>
+        <td>Servidores encarnados</td>
+        <td>Seres humanos portadores de implantes o contratos de servicio al sistema, conscientes o no.</td>
+        <td>Infiltración cercana y directa; a menudo mediante suplantación de identidad o vínculo de confianza.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="titulo-seccion">Señales de Reconocimiento</h2>
+  <div class="bloque-vidrio">
+    <ul class="lista-señales">
+      <li>Retrasos y obstáculos repetidos en proyectos de misión, sin causa externa clara.</li>
+      <li>Duda persistente sobre el propio camino, con desconexión de la certeza interior habitual.</li>
+      <li>Fatiga o ansiedad difusa al exponerse a medios de comunicación o dispositivos tecnológicos.</li>
+      <li>Conflictos o desconfianza repentina con otros seres de luz afines, sin motivo real.</li>
+      <li>Sensación de carga o peso energético que no corresponde a ninguna situación presente.</li>
+      <li>Presión mental nocturna o pesadez al despertar, sin causa física identificable.</li>
+    </ul>
+  </div>
+
+  <h2 class="titulo-seccion">Protocolo de Protección</h2>
+  <div class="bloque-vidrio">
+    <ol class="protocolo">
+      <li><strong>Reconocimiento consciente:</strong> Identificar sin negación que el bloqueo, la duda o el conflicto responde a un patrón de interferencia, no a una falla propia.</li>
+      <li><strong>Blindaje del campo áurico:</strong> Invocación de luz dorada envolvente, sellando las capas periféricas del aura contra la penetración de la cadena descrita.</li>
+      <li><strong>Corte de vínculos con egrégores y servidores:</strong> Declaración consciente de desconexión de toda estructura de consenso colectivo que sostenga el sistema de control, y de cualquier vínculo cercano corrompido.</li>
+      <li><strong>Reconexión con la Fuente:</strong> Restablecimiento del canal directo con la guía interna, disolviendo el filtro distorsionador del implante de duda.</li>
+      <li><strong>Reagrupamiento con seres afines:</strong> Sostener activamente los vínculos con otros seres de luz, como contrapeso directo a la fragmentación buscada por el ataque.</li>
+      <li><strong>Invocación al Rayo Crístico:</strong> Solicitud de anclaje y coherencia superior, disolviendo cualquier anclaje atemporal colocado fuera de la línea lineal del ser.</li>
+    </ol>
+  </div>
+
+  <h2 class="titulo-seccion">Enlaces Cruzados</h2>
+  <div class="enlaces-cruzados">
+    <a class="enlace-cruzado" href="jerarquia_seres_oscuridad.html">
+      Jerarquía de Seres de Oscuridad
+      <span>Mapa completo de la cadena de mando descrita en la tabla de agentes.</span>
+    </a>
+    <a class="enlace-cruzado" href="tipos_ataques_energeticos.html">
+      Tipos de Ataques Energéticos
+      <span>Catálogo general por dimensión, cuerpo sutil y modalidad.</span>
+    </a>
+    <a class="enlace-cruzado" href="ascension_gaia_humanidad.html">
+      Ascensión de Gaia y la Humanidad
+      <span>El contexto evolutivo que hace prioritario el bloqueo de los seres de luz.</span>
+    </a>
+    <a class="enlace-cruzado" href="ataques_prioritarios_seres_luz_mision.html">
+      Ataques Prioritarios a Seres de Luz en Misión
+      <span>Los 8 ataques de mayor intensidad dirigidos a portadores de misión.</span>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  El Ser Uno · Biblioteca de Conocimiento Esotérico<br>
+  <a href="index.html">← volver al índice</a>
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('cosmos');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esMovil = window.innerWidth < 640;
+
+  let ancho, alto, dpr;
+  let estrellas = [];
+  let scrollActual = 0;
+
+  const NUM_ESTRELLAS = esMovil ? 70 : 150;
+  const RADIO_CONEXION = esMovil ? 0 : 130;
+
+  function dimensionar(){
+    ancho = window.innerWidth;
+    alto = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = ancho * dpr;
+    canvas.height = alto * dpr;
+    canvas.style.width = ancho + 'px';
+    canvas.style.height = alto + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function crearEstrellas(){
+    estrellas = [];
+    for(let i = 0; i < NUM_ESTRELLAS; i++){
+      const profundidad = Math.random();
+      estrellas.push({
+        x: Math.random() * ancho,
+        y: Math.random() * alto * 2.4,
+        r: 0.5 + profundidad * 1.6,
+        brillo: 0.25 + profundidad * 0.6,
+        fase: Math.random() * Math.PI * 2,
+        velocidadFase: 0.4 + Math.random() * 0.6,
+        profundidad: 0.15 + profundidad * 0.5
+      });
+    }
+  }
+
+  function dibujar(tiempo){
+    ctx.clearRect(0, 0, ancho, alto);
+    if(RADIO_CONEXION > 0){
+      ctx.strokeStyle = 'rgba(212,175,55,0.10)';
+      ctx.lineWidth = 1;
+      for(let i = 0; i < estrellas.length; i++){
+        const a = estrellas[i];
+        const ay = a.y - scrollActual * a.profundidad;
+        if(ay < -50 || ay > alto + 50) continue;
+        for(let j = i + 1; j < estrellas.length; j++){
+          const b = estrellas[j];
+          if(Math.abs(a.profundidad - b.profundidad) > 0.12) continue;
+          const by = b.y - scrollActual * b.profundidad;
+          const dx = a.x - b.x, dy = ay - by;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < RADIO_CONEXION){
+            ctx.globalAlpha = 1 - dist / RADIO_CONEXION;
+            ctx.beginPath();
+            ctx.moveTo(a.x, ay);
+            ctx.lineTo(b.x, by);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    estrellas.forEach(e => {
+      const y = e.y - scrollActual * e.profundidad;
+      if(y < -20 || y > alto + 20) return;
+      const titileo = reducirMovimiento ? 1 : (0.7 + 0.3 * Math.sin(tiempo * 0.001 * e.velocidadFase + e.fase));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(238,243,255,' + (e.brillo * titileo) + ')';
+      ctx.arc(e.x, y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    if(!reducirMovimiento){ requestAnimationFrame(dibujar); }
+  }
+
+  function alRedimensionar(){
+    dimensionar();
+    crearEstrellas();
+    if(reducirMovimiento){ dibujar(0); }
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    scrollActual = window.scrollY;
+    if(!ticking && reducirMovimiento){
+      ticking = true;
+      requestAnimationFrame(() => { dibujar(0); ticking = false; });
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', alRedimensionar);
+
+  dimensionar();
+  crearEstrellas();
+  requestAnimationFrame(dibujar);
+})();
+</script>
+
+</body>
+</html>
