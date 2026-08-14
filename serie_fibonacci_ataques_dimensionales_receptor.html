@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serie Fibonacci de Ataques Dimensionales sobre el Receptor | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#05070f;
+    --bg-panel:#0b0f1e;
+    --gold:#d4af6a;
+    --gold-soft:#e8cd93;
+    --blue:#5b7fa6;
+    --blue-soft:#8fb3d9;
+    --red-soft:#c47a7a;
+    --text:#e6e2d6;
+    --text-dim:#a9a6b0;
+    --border:rgba(212,175,106,0.25);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(91,127,166,0.12), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(212,175,106,0.08), transparent 60%),
+      var(--bg-deep);
+    color:var(--text);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.65;
+  }
+  header{text-align:center; padding:56px 20px 24px;}
+  .breadcrumb{color:var(--text-dim); font-size:14px; letter-spacing:0.5px; margin-bottom:18px;}
+  h1{
+    font-family:'Cinzel Decorative', serif;
+    font-weight:700;
+    font-size:clamp(22px,4.2vw,36px);
+    letter-spacing:1.5px;
+    margin:0 0 12px;
+    background:linear-gradient(120deg,var(--gold-soft),var(--red-soft));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  header p.subtitulo{color:var(--text-dim); font-style:italic; max-width:660px; margin:0 auto;}
+  .back-link{
+    display:inline-block; margin-top:18px; color:var(--gold); text-decoration:none;
+    font-size:16px; letter-spacing:1px; border-bottom:1px solid transparent; transition:border-color .3s;
+  }
+  .back-link:hover{border-color:var(--gold);}
+
+  main{max-width:840px; margin:0 auto; padding:0 20px 80px;}
+
+  .nota-origen{
+    padding:16px 22px;
+    background:rgba(196,122,122,0.06);
+    border:1px solid var(--red-soft);
+    border-radius:10px;
+    margin-bottom:32px;
+    font-size:15px;
+    color:var(--text-dim);
+    font-style:italic;
+  }
+  .nota-origen strong{color:var(--red-soft); font-style:normal;}
+
+  .intro{
+    padding:26px 32px; background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:12px; margin-bottom:36px; position:relative;
+  }
+  .intro::before{content:"✦"; display:block; text-align:center; color:var(--gold); font-size:20px; margin-bottom:14px;}
+  .intro p{margin:0 0 14px;}
+  .intro p:last-child{margin-bottom:0;}
+  .intro strong{color:var(--gold-soft); font-weight:600;}
+  .intro a{color:var(--blue-soft); text-decoration:none; border-bottom:1px dotted var(--blue-soft);}
+  .intro a:hover{color:var(--gold);}
+
+  section.bloque{margin-bottom:44px;}
+  .bloque-titulo{
+    font-family:'Cinzel Decorative', serif; font-size:23px; color:var(--gold);
+    border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:22px; letter-spacing:1.5px;
+  }
+
+  .fib-tira{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    padding:20px; background:var(--bg-panel); border:1px solid var(--border); border-radius:10px;
+    margin-bottom:24px;
+  }
+  .fib-num{
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel Decorative', serif; font-size:15px; color:var(--gold-soft);
+    border:1px solid var(--border); background:rgba(212,175,106,0.05);
+  }
+  .fib-num.critico{color:var(--red-soft); border-color:var(--red-soft); background:rgba(196,122,122,0.08);}
+
+  table.fases{
+    width:100%; border-collapse:collapse; background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden; font-size:16px;
+  }
+  table.fases th, table.fases td{
+    padding:12px 14px; text-align:left; border-bottom:1px solid var(--border); vertical-align:top;
+  }
+  table.fases th{
+    font-family:'Cinzel Decorative', serif; font-weight:400; font-size:13px;
+    letter-spacing:0.5px; background:rgba(212,175,106,0.06); color:var(--gold);
+  }
+  table.fases tr:last-child td{border-bottom:none;}
+  table.fases td.numero{
+    color:var(--gold-soft); font-weight:600; text-align:center; font-family:'Cinzel Decorative', serif;
+  }
+  table.fases tr.critica td{background:rgba(196,122,122,0.05);}
+  table.fases tr.critica td.numero{color:var(--red-soft);}
+
+  .via-card{
+    background:var(--bg-panel); border:1px solid var(--border); border-left:3px solid var(--blue);
+    border-radius:10px; padding:20px 22px; margin-bottom:16px;
+  }
+  .via-card h3{
+    font-family:'Cinzel Decorative', serif; font-weight:400; font-size:18px;
+    color:var(--gold-soft); margin:0 0 10px; letter-spacing:0.5px;
+  }
+  .via-card p{margin:0 0 10px; font-size:17px;}
+  .via-card p:last-child{margin-bottom:0;}
+  .via-card a{color:var(--blue-soft); text-decoration:none; border-bottom:1px dotted var(--blue-soft);}
+  .via-card a:hover{color:var(--gold);}
+
+  ul.senales{list-style:none; padding:0; margin:0;}
+  ul.senales li{
+    padding:12px 16px; background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:8px; margin-bottom:10px; font-size:17px; position:relative; padding-left:32px;
+  }
+  ul.senales li::before{content:"◆"; position:absolute; left:12px; top:12px; color:var(--red-soft); font-size:11px;}
+
+  details.paso{
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:10px;
+    margin-bottom:14px; overflow:hidden;
+  }
+  details.paso summary{
+    cursor:pointer; padding:16px 20px; font-family:'Cinzel Decorative', serif; font-weight:400;
+    font-size:17px; color:var(--gold-soft); letter-spacing:0.5px; list-style:none;
+    display:flex; align-items:center; gap:10px;
+  }
+  details.paso summary::-webkit-details-marker{display:none;}
+  details.paso summary::before{content:"◆"; color:var(--gold); font-size:12px;}
+  details.paso[open] summary{border-bottom:1px solid var(--border);}
+  details.paso .contenido{padding:16px 20px 20px; font-size:17px;}
+  details.paso .contenido p{margin:0 0 10px;}
+  details.paso .contenido p:last-child{margin-bottom:0;}
+  .decreto{
+    margin-top:10px; padding:12px 16px; border-left:2px solid var(--gold);
+    background:rgba(212,175,106,0.05); font-style:italic; color:var(--gold-soft);
+  }
+
+  .escala-nota{
+    padding:20px 24px; background:var(--bg-panel); border:1px solid var(--border);
+    border-radius:10px; font-size:17px;
+  }
+  .escala-nota strong{color:var(--gold-soft);}
+  .escala-nota a{color:var(--blue-soft); text-decoration:none; border-bottom:1px dotted var(--blue-soft);}
+  .escala-nota a:hover{color:var(--gold);}
+
+  .enlaces-relacionados{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .enlaces-relacionados a{
+    font-size:15px; color:var(--blue-soft); text-decoration:none; border:1px solid var(--border);
+    border-radius:20px; padding:6px 14px;
+  }
+  .enlaces-relacionados a:hover{color:var(--gold); border-color:var(--gold);}
+
+  footer{
+    text-align:center; padding:40px 20px 60px; color:var(--text-dim); font-size:15px;
+    font-style:italic; border-top:1px solid var(--border); margin-top:20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="breadcrumb">Inicio › Ataques y Defensa › Serie Fibonacci de Ataques Dimensionales sobre el Receptor</div>
+  <h1>Serie Fibonacci de Ataques Dimensionales sobre el Receptor</h1>
+  <p class="subtitulo">Una secuencia escalonada de ataques dimensionales dirigida al receptor, que acumula carga en vez de disiparse entre episodios</p>
+  <a class="back-link" href="index.html">← Volver al índice</a>
+</header>
+
+<main>
+
+  <div class="nota-origen">
+    <strong>Nota de origen:</strong> la progresión Fibonacci (1, 1, 2, 3, 5, 8, 13, 21...) es una capa organizativa incorporada por decisión propia para estructurar este patrón; no aparece en los libros originales de <em>El Ser Uno</em>. El mecanismo del ataque dimensional y su somatización en enfermedad sí son canónicos — ver <a href="ataques_dimensionales.html">Ataques Dimensionales</a> y <a href="transmision_enfermedades_ducto_energetico.html">Transmisión de Enfermedades vía Ducto Energético</a>.
+  </div>
+
+  <section class="intro">
+    <p>La <strong>serie Fibonacci de ataques dimensionales</strong> describe un patrón donde un ser de luz no recibe un ataque aislado —que el campo puede procesar y cerrar—, sino una secuencia de episodios repetidos sobre el <strong>receptor</strong> (glándula pineal y función encarnada de transmisor-receptor, ver <a href="ataque_integral_seres_luz.html">Ataque Integral contra Seres de Luz</a>), cada uno más intenso que el anterior, siguiendo la progresión 1, 1, 2, 3, 5, 8, 13, 21...</p>
+    <p>A diferencia de una tipología única del catálogo de <a href="ataques_dimensionales.html">Ataques Dimensionales</a>, aquí lo relevante no es el mecanismo de cada episodio individual, sino la <strong>acumulación</strong>: el receptor no alcanza a disipar la carga de un episodio antes de que llegue el siguiente, más fuerte.</p>
+  </section>
+
+  <section class="bloque">
+    <h2 class="bloque-titulo">La secuencia</h2>
+    <div class="fib-tira">
+      <div class="fib-num">1</div>
+      <div class="fib-num">1</div>
+      <div class="fib-num">2</div>
+      <div class="fib-num">3</div>
+      <div class="fib-num critico">5</div>
+      <div class="fib-num critico">8</div>
+      <div class="fib-num critico">13</div>
+      <div class="fib-num critico">21</div>
+    </div>
+    <table class="fases">
+      <tr>
+        <th>N.º</th>
+        <th>Fase</th>
+        <th>Manifestación en el receptor</th>
+      </tr>
+      <tr>
+        <td class="numero">1 – 1</td>
+        <td>Activación silenciosa</td>
+        <td>Sin síntoma perceptible; la antena pineal registra una interferencia mínima, apenas detectable por radiestesia.</td>
+      </tr>
+      <tr>
+        <td class="numero">2</td>
+        <td>Primer eco</td>
+        <td>Molestia leve e inespecífica — cansancio puntual, cefalea breve — fácilmente atribuible a causas cotidianas.</td>
+      </tr>
+      <tr>
+        <td class="numero">3</td>
+        <td>Consolidación del patrón</td>
+        <td>El intervalo entre episodios se acorta en proporción; la carga empieza a acumularse en vez de disiparse por completo.</td>
+      </tr>
+      <tr class="critica">
+        <td class="numero">5</td>
+        <td>Dolencia sostenida</td>
+        <td>Molestia física ya reconocible y recurrente, coincidiendo con la fase donde el canon ubica el "puente encarnado" (ver <a href="numeros_sagrados_ser_uno.html">Números Sagrados del Ser Uno</a>): el número 5 marca precisamente el anclaje en el cuerpo físico.</td>
+      </tr>
+      <tr class="critica">
+        <td class="numero">8</td>
+        <td>Padecimiento consolidado</td>
+        <td>Cuadro médico definido, que empieza a no responder bien a tratamiento convencional por tener origen energético.</td>
+      </tr>
+      <tr class="critica">
+        <td class="numero">13 – 21</td>
+        <td>Somatización avanzada</td>
+        <td>Carga acumulada suficiente para comprometer la capacidad de acción del ser en su misión — ver somatización descrita en <a href="transmision_enfermedades_ducto_energetico.html">Transmisión de Enfermedades vía Ducto Energético</a>.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="bloque">
+    <h2 class="bloque-titulo">Por qué el receptor es el blanco de la serie</h2>
+    <div class="via-card">
+      <h3>Acumulación en vez de disipación</h3>
+      <p>Un ataque dimensional aislado sobre cualquier otra capa suele resolverse o disiparse con el tiempo. El receptor, en cambio, al ser el canal de comunicación con el Principio Único, retiene la carga de cada episodio si no se atiende activamente — es la capa con menor capacidad de autolimpieza espontánea, lo que la hace ideal para un patrón acumulativo como este.</p>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <h2 class="bloque-titulo">Señales de alerta del patrón en serie</h2>
+    <ul class="senales">
+      <li>Episodios que se repiten con intervalos reconociblemente decrecientes, no aleatorios.</li>
+      <li>Síntomas que escalan en intensidad de un episodio al siguiente, en vez de resolverse entre uno y otro.</li>
+      <li>Cuadros médicos que aparecen o se agravan justo antes de un avance importante en la misión del ser.</li>
+      <li>Lectura Bovis del receptor que desciende de forma constante entre mediciones sucesivas, sin recuperar la línea base.</li>
+    </ul>
+  </section>
+
+  <section class="bloque">
+    <h2 class="bloque-titulo">Protocolo de defensa por fases</h2>
+
+    <details class="paso" open>
+      <summary>1. Identificar en qué número de la serie se está</summary>
+      <div class="contenido">
+        <p>Mediante péndulo y escala Bovis, ubicar si el patrón corresponde a una fase temprana (1-3, aún silenciosa) o ya crítica (5 en adelante, con síntoma físico presente). El protocolo se ajusta según la fase, no se aplica igual en todas.</p>
+      </div>
+    </details>
+
+    <details class="paso">
+      <summary>2. Sellado del receptor antes del siguiente episodio</summary>
+      <div class="contenido">
+        <p>A diferencia de un ataque aislado, aquí el objetivo es cortar la serie antes de que llegue el próximo número — no basta con sanar el episodio actual, hay que blindar el receptor de forma anticipada.</p>
+      </div>
+    </details>
+
+    <details class="paso">
+      <summary>3. Decreto de ruptura de la secuencia</summary>
+      <div class="contenido">
+        <p>Declaración dirigida específicamente a interrumpir el patrón acumulativo, no solo el síntoma presente.</p>
+        <div class="decreto">"Rompo esta secuencia en el punto donde me encuentro. Mi receptor no acumula más carga; cada episodio se disipa por completo antes del siguiente."</div>
+      </div>
+    </details>
+
+    <details class="paso">
+      <summary>4. Verificación Bovis en cada fase superada</summary>
+      <div class="contenido">
+        <p>Medición tras cada intervención, comparando contra la fase anterior de la serie. Si el valor no se recupera pese al protocolo, se revisa si el ataque ya alcanzó el nivel de somatización descrito en <a href="transmision_enfermedades_ducto_energetico.html">Transmisión de Enfermedades vía Ducto Energético</a>, que requiere abordaje adicional sobre el vínculo que sirve de ducto.</p>
+      </div>
+    </details>
+
+  </section>
+
+  <section class="bloque">
+    <h2 class="bloque-titulo">Ubicación dentro del marco general</h2>
+    <div class="escala-nota">
+      <p>Esta serie es una variante acumulativa de los mecanismos ya catalogados en <a href="ataques_dimensionales.html">Ataques Dimensionales</a>, dirigida específicamente a la capa receptora descrita en <a href="ataque_integral_seres_luz.html">Ataque Integral contra Seres de Luz</a>. Su punto de llegada natural, si no se interrumpe a tiempo, es la somatización descrita en <a href="transmision_enfermedades_ducto_energetico.html">Transmisión de Enfermedades vía Ducto Energético</a>.</p>
+      <div class="enlaces-relacionados">
+        <a href="ataques_dimensionales.html">Ataques Dimensionales</a>
+        <a href="ataque_integral_seres_luz.html">Ataque Integral contra Seres de Luz</a>
+        <a href="transmision_enfermedades_ducto_energetico.html">Transmisión de Enfermedades vía Ducto Energético</a>
+        <a href="numeros_sagrados_ser_uno.html">Números Sagrados del Ser Uno</a>
+        <a href="ataque_esencia_evolucion_vibracional.html">Ataque a la Esencia durante la Evolución Vibracional</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  El Ser Uno · Ataques y Defensa Energética
+</footer>
+
+</body>
+</html>
