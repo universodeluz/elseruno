@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque a la Esencia durante la Evolución Vibracional · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 50vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p.card-body { font-size:.85rem; color:var(--gris-c); line-height:1.75; }
+.card p.card-body strong { color:var(--blanco); }
+.card a { color:var(--violeta-c); text-decoration:none; border-bottom:1px dotted var(--violeta-c); }
+.card a:hover { color:var(--oro); }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.3rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+.phase-content ul { list-style:none; padding:0; }
+.phase-content ul li { padding:.2rem 0 .2rem 1.1em; position:relative; }
+.phase-content ul li::before { content:'◆'; position:absolute; left:0; color:var(--violeta-c); font-size:.5rem; top:.5em; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+.nivel-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem 1rem; border-radius:16px; font-size:.78rem; font-weight:600; margin-bottom:1rem; font-family:'Space Mono', monospace; }
+.nivel-limpia { background:rgba(58,128,112,.15); border:1px solid var(--teal); color:var(--teal-pale); }
+.nivel-leve { background:rgba(200,168,75,.12); border:1px solid var(--oro); color:var(--oro); }
+.nivel-sucia { background:rgba(192,144,64,.18); border:1px solid var(--ambar); color:#e0b070; }
+.nivel-saturada { background:rgba(176,64,64,.25); border:1px solid var(--crimson); color:var(--crimson-pale); }
+
+table.tabla-ser-uno { width:100%; border-collapse:collapse; font-size:.82rem; }
+table.tabla-ser-uno th, table.tabla-ser-uno td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+table.tabla-ser-uno th { font-family:'Cinzel', serif; font-weight:600; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); background:rgba(255,255,255,.02); }
+table.tabla-ser-uno tr:last-child td { border-bottom:none; }
+table.tabla-ser-uno td.criterio { color:var(--violeta-c); font-weight:600; white-space:nowrap; }
+table.tabla-ser-uno tr.critica td { background:rgba(176,64,64,.06); }
+table.tabla-ser-uno tr.critica td.criterio { color:var(--crimson-pale); }
+
+.subcapa { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; padding:.85rem 1rem; margin-bottom:.7rem; }
+.subcapa:last-child { margin-bottom:0; }
+.subcapa .subcapa-titulo { font-family:'Cinzel', serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--violeta-c); margin-bottom:.35rem; }
+.subcapa p { font-size:.82rem; color:var(--gris-c); line-height:1.6; }
+
+.nota-origen { background:rgba(176,64,64,.06); border:1px solid var(--crimson); border-radius:4px; padding:.9rem 1.2rem; margin-bottom:1.4rem; font-size:.78rem; color:var(--gris-c); font-style:italic; }
+.nota-origen strong { color:var(--crimson-pale); font-style:normal; }
+
+.frase-clave { text-align:center; font-style:italic; font-size:1.15rem; color:var(--oro); padding:1.4rem 1rem; margin:0 0 1.6rem; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◈</div></div>
+  <h1>Ataque a la Esencia durante la Evolución Vibracional</h1>
+  <p class="hero-sub">El Ser Uno · Vulnerabilidad del Núcleo en la Fase de Adecuación</p>
+  <p class="hero-intro">Cuando la agresión más profunda al Ser encuentra su ventana en el momento de mayor apertura: la consolidación de un nuevo nivel vibracional.</p>
+  <div class="hero-links">
+    <a href="ataques_esencia_ser.html" class="hero-cta">◈ Ataques a la Esencia</a>
+    <a href="afectaciones_adecuacion_vibracional.html" class="hero-cta">✦ Adecuación Vibracional</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Contexto</div>
+  <p class="card-body">Un ser de luz que eleva y sostiene un nuevo nivel vibracional no completa esa transición de forma instantánea: atraviesa una fase de <strong>adecuación</strong> en la que el cuerpo, la mente y el campo áurico se reorganizan para sostener la nueva frecuencia. Esa reorganización, descrita en <a href="afectaciones_adecuacion_vibracional.html">Afectaciones Durante la Adecuación Vibracional</a>, abre "grietas momentáneas" en el campo — y es precisamente ahí donde un ataque puede alcanzar la <strong>esencia</strong> misma del Ser, el núcleo descrito en <a href="ataques_esencia_ser.html">Ataques a la Esencia Misma del Ser</a>.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Por Qué Esta Fase Es Ventana de Vulnerabilidad</div>
+  <div class="protocol-phase"><div class="phase-content">nivel vibracional estable → el ser inicia un salto de consolidación → fricción entre estructuras antiguas y la nueva frecuencia → <strong style="color:var(--crimson-pale)">grietas momentáneas en el campo áurico</strong> → ventana de menor resistencia hasta la esencia → nuevo nivel consolidado (si no hay interferencia)</div></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Diferenciación Crítica</div>
+  <table class="tabla-ser-uno">
+    <tr><th>Criterio</th><th>Afectación de adecuación (normal)</th><th>Ataque a la esencia (interferencia real)</th></tr>
+    <tr><td class="criterio">Origen</td><td>Reorganización propia del cuerpo y del campo</td><td>Agente externo aprovechando la grieta</td></tr>
+    <tr><td class="criterio">Duración</td><td>Fluctúa y remite conforme avanza la consolidación</td><td>Persiste o se profundiza aunque la fase de ajuste ya haya pasado</td></tr>
+    <tr class="critica"><td class="criterio">Foco</td><td>Cuerpo físico, emocional o sueño — capas periféricas</td><td>Identidad, propósito o conexión con la Fuente — núcleo</td></tr>
+    <tr><td class="criterio">Respuesta</td><td>Mejora con descanso, grounding y tiempo</td><td>No cede con autocuidado; requiere corte activo</td></tr>
+    <tr><td class="criterio">Bovis</td><td>Fluctúa pero tiende al alza</td><td>Cae de forma sostenida pese a estar en fase de "ascenso"</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">3</span>Vector de Entrada Más Probable</div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">Oscurecimiento de la chispa divina</div>
+    <p>De los 9 tipos catalogados en <a href="ataques_esencia_ser.html">Ataques a la Esencia Misma del Ser</a>, este es el más compatible con la ventana de adecuación: el ser es más permeable a la duda sobre su propio propósito y conexión con la Fuente.</p>
+  </div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">Fragmentación del alma</div>
+    <p>En saltos vibracionales intensos, la fricción entre lo antiguo y lo nuevo puede replicar condiciones similares a un trauma energético, favoreciendo también este tipo de ataque.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">4</span>Protocolo de Blindaje Durante la Fase</div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 1 · Refuerzo del Sellado Áurico</div>
+    <div class="phase-content"><ul><li>Sellado aplicado con mayor frecuencia mientras dure la consolidación, no una sola vez.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 2 · Decreto de Protección de la Esencia</div>
+    <div class="phase-content"><ul><li>Dirigido al núcleo, no solo al campo periférico.</li></ul></div>
+    <div class="mantra-box">"Mi esencia permanece intacta durante este ascenso. Ninguna interferencia externa tiene acceso a mi núcleo mientras me reorganizo."</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 3 · Invocación al Rayo Crístico</div>
+    <div class="phase-content"><ul><li>Sostén unificador durante la transición, reforzando la coherencia entre esencia, cuerpo y frecuencia.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 4 · Verificación Bovis Antes y Después de Cada Salto</div>
+    <div class="phase-content"><ul><li>Si el valor cae de forma sostenida en lugar de fluctuar y recuperarse, aplicar el protocolo de corte de <a href="ataques_esencia_ser.html">Ataques a la Esencia</a> en lugar de esperar.</li></ul></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Ubicación en el Marco General</div>
+  <p class="card-body">Este fenómeno se ubica en el nivel 6 de la escala de <a href="ataques_esencia_ser.html">Ataques a la Esencia Misma del Ser</a>, condicionado por la vulnerabilidad de <a href="afectaciones_adecuacion_vibracional.html">Afectaciones Durante la Adecuación Vibracional</a>. Un ser de luz en misión es blanco prioritario por su nivel vibracional — ver <a href="nivel_vibracional_ser_luz.html">Nivel Vibracional del Ser de Luz</a> — y esta ventana es donde esa prioridad se vuelve más operativa para las jerarquías oscuras.</p>
+</div>
+
+<footer>
+  <p>El Ser Uno · Ataques y Defensa Energética</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>

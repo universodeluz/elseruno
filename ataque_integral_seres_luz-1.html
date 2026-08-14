@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque Integral contra Seres de Luz en Evolución Vibracional · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 50vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p.card-body { font-size:.85rem; color:var(--gris-c); line-height:1.75; }
+.card p.card-body strong { color:var(--blanco); }
+.card a { color:var(--violeta-c); text-decoration:none; border-bottom:1px dotted var(--violeta-c); }
+.card a:hover { color:var(--oro); }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.3rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+.phase-content ul { list-style:none; padding:0; }
+.phase-content ul li { padding:.2rem 0 .2rem 1.1em; position:relative; }
+.phase-content ul li::before { content:'◆'; position:absolute; left:0; color:var(--violeta-c); font-size:.5rem; top:.5em; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+.nivel-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem 1rem; border-radius:16px; font-size:.78rem; font-weight:600; margin-bottom:1rem; font-family:'Space Mono', monospace; }
+.nivel-limpia { background:rgba(58,128,112,.15); border:1px solid var(--teal); color:var(--teal-pale); }
+.nivel-leve { background:rgba(200,168,75,.12); border:1px solid var(--oro); color:var(--oro); }
+.nivel-sucia { background:rgba(192,144,64,.18); border:1px solid var(--ambar); color:#e0b070; }
+.nivel-saturada { background:rgba(176,64,64,.25); border:1px solid var(--crimson); color:var(--crimson-pale); }
+
+table.tabla-ser-uno { width:100%; border-collapse:collapse; font-size:.82rem; }
+table.tabla-ser-uno th, table.tabla-ser-uno td { padding:.7rem .8rem; text-align:left; border-bottom:1px solid var(--border); vertical-align:top; }
+table.tabla-ser-uno th { font-family:'Cinzel', serif; font-weight:600; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); background:rgba(255,255,255,.02); }
+table.tabla-ser-uno tr:last-child td { border-bottom:none; }
+table.tabla-ser-uno td.criterio { color:var(--violeta-c); font-weight:600; white-space:nowrap; }
+table.tabla-ser-uno tr.critica td { background:rgba(176,64,64,.06); }
+table.tabla-ser-uno tr.critica td.criterio { color:var(--crimson-pale); }
+
+.subcapa { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; padding:.85rem 1rem; margin-bottom:.7rem; }
+.subcapa:last-child { margin-bottom:0; }
+.subcapa .subcapa-titulo { font-family:'Cinzel', serif; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--violeta-c); margin-bottom:.35rem; }
+.subcapa p { font-size:.82rem; color:var(--gris-c); line-height:1.6; }
+
+.nota-origen { background:rgba(176,64,64,.06); border:1px solid var(--crimson); border-radius:4px; padding:.9rem 1.2rem; margin-bottom:1.4rem; font-size:.78rem; color:var(--gris-c); font-style:italic; }
+.nota-origen strong { color:var(--crimson-pale); font-style:normal; }
+
+.frase-clave { text-align:center; font-style:italic; font-size:1.15rem; color:var(--oro); padding:1.4rem 1rem; margin:0 0 1.6rem; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">⛨</div></div>
+  <h1>Ataque Integral contra Seres de Luz en Evolución Vibracional</h1>
+  <p class="hero-sub">El Ser Uno · Cinco Capas Golpeadas a la Vez</p>
+  <p class="hero-intro">La estrategia más peligrosa porque no da tiempo a defender una capa antes de que caiga la siguiente.</p>
+  <div class="hero-links">
+    <a href="tipos_ataques_energeticos.html" class="hero-cta">✦ Tipos de Ataques Energéticos</a>
+    <a href="ataque_esencia_evolucion_vibracional.html" class="hero-cta">◈ Ataque a la Esencia</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Definición</div>
+  <p class="card-body">El <strong>ataque integral</strong> no es un mecanismo nuevo dentro de la taxonomía de <a href="tipos_ataques_energeticos.html">Tipos de Ataques Energéticos</a>, sino una <strong>estrategia coordinada</strong>: la decisión deliberada de golpear simultáneamente cinco capas del ser —emocional, etérica, energética, mental y receptora— en lugar de atacar una sola. Su peligrosidad está en la saturación: el ser de luz no alcanza a blindar una capa antes de que la siguiente ya esté comprometida.</p>
+  <p class="card-body" style="margin-top:.8rem">Encuentra su ventana ideal en la fase de <a href="ataque_esencia_evolucion_vibracional.html">evolución vibracional</a>, cuando las grietas momentáneas de la adecuación ya debilitan el campo en varios frentes a la vez.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Lógica del Ataque: Distracción y Golpe Real</div>
+  <div class="protocol-phase"><div class="phase-content">capas emocional y etérica atacadas primero → consumen la capacidad defensiva del ser → capa energética se satura sosteniendo las otras dos → pensamientos y receptor quedan sin blindaje → <strong style="color:var(--crimson-pale)">el golpe real llega al receptor</strong> — el objetivo desde el inicio</div></div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Las Cinco Capas Simultáneas</div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">01 · Emocional</div>
+    <p>Primera línea de distracción: picos de angustia, tristeza súbita o irritabilidad sin causa aparente. Categoría "por capa áurica" de <a href="tipos_ataques_energeticos.html">Tipos de Ataques Energéticos</a>.</p>
+  </div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">02 · Etérico</div>
+    <p>Instalación de activadores u objetos etéricos que mantienen la interferencia activa. Ver <a href="activadores_implantes_objetos_etericos.html">Activadores, Implantes y Objetos Etéricos</a> y <a href="constructo_eterico_interdimensional.html">Constructo Etérico Interdimensional</a>.</p>
+  </div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">03 · Energético</div>
+    <p>El campo general sostiene la respuesta a las dos capas anteriores, agotando la reserva vibracional disponible para defender pensamientos y receptor.</p>
+  </div>
+  <div class="subcapa">
+    <div class="subcapa-titulo">04 · Pensamientos</div>
+    <p>Inserción de pensamientos intrusivos o distorsión de la propia energía-pensamiento, aprovechando la atención ocupada en las capas periféricas. Ver <a href="pensamientos_el_ser_uno.html">Pensamientos y Mensajes</a>.</p>
+  </div>
+  <div class="subcapa" style="border-color:var(--crimson)">
+    <div class="subcapa-titulo" style="color:var(--crimson-pale)">05 · Receptor — el objetivo real</div>
+    <p>El blanco más grave, en dos niveles:</p>
+    <p style="margin-top:.4rem"><strong style="color:var(--blanco)">Nivel órgano:</strong> la glándula pineal, antena de cristales que sostiene el cordón energético elevado hacia el Principio Único.</p>
+    <p style="margin-top:.4rem"><strong style="color:var(--blanco)">Nivel función encarnada:</strong> el ser humano como "transformador, transmisor, receptor y censor" de energía-pensamiento en Gaia; si cae, el ser puede retransmitir energía distorsionada hacia su entorno sin saberlo.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">3</span>Diferenciación con un Ataque Aislado</div>
+  <table class="tabla-ser-uno">
+    <tr><th>Criterio</th><th>Ataque a una sola capa</th><th>Ataque integral (5 capas)</th></tr>
+    <tr><td class="criterio">Objetivo visible</td><td>Coincide con el síntoma presentado</td><td>El síntoma es distracción; el objetivo real suele ser el receptor</td></tr>
+    <tr><td class="criterio">Respuesta</td><td>El ser puede blindar con tiempo suficiente</td><td>La capacidad defensiva se satura antes de llegar a la capa crítica</td></tr>
+    <tr class="critica"><td class="criterio">Riesgo si no se detecta</td><td>Limitado a la capa afectada</td><td>Aislamiento de la guía superior y retransmisión distorsionada</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">4</span>Protocolo de Defensa Integral</div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 1 · Blindaje Simultáneo</div>
+    <div class="phase-content"><ul><li>Sellado áurico, refuerzo etérico y estabilización emocional en el mismo procedimiento, sin dejar ventana abierta.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 2 · Protección Prioritaria del Receptor</div>
+    <div class="phase-content"><ul><li>Protección explícita de la antena pineal y la función de transmisor-receptor, incluso antes de síntomas visibles.</li></ul></div>
+    <div class="mantra-box">"Mi antena y mi función de receptor permanecen protegidas. Ninguna interferencia distorsiona lo que recibo ni lo que transmito."</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 3 · Decreto de Corte Integral</div>
+    <div class="phase-content"></div>
+    <div class="mantra-box">"Corto esta interferencia en cada una de mis capas: emocional, etérica, energética, mental y receptora. Ninguna queda desprotegida."</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 4 · Rayo Crístico y Verificación Bovis</div>
+    <div class="phase-content"><ul><li>Si la capa receptora no muestra recuperación aunque las demás sí, tratar como <a href="ataque_esencia_evolucion_vibracional.html">Ataque a la Esencia durante la Evolución Vibracional</a>.</li></ul></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Ubicación en el Marco General</div>
+  <p class="card-body">El ataque integral es la expresión más severa de la vulnerabilidad descrita en <a href="ataques_prioritarios_seres_luz_mision.html">Ataques Prioritarios a Seres de Luz en Misión</a>: un ser en evolución vibracional es blanco prioritario por su función de receptor y transmisor de energía-pensamiento elevada, y esa función es lo que las jerarquías oscuras buscan corromper con mayor prioridad.</p>
+</div>
+
+<footer>
+  <p>El Ser Uno · Ataques y Defensa Energética</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
