@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puyazos de Pies y Manos: Progresión Aritmética Infinita | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #030417;
+    --void-2: #0a0e27;
+    --gold: #d4af37;
+    --gold-soft: #f2dfa0;
+    --star-white: #eef3ff;
+    --texto: #cbd6ee;
+    --texto-dim: #8a95bd;
+    --sangre: #7a2e3a;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 8%, rgba(44,27,77,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(22,33,58,0.6) 0%, transparent 65%),
+      radial-gradient(ellipse at top, var(--void-2) 0%, var(--void) 55%, #000 100%);
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #cosmos{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    width: 100%; height: 100%; display: block;
+  }
+
+  a{ color: var(--gold-soft); }
+
+  header{
+    text-align: center;
+    padding: 70px 20px 30px;
+    position: relative;
+    z-index: 1;
+  }
+  .migas{
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 0.85em;
+    color: var(--texto-dim);
+    letter-spacing: 0.5px;
+  }
+  .migas a{ color: var(--texto-dim); text-decoration: none; }
+  .migas a:hover{ color: var(--gold); }
+
+  h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.15em;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--star-white));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(212,175,55,0.25);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .subtitulo{
+    font-style: italic;
+    color: #9fb4e0;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .linea-divisoria{
+    width: 240px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), rgba(159,180,224,0.8), var(--gold), transparent);
+  }
+
+  .badges{
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .badge{
+    border: 1px solid rgba(212,175,55,0.4);
+    background: rgba(10,14,39,0.55);
+    backdrop-filter: blur(8px);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.82em;
+    letter-spacing: 0.5px;
+    color: var(--gold-soft);
+  }
+  .badge.oscuro{
+    border-color: rgba(122,46,58,0.6);
+    color: #e0a4ac;
+  }
+
+  main{
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nota-medica{
+    font-size: 0.85em;
+    color: var(--texto-dim);
+    font-style: italic;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 20px;
+    padding: 0 10px;
+  }
+
+  .nota-origen{
+    font-size: 0.85em;
+    color: var(--texto-dim);
+    font-style: italic;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 50px;
+    padding: 12px 18px;
+    border: 1px dashed rgba(212,175,55,0.3);
+    border-radius: 10px;
+  }
+  .nota-origen strong{ color: var(--gold-soft); font-style: normal; }
+
+  h2.titulo-seccion{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.3em;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin: 56px 0 20px;
+    text-align: center;
+  }
+
+  p{ margin-bottom: 16px; }
+  strong{ color: var(--gold-soft); font-weight: 600; }
+
+  .card{
+    background: linear-gradient(160deg, rgba(20,16,40,0.6), rgba(4,5,12,0.75));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 18px;
+  }
+  .card p:last-child{ margin-bottom: 0; }
+
+  /* Visualización de la progresión */
+  .progresion{
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 24px 0 18px;
+    padding: 10px 0;
+  }
+  .paso-prog{
+    text-align: center;
+  }
+  .barra-prog{
+    width: 34px;
+    background: linear-gradient(180deg, var(--gold-soft), var(--sangre));
+    border-radius: 4px 4px 0 0;
+    margin: 0 auto 8px;
+    box-shadow: 0 0 10px rgba(212,175,55,0.2);
+  }
+  .paso-prog span{
+    font-size: 0.78em;
+    color: var(--texto-dim);
+    display: block;
+  }
+  .paso-prog small{
+    font-size: 0.7em;
+    color: var(--texto-dim);
+    opacity: 0.7;
+  }
+  .infinito{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.6em;
+    color: var(--gold);
+    align-self: center;
+    margin-left: 4px;
+  }
+
+  .comparativa{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .comp-item{
+    border-left: 3px solid var(--gold);
+    padding: 8px 0 8px 18px;
+  }
+  .comp-item.propio{
+    border-left-color: var(--sangre);
+    background: rgba(122,46,58,0.08);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+  }
+  .comp-item h4{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.92em;
+    color: var(--gold-soft);
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .comp-item p{
+    font-size: 0.95em;
+    margin-bottom: 0;
+    color: var(--texto);
+  }
+  .comp-item a{ text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.5); }
+
+  ul.lista{
+    list-style: none;
+    padding: 0;
+  }
+  ul.lista li{
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+  }
+  ul.lista li::before{
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.7;
+    font-size: 0.85em;
+  }
+
+  .protocolo-paso{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .protocolo-num{
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--gold);
+    font-size: 1.3em;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 30px;
+    text-align: center;
+  }
+  .protocolo-texto p{ margin-bottom: 4px; }
+  .protocolo-texto h4{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.95em;
+    color: var(--gold-soft);
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .enlaces-relacionados{
+    margin-top: 60px;
+    text-align: center;
+  }
+  .enlaces-relacionados h2{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1em;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .chip{
+    display: inline-block;
+    border: 1px solid rgba(159,180,224,0.3);
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 0.85em;
+    text-decoration: none;
+    color: var(--texto);
+    transition: all 0.25s ease;
+  }
+  .chip:hover{
+    border-color: var(--gold);
+    color: var(--gold-soft);
+    box-shadow: 0 0 16px rgba(212,175,55,0.15);
+  }
+
+  .volver{
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: var(--texto-dim);
+  }
+  .volver:hover{ color: var(--gold); }
+
+  footer{
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--texto-dim);
+    font-size: 0.85em;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<header>
+  <p class="migas">
+    <a href="index.html">Inicio</a> › <a href="index.html#ataques">Ataques y Defensa Energética</a> › Puyazos de Pies y Manos
+  </p>
+  <h1>Puyazos de Pies y Manos</h1>
+  <p class="subtitulo">Progresión aritmética infinita de descarga: un goteo que se aprieta sin llegar nunca a un final</p>
+  <div class="linea-divisoria"></div>
+  <div class="badges">
+    <span class="badge oscuro">Escala de oscuridad D-3 a D-5</span>
+    <span class="badge">Descarga por puntos terminales</span>
+    <span class="badge">Cuerpo etérico · físico</span>
+  </div>
+</header>
+
+<main>
+
+  <p class="nota-medica">
+    Este contenido se ofrece dentro del marco simbólico y energético de El Ser Uno. No sustituye diagnóstico, tratamiento ni seguimiento médico profesional. Ante cualquier síntoma físico persistente, se recomienda siempre consultar con un profesional de la salud.
+  </p>
+
+  <p class="nota-origen">
+    <strong>Nota de origen:</strong> la progresión aritmética (intervalos que se acortan en cantidad constante) es una capa organizativa incorporada por decisión propia para estructurar este patrón; no aparece en los libros originales de El Ser Uno. El mecanismo del ataque —descarga forzada por puntos terminales de meridianos— sí es canónico.
+  </p>
+
+  <h2 class="titulo-seccion">Naturaleza del Ataque</h2>
+  <div class="card">
+    <p>Los <strong>Puyazos de Pies y Manos</strong> son punzadas breves y agudas que se manifiestan simultáneamente en ambas extremidades —pies y manos— desde el primer episodio. A diferencia de otros ataques que se instalan en un punto y luego se extienden, este toma directamente los cuatro puntos terminales del cuerpo sutil: los meridianos alcanzan su cierre natural en dedos de manos y pies, y son precisamente esos extremos los que el ataque usa como válvula de descarga forzada.</p>
+    <p>No busca acumular carga hacia una crisis, como ocurre en un patrón de somatización progresiva. Busca instalar una <strong>cadencia continua</strong> que nunca llega a su punto más alto ni se resuelve — el desgaste viene de la persistencia del ritmo, no de una escalada de intensidad.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Mecánica de la Progresión Aritmética</h2>
+  <div class="card">
+    <p>El intervalo entre puyazos se acorta en una cantidad constante en cada ciclo —una progresión aritmética, no exponencial—. Si el primer intervalo es, por ejemplo, de una hora, el siguiente ciclo completo puede acortarse en un margen fijo, y así sucesivamente, de forma indefinida.</p>
+    <div class="progresion">
+      <div class="paso-prog"><div class="barra-prog" style="height:70px;"></div><span>Ciclo 1</span><small>intervalo largo</small></div>
+      <div class="paso-prog"><div class="barra-prog" style="height:55px;"></div><span>Ciclo 2</span><small>−constante</small></div>
+      <div class="paso-prog"><div class="barra-prog" style="height:40px;"></div><span>Ciclo 3</span><small>−constante</small></div>
+      <div class="paso-prog"><div class="barra-prog" style="height:25px;"></div><span>Ciclo 4</span><small>−constante</small></div>
+      <div class="paso-prog"><div class="barra-prog" style="height:12px;"></div><span>Ciclo n</span><small>se aprieta</small></div>
+      <div class="infinito">∞</div>
+    </div>
+    <p>La clave de "infinito" no es que la intensidad de cada punzada crezca, sino que la <strong>cadencia</strong> nunca encuentra un piso: no hay una fase final de somatización que cierre el patrón, como sí ocurre en un ataque acumulativo. El sistema queda atrapado en un ritmo que se aprieta sin destino, diseñado para desgastar por persistencia y no por una crisis puntual identificable.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Diferenciación con la Serie Fibonacci</h2>
+  <div class="card">
+    <p style="margin-bottom:22px; font-size:0.95em; color:var(--texto-dim); font-style:italic;">Ambos patrones usan una progresión numérica como capa organizativa, pero apuntan a objetivos y mecanismos distintos.</p>
+    <div class="comparativa">
+      <div class="comp-item">
+        <h4>Serie Fibonacci de Ataques Dimensionales</h4>
+        <p><strong>Acumula y escala</strong> en intensidad (1, 1, 2, 3, 5, 8, 13, 21...) sobre el receptor, hasta una somatización avanzada — construye hacia un clímax. <a href="serie_fibonacci_ataques_dimensionales_receptor.html">Ver página →</a></p>
+      </div>
+      <div class="comp-item propio">
+        <h4>✦ Puyazos de Pies y Manos</h4>
+        <p>No escala en intensidad, solo en <strong>frecuencia</strong>: los intervalos se acortan de forma aritmética, sin fase final ni clímax. Es un goteo que se acelera indefinidamente, no una explosión que se prepara.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="titulo-seccion">Síntomas Característicos</h2>
+  <div class="card">
+    <ul class="lista">
+      <li>Punzadas breves y agudas, simétricas, en pies y manos —con frecuencia en dedos, palmas y plantas.</li>
+      <li>Percepción consciente de que "cada vez pasa menos tiempo" entre un puyazo y el siguiente: el patrón es medible por quien lo experimenta.</li>
+      <li>Ausencia de un punto de quiebre: no hay una crisis única que marque el final del ciclo, solo una cadencia que se aprieta.</li>
+      <li>Sensación de agotamiento por persistencia más que por dolor intenso puntual.</li>
+    </ul>
+  </div>
+
+  <h2 class="titulo-seccion">Protección y Cierre</h2>
+  <div class="card">
+    <div class="protocolo-paso">
+      <div class="protocolo-num">I</div>
+      <div class="protocolo-texto">
+        <h4>Registro consciente de la cadencia</h4>
+        <p>Anotar los intervalos entre episodios para confirmar la progresión aritmética — el reconocimiento del patrón ya interrumpe parte de su efecto, porque el ataque depende de que el ritmo pase desapercibido como fenómeno "aleatorio".</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">II</div>
+      <div class="protocolo-texto">
+        <h4>Sellado de los cuatro puntos terminales</h4>
+        <p>Sellado áurico específico en manos y pies, no solo limpieza general del campo — el ataque opera exactamente en esos cuatro puntos de cierre de meridiano.</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">III</div>
+      <div class="protocolo-texto">
+        <h4>Rayo Crístico como corte de cadencia</h4>
+        <p>Invocación dirigida a romper el ritmo mismo, no cada punzada individual — el objetivo es que la progresión no encuentre el siguiente ciclo desde el cual seguir acortándose.</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">IV</div>
+      <div class="protocolo-texto">
+        <h4>Confirmación de reinicio del intervalo</h4>
+        <p>Tras el sellado, verificar que el intervalo entre eventuales episodios vuelve a ser largo e irregular — señal de que la progresión aritmética se disolvió y no quedó solo pausada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="enlaces-relacionados">
+    <h2>Ver también</h2>
+    <div class="chips">
+      <a class="chip" href="serie_fibonacci_ataques_dimensionales_receptor.html">Serie Fibonacci de Ataques Dimensionales</a>
+      <a class="chip" href="zumbido_oidos_ataque_vibracional.html">Zumbido en Ambos Oídos: Ataque Vibracional</a>
+      <a class="chip" href="ataque_calor_ascendente_piernas.html">Ataque de Calor Ascendente en Piernas</a>
+      <a class="chip" href="rayo_cristico.html">Rayo Crístico</a>
+      <a class="chip" href="tipos_ataques_energeticos.html">Catálogo de Ataques Energéticos</a>
+    </div>
+  </div>
+
+  <a class="volver" href="index.html">← Volver al índice de El Ser Uno</a>
+
+</main>
+
+<footer>
+  El Ser Uno · Biblioteca de Conocimiento Esotérico
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('cosmos');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esMovil = window.innerWidth < 640;
+
+  let ancho, alto, dpr;
+  let estrellas = [];
+  let scrollActual = 0;
+
+  const NUM_ESTRELLAS = esMovil ? 70 : 150;
+  const RADIO_CONEXION = esMovil ? 0 : 130;
+
+  function dimensionar(){
+    ancho = window.innerWidth;
+    alto = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = ancho * dpr;
+    canvas.height = alto * dpr;
+    canvas.style.width = ancho + 'px';
+    canvas.style.height = alto + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function crearEstrellas(){
+    estrellas = [];
+    for(let i = 0; i < NUM_ESTRELLAS; i++){
+      const profundidad = Math.random();
+      estrellas.push({
+        x: Math.random() * ancho,
+        y: Math.random() * alto * 2.4,
+        r: 0.5 + profundidad * 1.6,
+        brillo: 0.25 + profundidad * 0.6,
+        fase: Math.random() * Math.PI * 2,
+        velocidadFase: 0.4 + Math.random() * 0.6,
+        profundidad: 0.15 + profundidad * 0.5
+      });
+    }
+  }
+
+  function dibujar(tiempo){
+    ctx.clearRect(0, 0, ancho, alto);
+
+    if(RADIO_CONEXION > 0){
+      ctx.strokeStyle = 'rgba(212,175,55,0.10)';
+      ctx.lineWidth = 1;
+      for(let i = 0; i < estrellas.length; i++){
+        const a = estrellas[i];
+        const ay = a.y - scrollActual * a.profundidad;
+        if(ay < -50 || ay > alto + 50) continue;
+        for(let j = i + 1; j < estrellas.length; j++){
+          const b = estrellas[j];
+          if(Math.abs(a.profundidad - b.profundidad) > 0.12) continue;
+          const by = b.y - scrollActual * b.profundidad;
+          const dx = a.x - b.x, dy = ay - by;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < RADIO_CONEXION){
+            ctx.globalAlpha = 1 - dist / RADIO_CONEXION;
+            ctx.beginPath();
+            ctx.moveTo(a.x, ay);
+            ctx.lineTo(b.x, by);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    estrellas.forEach(e => {
+      const y = e.y - scrollActual * e.profundidad;
+      if(y < -20 || y > alto + 20) return;
+      const titileo = reducirMovimiento ? 1 : (0.7 + 0.3 * Math.sin(tiempo * 0.001 * e.velocidadFase + e.fase));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(238,243,255,' + (e.brillo * titileo) + ')';
+      ctx.arc(e.x, y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if(!reducirMovimiento){
+      requestAnimationFrame(dibujar);
+    }
+  }
+
+  function alRedimensionar(){
+    dimensionar();
+    crearEstrellas();
+    if(reducirMovimiento){ dibujar(0); }
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    scrollActual = window.scrollY;
+    if(!ticking && reducirMovimiento){
+      ticking = true;
+      requestAnimationFrame(() => { dibujar(0); ticking = false; });
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', alRedimensionar);
+
+  dimensionar();
+  crearEstrellas();
+  requestAnimationFrame(dibujar);
+})();
+</script>
+
+</body>
+</html>

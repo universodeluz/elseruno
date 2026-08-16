@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Replicador de Dolencias | El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #030417;
+    --void-2: #0a0e27;
+    --nebula-violet: #2c1b4d;
+    --nebula-blue: #16213a;
+    --gold: #d4af37;
+    --gold-soft: #f2dfa0;
+    --star-white: #eef3ff;
+    --texto: #cbd6ee;
+    --texto-dim: #8a95bd;
+    --sangre: #7a2e3a;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 8%, rgba(44,27,77,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(22,33,58,0.6) 0%, transparent 65%),
+      radial-gradient(ellipse at top, var(--void-2) 0%, var(--void) 55%, #000 100%);
+    color: var(--texto);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #cosmos{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    width: 100%; height: 100%; display: block;
+  }
+
+  a{ color: var(--gold-soft); }
+
+  header{
+    text-align: center;
+    padding: 70px 20px 30px;
+    position: relative;
+    z-index: 1;
+  }
+  .migas{
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 0.85em;
+    color: var(--texto-dim);
+    letter-spacing: 0.5px;
+  }
+  .migas a{ color: var(--texto-dim); text-decoration: none; }
+  .migas a:hover{ color: var(--gold); }
+
+  h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2.5em;
+    background: linear-gradient(120deg, var(--gold-soft), var(--gold), var(--star-white));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(212,175,55,0.25);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+  .subtitulo{
+    font-style: italic;
+    color: #9fb4e0;
+    font-size: 1.15em;
+    letter-spacing: 1px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .linea-divisoria{
+    width: 240px;
+    height: 1px;
+    margin: 30px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), rgba(159,180,224,0.8), var(--gold), transparent);
+  }
+
+  .badges{
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .badge{
+    border: 1px solid rgba(212,175,55,0.4);
+    background: rgba(10,14,39,0.55);
+    backdrop-filter: blur(8px);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.82em;
+    letter-spacing: 0.5px;
+    color: var(--gold-soft);
+  }
+  .badge.oscuro{
+    border-color: rgba(122,46,58,0.6);
+    color: #e0a4ac;
+  }
+
+  main{
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nota-medica{
+    font-size: 0.85em;
+    color: var(--texto-dim);
+    font-style: italic;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 50px;
+    padding: 0 10px;
+  }
+
+  h2.titulo-seccion{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.3em;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin: 56px 0 20px;
+    text-align: center;
+  }
+
+  p{ margin-bottom: 16px; }
+  strong{ color: var(--gold-soft); font-weight: 600; }
+
+  .card{
+    background: linear-gradient(160deg, rgba(20,16,40,0.6), rgba(4,5,12,0.75));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(159,180,224,0.22);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 18px;
+  }
+  .card h3{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.02em;
+    color: var(--gold-soft);
+    font-weight: 400;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .card p:last-child{ margin-bottom: 0; }
+
+  /* Tabla comparativa de diferenciación */
+  .comparativa{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .comp-item{
+    border-left: 3px solid var(--gold);
+    padding: 8px 0 8px 18px;
+  }
+  .comp-item.propio{
+    border-left-color: var(--sangre);
+    background: rgba(122,46,58,0.08);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+  }
+  .comp-item h4{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.92em;
+    color: var(--gold-soft);
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .comp-item p{
+    font-size: 0.95em;
+    margin-bottom: 0;
+    color: var(--texto);
+  }
+  .comp-item a{ text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.5); }
+
+  ul.lista{
+    list-style: none;
+    padding: 0;
+  }
+  ul.lista li{
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+  }
+  ul.lista li::before{
+    content: "✦";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    opacity: 0.7;
+    font-size: 0.85em;
+  }
+
+  .protocolo-paso{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .protocolo-num{
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--gold);
+    font-size: 1.3em;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 30px;
+    text-align: center;
+  }
+  .protocolo-texto p{ margin-bottom: 4px; }
+  .protocolo-texto h4{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 0.95em;
+    color: var(--gold-soft);
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .enlaces-relacionados{
+    margin-top: 60px;
+    text-align: center;
+  }
+  .enlaces-relacionados h2{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1em;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .chip{
+    display: inline-block;
+    border: 1px solid rgba(159,180,224,0.3);
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 0.85em;
+    text-decoration: none;
+    color: var(--texto);
+    transition: all 0.25s ease;
+  }
+  .chip:hover{
+    border-color: var(--gold);
+    color: var(--gold-soft);
+    box-shadow: 0 0 16px rgba(212,175,55,0.15);
+  }
+
+  .volver{
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: var(--texto-dim);
+  }
+  .volver:hover{ color: var(--gold); }
+
+  footer{
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--texto-dim);
+    font-size: 0.85em;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cosmos"></canvas>
+
+<header>
+  <p class="migas">
+    <a href="index.html">Inicio</a> › <a href="index.html#ataques">Ataques y Defensa Energética</a> › Replicador de Dolencias
+  </p>
+  <h1>Replicador de Dolencias</h1>
+  <p class="subtitulo">Cuando una sola grieta se convierte en muchas: el constructo que multiplica lo que ya duele</p>
+  <div class="linea-divisoria"></div>
+  <div class="badges">
+    <span class="badge oscuro">Escala de oscuridad D-4 a D-6</span>
+    <span class="badge">Constructo etérico dirigido</span>
+    <span class="badge">Cuerpo etérico · físico</span>
+  </div>
+</header>
+
+<main>
+
+  <p class="nota-medica">
+    Este contenido se ofrece dentro del marco simbólico y energético de El Ser Uno. No sustituye diagnóstico, tratamiento ni seguimiento médico profesional. Ante cualquier síntoma físico persistente, se recomienda siempre consultar con un profesional de la salud.
+  </p>
+
+  <h2 class="titulo-seccion">Naturaleza del Ataque</h2>
+  <div class="card">
+    <p>El <strong>Replicador de Dolencias</strong> es un constructo etérico dirigido que no origina una dolencia nueva, sino que <strong>parasita una vulnerabilidad ya existente</strong> —física, emocional o áurica— en un ser de luz, y la multiplica de forma deliberada hacia otros puntos del cuerpo sutil.</p>
+    <p>Durante los procesos de evolución vibracional, el cuerpo sutil atraviesa reestructuraciones que dejan puntos transitoriamente más permeables. El Replicador no crea esa grieta: la encuentra ya abierta por el propio proceso de graduación del ser, y la usa como punto de anclaje desde el cual operar.</p>
+    <p>A diferencia de un patrón que se propaga por su propia naturaleza geométrica, este constructo requiere un <strong>operador</strong> que lo sostiene, dirige y decide dónde y cuándo replicar. Es herramienta, no fenómeno espontáneo.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Diferenciación con Constructos Afines</h2>
+  <div class="card">
+    <p style="margin-bottom:22px; font-size:0.95em; color:var(--texto-dim); font-style:italic;">La biblioteca ya documenta tres mecanismos cercanos que trabajan sobre dolencias existentes. El Replicador no los reemplaza: ocupa el espacio que ninguno de los tres cubre.</p>
+    <div class="comparativa">
+      <div class="comp-item">
+        <h4>Dispensador y Amplificador de Dolencias</h4>
+        <p><strong>Intensifica</strong> una dolencia en el <strong>mismo punto</strong> donde ya existe. No hay desplazamiento ni multiplicación de focos: sube el volumen de lo que ya está sonando. <a href="dispensador_amplificador_dolencias.html">Ver página →</a></p>
+      </div>
+      <div class="comp-item">
+        <h4>Ataque desde la Atemporalidad: Transferencia de Dolencias</h4>
+        <p><strong>Transfiere</strong> una dolencia ajena —que no pertenece originalmente al ser de luz— desde un plano atemporal, usándolo como receptáculo de una carga kármico-judicial ajena. El origen de la dolencia está fuera del ser. <a href="ataque_atemporalidad_dolencias.html">Ver página →</a></p>
+      </div>
+      <div class="comp-item">
+        <h4>Fractal Multisistémico</h4>
+        <p>Es un <strong>patrón geométrico autorreplicante</strong>: no tiene operador identificable, se propaga por su propia lógica fractal, como una matriz que se repite sola. <a href="ataques_fractales.html">Ver página →</a></p>
+      </div>
+      <div class="comp-item propio">
+        <h4>✦ Replicador de Dolencias</h4>
+        <p>Es un <strong>constructo dirigido</strong>: un agente etérico operado con intención, que toma una dolencia propia del ser (no ajena) y la multiplica hacia <strong>nuevos puntos</strong> del cuerpo sutil (no el mismo punto). Combina el desplazamiento espacial que no tiene el Dispensador, con la autoría deliberada que no tiene el Fractal Multisistémico.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="titulo-seccion">Mecánica de Replicación</h2>
+  <div class="card">
+    <p><strong>Punto ancla:</strong> el constructo se fija sobre la vulnerabilidad preexistente, generalmente en el cuerpo etérico, sobre un meridiano o punto de tensión ya activo.</p>
+    <p><strong>Cadena de propagación:</strong> desde ese ancla, replica la dolencia hacia sistemas distintos del cuerpo —no simultáneamente, sino en cadena, aprovechando cada nueva manifestación como plataforma para la siguiente.</p>
+    <p><strong>Ritmo:</strong> el salto de un sistema a otro suele ocurrir justo después de una sanación parcial del foco anterior, de modo que el alivio nunca se sostiene: el operador reubica la carga en cuanto detecta que el punto original pierde eficacia como ancla.</p>
+  </div>
+
+  <h2 class="titulo-seccion">Síntomas Característicos</h2>
+  <div class="card">
+    <ul class="lista">
+      <li>Caída progresiva y repetida en la escala Bovis pese a limpiezas recientes.</li>
+      <li>Dolencias que "saltan" de un sistema del cuerpo a otro sin causa médica clara que las conecte.</li>
+      <li>Cansancio o malestar que reaparece en un punto distinto justo después de cada sanación energética.</li>
+      <li>Sensación de estar "un paso atrás" del propio proceso de sanación, como si el alivio nunca alcanzara a asentarse.</li>
+    </ul>
+  </div>
+
+  <h2 class="titulo-seccion">Protección y Cierre</h2>
+  <div class="card">
+    <div class="protocolo-paso">
+      <div class="protocolo-num">I</div>
+      <div class="protocolo-texto">
+        <h4>Localización del punto ancla</h4>
+        <p>Radiestesia sobre el foco original de la vulnerabilidad, antes que sobre la manifestación más reciente —el ancla suele estar en el primer punto afectado, no en el último.</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">II</div>
+      <div class="protocolo-texto">
+        <h4>Sellado áurico del punto de origen</h4>
+        <p>No basta con sanar el síntoma actual: el sellado debe dirigirse específicamente al ancla, para que el constructo pierda su plataforma de replicación.</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">III</div>
+      <div class="protocolo-texto">
+        <h4>Rayo Crístico dirigido a la cadena</h4>
+        <p>Invocación no sobre el síntoma puntual, sino sobre la cadena completa de replicación, cortando la capacidad del constructo de reubicarse hacia un nuevo sistema.</p>
+      </div>
+    </div>
+    <div class="protocolo-paso">
+      <div class="protocolo-num">IV</div>
+      <div class="protocolo-texto">
+        <h4>Observación de reubicación</h4>
+        <p>Tras el sellado, observar si la dolencia intenta reaparecer en un punto nuevo —señal de que el constructo aún busca ancla— y repetir el sellado dirigido si es necesario.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="enlaces-relacionados">
+    <h2>Ver también</h2>
+    <div class="chips">
+      <a class="chip" href="dispensador_amplificador_dolencias.html">Dispensador y Amplificador de Dolencias</a>
+      <a class="chip" href="ataque_atemporalidad_dolencias.html">Transferencia de Dolencias desde la Atemporalidad</a>
+      <a class="chip" href="ataques_fractales.html">Ataques Fractales</a>
+      <a class="chip" href="rayo_cristico.html">Rayo Crístico</a>
+      <a class="chip" href="tipos_ataques_energeticos.html">Catálogo de Ataques Energéticos</a>
+    </div>
+  </div>
+
+  <a class="volver" href="index.html">← Volver al índice de El Ser Uno</a>
+
+</main>
+
+<footer>
+  El Ser Uno · Biblioteca de Conocimiento Esotérico
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('cosmos');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esMovil = window.innerWidth < 640;
+
+  let ancho, alto, dpr;
+  let estrellas = [];
+  let scrollActual = 0;
+
+  const NUM_ESTRELLAS = esMovil ? 70 : 150;
+  const RADIO_CONEXION = esMovil ? 0 : 130;
+
+  function dimensionar(){
+    ancho = window.innerWidth;
+    alto = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = ancho * dpr;
+    canvas.height = alto * dpr;
+    canvas.style.width = ancho + 'px';
+    canvas.style.height = alto + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function crearEstrellas(){
+    estrellas = [];
+    for(let i = 0; i < NUM_ESTRELLAS; i++){
+      const profundidad = Math.random();
+      estrellas.push({
+        x: Math.random() * ancho,
+        y: Math.random() * alto * 2.4,
+        r: 0.5 + profundidad * 1.6,
+        brillo: 0.25 + profundidad * 0.6,
+        fase: Math.random() * Math.PI * 2,
+        velocidadFase: 0.4 + Math.random() * 0.6,
+        profundidad: 0.15 + profundidad * 0.5
+      });
+    }
+  }
+
+  function dibujar(tiempo){
+    ctx.clearRect(0, 0, ancho, alto);
+
+    if(RADIO_CONEXION > 0){
+      ctx.strokeStyle = 'rgba(212,175,55,0.10)';
+      ctx.lineWidth = 1;
+      for(let i = 0; i < estrellas.length; i++){
+        const a = estrellas[i];
+        const ay = a.y - scrollActual * a.profundidad;
+        if(ay < -50 || ay > alto + 50) continue;
+        for(let j = i + 1; j < estrellas.length; j++){
+          const b = estrellas[j];
+          if(Math.abs(a.profundidad - b.profundidad) > 0.12) continue;
+          const by = b.y - scrollActual * b.profundidad;
+          const dx = a.x - b.x, dy = ay - by;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < RADIO_CONEXION){
+            ctx.globalAlpha = 1 - dist / RADIO_CONEXION;
+            ctx.beginPath();
+            ctx.moveTo(a.x, ay);
+            ctx.lineTo(b.x, by);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    estrellas.forEach(e => {
+      const y = e.y - scrollActual * e.profundidad;
+      if(y < -20 || y > alto + 20) return;
+      const titileo = reducirMovimiento ? 1 : (0.7 + 0.3 * Math.sin(tiempo * 0.001 * e.velocidadFase + e.fase));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(238,243,255,' + (e.brillo * titileo) + ')';
+      ctx.arc(e.x, y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    if(!reducirMovimiento){
+      requestAnimationFrame(dibujar);
+    }
+  }
+
+  function alRedimensionar(){
+    dimensionar();
+    crearEstrellas();
+    if(reducirMovimiento){ dibujar(0); }
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    scrollActual = window.scrollY;
+    if(!ticking && reducirMovimiento){
+      ticking = true;
+      requestAnimationFrame(() => { dibujar(0); ticking = false; });
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', alRedimensionar);
+
+  dimensionar();
+  crearEstrellas();
+  requestAnimationFrame(dibujar);
+})();
+</script>
+
+</body>
+</html>
