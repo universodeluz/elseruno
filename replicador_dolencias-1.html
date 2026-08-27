@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Replicador de Dolencias · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+/* HERO */
+.hero { min-height: 56vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(176,64,64,.3); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--crimson-pale); box-shadow:0 0 10px var(--crimson-pale); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(40,10,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(176,64,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+/* CARDS */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p.lead { font-size:.88rem; color:var(--gris-c); line-height:1.8; }
+.card p.lead strong { color:var(--blanco); }
+
+/* DIFERENCIACIÓN — 3 MECANISMOS */
+.mecanismo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.7rem; margin-top:.5rem; }
+.mecanismo-box { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:1rem 1.1rem; }
+.mecanismo-box.activo { border-color:var(--crimson); background:rgba(176,64,64,.08); }
+.mecanismo-nombre { font-family:'Cinzel', serif; font-size:.76rem; letter-spacing:.06em; color:var(--violeta-c); margin-bottom:.4rem; }
+.mecanismo-box.activo .mecanismo-nombre { color:var(--crimson-pale); }
+.mecanismo-desc { font-size:.8rem; color:var(--gris-c); line-height:1.6; }
+
+/* SECTION HEADER */
+.section-head { text-align:center; margin:3rem 0 1.4rem; }
+.section-head h2 { font-family:'Cinzel', serif; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; color:var(--violeta-c); }
+.section-head p { font-size:.82rem; color:var(--gris); margin-top:.4rem; }
+
+/* VÍAS DE PROPAGACIÓN — TARJETAS FIJAS */
+.via-card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.4rem 1.5rem; margin-bottom:1rem; }
+.via-title { font-family:'Cinzel', serif; font-size:.82rem; letter-spacing:.06em; color:var(--oro); margin-bottom:.3rem; display:flex; align-items:center; gap:.7rem; }
+.via-title .idx { background:var(--surface); border:1px solid var(--crimson); color:var(--crimson-pale); border-radius:50%; width:24px; height:24px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.68rem; font-family:'Space Mono', monospace; }
+.via-desc { font-size:.85rem; color:var(--gris-c); line-height:1.75; margin-top:.7rem; }
+.via-desc strong { color:var(--blanco); }
+
+/* SEÑALES */
+.senales-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:.5rem; }
+.senal-item { display:flex; align-items:flex-start; gap:.6rem; padding:.65rem .75rem; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; }
+.senal-item::before { content:'◆'; color:var(--crimson-pale); font-size:.55rem; margin-top:.35rem; flex-shrink:0; }
+.senal-item span { font-size:.8rem; line-height:1.5; color:var(--blanco); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+
+@media (max-width:560px){ .hero-links{ flex-direction:column; align-items:center; } }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◈</div></div>
+  <h1>Replicador de Dolencias</h1>
+  <p class="hero-sub">El Ser Uno · Mecanismo Dimensional de Propagación</p>
+  <p class="hero-intro">Un replicador de dolencias no origina el malestar ni lo vuelve más intenso en el mismo punto — lo toma una vez presente y lo multiplica hacia otros lugares, otros momentos u otras personas. Es un mecanismo de alcance, no de intensidad: su daño no se mide en cuánto duele, sino en cuánto se extiende.</p>
+  <div class="hero-links">
+    <a href="dispensador_amplificador_dolencias.html" class="hero-cta">✦ Dispensador y Amplificador de Dolencias</a>
+    <a href="jerarquia_seres_oscuridad.html" class="hero-cta">⬡ Jerarquía D-1 a D-8/9</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Diferenciación Rápida — Tres Mecanismos sobre la Dolencia</div>
+  <p class="lead">El Replicador comparte familia con el Dispensador y el Amplificador, pero opera en un eje distinto: mientras estos actúan sobre la <strong>intensidad</strong> de la dolencia en su punto de origen, el Replicador actúa sobre su <strong>alcance</strong>, copiándola hacia nuevos puntos sin necesidad de intensificarla donde ya está.</p>
+  <div class="mecanismo-grid">
+    <div class="mecanismo-box">
+      <div class="mecanismo-nombre">Dispensador</div>
+      <div class="mecanismo-desc">Entrega o inicia una dolencia que antes no estaba presente en el campo del Ser.</div>
+    </div>
+    <div class="mecanismo-box">
+      <div class="mecanismo-nombre">Amplificador</div>
+      <div class="mecanismo-desc">Intensifica una dolencia ya existente, aumentando su fuerza en el mismo punto.</div>
+    </div>
+    <div class="mecanismo-box activo">
+      <div class="mecanismo-nombre">Replicador</div>
+      <div class="mecanismo-desc">Toma una dolencia ya presente y la duplica hacia nuevos puntos, sin aumentar necesariamente su intensidad original.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-head">
+  <h2>Tres Vías de Propagación</h2>
+  <p>Cómo se multiplica una dolencia una vez que el replicador la toma como base</p>
+</div>
+
+<div class="via-card">
+  <div class="via-title"><span class="idx">1</span>Propagación Espacial</div>
+  <div class="via-desc">La dolencia se copia hacia <strong>otras zonas del cuerpo sutil</strong> distintas de donde se originó. Un malestar que comenzó localizado empieza a aparecer en puntos sin relación física directa entre sí, como si el patrón "saltara" de una zona a otra en vez de extenderse por contigüidad natural.</div>
+</div>
+
+<div class="via-card">
+  <div class="via-title"><span class="idx">2</span>Propagación Temporal</div>
+  <div class="via-desc">La dolencia se copia hacia <strong>otros momentos</strong>, generando recurrencia: reaparece en ciclos que no corresponden a una causa física identificable ni a un patrón emocional recurrente propio, sino a una copia del episodio original reinsertada en el tiempo.</div>
+</div>
+
+<div class="via-card">
+  <div class="via-title"><span class="idx">3</span>Propagación Interpersonal</div>
+  <div class="via-desc">La dolencia se copia hacia <strong>otras personas del entorno del Ser</strong> — familiares, personas cercanas o con vínculo energético estrecho — que comienzan a manifestar un malestar de características similares sin haber compartido una causa física o de contagio convencional.</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◇</span>Señales de un Replicador Activo</div>
+  <p class="lead" style="margin-bottom:.9rem;">Distinguir un replicador de una dolencia simplemente crónica o de causas físicas normales requiere observar el patrón de multiplicación, no solo el síntoma:</p>
+  <div class="senales-grid">
+    <div class="senal-item"><span>El malestar aparece en zonas nuevas sin relación anatómica con el origen</span></div>
+    <div class="senal-item"><span>Reaparece en ciclos que no calzan con causas físicas ni emocionales propias</span></div>
+    <div class="senal-item"><span>Personas cercanas desarrollan un malestar similar en paralelo</span></div>
+    <div class="senal-item"><span>El síntoma se multiplica en alcance más de lo que se intensifica en el mismo punto</span></div>
+    <div class="senal-item"><span>Los tratamientos convencionales alivian el punto original pero el patrón reaparece en otro lugar</span></div>
+  </div>
+</div>
+
+<div class="section-head">
+  <h2>Contramedida</h2>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◇</span>Corte del Patrón de Propagación</div>
+  <p class="lead">La defensa frente al Replicador no es tratar cada síntoma nuevo como un caso aislado, sino reconocer la copia como copia y cortar el patrón de origen mediante <strong>sellado áurico</strong> sostenido, evitando que el punto inicial siga sirviendo de plantilla. Cuando el patrón de origen se disuelve realmente, las réplicas dejan de generarse, aunque los síntomas ya manifestados en otros puntos puedan requerir atención propia.</p>
+</div>
+
+<footer>
+  <p>El Ser Uno · Replicador de Dolencias</p>
+  <p style="margin-top:.3rem">Concepto basado en experiencia propia — no proviene de los libros fuente del canon</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>

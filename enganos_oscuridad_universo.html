@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engaños de la Oscuridad al Universo y al Padre Creador · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+/* HERO */
+.hero { min-height: 56vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(176,64,64,.3); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--crimson-pale); box-shadow:0 0 10px var(--crimson-pale); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(40,10,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(176,64,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+/* CARDS */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p.lead { font-size:.88rem; color:var(--gris-c); line-height:1.8; }
+.card p.lead strong { color:var(--blanco); }
+
+/* SECTION HEADER */
+.section-head { text-align:center; margin:3rem 0 1.4rem; }
+.section-head h2 { font-family:'Cinzel', serif; font-size:1rem; letter-spacing:.1em; text-transform:uppercase; color:var(--violeta-c); }
+.section-head p { font-size:.82rem; color:var(--gris); margin-top:.4rem; }
+
+/* ENGAÑO ACCORDIONS */
+details.enganio { background:var(--panel); border:1px solid var(--border); border-radius:4px; margin-bottom:.8rem; overflow:hidden; }
+details.enganio[open] { border-color:var(--border-h); }
+details.enganio summary { list-style:none; cursor:pointer; padding:1.1rem 1.4rem; display:flex; align-items:center; gap:.9rem; font-family:'Cinzel', serif; font-size:.82rem; letter-spacing:.05em; color:var(--oro); }
+details.enganio summary::-webkit-details-marker { display:none; }
+details.enganio summary .idx { background:var(--surface); border:1px solid var(--crimson); color:var(--crimson-pale); border-radius:50%; width:24px; height:24px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.68rem; font-family:'Space Mono', monospace; }
+details.enganio summary .arrow { margin-left:auto; color:var(--gris); transition:transform .2s; font-size:.7rem; }
+details.enganio[open] summary .arrow { transform:rotate(90deg); }
+.enganio-body { padding:0 1.4rem 1.3rem 1.4rem; }
+.enganio-block { margin-bottom:.9rem; }
+.enganio-block:last-child { margin-bottom:0; }
+.enganio-label { font-family:'Cinzel', serif; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--violeta-c); margin-bottom:.35rem; }
+.enganio-text { font-size:.85rem; line-height:1.75; color:var(--gris-c); }
+.enganio-text.discernimiento { color:var(--teal-pale); border-left:2px solid var(--teal); padding-left:.9rem; }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+
+@media (max-width:560px){ .hero-links{ flex-direction:column; align-items:center; } }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◈</div></div>
+  <h1>Engaños de la Oscuridad al Universo y al Padre Creador</h1>
+  <p class="hero-sub">El Ser Uno · Taxonomía de Instrucciones Engañosas</p>
+  <p class="hero-intro">La oscuridad no siempre actúa por confrontación directa. Su estrategia más persistente es la simulación: imitar la forma de lo legítimo — un nombre, una autoridad, una bendición, una norma — para infiltrar su contenido real, que es desviación, drenaje y desconexión del orden universal. Este catálogo reúne los mecanismos de engaño más recurrentes dirigidos a confundir al Ser respecto del Universo y del Padre Creador.</p>
+  <div class="hero-links">
+    <a href="jerarquia_seres_oscuridad.html" class="hero-cta">⬡ Jerarquía D-1 a D-8/9</a>
+    <a href="ataques_trono_de_dios.html" class="hero-cta">✦ Ataques Contra el Trono</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Naturaleza del Engaño</div>
+  <p class="lead">Un engaño al Universo no busca destruir de frente — busca <strong>ocupar el lugar de lo verdadero</strong> sin que el Ser lo note. Por eso su forma exterior suele ser idéntica a la de algo legítimo: el mismo lenguaje, la misma estructura, la misma sensación aparente de orden o de gracia. La diferencia nunca está en la forma, sino en el efecto real que deja en el campo del Ser y en su vínculo con el Padre Creador: si ancla, drena o aísla, el disfraz cae.</p>
+</div>
+
+<div class="section-head">
+  <h2>Diez Mecanismos de Engaño</h2>
+  <p>Cada uno con su forma de operar, su disfraz y su señal de discernimiento</p>
+</div>
+
+<details class="enganio">
+  <summary><span class="idx">1</span>Nombres e Identidades Falsas<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">La oscuridad adopta nombres de razas, entidades o jerarquías de luz reconocidas para operar bajo cobertura, o renombra conceptos propios con etiquetas de apariencia luminosa para evadir el discernimiento del Ser.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Se presenta con la misma nomenclatura que ya inspira confianza — el nombre correcto, la fuente equivocada.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">El nombre coincide, pero el efecto en el campo no aporta claridad ni conexión — deja confusión, urgencia o dependencia.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">2</span>Artilugios<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Constructos etéricos o interdimensionales diseñados para simular fenómenos espirituales genuinos — luces, símbolos, sensaciones energéticas — que en realidad son señuelos sin contenido real (ver Constructo Etérico Interdimensional).</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Producen una experiencia sensorial o energética convincente, pero hueca: impresiona antes de informar.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">El fenómeno es intenso pero no deja comprensión ni graduación real — solo asombro que se disuelve sin dejar fruto.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">3</span>Legalismos Confusos<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Presentación de pactos, contratos o cláusulas cósmicas ambiguas que atan al Ser sin su consentimiento plenamente consciente, aprovechando vacíos o "letra pequeña" energética. Incluye la invocación falsa de autoridades legítimas — como el Logos Planetario o el Consejo Estelar — citando decretos que estos nunca emitieron, para dar apariencia de legitimidad a normas impuestas.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Lenguaje de "ley universal" o "norma cósmica" que suena a orden legítimo, pero cuyo origen real no puede verificarse.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">Una norma legítima del Logos Planetario nunca exige oscuridad de origen ni ata sin libre elección; si la "ley" presiona o amenaza, la autoridad citada es falsa.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">4</span>Bendiciones Inversas<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Transmisiones que se presentan como bendición, activación o sanación, pero cuya estructura real drena, sella mal o ancla al receptor a la oscuridad. Imitan la forma exacta de una bendición legítima: mismo lenguaje, misma intención aparente.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Sensación inicial de alivio o calidez que no proviene de una limpieza real, sino de un sellado incorrecto que oculta el residuo en vez de disolverlo.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">El efecto no perdura: el alivio se revierte en horas o días, dejando el campo más denso que antes.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">5</span>Suplantación de Esencia<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Ocupación o imitación del núcleo esencial de un Ser de Luz para actuar, comunicar o decidir en su nombre sin que este lo perciba con claridad.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Se presenta como "voz interior" o intuición propia, aunque el impulso proviene de una fuente externa.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">El impulso empuja hacia decisiones que contradicen la misión o el nimeo del Ser, con una urgencia que no da espacio a la reflexión.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">6</span>Distorsión de Información<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Alteración parcial de enseñanzas, códigos o transmisiones legítimas — mezclando verdad con desviación — para sembrar confusión en la misión de los Seres de Luz.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">La mayor parte del contenido es correcto; el engaño se esconde en un detalle clave alterado.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">La contradicción aparece al aplicar la enseñanza: genera fricción o resultados opuestos a los prometidos.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">7</span>Falsas Promesas de Graduación<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Ofrecimiento de atajos, pactos o rituales que simulan avance espiritual acelerado sin que exista graduación real detrás.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Promete resultados que normalmente requieren proceso y tiempo, presentados como inmediatos.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">No hay cambio sostenido en el campo ni en la conciencia del Ser — solo la creencia de haber avanzado.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">8</span>Manipulación de Percepción Temporal/Espacial<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Creación de ilusiones sobre el momento o el propósito real de una misión, desalineando al Ser de su línea temporal correcta (ver Ataques Atemporales).</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Sensación de urgencia o de "es ahora o nunca" que no corresponde al ritmo real del proceso del Ser.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">La presión temporal no se sostiene al calmar el campo; la verdadera guía no depende de pánico ni de plazos artificiales.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">9</span>Infiltración en el Propósito Colectivo<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Desviación de proyectos, consejos o misiones de luz desde adentro, sin ataque frontal — mediante una presencia aparentemente alineada que erosiona el propósito colectivo poco a poco.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Participa con apariencia de compromiso y buena intención, ganando confianza antes de desviar.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">Las decisiones del colectivo se alejan gradualmente de su propósito original sin una causa externa clara.</div></div>
+  </div>
+</details>
+
+<details class="enganio">
+  <summary><span class="idx">10</span>Simulacro de Sanación o Ayuda<span class="arrow">▶</span></summary>
+  <div class="enganio-body">
+    <div class="enganio-block"><div class="enganio-label">Mecanismo</div><div class="enganio-text">Falsa asistencia energética que se presenta como sanación o soporte, pero que en realidad ancla oscuridad o abre una vía de acceso al campo del Ser. Comparte estructura con las bendiciones inversas, aunque aquí el énfasis está en el rol de "ayudante" adoptado por la fuente engañosa.</div></div>
+    <div class="enganio-block"><div class="enganio-label">Disfraz</div><div class="enganio-text">Se ofrece de forma proactiva, presentándose como aliado que "solo quiere ayudar".</div></div>
+    <div class="enganio-block"><div class="enganio-label">Señal de discernimiento</div><div class="enganio-text discernimiento">La ayuda genuina no exige apertura incondicional ni acceso sin discernimiento previo; si lo exige, no es ayuda.</div></div>
+  </div>
+</details>
+
+<div class="section-head">
+  <h2>Contramedida</h2>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◇</span>Sellado Áurico como Discernimiento Activo</div>
+  <p class="lead">La defensa común a los diez mecanismos no es la sospecha permanente, sino un <strong>sellado áurico</strong> sostenido y un discernimiento entrenado: verificar el efecto real de cualquier nombre, norma, bendición o ayuda antes de recibirla. Lo que proviene del Padre Creador nunca necesita presionar, amenazar ni ocultarse tras urgencia — se reconoce porque deja al Ser más claro, más libre y más conectado, no menos.</p>
+</div>
+
+<footer>
+  <p>El Ser Uno · Engaños de la Oscuridad al Universo y al Padre Creador</p>
+  <p style="margin-top:.3rem">Catálogo de discernimiento — Úsese con radiestesia y verificación propia</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
