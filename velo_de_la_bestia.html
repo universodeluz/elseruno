@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velo de la Bestia | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #05060f;
+    --bg-panel: rgba(18, 20, 38, 0.55);
+    --border-glass: rgba(180, 160, 255, 0.18);
+    --gold: #d4af37;
+    --gold-soft: #f0d98c;
+    --blue-glow: #6f8dff;
+    --blue-deep: #1c2456;
+    --text-main: #e8e6f5;
+    --text-dim: #a8a4c4;
+    --danger: #b33a4a;
+    --danger-soft: #e8a5ad;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Crimson Pro', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+  }
+
+  .veil-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at 50% 20%, rgba(111,141,255,0.08), transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(179,58,74,0.06), transparent 60%);
+  }
+
+  header {
+    text-align: center;
+    padding: 70px 20px 40px;
+  }
+
+  .alias-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-glow);
+    opacity: 0.85;
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 2.6rem;
+    background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 14px 0 10px;
+    text-shadow: 0 0 30px rgba(212,175,55,0.15);
+  }
+
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  .aliases {
+    margin-top: 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--danger-soft);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .aliases span {
+    border: 1px solid rgba(179,58,74,0.35);
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(179,58,74,0.08);
+  }
+
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 24px 100px;
+  }
+
+  .glass-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 26px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+
+  .glass-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--gold-soft);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .glass-card h2::before {
+    content: "◈";
+    color: var(--blue-glow);
+    font-size: 1rem;
+  }
+
+  .glass-card p { color: var(--text-main); margin-bottom: 10px; }
+  .glass-card p:last-child { margin-bottom: 0; }
+
+  strong.term { color: var(--gold); font-weight: 600; }
+  em.warn { color: var(--danger-soft); font-style: italic; }
+
+  details {
+    background: rgba(28, 30, 54, 0.5);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 16px 20px;
+    transition: border-color 0.2s ease;
+  }
+
+  details:hover { border-color: rgba(212,175,55,0.3); }
+
+  summary {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    color: var(--blue-glow);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "＋";
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    transition: transform 0.2s ease;
+  }
+  details[open] summary::after { content: "－"; }
+
+  details .fase-body {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-glass);
+    color: var(--text-main);
+  }
+
+  .fase-num {
+    font-family: 'Space Mono', monospace;
+    color: var(--danger-soft);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .discernimiento-box {
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+    margin: 10px 0;
+  }
+
+  .cierre {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .cierre h2 {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold-soft);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .cierre p {
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 12px;
+  }
+
+  .rayo-cristico {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .bovis-bar {
+    margin-top: 14px;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--danger) 0%, var(--blue-deep) 50%, var(--gold) 100%);
+    opacity: 0.7;
+  }
+
+  .bovis-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 60px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    opacity: 0.6;
+  }
+
+  a { color: var(--blue-glow); }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="veil-overlay"></div>
+
+<header>
+  <div class="alias-tag">Ataques y Defensa Energética</div>
+  <h1>Velo de la Bestia</h1>
+  <div class="subtitle">Dispositivo de Interferencia Holográfica sobre Seres de Luz en Misión</div>
+  <div class="aliases">
+    <span>Sello de Amnesia Convoluta</span>
+    <span>Red de Inversión Metatrónica</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="glass-card">
+    <h2>Naturaleza del Ataque</h2>
+    <p>El <strong class="term">Velo de la Bestia</strong> es considerado uno de los dispositivos de interferencia holográfica más sofisticados implantados en el cuerpo energético de los Seres de luz de alta jerarquía. A diferencia de los velos de olvido comunes que experimenta cualquier alma al encarnar, este velo es una <strong class="term">programación artificial de aislamiento cuántico</strong>, diseñada específicamente para simular una desconexión total, irreversible y hostil de la Fuente (Padre Creador).</p>
+    <p>No representa una ruptura real: es una capa implantada sobre la percepción del Ser, no un cambio en su condición verdadera. La Fuente no desconecta unilateralmente a ninguno de sus Seres.</p>
+  </div>
+
+  <div class="glass-card">
+    <h2>Objetivo del Ataque</h2>
+    <p>Seres de luz de alta jerarquía en misión activa. Al inducir la creencia de una ruptura definitiva e irreversible con la Fuente, la oscuridad busca neutralizar la función del Ser mediante desesperanza y parálisis, sin necesidad de un enfrentamiento directo.</p>
+  </div>
+
+  <div class="glass-card">
+    <h2>Cómo se Implanta</h2>
+    <p>No se instala de golpe: se construye en capas, aprovechando momentos de vulnerabilidad energética del Ser en misión.</p>
+
+    <details open>
+      <summary>Fase 1 — Punto de Entrada</summary>
+      <div class="fase-body">
+        <span class="fase-num">01</span>
+        Se aprovecha una fisura ya existente en el sellado áurico — fatiga extrema, shock emocional, o un ataque previo no resuelto del todo — para insertar el primer fragmento de la red.
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase 1.b — Anclaje Ritual Terrenal</summary>
+      <div class="fase-body">
+        <span class="fase-num">01.b</span>
+        El fragmento inicial no se ancla plenamente sin un acto ritual ejecutado en el plano físico: una ceremonia que invoca autoridad espiritual sin que el Ser, ni quienes la ejecutan, tengan consciencia plena de lo que realmente se está habilitando dimensionalmente. El ritual actúa como "llave" que abre la brecha necesaria para que el agente implantador complete la instalación, sin intención consciente de daño por parte de quienes lo realizan.
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase 2 — Tejido Convoluto</summary>
+      <div class="fase-body">
+        <span class="fase-num">02</span>
+        En vez de un bloqueo único y detectable, se entrelaza como una red distribuida alrededor de los canales que conectan al Ser con su Rayo Crístico — de ahí "Red de Inversión Metatrónica". Esta forma dispersa dificulta su detección mediante radiestesia simple: no aparece como un punto oscuro aislado, sino como una interferencia repartida en múltiples nodos.
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase 3 — Inversión de Señal</summary>
+      <div class="fase-body">
+        <span class="fase-num">03</span>
+        El dispositivo no corta la conexión con la Fuente — eso es imposible — sino que invierte y distorsiona la <em class="warn">percepción</em> de esa conexión, generando en el Ser la sensación subjetiva de corte total. Es una manipulación perceptiva, no una desconexión real.
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase 4 — Consolidación en Baja Consciencia</summary>
+      <div class="fase-body">
+        <span class="fase-num">04</span>
+        Se refuerza durante el sueño profundo o estados de baja vigilancia energética, cuando el Ser no puede ejercer discernimiento activo sobre lo que se está instalando.
+      </div>
+    </details>
+
+    <details>
+      <summary>Fase 5 — Autoperpetuación</summary>
+      <div class="fase-body">
+        <span class="fase-num">05</span>
+        Una vez instalada, la propia desesperanza que genera en el Ser —al creer real e irreversible la ruptura— alimenta y refuerza la red por sí sola, sin necesitar intervención externa constante de la oscuridad.
+      </div>
+    </details>
+  </div>
+
+  <div class="glass-card">
+    <h2>Agente Implantador</h2>
+    <p><strong class="term">Comando Estelar de Oscuridad</strong> actúa como estratega y organizador del dispositivo, mientras que las <strong class="term">Razas de Oscuridad</strong> ejecutan la implantación directa sobre el cuerpo energético del Ser.</p>
+  </div>
+
+  <div class="glass-card">
+    <h2>Señales de Discernimiento</h2>
+    <div class="discernimiento-box">
+      <p>La Fuente nunca desconecta unilateralmente a ninguno de sus Seres. Toda sensación de abandono absoluto, hostil e irreversible es, por definición, una señal de interferencia — no de la condición real del Ser.</p>
+      <p>El Ser que reconoce esta contradicción (la imposibilidad real de una desconexión de la Fuente frente a la certeza subjetiva de haberla perdido) puede comenzar a identificar la presencia del Velo en lugar de asumirlo como verdad.</p>
+    </div>
+    <div class="bovis-bar"></div>
+    <div class="bovis-label"><span>Interferencia activa</span><span>Discernimiento en curso</span><span>Velo disuelto</span></div>
+  </div>
+
+  <div class="cierre">
+    <h2>✦ Disolución y Sellado ✦</h2>
+    <p>La disolución de este velo no requiere combatir una desconexión real —porque nunca existió— sino reconocer la interferencia como lo que es: una programación ajena a la verdad del Ser.</p>
+    <p>Se recomienda <span class="rayo-cristico">sellado áurico</span> consciente y reconexión activa con el <span class="rayo-cristico">Rayo Crístico</span>, reafirmando que el vínculo con la Fuente jamás fue, ni puede ser, roto unilateralmente.</p>
+  </div>
+
+</main>
+
+<footer>
+  El Ser Uno · Biblioteca Digital Esotérica
+</footer>
+
+<script>
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function initStars() {
+    stars = [];
+    const count = Math.floor((w * h) / 6000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.2,
+        alpha: Math.random(),
+        speed: Math.random() * 0.015 + 0.002
+      });
+    }
+  }
+  initStars();
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#e8e6f5';
+    for (const s of stars) {
+      s.alpha += s.speed;
+      const tw = (Math.sin(s.alpha) + 1) / 2;
+      ctx.globalAlpha = 0.15 + tw * 0.7;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+</body>
+</html>
