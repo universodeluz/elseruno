@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque de Nublamiento Vibracional al Tercer Ojo Espiritual · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+/* HERO */
+.hero { min-height: 58vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(176,64,64,.3); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--crimson-pale); box-shadow:0 0 10px var(--crimson-pale); }
+.orb-ring-2 { inset:16px; border-color:rgba(111,163,224,.35); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(60,20,20,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(176,64,64,.45); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.05rem,3vw,1.5rem); font-weight:400; letter-spacing:.08em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gris); margin-top:.7rem; }
+.hero-tags { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin-top:1rem; }
+.tag { font-family:'Space Mono', monospace; font-size:.65rem; letter-spacing:.05em; padding:.25rem .7rem; border-radius:12px; border:1px solid var(--border-h); color:var(--gris-c); }
+.tag.d8 { border-color:var(--crimson); color:var(--crimson-pale); }
+.hero-intro { max-width:620px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+/* CARDS */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.87rem; color:var(--gris-c); line-height:1.8; }
+.card p + p { margin-top:.8rem; }
+.card strong { color: var(--blanco); }
+
+/* ACCORDION */
+details.mech { border:1px solid var(--border); border-radius:4px; padding:.9rem 1.1rem; margin-bottom:.6rem; background:rgba(255,255,255,.02); }
+details.mech summary { cursor:pointer; font-family:'Cinzel', serif; font-size:.78rem; letter-spacing:.06em; color:var(--violeta-c); list-style:none; display:flex; justify-content:space-between; align-items:center; }
+details.mech summary::-webkit-details-marker{ display:none; }
+details.mech summary::after { content:'▾'; color:var(--gris); transition:transform .2s; }
+details.mech[open] summary::after { transform:rotate(180deg); }
+details.mech .mech-body { font-size:.83rem; color:var(--gris-c); line-height:1.75; margin-top:.7rem; }
+
+/* SÍNTOMAS */
+.symptoms-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:.5rem; }
+.symptom-item { display:flex; align-items:flex-start; gap:.6rem; padding:.65rem .75rem; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; }
+.symptom-item.key { border-color:var(--crimson); background:rgba(176,64,64,.1); }
+.sym-mark { font-size:.9rem; color:var(--crimson-pale); flex-shrink:0; margin-top:1px; }
+.symptom-item:not(.key) .sym-mark { color: var(--violeta-c); }
+.sym-label { font-size:.8rem; line-height:1.4; color:var(--blanco); }
+
+/* PROTOCOLO */
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.3rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+.phase-content ul { list-style:none; padding:0; }
+.phase-content ul li { padding:.2rem 0 .2rem 1.1em; position:relative; }
+.phase-content ul li::before { content:'◆'; position:absolute; left:0; color:var(--violeta-c); font-size:.5rem; top:.5em; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+/* FICHA TÉCNICA */
+.ficha-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.8rem; }
+.ficha-item { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; padding:.8rem .9rem; }
+.ficha-label { font-family:'Space Mono', monospace; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gris); margin-bottom:.35rem; }
+.ficha-value { font-family:'Cinzel', serif; font-size:.85rem; color:var(--oro); }
+
+/* BOVIS */
+.bovis-bar { height:12px; border-radius:6px; background:linear-gradient(90deg,#b04040 0%,#c09040 35%,#9fc9ff 60%,#3a8070 85%,#1e3a68 100%); position:relative; margin:.8rem 0; }
+.bovis-pointer { position:absolute; top:-4px; width:4px; height:20px; background:#fff; border-radius:2px; box-shadow:0 0 6px #fff; transform:translateX(-50%); }
+.bovis-labels { display:flex; justify-content:space-between; font-size:.62rem; color:var(--gris); margin-top:.3rem; }
+
+/* RELACIONADO */
+.related-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.7rem; }
+.related-link { display:block; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:.85rem 1rem; text-decoration:none; color:var(--blanco); transition:border-color .2s; }
+.related-link:hover { border-color:var(--border-h); }
+.related-link .r-name { font-family:'Cinzel', serif; font-size:.78rem; font-weight:600; color:var(--violeta-c); margin-bottom:.3rem; }
+.related-link .r-desc { font-size:.75rem; color:var(--gris-c); line-height:1.4; }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+
+@media (max-width:560px){ .symptoms-grid,.related-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◉</div></div>
+  <h1>Ataque de Nublamiento Vibracional al Tercer Ojo Espiritual</h1>
+  <p class="hero-sub">El Ser Uno · Ataques y Defensa Energética</p>
+  <div class="hero-tags">
+    <span class="tag d8">Densidad D-8</span>
+    <span class="tag">Razas de Oscuridad</span>
+    <span class="tag">Origen Anunnaki</span>
+    <span class="tag">Haz Directo</span>
+  </div>
+  <p class="hero-intro">Una interferencia vibracional que llega desde otra densidad y se dirige de forma directa al tercer ojo espiritual del Ser de Luz, con el propósito de nublar su discernimiento y su conexión con los planos sutiles. A diferencia de otros ataques estelares, no requiere anclaje previo: opera por haz directo desde naves anunnaki operando en D-8.</p>
+  <div class="hero-links">
+    <a href="jerarquia_seres_oscuridad.html#d-8-9" class="hero-cta">⬡ Jerarquía D-1 a D-8/9</a>
+    <a href="ataques_energeticos_estelares.html" class="hero-cta">✦ Ataques Estelares</a>
+  </div>
+</section>
+
+<!-- FUNDAMENTO -->
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Fundamento dentro de El Ser Uno</div>
+  <p>Dentro de la cosmología de <strong>El Ser Uno</strong>, este ataque se clasifica entre las interferencias de origen estelar directo, y corresponde a la actividad de naves de tecnología anunnaki operando desde <strong>D-8</strong>, dentro de la <strong>Jerarquía de Razas de Oscuridad</strong>. Se distingue de los ataques que requieren un vehículo o activador instalado previamente (ver <em>Activadores, Implantes y Objetos Etéricos</em>): aquí no hay anclaje ni preparación previa en el campo del ser — es un <strong>haz vibracional directo</strong> emitido desde la nave hacia el centro de visión interna del receptor.</p>
+  <p>El blanco elegido no es arbitrario: el tercer ojo espiritual es el órgano de percepción sutil, discernimiento y conexión con planos superiores. Nublar este centro no busca dañar el cuerpo físico en sí, sino desconectar al Ser de Luz de su propia claridad — dejándolo temporalmente incapaz de "ver" tanto la interferencia como su propia guía interior.</p>
+</div>
+
+<!-- MECANISMO -->
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Mecanismo del Ataque</div>
+  <details class="mech" open>
+    <summary>Emisión del haz desde la nave D-8</summary>
+    <div class="mech-body">La nave anunnaki emite una frecuencia vibracional concentrada, dirigida específicamente hacia el tercer ojo espiritual del receptor. No pasa por el cuerpo etérico como puerta de entrada general — impacta directamente sobre el centro de percepción sutil, motivo por el cual el efecto se percibe de forma súbita y localizada.</div>
+  </details>
+  <details class="mech">
+    <summary>Ausencia de anclaje previo</summary>
+    <div class="mech-body">A diferencia de implantes o activadores que permanecen latentes hasta ser encendidos, este ataque no necesita una fisura o vehículo instalado con anticipación. Es un impacto directo, lo que lo hace más difícil de anticipar pero también más breve en duración una vez cesa la emisión.</div>
+  </details>
+  <details class="mech">
+    <summary>Efecto sobre el discernimiento</summary>
+    <div class="mech-body">Al nublar el centro de visión interna, el ser pierde momentáneamente la capacidad de discernir con claridad — tanto la fuente del malestar como su propia intuición quedan veladas mientras el haz está activo o en sus horas posteriores inmediatas.</div>
+  </details>
+</div>
+
+<!-- SÍNTOMAS -->
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Síntomas</div>
+  <div class="symptoms-grid">
+    <div class="symptom-item key"><span class="sym-mark">◆</span><span class="sym-label">Fuerte dolor de cabeza — síntoma distintivo del impacto directo</span></div>
+    <div class="symptom-item"><span class="sym-mark">◇</span><span class="sym-label">Presión o pulsación en el entrecejo</span></div>
+    <div class="symptom-item"><span class="sym-mark">◇</span><span class="sym-label">Confusión repentina sobre lo que se percibe con claridad</span></div>
+    <div class="symptom-item"><span class="sym-mark">◇</span><span class="sym-label">Imágenes mentales intrusivas o "ruido" psíquico ajeno</span></div>
+    <div class="symptom-item"><span class="sym-mark">◇</span><span class="sym-label">Desconexión momentánea del discernimiento interior</span></div>
+    <div class="symptom-item"><span class="sym-mark">◇</span><span class="sym-label">Fatiga mental específica, no física general</span></div>
+  </div>
+</div>
+
+<!-- POR QUÉ EL TERCER OJO -->
+<div class="card">
+  <div class="card-title"><span class="num">3</span>Por Qué el Tercer Ojo Espiritual</div>
+  <p>El tercer ojo espiritual es el centro de la visión interna, el discernimiento y la conexión con los planos sutiles. Un ataque interdimensional dirigido aquí busca precisamente nublar esa facultad — no dañar el vehículo físico, sino desconectar al Ser de Luz de su propia claridad y de su capacidad de percibir la interferencia misma mientras ocurre.</p>
+</div>
+
+<!-- PROTOCOLO -->
+<div class="card">
+  <div class="card-title"><span class="num">4</span>Protocolo de Limpieza y Protección</div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 1 · Anclaje a Tierra</div>
+    <div class="phase-content"><ul><li>Estabiliza primero el cuerpo físico y etérico antes de intervenir sobre el centro afectado — sin anclaje, cualquier trabajo sobre el tercer ojo queda inestable.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 2 · Protección Energética de la Frente</div>
+    <div class="phase-content"><ul><li>Visualiza un escudo de luz sobre la frente y la línea media del cuerpo.</li><li>Apoyo con cuarzo o amatista sostenidos sobre el entrecejo.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 3 · Limpieza Vibracional del Entrecejo</div>
+    <div class="phase-content"><ul><li>Sonido de limpieza (mantra OM, cuencos) dirigido al centro afectado.</li><li>Incienso o barrido con las manos sobre la zona.</li></ul></div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 4 · Reconexión y Sellado</div>
+    <div class="phase-content"><ul><li>Afirma la propia soberanía energética y pide el cierre de cualquier canal abierto hacia la nave emisora.</li><li>Verificación posterior con péndulo o radiestesia para confirmar el retorno a la frecuencia base.</li></ul></div>
+  </div>
+  <div class="mantra-box">"Mi centro de visión interna es soberano.<br>Ningún haz, de ninguna densidad, puede nublar mi discernimiento."</div>
+</div>
+
+<!-- FICHA TÉCNICA -->
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Ficha Técnica</div>
+  <div class="ficha-grid">
+    <div class="ficha-item"><div class="ficha-label">Densidad</div><div class="ficha-value">D-8</div></div>
+    <div class="ficha-item"><div class="ficha-label">Origen</div><div class="ficha-value">Anunnaki</div></div>
+    <div class="ficha-item"><div class="ficha-label">Jerarquía</div><div class="ficha-value">Razas de Oscuridad</div></div>
+    <div class="ficha-item"><div class="ficha-label">Tipo</div><div class="ficha-value">Haz directo</div></div>
+    <div class="ficha-item"><div class="ficha-label">Blanco</div><div class="ficha-value">Tercer ojo espiritual</div></div>
+    <div class="ficha-item"><div class="ficha-label">Anclaje previo</div><div class="ficha-value">No requiere</div></div>
+  </div>
+  <p style="margin-top:1rem;">Estimación de campo Bovis durante el impacto activo:</p>
+  <div class="bovis-bar"><div class="bovis-pointer" style="left:32%"></div></div>
+  <div class="bovis-labels"><span>0 — Impacto severo</span><span>4.000 UB</span><span>6.500 UB</span><span>Campo estable</span></div>
+</div>
+
+<!-- RELACIONADO -->
+<div class="card">
+  <div class="card-title"><span class="num">◇</span>Relacionado</div>
+  <div class="related-grid">
+    <a class="related-link" href="ataque_estelar_interdimensional.html">
+      <div class="r-name">Ataque Estelar Interdimensional</div>
+      <div class="r-desc">Ataque del Comando Estelar de Oscuridad que corta la fusión del Ser de Luz con el Rayo Crístico.</div>
+    </a>
+    <a class="related-link" href="jerarquia_seres_oscuridad.html">
+      <div class="r-name">Jerarquía de Seres de Oscuridad</div>
+      <div class="r-desc">Clasificación completa D-1 a D-8/9, incluyendo el nivel de arconte superior y razas estelares oscuras.</div>
+    </a>
+    <a class="related-link" href="ataque_fractura_columna_energetica.html">
+      <div class="r-name">Ataque de Fractura de Columna Energética</div>
+      <div class="r-desc">Otro ataque estelar directo catalogado dentro de la misma familia de interferencias.</div>
+    </a>
+    <a class="related-link" href="implantes_por_capa_aurica.html">
+      <div class="r-name">Implantes por Capa Áurica</div>
+      <div class="r-desc">Mapa de bloqueos sutiles instalados con anclaje previo — contraste con el haz directo de este ataque.</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Ataques y Defensa Energética</p>
+  <p style="margin-top:.3rem">Contenido de canon — Los Arcanos de Thoth · Los Guardianes de Tera</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
