@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apertura y Reconocimiento como Ser de Luz Encarnado · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --ambar: #c09040;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 56vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.05rem,3vw,1.5rem); font-weight:400; letter-spacing:.08em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:600px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.85rem; color:var(--gris-c); line-height:1.75; }
+.card p + p { margin-top:.9rem; }
+.card strong { color:var(--blanco); }
+
+/* ETAPAS - timeline */
+.etapa { border-left:2px solid var(--violeta); padding-left:1.2rem; margin-bottom:1.6rem; position:relative; }
+.etapa:last-child { margin-bottom:0; }
+.etapa::before { content:''; position:absolute; left:-6px; top:4px; width:10px; height:10px; background:var(--oro); border-radius:50%; box-shadow:0 0 8px var(--oro); }
+.etapa-title { font-family:'Cinzel', serif; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); margin-bottom:.5rem; }
+.etapa-desc { font-size:.84rem; line-height:1.75; color:var(--gris-c); }
+
+/* DIFERENCIACIÓN */
+.diferencia-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+@media (max-width:640px){ .diferencia-grid{ grid-template-columns:1fr; } }
+.dif-col { border-radius:4px; padding:1.1rem 1.2rem; }
+.dif-col.luz { background:rgba(157,127,212,.06); border:1px solid var(--border-h); }
+.dif-col.crisis { background:rgba(176,64,64,.07); border:1px solid rgba(176,64,64,.35); }
+.dif-title { font-family:'Cinzel', serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.6rem; }
+.dif-col.luz .dif-title { color:var(--violeta-c); }
+.dif-col.crisis .dif-title { color:var(--crimson-pale); }
+.dif-col ul { list-style:none; }
+.dif-col li { font-size:.8rem; color:var(--gris-c); line-height:1.6; padding:.25rem 0 .25rem 1em; position:relative; }
+.dif-col li::before { content:'◆'; position:absolute; left:0; font-size:.5rem; top:.55em; }
+.dif-col.luz li::before { color:var(--violeta-c); }
+.dif-col.crisis li::before { color:var(--crimson-pale); }
+
+.nota { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:1rem 1.2rem; font-size:.8rem; color:var(--gris-c); line-height:1.7; font-style:italic; }
+
+.func-tag { display:inline-block; font-family:'Space Mono', monospace; font-size:.68rem; letter-spacing:.05em; color:var(--teal-pale); background:rgba(58,128,112,.12); border:1px solid var(--teal); border-radius:16px; padding:.3rem .9rem; margin-bottom:1rem; }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◐</div></div>
+  <h1>Apertura y Reconocimiento como Ser de Luz Encarnado</h1>
+  <p class="hero-sub">El Ser Uno · El Proceso de Recordar lo que Se Es</p>
+  <p class="hero-intro">El tránsito entre no saber qué se es y reconocerse activamente como un alma de linaje lumínico encarnada en cuerpo humano — un proceso, no un evento único.</p>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Naturaleza del Proceso</div>
+  <span class="func-tag">PROCESO: apertura progresiva de conciencia encarnada</span>
+  <p>A diferencia de una función continua como la de un Portador, este proceso tiene un <strong>arco</strong>: comienza con una activación —a veces súbita, a veces gradual— y avanza hacia la integración estable de una identidad que ya estaba presente en potencia, pero no reconocida.</p>
+  <p>No se trata de "convertirse" en un ser de luz encarnado, sino de <strong>recordar</strong> que ya se es uno, y de dejar de interpretar las señales de esa condición como anomalías, sensibilidad excesiva o desajuste personal.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Etapas del Proceso</div>
+
+  <div class="etapa">
+    <div class="etapa-title">Apertura</div>
+    <div class="etapa-desc">El punto de quiebre. Una crisis, una pérdida, una experiencia límite, o el simple paso natural de un ciclo vibracional activa el sistema. El campo áurico empieza a recibir más de lo que el filtro habitual de la personalidad puede procesar como "normal".</div>
+  </div>
+
+  <div class="etapa">
+    <div class="etapa-title">Señales de Reconocimiento</div>
+    <div class="etapa-desc">Percepción aumentada, sincronías más frecuentes (nimeo), sensación persistente de "no encajar" en el entorno o los vínculos habituales, memorias o certezas sin origen aparente, activación de dones latentes que antes permanecían dormidos.</div>
+  </div>
+
+  <div class="etapa">
+    <div class="etapa-title">Reconocimiento Activo</div>
+    <div class="etapa-desc">El momento en que la persona deja de interpretar estas señales como anomalías y las integra conscientemente como parte de su identidad. Aquí el proceso deja de ser algo que "sucede" y pasa a ser algo que se sostiene con voluntad propia.</div>
+  </div>
+
+  <div class="etapa">
+    <div class="etapa-title">Integración</div>
+    <div class="etapa-desc">Lo que sigue después del reconocimiento: la estabilización de esa identidad en la vida cotidiana, de modo que deje de ser una revelación puntual y se convierta en una base permanente desde la cual la persona vive y actúa.</div>
+  </div>
+
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Diferenciación: Apertura vs. Crisis Psicológica Común</div>
+  <p style="margin-bottom:1rem;">Ambos procesos pueden compartir síntomas superficiales —desorientación, sensibilidad, sensación de ruptura con la vida anterior— por lo que distinguirlos requiere mirar la calidad y dirección del proceso, no solo sus señales aisladas.</p>
+  <div class="diferencia-grid">
+    <div class="dif-col luz">
+      <div class="dif-title">Apertura como Ser de Luz</div>
+      <ul>
+        <li>La desorientación inicial da paso, con el tiempo, a mayor claridad y sentido de propósito</li>
+        <li>Las sincronías y percepciones aumentan en frecuencia y coherencia, no en caos</li>
+        <li>Hay una sensación de "expansión", aunque sea incómoda, no de fragmentación del yo</li>
+        <li>El proceso tiende a estabilizarse en una identidad más firme, no más difusa</li>
+      </ul>
+    </div>
+    <div class="dif-col crisis">
+      <div class="dif-title">Crisis Psicológica Común</div>
+      <ul>
+        <li>El malestar no se orienta hacia mayor claridad; tiende a sostenerse o profundizarse</li>
+        <li>Predomina el deterioro funcional: dificultad sostenida para sostener rutinas, vínculos o responsabilidades básicas</li>
+        <li>La experiencia es vivida como amenaza o pérdida de control, sin apertura de sentido</li>
+        <li>Requiere y responde a acompañamiento profesional de salud mental</li>
+      </ul>
+    </div>
+  </div>
+  <div class="nota" style="margin-top:1rem;">Esta distinción no es excluyente: una apertura genuina puede convivir con necesidad real de apoyo profesional, especialmente si la intensidad del proceso desborda la capacidad de sostenerlo en soledad. Reconocerse como ser de luz encarnado no reemplaza el cuidado de la salud mental — lo acompaña.</div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Biblioteca de Conocimiento Esotérico</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
