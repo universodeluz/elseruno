@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portadores del Rayo Crístico · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 56vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:600px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.85rem; color:var(--gris-c); line-height:1.75; }
+.card p + p { margin-top:.9rem; }
+.card strong { color:var(--blanco); }
+
+.subcat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+@media (max-width:640px){ .subcat-grid{ grid-template-columns:1fr; } }
+.subcat { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:1.2rem 1.3rem; }
+.subcat-title { font-family:'Cinzel', serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--violeta-c); margin-bottom:.6rem; }
+.subcat p { font-size:.82rem; color:var(--gris-c); line-height:1.7; }
+
+details { border:1px solid var(--border); border-radius:4px; padding:.9rem 1.1rem; margin-bottom:.7rem; background:rgba(255,255,255,.02); }
+details + details { margin-top:.7rem; }
+summary { font-family:'Cinzel', serif; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); cursor:pointer; list-style:none; display:flex; align-items:center; gap:.6rem; }
+summary::-webkit-details-marker { display:none; }
+summary::before { content:'◇'; color:var(--violeta-c); font-size:.75rem; }
+details[open] summary::before { content:'◆'; }
+details .det-body { font-size:.83rem; color:var(--gris-c); line-height:1.75; margin-top:.8rem; padding-top:.2rem; }
+
+.func-tag { display:inline-block; font-family:'Space Mono', monospace; font-size:.68rem; letter-spacing:.05em; color:var(--teal-pale); background:rgba(58,128,112,.12); border:1px solid var(--teal); border-radius:16px; padding:.3rem .9rem; margin-bottom:1rem; }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◐</div></div>
+  <h1>Portadores del Rayo Crístico</h1>
+  <p class="hero-sub">El Ser Uno · Puentes Energéticos</p>
+  <p class="hero-intro">Seres —encarnados o no— que canalizan directamente la energía crística hacia la Tierra, sirviendo de puente entre los niveles superiores y la humanidad.</p>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Naturaleza del Puente</div>
+  <span class="func-tag">FUNC: canalización directa de energía crística</span>
+  <p>Un Portador del Rayo Crístico no es un simple receptor pasivo de la frecuencia madre: su labor es <strong>transductora</strong>. Toma la energía crística en su frecuencia original —demasiado elevada para sostenerse sin mediación en el plano terrestre— y la desciende a una vibración que el campo de la Tierra y sus habitantes puedan recibir sin colapsar.</p>
+  <p>Esta función lo distingue de otros vínculos con la jerarquía de luz: no es un mensajero ni un guardián, sino un canal activo y sostenido, un punto de paso donde la energía cambia de estado para poder integrarse.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Las Dos Formas del Portador</div>
+  <div class="subcat-grid">
+    <div class="subcat">
+      <div class="subcat-title">Encarnado</div>
+      <p>Ser humano que sostiene el puente desde el plano físico. Su presencia misma —consciente o no de su función— actúa como nodo de anclaje: el Rayo se estabiliza allí donde él vive, trabaja o simplemente permanece.</p>
+    </div>
+    <div class="subcat">
+      <div class="subcat-title">No Encarnado</div>
+      <p>Ser de luz que opera desde niveles superiores, sin cuerpo físico en la Tierra. Sostiene el puente desde arriba, regulando el flujo antes de que llegue a los puntos de anclaje encarnados.</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Profundización</div>
+
+  <details>
+    <summary>El Portador Encarnado</summary>
+    <div class="det-body">
+      Su cuerpo y su campo energético funcionan como estación de paso. No requiere ritual ni invocación constante: una vez establecido el puente, la canalización puede ser continua, incluso fuera de la percepción consciente del propio Portador. Suele reconocerse por su efecto en el entorno —estabilización del ambiente, calma inducida en quienes se acercan— más que por señales internas dramáticas.
+    </div>
+  </details>
+
+  <details>
+    <summary>El Portador No Encarnado</summary>
+    <div class="det-body">
+      Sostiene el puente desde un nivel donde la energía crística aún no requiere la misma reducción de frecuencia que en la Tierra. Su rol es preparar el tramo superior del descenso, entregando la energía ya orientada hacia los puntos de anclaje encarnados, de modo que estos no reciban la frecuencia en bruto.
+    </div>
+  </details>
+
+  <details>
+    <summary>El puente como estructura, no como evento</summary>
+    <div class="det-body">
+      Lo que define a un Portador —encarnado o no— es la continuidad de la función, no un acto puntual de canalización. Un canal esporádico no constituye un Portador; la canalización directa y sostenida es lo que da forma al puente.
+    </div>
+  </details>
+
+</div>
+
+<footer>
+  <p>El Ser Uno · Biblioteca de Conocimiento Esotérico</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+  </html>
