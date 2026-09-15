@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triple Manto de Invisibilidad · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 58vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.86rem; line-height:1.75; color:var(--gris-c); }
+.card p + p { margin-top:.9rem; }
+.card strong { color:var(--blanco); }
+
+.capa-card { border-left:3px solid var(--violeta-c); }
+.capa-card .card-title { color:var(--violeta-c); }
+
+.destinos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:.8rem; margin-top:.4rem; }
+.destino-card { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:1rem 1.1rem; text-decoration:none; display:block; transition:border-color .2s; }
+.destino-card:hover { border-color:var(--border-h); }
+.destino-card .d-name { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); margin-bottom:.3rem; letter-spacing:.03em; }
+.destino-card .d-desc { font-size:.76rem; color:var(--gris-c); line-height:1.4; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.1rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.4rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◐</div></div>
+  <h1>Triple Manto de Invisibilidad</h1>
+  <p class="hero-sub">El Ser Uno · Protocolo de Ocultamiento ante Ataque Sincronizado con Nodos Lunares</p>
+  <p class="hero-intro">El daño no es constante: se activa de forma rítmica para coincidir con los cambios de marea energética, sincronizado con los Nodos Lunares (ciclos de 28 días y cuartos menguantes — término de fuente externa autorizado por canalización, dado que este es un tipo de ataque diferente a los ya documentados). El Triple Manto no ataca ni disuelve directamente la interferencia: son tres formas de ocultamiento que, en conjunto, hacen que el ataque no logre detectar ni localizar a quien protege.</p>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Mecanismo del Ataque</div>
+  <p>Durante las ventanas de sincronización lunar, el campo áurico del ser afectado sufre una disonancia: la luz natural del aura se refracta hacia adentro, provocando un cortocircuito en su sistema nervioso sutil. Esto se traduce en episodios de pánico repentino, fijación obsesiva con puntos vacíos o ataques de histeria sin causa aparente.</p>
+</div>
+
+<div class="card capa-card">
+  <div class="card-title"><span class="num">1</span>Manto de Sellado Áurico Invertido</div>
+  <p>En vez de sellar el aura hacia afuera —como el sellado áurico estándar—, este manto la repliega hacia adentro sin dejar la disonancia visible desde fuera: el campo sigue ahí, pero no emite la señal que el atacante usa para localizar al ser protegido.</p>
+</div>
+
+<div class="card capa-card">
+  <div class="card-title"><span class="num">2</span>Manto de Desincronización de Nodo</div>
+  <p>Rompe la sincronía entre el biorritmo del ser protegido y la ventana de los Nodos Lunares: desfasa su "firma energética" respecto al ciclo de 28 días, de modo que cuando llega el cuarto menguante, el ataque no encuentra el patrón que esperaba detectar.</p>
+</div>
+
+<div class="card capa-card">
+  <div class="card-title"><span class="num">3</span>Manto de Opacidad ante Radiestesia Hostil</div>
+  <p>Bloquea específicamente la localización por radiestesia/péndulo hostil —la misma técnica usada en el canon para diagnóstico, pero aquí del lado del atacante—: vuelve "ilegible" la posición y el estado del ser protegido a cualquier lectura externa no autorizada.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◆</span>Protocolo de Activación</div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 1 · Reconocimiento de la Ventana</div>
+    <div class="phase-content">Identificar la proximidad de un cuarto menguante dentro del ciclo de 28 días como señal de ventana de riesgo activa.</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 2 · Aplicación de las Tres Capas</div>
+    <div class="phase-content">Visualizar, en orden, el repliegue del aura hacia adentro (capa 1), el desfase del biorritmo respecto al ciclo lunar (capa 2), y la opacidad ante cualquier lectura externa (capa 3), como un manto único que envuelve al ser protegido en tres pliegues sucesivos.</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 3 · Sostenimiento</div>
+    <div class="phase-content">Repetir la visualización mientras dure la ventana de cuarto menguante, sin necesidad de renovarla fuera de esos días.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◇</span>Decreto del Manto</div>
+  <div class="mantra-box">"Lo que protejo no puede ser visto, ni leído, ni encontrado.<br>El ciclo pasa y no me reconoce."</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">✦</span>Afectaciones a las que Responde</div>
+  <div class="destinos-grid">
+    <a class="destino-card" href="necrosis_energetica_saturacion_absorbente.html">
+      <div class="d-name">Necrosis Energética por Saturación Absorbente</div>
+      <div class="d-desc">Colapso del canal de desecho energético en felinos de alta jerarquía.</div>
+    </a>
+    <a class="destino-card" href="desanclaje_almico_absoluto.html">
+      <div class="d-name">Desanclaje Álmico Absoluto</div>
+      <div class="d-desc">Pérdida del ancla espiritual entre un perro de alta jerarquía y su madre humana.</div>
+    </a>
+    <a class="destino-card" href="clausura_umbral_sagrado.html">
+      <div class="d-name">Clausura del Umbral Sagrado</div>
+      <div class="d-desc">Intrusión profunda en los chakras inferiores femeninos.</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Protocolos de Ocultamiento y Protección</p>
+  <p style="margin-top:.3rem">Herramienta de trabajo interior — Úsese con discernimiento, en paralelo a cualquier atención física o veterinaria que corresponda</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>

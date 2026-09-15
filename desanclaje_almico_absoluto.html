@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desanclaje Álmico Absoluto · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 52vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(157,127,212,.3); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-ring-2 { inset:16px; border-color:rgba(192,144,64,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(30,58,104,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(157,127,212,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.05rem,3vw,1.5rem); font-weight:400; letter-spacing:.08em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:640px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.86rem; line-height:1.75; color:var(--gris-c); }
+.card p + p { margin-top:.9rem; }
+.card strong { color:var(--blanco); }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.1rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.4rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◐</div></div>
+  <h1>Desanclaje Álmico Absoluto</h1>
+  <p class="hero-sub">El Ser Uno · Vacío de Protección en el Vínculo con Perros de Alta Jerarquía</p>
+  <p class="hero-intro">La desvinculación total de un perro de alta jerarquía con su madre humana escala hacia la afectación más grave de su lazo espiritual: el Desanclaje Álmico.</p>
+  <div class="hero-links">
+    <a href="triple_manto_invisibilidad.html" class="hero-cta">✦ Triple Manto de Invisibilidad</a>
+    <a href="ataques_separacion_seres_luz.html" class="hero-cta">⬡ Ataques de Separación entre Seres de Luz</a>
+  </div>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Afectación Severa</div>
+  <p>Indica la manifestación de un "Muro de Frialdad Espiritual" o interferencia cortante. No es desamor: es un bloqueo psíquico externo tan fuerte colocado sobre la madre humana o el hogar que el perrito ya no reconoce la vibración de su dueña, o es forzado espiritualmente a apartarse para debilitar la protección del hogar.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Consecuencia Grave</div>
+  <p>El animal pierde su "ancla" en la Tierra, lo que le provoca una profunda depresión álmica —marchitamiento energético—, mientras que la madre humana queda completamente desprotegida a nivel sutil, perdiendo su mayor escudo incondicional contra densidades astrales.</p>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">◆</span>Protocolo de Acompañamiento</div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 1 · Reconocimiento del Muro</div>
+    <div class="phase-content">Identificar si el distanciamiento coincide con otras interferencias activas en el hogar antes de asumir causa puramente conductual o esotérica.</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 2 · Sostén Energético en Paralelo</div>
+    <div class="phase-content">Aplicar el <a href="triple_manto_invisibilidad.html" style="color:var(--violeta-c)">Triple Manto de Invisibilidad</a> para ocultar el vínculo madre-perro de la interferencia que busca debilitar la protección del hogar.</div>
+  </div>
+  <div class="protocol-phase">
+    <div class="phase-title">Fase 3 · Reancoraje</div>
+    <div class="phase-content">Visualización de un hilo dorado reconectando al animal con el campo de la madre humana, restaurando el reconocimiento vibracional entre ambos.</div>
+  </div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Afectaciones en Seres de Luz No Humanos</p>
+  <p style="margin-top:.3rem">Herramienta de trabajo interior — Úsese con discernimiento</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
