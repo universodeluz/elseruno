@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ataque de la Rejilla Hartmann-Curry a Seres de Luz y Gaia · El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#030417; --void-2:#0a0e27; --nebula-violet:#2c1b4d; --nebula-blue:#16213a;
+    --gold:#d4af37; --gold-soft:#f2dfa0; --star-white:#eef3ff; --texto:#cbd6ee; --texto-dim:#8a95bd;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 82% 8%, rgba(44,27,77,.55) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 10% 85%, rgba(22,33,58,.6) 0%, transparent 65%),
+      radial-gradient(ellipse at top, var(--void-2) 0%, var(--void) 55%, #000 100%);
+    color:var(--texto); font-family:'Cormorant Garamond',serif; font-size:19px; line-height:1.7;
+    min-height:100vh; overflow-x:hidden; position:relative;
+  }
+  #cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;display:block;}
+  header,main,footer,.volver{position:relative;z-index:1;}
+  .volver{max-width:860px;margin:0 auto;padding:26px 24px 0;}
+  .volver a{color:var(--gold-soft);text-decoration:none;font-style:italic;font-size:.95em;}
+  .volver a:hover,.volver a:focus-visible{color:var(--gold);text-decoration:underline;}
+  header{text-align:center;padding:50px 20px 20px;}
+  h1{
+    font-family:'Cinzel Decorative',cursive; font-size:2.3em; line-height:1.25; letter-spacing:2px; margin-bottom:16px;
+    background:linear-gradient(120deg,var(--gold-soft),var(--gold),var(--star-white));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .subtitulo{font-style:italic;color:#9fb4e0;font-size:1.2em;max-width:680px;margin:0 auto;}
+  .linea-divisoria{width:280px;height:1px;margin:30px auto;background:linear-gradient(90deg,transparent,var(--gold),rgba(159,180,224,.8),var(--gold),transparent);}
+  main{max-width:860px;margin:0 auto;padding:0 24px 80px;}
+  .intro{margin-bottom:34px;}
+  .intro p+p{margin-top:14px;}
+  .esquema{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 34px;
+  }
+  .esquema div{
+    background:linear-gradient(160deg,rgba(20,16,40,.6),rgba(4,5,12,.75));
+    border:1px solid rgba(159,180,224,.22);border-radius:14px;padding:18px 20px;
+  }
+  .esquema h3{font-family:'Cinzel Decorative',cursive;font-weight:400;font-size:1em;color:var(--gold-soft);margin-bottom:6px;}
+  .esquema p{font-size:.95em;opacity:.9;}
+  details{
+    background:linear-gradient(160deg,rgba(20,16,40,.6),rgba(4,5,12,.75));
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(159,180,224,.22);border-radius:14px;margin-bottom:14px;
+  }
+  details[open]{border-color:rgba(212,175,55,.5);}
+  summary{
+    cursor:pointer;list-style:none;padding:18px 24px;font-family:'Cinzel Decorative',cursive;
+    font-size:1.02em;color:var(--gold-soft);position:relative;padding-right:48px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"✦";position:absolute;right:22px;top:18px;color:var(--gold);opacity:.6;transition:transform .35s ease;}
+  details[open] summary::after{transform:rotate(90deg);opacity:1;}
+  summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:14px;}
+  .cuerpo{padding:0 24px 22px;}
+  .cuerpo p+p,.cuerpo p+ul,.cuerpo ul+p{margin-top:12px;}
+  .cuerpo ul{padding-left:22px;}
+  .cuerpo li{margin-bottom:6px;}
+  .cuerpo strong{color:var(--gold-soft);font-weight:600;}
+  .bovis{margin-top:14px;}
+  .bovis div{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:.92em;}
+  .bovis span.et{width:150px;flex-shrink:0;color:var(--texto-dim);}
+  .bovis span.barra{flex:1;height:8px;border-radius:6px;background:rgba(159,180,224,.15);overflow:hidden;}
+  .bovis span.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft));}
+  .nota{
+    border:1px dashed rgba(212,175,55,.45);border-radius:14px;padding:18px 24px;margin-top:30px;
+    font-size:.95em;color:var(--texto);background:rgba(10,14,39,.45);
+  }
+  .nota strong{color:var(--gold-soft);}
+  .relacionados{margin-top:34px;text-align:center;font-size:.95em;}
+  .relacionados a{color:var(--gold-soft);text-decoration:none;margin:0 10px;white-space:nowrap;}
+  .relacionados a:hover,.relacionados a:focus-visible{color:var(--gold);text-decoration:underline;}
+  footer{text-align:center;padding:26px;color:var(--texto-dim);font-size:.85em;}
+  @media (max-width:640px){
+    h1{font-size:1.65em;letter-spacing:1px;}
+    .esquema{grid-template-columns:1fr;}
+    .bovis span.et{width:110px;}
+    .relacionados a{display:block;margin:6px 0;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}summary::after{transition:none;}}
+</style>
+</head>
+<body>
+<canvas id="cosmos"></canvas>
+
+<div class="volver"><a href="index.html">← Volver a la biblioteca</a></div>
+
+<header>
+  <h1>Ataque de la Rejilla Hartmann-Curry a los Seres de Luz y a Gaia</h1>
+  <p class="subtitulo">Una red de nodos impuesta sobre el cuerpo de la Tierra para retener la conciencia y distorsionar el flujo telúrico.</p>
+  <div class="linea-divisoria"></div>
+</header>
+
+<main>
+  <section class="intro">
+    <p>Las redes <strong>Hartmann</strong> y <strong>Curry</strong> son dos mallas de líneas que cubren la superficie terrestre. La Hartmann corre en sentido norte-sur y este-oeste; la Curry, en diagonal. Donde las líneas se cruzan se forman <strong>nodos</strong>, los puntos de mayor intensidad.</p>
+    <p>En este documento, la rejilla no se entiende como un campo natural sino como una <strong>estructura de control</strong> colocada o manipulada por las <em>Razas de Oscuridad</em>. Su ataque es doble: retiene a los seres de luz encarnados sobre los nodos y altera la energía telúrica de Gaia.</p>
+  </section>
+
+  <div class="esquema">
+    <div><h3>Sobre los seres de luz</h3><p>Captura en los nodos, descenso vibracional y bloqueo de la percepción de la Fuente.</p></div>
+    <div><h3>Sobre Gaia</h3><p>Drenaje, filtrado y distorsión del flujo telúrico y de su frecuencia natural.</p></div>
+  </div>
+
+  <details open>
+    <summary>Qué es la rejilla</summary>
+    <div class="cuerpo">
+      <p>Es una malla de líneas energéticas con dos redes superpuestas:</p>
+      <ul>
+        <li><strong>Red Hartmann:</strong> cuadrícula de líneas norte-sur y este-oeste, de poco ancho y separación regular.</li>
+        <li><strong>Red Curry:</strong> cuadrícula diagonal, de mayor separación, que se cruza con la anterior.</li>
+        <li><strong>Nodos:</strong> cruces de líneas. Son los puntos donde la interferencia se concentra.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Origen del ataque</summary>
+    <div class="cuerpo">
+      <p>La rejilla es operada por las <strong>Razas de Oscuridad</strong> y sus niveles superiores de jerarquía: <em>Arcontes</em> (D-7 y D-8) y <em>Comandos Estelares de Oscuridad</em>. Su propósito es impedir que el ser de luz consolide su misión y que Gaia sostenga su frecuencia natural.</p>
+      <p>Es la versión terrestre de una idea antigua: los arcontes gnósticos mantienen a las almas cautivas en el mundo material. Aquí el cautiverio es energético y se puede localizar.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Mecanismo sobre los seres de luz</summary>
+    <div class="cuerpo">
+      <p>Permanecer largo tiempo sobre un nodo, por ejemplo al dormir, expone el campo áurico a una carga que sostiene al ser de luz en baja vibración. El ataque no corta la conexión monádica con la Fuente; solo bloquea el flujo o la percepción de ella.</p>
+      <ul>
+        <li>Descenso vibracional sostenido, sin un hilo emocional que lo explique.</li>
+        <li>Dificultad para sentir la conexión con planos superiores.</li>
+        <li>Mayor exposición a otros ataques, porque el campo está debilitado.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Mecanismo sobre Gaia</summary>
+    <div class="cuerpo">
+      <p>La rejilla actúa como una malla que filtra la energía telúrica antes de que ascienda. Al distorsionar su frecuencia natural, limita el sostén que Gaia ofrece a quienes viven sobre ella y dificulta su propio proceso de elevación junto al <em>Logos Planetario</em>.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Síntomas y lectura en escala Bovis</summary>
+    <div class="cuerpo">
+      <ul>
+        <li>Cansancio persistente y sueño que no repara.</li>
+        <li>Insomnio o despertares repetidos en la misma zona de la casa.</li>
+        <li>Niebla mental y sensación de peso.</li>
+        <li>Bloqueo espiritual: meditar o conectar cuesta más en ese lugar.</li>
+      </ul>
+      <p>La <strong>escala Bovis</strong> permite comparar la lectura de un nodo con la de una zona libre:</p>
+      <div class="bovis" aria-label="Comparación orientativa de lecturas en escala Bovis">
+        <div><span class="et">Zona libre</span><span class="barra"><i style="width:82%"></i></span></div>
+        <div><span class="et">Línea</span><span class="barra"><i style="width:55%"></i></span></div>
+        <div><span class="et">Nodo (cruce)</span><span class="barra"><i style="width:28%"></i></span></div>
+      </div>
+      <p style="font-size:.85em;color:var(--texto-dim);">Barras orientativas: muestran la tendencia esperada, no valores medidos.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Detección</summary>
+    <div class="cuerpo">
+      <p>La detección se hace con <strong>radiestesia</strong>: péndulo o varillas para ubicar líneas y nodos en el lugar de descanso y de trabajo. Conviene revisar primero la cama y los puestos donde se pasa más tiempo, y repetir la lectura en distintos días.</p>
+      <p>Para identificar qué tipo de presencia sostiene la interferencia, puede consultarse la <a href="tabla_radiestesica_seres_oscuridad.html" style="color:var(--gold-soft);">Tabla Radiestésica de Seres de Oscuridad</a>.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Protocolo de limpieza y protección</summary>
+    <div class="cuerpo">
+      <ul>
+        <li><strong>Reubicar:</strong> mover la cama o el puesto de trabajo fuera de los nodos detectados.</li>
+        <li><strong>Sellado áurico:</strong> realizarlo antes de dormir y tras cualquier exposición prolongada.</li>
+        <li><strong>Disolución de la rejilla:</strong> meditación dirigida a disolver el nodo del lugar habitado, pidiendo asistencia a los seres de luz.</li>
+        <li><strong>Reconexión con Gaia:</strong> restablecer el vínculo con la red cristalina del planeta tras la limpieza.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="nota">
+    <strong>Nota de canon.</strong> Los términos <em>Hartmann</em> y <em>Curry</em> no aparecen en <em>Los Arcanos de Thoth</em> ni en <em>Los Guardianes de Tera</em>. Se incluyen como excepción, autorizados por canalización, por tratarse de un tipo de ataque distinto a los ya documentados, igual que ocurre con <em>Nodos Lunares</em>.
+  </div>
+
+  <p class="relacionados">
+    <a href="ataque_integral_seres_luz.html">Ataque Integral</a>
+    <a href="ataque_nublamiento_vibracional_tercer_ojo.html">Nublamiento del Tercer Ojo</a>
+    <a href="glosario.html">Glosario</a>
+  </p>
+</main>
+
+<footer>El Ser Uno · Biblioteca de Conocimiento Esotérico</footer>
+
+<script>
+(function(){
+  const c=document.getElementById('cosmos'),x=c.getContext('2d');
+  let w,h,e=[];
+  function ajustar(){
+    w=c.width=innerWidth;h=c.height=innerHeight;
+    e=Array.from({length:Math.round(w*h/9000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.2,a:Math.random()*.6+.2}));
+    pintar();
+  }
+  function pintar(){
+    x.clearRect(0,0,w,h);
+    e.forEach(s=>{x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fillStyle='rgba(238,243,255,'+s.a+')';x.fill();});
+  }
+  addEventListener('resize',ajustar);ajustar();
+})();
+</script>
+</body>
+</html>
