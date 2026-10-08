@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Los Siete Centros Energéticos — El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070f;--panel:rgba(255,255,255,.05);--line:rgba(212,175,55,.28);--gold:#d4af37;--blue:#6db3ff;--text:#e8e6f0;--mute:#a9a6bd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;font-size:19px;line-height:1.65;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+#stars{position:fixed;inset:0;z-index:0}
+main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:24px 18px 80px}
+.back{font-family:'Space Mono',monospace;font-size:13px;color:var(--blue);text-decoration:none}
+header{text-align:center;padding:48px 0 32px}
+.orb{width:92px;height:92px;margin:0 auto 22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c4,var(--gold) 40%,#3b4f8f 85%);box-shadow:0 0 50px rgba(212,175,55,.45);animation:spin 18s linear infinite}
+@keyframes spin{to{filter:hue-rotate(360deg)}}
+h1{font-family:'Cinzel Decorative',serif;font-size:clamp(28px,6vw,44px);color:var(--gold);margin:0 0 10px;line-height:1.2}
+header p{color:var(--mute);max-width:560px;margin:0 auto;font-style:italic}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:18px 0;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+h2{font-family:'Cinzel',serif;color:var(--gold);font-size:24px;margin:0 0 6px}
+h3{font-family:'Cinzel',serif;font-size:16px;color:var(--blue);margin:16px 0 4px}
+.nota{border-left:3px solid var(--gold)}
+.nota strong{color:var(--gold)}
+.sub{color:var(--mute);margin:0 0 4px;font-style:italic}
+nav.ind{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+nav.ind a{font-family:'Space Mono',monospace;font-size:13px;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+nav.ind a:hover,nav.ind a:focus-visible{background:rgba(212,175,55,.15);outline:none}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-family:'Cinzel',serif;font-size:15px;color:var(--text);padding:4px 0}
+summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+details p,details ul{margin:8px 0 4px}
+ul{padding-left:20px}
+.bovis{height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:8px}
+.bovis span{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--gold))}
+.ficha{scroll-margin-top:16px}
+footer{text-align:center;color:var(--mute);font-family:'Space Mono',monospace;font-size:12px;padding-top:30px}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<main>
+<a class="back" href="index.html">← Volver a la biblioteca</a>
+<header>
+  <div class="orb"></div>
+  <h1>Los Siete Centros Energéticos</h1>
+  <p>Ubicación, órganos que rigen, tipos de centros y los ataques que los afectan.</p>
+</header>
+
+<section class="card nota">
+  <strong>Nota de canon.</strong> Esta página usa nombres en español y no emplea nomenclatura sánscrita. Las correspondencias con órganos son descriptivas del marco esotérico; no constituyen diagnóstico médico. Ante síntomas físicos o emocionales persistentes, consultar también a un profesional de salud.
+</section>
+
+<section class="card">
+  <h2>Tipos de centros</h2>
+  <ul>
+    <li><strong>Mayores:</strong> los siete centros sobre el eje de la columna, descritos abajo.</li>
+    <li><strong>Menores:</strong> centros secundarios distribuidos en el cuerpo, como palmas de las manos, plantas de los pies, rodillas y hombros.</li>
+    <li><strong>Transpersonales:</strong> centros situados fuera del cuerpo físico, por encima de la cabeza y por debajo de los pies, que enlazan con planos superiores y con la Tierra.</li>
+    <li><a href="centros_menores_transpersonales.html" style="color:var(--blue)">Ver centros menores y transpersonales →</a></li>
+  </ul>
+</section>
+
+<nav class="ind" id="indice" aria-label="Índice de centros"></nav>
+<div id="fichas"></div>
+
+<section class="card">
+  <h2>Ataques por centro: resumen</h2>
+  <ul id="resumen"></ul>
+</section>
+
+<footer>El Ser Uno · Canon estricto</footer>
+</main>
+
+<script>
+const C=[
+{n:"Raíz",u:"Base de la columna, zona del periné.",f:"Supervivencia y arraigo a la Tierra.",o:"Intestino grueso, recto, piernas, pies, huesos y glándulas suprarrenales.",eq:"Estabilidad, presencia, sensación de seguridad.",des:"Miedo, inseguridad, apego material, cansancio de fondo.",at:"Ataque de Fractura de Columna Energética",pr:"Sellado áurico de la base, anclaje consciente a la Tierra con el Rayo Crístico descendiendo por la columna, y verificación por radiestesia.",c:"#c0392b"},
+{n:"Sacro",u:"Bajo vientre, unos 5 cm bajo el ombligo.",f:"Creatividad, emociones y vitalidad.",o:"Órganos reproductores, riñones, vejiga y sistema linfático.",eq:"Fluidez emocional, creatividad, disfrute.",des:"Culpa, bloqueo creativo, dependencias, drenaje de vitalidad.",at:"Dispensador y Amplificador de Dolencias",pr:"Sellado áurico del centro, corte consciente de vínculos que drenan, y revisión por radiestesia de la zona baja del campo.",c:"#e67e22"},
+{n:"Plexo Solar",u:"Entre el ombligo y el esternón.",f:"Voluntad y poder personal.",o:"Estómago, hígado, vesícula, páncreas, bazo e intestino delgado.",eq:"Determinación serena, claridad para decidir.",des:"Control, baja autoestima, ira, malestar digestivo recurrente.",at:"Envenenamiento Psíquico",pr:"Sellado áurico del plexo, limpieza con el Rayo Crístico dirigida al centro y control periódico por radiestesia.",c:"#f1c40f"},
+{n:"Corazón",u:"Centro del pecho.",f:"Amor y compasión.",o:"Corazón, pulmones, timo, circulación y brazos.",eq:"Apertura, empatía, vínculos sanos.",des:"Rencor, celos, aislamiento, opresión en el pecho.",at:"Suplantación de Esencia",pr:"Sellado áurico del corazón, afirmación de la propia esencia con el Rayo Crístico y confirmación por radiestesia.",c:"#27ae60"},
+{n:"Garganta",u:"Base del cuello.",f:"Comunicación y expresión de la verdad.",o:"Tiroides, paratiroides, laringe, cuerdas vocales, boca y oído.",eq:"Expresión clara y honesta.",des:"Dificultad para expresarse, mentira, voz tensa.",at:"Constructo Etérico Interdimensional",pr:"Sellado áurico de la garganta, disolución del constructo con el Rayo Crístico y medición por radiestesia.",c:"#2e86de"},
+{n:"Tercer Ojo",u:"Entre las cejas.",f:"Intuición y visión interior.",o:"Hipófisis, ojos, cerebro, sistema nervioso y senos paranasales.",eq:"Discernimiento, percepción interior nítida.",des:"Confusión, rigidez mental, dolor de cabeza intenso.",at:"Ataque de Nublamiento Vibracional al Tercer Ojo Espiritual",pr:"Protocolo propio de ese ataque (haz de naves anunnaki, D-8), junto con sellado áurico del centro y control por radiestesia.",c:"#4b3fb5"},
+{n:"Corona",u:"Parte superior de la cabeza.",f:"Conexión espiritual y unidad.",o:"Glándula pineal, cerebro superior y sistema nervioso central.",eq:"Conexión continua, paz, sentido de unidad.",des:"Desconexión, dogmatismo, sensación de vacío.",at:"Secuestro de Anclaje Crístico",pr:"Sellado áurico de la corona, restablecimiento del anclaje con el Rayo Crístico y verificación por radiestesia.",c:"#9b59b6"}
+];
+const ind=document.getElementById('indice'),fi=document.getElementById('fichas'),rs=document.getElementById('resumen');
+C.forEach((x,i)=>{
+ ind.insertAdjacentHTML('beforeend',`<a href="#c${i}">${x.n}</a>`);
+ fi.insertAdjacentHTML('beforeend',`<section class="card ficha" id="c${i}" style="border-left:4px solid ${x.c}">
+ <h2>${x.n}</h2><p class="sub">${x.u}</p><p>${x.f}</p>
+ <details><summary>Órganos y sistemas que rige</summary><p>${x.o}</p></details>
+ <details><summary>Equilibrio y desequilibrio</summary><p><strong>Equilibrado:</strong> ${x.eq}</p><p><strong>Desequilibrado:</strong> ${x.des}</p></details>
+ <details><summary>Ataque más común</summary><p>${x.at}</p></details>
+ <details><summary>Protocolo de protección</summary><p>${x.pr}</p></details>
+ <details><summary>Medición Bovis</summary><p>Valor por registrar mediante radiestesia.</p><div class="bovis"><span></span></div></details>
+ </section>`);
+ rs.insertAdjacentHTML('beforeend',`<li><strong>${x.n}:</strong> ${x.at}</li>`);
+});
+const cv=document.getElementById('stars'),g=cv.getContext('2d');let S=[];
+function rs_(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3+.2,v:Math.random()*.25+.05}))}
+function dr(){g.clearRect(0,0,cv.width,cv.height);g.fillStyle='#fff';S.forEach(s=>{g.globalAlpha=.4+Math.sin(Date.now()/900*s.v*4+s.x)*.4;g.beginPath();g.arc(s.x,s.y,s.r,0,6.3);g.fill();});requestAnimationFrame(dr)}
+addEventListener('resize',rs_);rs_();
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)dr();
+</script>
+</body>
+</html>

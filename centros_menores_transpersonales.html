@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Centros Menores y Transpersonales — El Ser Uno</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070f;--panel:rgba(255,255,255,.05);--line:rgba(212,175,55,.28);--gold:#d4af37;--blue:#6db3ff;--text:#e8e6f0;--mute:#a9a6bd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;font-size:19px;line-height:1.65;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+#stars{position:fixed;inset:0;z-index:0}
+main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:24px 18px 80px}
+.back{font-family:'Space Mono',monospace;font-size:13px;color:var(--blue);text-decoration:none;margin-right:16px;display:inline-block}
+header{text-align:center;padding:48px 0 32px}
+.orb{width:92px;height:92px;margin:0 auto 22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c4,var(--gold) 40%,#3b4f8f 85%);box-shadow:0 0 50px rgba(212,175,55,.45);animation:spin 18s linear infinite}
+@keyframes spin{to{filter:hue-rotate(360deg)}}
+h1{font-family:'Cinzel Decorative',serif;font-size:clamp(26px,6vw,42px);color:var(--gold);margin:0 0 10px;line-height:1.2}
+header p{color:var(--mute);max-width:560px;margin:0 auto;font-style:italic}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:18px 0;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+h2{font-family:'Cinzel',serif;color:var(--gold);font-size:24px;margin:0 0 6px}
+h2.sec{font-size:28px;margin:44px 0 4px}
+.sub{color:var(--mute);margin:0 0 4px;font-style:italic}
+.nota{border-left:3px solid var(--gold)}
+.nota strong{color:var(--gold)}
+nav.ind{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+nav.ind a{font-family:'Space Mono',monospace;font-size:13px;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+nav.ind a:hover,nav.ind a:focus-visible{background:rgba(212,175,55,.15);outline:none}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-family:'Cinzel',serif;font-size:15px;padding:4px 0}
+summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+details p{margin:8px 0 4px}
+a.l{color:var(--blue)}
+.bovis{height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:8px}
+.bovis span{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--gold))}
+.ficha{scroll-margin-top:16px;border-left:4px solid var(--blue)}
+.ficha.t{border-left-color:var(--gold)}
+footer{text-align:center;color:var(--mute);font-family:'Space Mono',monospace;font-size:12px;padding-top:30px}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<main>
+<a class="back" href="index.html">← Volver a la biblioteca</a><a class="back" href="centros_energeticos.html">Los Siete Centros Energéticos</a>
+<header>
+  <div class="orb"></div>
+  <h1>Centros Menores y Transpersonales</h1>
+  <p>Los centros que acompañan a los siete mayores: los distribuidos en el cuerpo y los que se extienden más allá de él.</p>
+</header>
+
+<section class="card nota">
+  <strong>Nota de canon.</strong> Los nombres de esta página son descriptivos y en español; no se usa nomenclatura externa. Los vínculos con ataques y entradas existentes son propuestas de relación, y las correspondencias no constituyen diagnóstico médico.
+</section>
+
+<section class="card">
+  <h2>Qué distingue a cada tipo</h2>
+  <p><strong>Mayores:</strong> los siete centros del eje de la columna, descritos en <a class="l" href="centros_energeticos.html">Los Siete Centros Energéticos</a>.</p>
+  <p><strong>Menores:</strong> centros secundarios distribuidos en el cuerpo, como palmas de las manos, plantas de los pies, rodillas y hombros.</p>
+  <p><strong>Transpersonales:</strong> centros situados fuera del cuerpo físico, por encima de la cabeza y por debajo de los pies, que enlazan con planos superiores y con la Tierra.</p>
+</section>
+
+<nav class="ind" id="indice" aria-label="Índice"></nav>
+
+<h2 class="sec" id="menores">Centros menores</h2>
+<div id="menoresList"></div>
+
+<h2 class="sec" id="transpersonales">Centros transpersonales</h2>
+<div id="transList"></div>
+
+<h2 class="sec" id="conexion">Cómo se conectan</h2>
+<section class="card">
+  <p><strong>Con el Campo Toroidal.</strong> El flujo asciende por el eje central, se expande sobre la coronilla, envuelve el cuerpo y retorna por los pies. Los dos centros transpersonales serían los extremos de ese circuito: el Superior donde el flujo se expande y el Terrestre donde retorna.</p>
+  <p><strong>Con los siete mayores.</strong> El centro Superior se enlaza con la Corona, y el Terrestre con la Raíz. Los centros menores de manos y pies funcionan como puntos de emisión, recepción y descarga del mismo flujo.</p>
+  <p><strong>Con la protección.</strong> Un sellado áurico completo considera los seis centros de esta página, no solo los siete mayores, y se verifica por radiestesia.</p>
+</section>
+
+<footer>El Ser Uno · Canon estricto</footer>
+</main>
+
+<script>
+const M=[
+{n:"Manos",u:"Palmas de las manos.",f:"Emisión y recepción de energía, sanación y tacto sutil.",v:"Absorben carga de personas y objetos al contacto.",p:"Sellado áurico de las palmas y descarga consciente tras el contacto con cargas ajenas, verificada por radiestesia."},
+{n:"Pies",u:"Plantas de los pies.",f:"Intercambio con la Tierra, descarga y anclaje.",v:"Se cierran con el desarraigo y el cansancio persistente.",p:"Anclaje consciente a la Tierra y sellado áurico de las plantas, con control por radiestesia."},
+{n:"Rodillas",u:"Articulaciones de las rodillas.",f:"Flexibilidad, avance y humildad.",v:"Rigidez y miedo a avanzar.",p:"Sellado áurico de las articulaciones y verificación por radiestesia."},
+{n:"Hombros",u:"Articulaciones de los hombros.",f:"Carga asumida y responsabilidad.",v:"Cargas ajenas adheridas.",p:"Descarga consciente de lo que no corresponde al ser, sellado áurico y control por radiestesia."}
+];
+const T=[
+{n:"Centro Superior",u:"Por encima de la cabeza, fuera del cuerpo físico.",f:"Puente con los planos superiores.",v:"Relación con el Rayo Crístico al descender hacia la Corona; su interrupción se vincula con el <a class=\"l\" href=\"secuestro_anclaje_cristico.html\">Secuestro de Anclaje Crístico</a>.",p:"Restablecer el descenso del Rayo Crístico, sellar el campo sobre la Corona y verificar por radiestesia."},
+{n:"Centro Terrestre",u:"Por debajo de los pies, fuera del cuerpo físico.",f:"Enlace con Gaia y con la red telúrica.",v:"Su flujo puede distorsionarse por la <a class=\"l\" href=\"ataque_rejilla_hartmann_curry.html\">Rejilla Hartmann-Curry</a>.",p:"Anclaje consciente a Gaia, sellado del campo bajo los pies y control por radiestesia."}
+];
+function ficha(x,cls){return `<section class="card ficha ${cls}" id="${x.n.replace(/ /g,'_')}"><h2>${x.n}</h2><p class="sub">${x.u}</p><p>${x.f}</p>
+<details><summary>Vulnerabilidad y relaciones</summary><p>${x.v}</p></details>
+<details><summary>Protección</summary><p>${x.p}</p></details>
+<details><summary>Medición Bovis</summary><p>Valor por registrar mediante radiestesia.</p><div class="bovis"><span></span></div></details></section>`}
+const ind=document.getElementById('indice');
+[...M.map(x=>x.n),...T.map(x=>x.n),'Cómo se conectan'].forEach(n=>{const id=n==='Cómo se conectan'?'conexion':n.replace(/ /g,'_');ind.insertAdjacentHTML('beforeend',`<a href="#${id}">${n}</a>`)});
+document.getElementById('menoresList').innerHTML=M.map(x=>ficha(x,'')).join('');
+document.getElementById('transList').innerHTML=T.map(x=>ficha(x,'t')).join('');
+const cv=document.getElementById('stars'),g=cv.getContext('2d');let S=[];
+function rs_(){cv.width=innerWidth;cv.height=innerHeight;S=Array.from({length:110},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3+.2,v:Math.random()*.25+.05}))}
+function dr(){g.clearRect(0,0,cv.width,cv.height);g.fillStyle='#fff';S.forEach(s=>{g.globalAlpha=.4+Math.sin(Date.now()/900*s.v*4+s.x)*.4;g.beginPath();g.arc(s.x,s.y,s.r,0,6.3);g.fill();});requestAnimationFrame(dr)}
+addEventListener('resize',rs_);rs_();
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)dr();
+</script>
+</body>
+</html>
