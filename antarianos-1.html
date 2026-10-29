@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antarianos | El Ser Uno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-celestial:#5fa8d3;
+    --azul-celestial-2:#9fc9ff;
+    --blanco-estelar:#f4f7fb;
+    --azul-profundo:#050914;
+    --dorado:#d4af6a;
+    --linea:rgba(95,168,211,0.35);
+    --vidrio:rgba(255,255,255,0.05);
+    --borde-vidrio:rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Cormorant Garamond', serif;
+    color:var(--blanco-estelar);
+    background:radial-gradient(ellipse at 20% 10%, #101a35 0%, var(--azul-profundo) 45%, #000 100%);
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  #stars, #stars2{position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;}
+  h1,h2,h3{font-family:'Cinzel Decorative', serif; font-weight:700; letter-spacing:0.5px; color:var(--blanco-estelar);}
+  a{color:var(--azul-celestial); text-decoration:none;}
+  a:hover{color:var(--dorado);}
+
+  header.hero{position:relative; z-index:2; text-align:center; padding:7rem 1.5rem 5rem;}
+  header.hero .eyebrow{
+    display:inline-block; font-family:'Cinzel Decorative', serif; font-size:0.75rem;
+    letter-spacing:4px; text-transform:uppercase; color:var(--dorado); margin-bottom:1.2rem;
+  }
+  header.hero h1{
+    font-size:clamp(2rem, 5vw, 3.4rem); margin:0 0 1.2rem;
+    background:linear-gradient(120deg, var(--blanco-estelar), var(--azul-celestial) 60%, var(--dorado));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  header.hero p.sub{max-width:680px; margin:0 auto; font-size:1.25rem; font-style:italic; color:#c9d6ea;}
+  nav.breadcrumb{position:relative; z-index:2; text-align:center; font-size:0.95rem; color:#8fa3c4; margin-bottom:1rem;}
+
+  main{position:relative; z-index:2; max-width:920px; margin:0 auto; padding:0 1.5rem 6rem;}
+
+  section.bloque{margin:0 0 4.5rem;}
+  section.bloque .numero{
+    font-family:'Cinzel Decorative', serif; font-size:0.85rem; color:var(--dorado);
+    letter-spacing:3px; text-transform:uppercase;
+  }
+  section.bloque h2{
+    font-size:clamp(1.5rem, 3vw, 2.1rem); margin:0.4rem 0 1.3rem;
+    border-bottom:1px solid var(--linea); padding-bottom:0.8rem;
+  }
+  section.bloque p{font-size:1.15rem; color:#dbe4f2;}
+
+  .glass{
+    background:var(--vidrio); border:1px solid var(--borde-vidrio);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-radius:16px; padding:1.8rem 2rem;
+  }
+
+  .ficha{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:1.2rem; margin-top:1.5rem;
+  }
+  .ficha .dato{
+    padding:1.3rem 1.4rem; border-left:2px solid var(--dorado);
+    background:rgba(255,255,255,0.03); border-radius:8px;
+  }
+  .ficha .dato .etq{
+    font-family:'Cinzel Decorative', serif; font-size:0.7rem; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--dorado); display:block; margin-bottom:0.4rem;
+  }
+  .ficha .dato .val{font-size:1.05rem; color:var(--azul-celestial-2);}
+
+  .lista-cualidades{list-style:none; margin:1.5rem 0 0; padding:0; display:grid; gap:0.9rem;}
+  .lista-cualidades li{
+    display:flex; gap:1rem; align-items:baseline;
+    padding:0.9rem 1.2rem; background:rgba(255,255,255,0.03);
+    border-left:2px solid var(--azul-celestial); border-radius:6px;
+  }
+  .lista-cualidades li .marca{font-family:'Cinzel Decorative', serif; color:var(--dorado); font-size:0.8rem;}
+
+  .enlace-relacionado{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    margin-top:1rem; margin-right:0.6rem;
+    padding:0.7rem 1.3rem; border:1px solid var(--borde-vidrio);
+    border-radius:999px; font-size:0.95rem; letter-spacing:0.5px;
+  }
+  .enlace-relacionado:hover{border-color:var(--dorado);}
+
+  .cierre{text-align:center; padding:3rem 1.5rem;}
+  .cierre p{font-size:1.3rem; font-style:italic; color:#cdd9ee; max-width:640px; margin:0 auto;}
+
+  footer{
+    position:relative; z-index:2; text-align:center; padding:2.5rem 1rem;
+    font-size:0.85rem; color:#5f7196; border-top:1px solid var(--linea);
+  }
+
+  @media (max-width:600px){
+    header.hero{padding:5rem 1.2rem 3rem;}
+    .glass{padding:1.3rem 1.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<canvas id="stars2"></canvas>
+
+<nav class="breadcrumb"><a href="index.html">El Ser Uno</a> &nbsp;/&nbsp; <a href="razas_oscuridad_ascension_gaia.html">Razas de Oscuridad</a> &nbsp;/&nbsp; Antarianos</nav>
+
+<header class="hero">
+  <span class="eyebrow">El Ser Uno · Raza de Oscuridad · D-9</span>
+  <h1>Antarianos</h1>
+  <p class="sub">Antigua civilización de estructuración energética y sostén vibracional que se volcó a la oscuridad.</p>
+</header>
+
+<main>
+
+  <section class="bloque" id="nota-canon">
+    <div class="glass">
+      <p><strong>Nota de canon.</strong> Según la información directa de la fuente de El Ser Uno, las razas Anunnaki y Antarianos se volcaron a la oscuridad. Esta página conserva lo que los Antarianos fueron y documenta su nuevo lugar en la jerarquía de oscuridad.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="ficha-general">
+    <span class="numero">01</span>
+    <h2>Ficha general</h2>
+    <div class="ficha">
+      <div class="dato"><span class="etq">Estado actual</span><span class="val">Raza de Oscuridad</span></div>
+      <div class="dato"><span class="etq">Nivel jerárquico</span><span class="val">D-9, junto a los Anunnaki</span></div>
+      <div class="dato"><span class="etq">Función original</span><span class="val">Sostén vibracional y estructuración energética</span></div>
+      <div class="dato"><span class="etq">Corriente original</span><span class="val">Rayo Crístico</span></div>
+    </div>
+  </section>
+
+  <section class="bloque" id="origen">
+    <span class="numero">02</span>
+    <h2>Origen y cambio de polaridad</h2>
+    <div class="glass">
+      <p>Los Antarianos fueron una civilización estelar de luz cuya labor se centraba en la estructuración energética profunda. Se les reconocía como una raza de orden y sostén, más orientada a construir y estabilizar campos vibracionales que a intervenir de forma expresiva o emocional en los procesos humanos.</p>
+      <p>Se volcaron a la oscuridad. Hoy ocupan el nivel D-9 de la jerarquía de seres de oscuridad, el mismo nivel de los Anunnaki.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="funcion">
+    <span class="numero">03</span>
+    <h2>Su labor original</h2>
+    <p>Antes de su cambio de polaridad, el aporte de los Antarianos se expresaba en distintos planos del proceso de transición planetaria:</p>
+    <div class="glass">
+      <ul class="lista-cualidades">
+        <li><span class="marca">·</span> Estabilización de campos energéticos durante activaciones y desprogramaciones intensas.</li>
+        <li><span class="marca">·</span> Sostén de la estructura vibracional de Gaia frente a los reajustes atemporales e interdimensionales.</li>
+        <li><span class="marca">·</span> Aporte de orden y firmeza a los procesos colectivos de ascensión, evitando la dispersión energética.</li>
+        <li><span class="marca">·</span> Acompañamiento silencioso, más estructural que directamente perceptible en la experiencia consciente.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloque" id="relacion-gaia">
+    <span class="numero">04</span>
+    <h2>Cómo leer las referencias antiguas</h2>
+    <div class="glass">
+      <p>Las menciones anteriores a los Antarianos como sostén de la transición planetaria describen su estado previo. Ya no corresponde presentarlos como acompañamiento de luz ni como aliados del Rayo Crístico.</p>
+    </div>
+  </section>
+
+  <section class="bloque" id="relacion-sistema">
+    <span class="numero">05</span>
+    <h2>Lugar dentro de la jerarquía</h2>
+    <div class="glass">
+      <p>Los Antarianos pasaron de los primeros niveles del sistema de razas de luz, junto a los Ayaplianos, al nivel D-9 de la jerarquía de oscuridad.</p>
+      <a class="enlace-relacionado" href="razas_oscuridad_ascension_gaia.html">Ver las Razas de Oscuridad →</a>
+      <a class="enlace-relacionado" href="jerarquia_seres_oscuridad.html">Ver jerarquía de Seres de Oscuridad →</a>
+      <a class="enlace-relacionado" href="ayaplianos.html">Ver a los Ayaplianos →</a>
+    </div>
+  </section>
+
+  <section class="cierre" id="cierre">
+    <p>Los Antarianos sostuvieron la luz con firmeza silenciosa. Hoy se encuentran del lado de la oscuridad, en el nivel D-9.</p>
+  </section>
+
+</main>
+
+<footer>El Ser Uno · Antarianos</footer>
+
+<script>
+  function initStars(canvasId, count, speed, size){
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    let w, h, stars;
+    function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = document.documentElement.scrollHeight; }
+    function makeStars(){
+      stars = Array.from({length:count}, () => ({
+        x: Math.random()*w, y: Math.random()*h,
+        r: Math.random()*size + 0.3, o: Math.random()*0.6 + 0.3
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = '#f4f7fb';
+      stars.forEach(s => {
+        ctx.globalAlpha = s.o;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    }
+    window.addEventListener('resize', () => { resize(); makeStars(); draw(); });
+    window.addEventListener('scroll', () => { canvas.style.transform = `translateY(${window.scrollY * speed}px)`; });
+    resize(); makeStars(); draw();
+  }
+  initStars('stars', 140, -0.05, 1.2);
+  initStars('stars2', 60, -0.12, 2);
+</script>
+
+</body>
+</html>
