@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siete Niveles de Despertar · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --ambar: #c09040;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+.hero { min-height: 56vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.05rem,3vw,1.5rem); font-weight:400; letter-spacing:.08em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:600px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+.card p { font-size:.85rem; color:var(--gris-c); line-height:1.75; }
+.card p + p { margin-top:.9rem; }
+.card strong { color:var(--blanco); }
+
+/* ETAPAS - timeline */
+.etapa { border-left:2px solid var(--violeta); padding-left:1.2rem; margin-bottom:1.6rem; position:relative; }
+.etapa:last-child { margin-bottom:0; }
+.etapa::before { content:''; position:absolute; left:-6px; top:4px; width:10px; height:10px; background:var(--oro); border-radius:50%; box-shadow:0 0 8px var(--oro); }
+.etapa-title { font-family:'Cinzel', serif; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); margin-bottom:.5rem; }
+.etapa-desc { font-size:.84rem; line-height:1.75; color:var(--gris-c); }
+
+/* DIFERENCIACIÓN */
+.diferencia-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+@media (max-width:640px){ .diferencia-grid{ grid-template-columns:1fr; } }
+.dif-col { border-radius:4px; padding:1.1rem 1.2rem; }
+.dif-col.luz { background:rgba(157,127,212,.06); border:1px solid var(--border-h); }
+.dif-col.crisis { background:rgba(176,64,64,.07); border:1px solid rgba(176,64,64,.35); }
+.dif-title { font-family:'Cinzel', serif; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.6rem; }
+.dif-col.luz .dif-title { color:var(--violeta-c); }
+.dif-col.crisis .dif-title { color:var(--crimson-pale); }
+.dif-col ul { list-style:none; }
+.dif-col li { font-size:.8rem; color:var(--gris-c); line-height:1.6; padding:.25rem 0 .25rem 1em; position:relative; }
+.dif-col li::before { content:'◆'; position:absolute; left:0; font-size:.5rem; top:.55em; }
+.dif-col.luz li::before { color:var(--violeta-c); }
+.dif-col.crisis li::before { color:var(--crimson-pale); }
+
+/* DESPLEGABLES POR ETAPA */
+.etapa details { margin-top:.8rem; background:var(--surface); border:1px solid var(--border); border-radius:4px; }
+.etapa summary { cursor:pointer; padding:.6rem 1rem; font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--violeta-c); list-style:none; }
+.etapa summary::-webkit-details-marker { display:none; }
+.etapa summary::before { content:'▸ '; }
+.etapa details[open] summary::before { content:'▾ '; }
+.det-body { padding:.2rem 1rem 1rem; }
+.det-body h4 { font-family:'Cinzel', serif; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--oro); margin:.9rem 0 .3rem; }
+.det-body p { font-size:.82rem; color:var(--gris-c); line-height:1.7; }
+.cierre { margin-top:.9rem; padding:.8rem 1rem; border:1px solid var(--oro-dim); border-radius:4px; background:rgba(159,201,255,.05); }
+.rel-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; }
+@media (max-width:640px){ .rel-grid{ grid-template-columns:1fr; } }
+.rel-grid a { display:block; padding:.8rem 1rem; border:1px solid var(--border-h); border-radius:4px; color:var(--violeta-c); text-decoration:none; font-family:'Cinzel', serif; font-size:.74rem; letter-spacing:.06em; }
+.rel-grid a:hover { border-color:var(--oro); color:var(--oro); }
+
+.nota { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:1rem 1.2rem; font-size:.8rem; color:var(--gris-c); line-height:1.7; font-style:italic; }
+
+.func-tag { display:inline-block; font-family:'Space Mono', monospace; font-size:.68rem; letter-spacing:.05em; color:var(--teal-pale); background:rgba(58,128,112,.12); border:1px solid var(--teal); border-radius:16px; padding:.3rem .9rem; margin-bottom:1rem; }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+</style>
+</head>
+<body>
+
+<div id="starfield"></div>
+<div class="app">
+
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">✦</div></div>
+  <h1>Siete Niveles de Despertar</h1>
+  <p class="hero-sub">El Ser Uno · Síntesis Comparada del Camino del Despertar</p>
+  <p class="hero-intro">Un esquema de siete niveles que sintetiza lo que más se repite sobre el despertar de un ser de luz encarnado en la Tierra. No es una escala rígida: es un mapa para orientarse.</p>
+</section>
+
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Nota de Canon</div>
+  <div class="nota">Esta página es una excepción de canon autorizada por la fuente: sintetiza lo que más se repite en distintas tradiciones de despertar y no corresponde a una enseñanza de los libros fuente. El proceso propio de El Ser Uno está en <a href="apertura_reconocimiento_ser_luz.html" style="color:var(--violeta-c)">Apertura y Reconocimiento como Ser de Luz Encarnado</a>. Las correspondencias entre ambos son aproximadas, no equivalencias.</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">1</span>Los Siete Niveles</div>
+
+  <div class="etapa">
+    <div class="etapa-title">Dormido</div>
+    <div class="etapa-desc">Vive en automático, identificado con el ego, la personalidad, los roles y el miedo.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Las decisiones se toman por hábito y por miedo; la identidad se agota en el rol (trabajo, familia, apariencia) y lo que no se explica se descarta.</p>
+        <h4>Trampa del nivel</h4><p>Confundir comodidad con paz.</p>
+        <h4>Paso al siguiente</h4><p>Una grieta en la rutina: una crisis, un vacío o una sincronía que no se puede ignorar.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">Despertar de la pregunta</div>
+    <div class="etapa-desc">Una crisis, un vacío o una sincronicidad lo lleva a preguntarse “¿quién soy?”.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Inquietud, sensación de que falta algo y nimeos o sincronías que llaman la atención. Se aproxima a la Apertura y a las Señales de Reconocimiento.</p>
+        <h4>Trampa del nivel</h4><p>Taparla de inmediato con distracciones, o interpretarla solo como un problema.</p>
+        <h4>Paso al siguiente</h4><p>Dejar que la pregunta permanezca y empezar a buscar respuestas.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">Búsqueda y purificación</div>
+    <div class="etapa-desc">Estudia, practica, sana patrones y sombras, y suelta creencias heredadas.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Lecturas, prácticas y revisión honesta de heridas y patrones; se cuestiona lo que antes se daba por cierto.</p>
+        <h4>Trampa del nivel</h4><p>Sentirse “más despierto” que otros (ego espiritual) o acumular conocimiento sin vivirlo. Suele ser la señal de que se está en este nivel.</p>
+        <h4>Paso al siguiente</h4><p>Pasar del saber a la experiencia: practicar lo que se estudia.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">El testigo</div>
+    <div class="etapa-desc">Deja de identificarse con pensamientos y emociones, y desarrolla presencia y observación.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Se nota el pensamiento sin ser arrastrado por él; las emociones pasan por el ser en lugar de definirlo.</p>
+        <h4>Trampa del nivel</h4><p>Usar la observación como distancia fría, para no sentir.</p>
+        <h4>Paso al siguiente</h4><p>Dejar que lo observado se transforme en cuidado por lo que se observa.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">Apertura del corazón</div>
+    <div class="etapa-desc">Surge la compasión y el servicio, y se siente a los demás como parte de uno mismo.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Servicio natural, escucha y empatía; los demás dejan de sentirse ajenos.</p>
+        <h4>Trampa del nivel</h4><p>Dar sin discernir: agota y deja expuesto a manipulaciones, como el simulacro de ayuda.</p>
+        <h4>Paso al siguiente</h4><p>Sostener el servicio con límites y con protección energética.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">Integración</div>
+    <div class="etapa-desc">Lo espiritual y lo humano conviven, y se vive en el mundo sin ser dominado por él. Aquí se expresan los dones y la misión.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>Una identidad firme y cotidiana, vínculos coherentes y dones ejercidos con naturalidad. Se aproxima a la Integración de Apertura y Reconocimiento.</p>
+        <h4>Trampa del nivel</h4><p>Creer que ya no hacen falta los cuidados y relajar la protección.</p>
+        <h4>Paso al siguiente</h4><p>Mantener la práctica y la protección en el tiempo.</p>
+      </div>
+    </details>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">Unidad</div>
+    <div class="etapa-desc">Se disuelve la sensación de separación y se vive desde el Ser Uno, en lo cotidiano y no solo en momentos de éxtasis.</div>
+    <details>
+      <summary>Desarrollo del nivel</summary>
+      <div class="det-body">
+        <h4>Cómo se vive</h4><p>La unidad deja de ser una experiencia puntual y se vuelve la base desde la que se vive, también en lo ordinario.</p>
+        <h4>Trampa del nivel</h4><p>Confundir una experiencia cumbre con el nivel: lo que lo define es su continuidad.</p>
+        <h4>Paso al siguiente</h4><p>Es el horizonte del camino; no se alcanza una vez y para siempre.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">2</span>Advertencias del Camino</div>
+  <div class="etapa">
+    <div class="etapa-title">No es lineal</div>
+    <div class="etapa-desc">Se avanza, se retrocede y se repiten niveles en espirales.</div>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">La trampa del ego espiritual</div>
+    <div class="etapa-desc">Sentirse “más despierto” que otros es una trampa del ego espiritual y suele indicar que se está en el nivel 3.</div>
+  </div>
+  <div class="etapa">
+    <div class="etapa-title">La prueba es la vida</div>
+    <div class="etapa-desc">La prueba de un nivel es cómo se vive y se trata a los demás, no lo que se sabe o se experimenta.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="num">3</span>Páginas Relacionadas</div>
+  <div class="rel-grid">
+    <a href="apertura_reconocimiento_ser_luz.html">Apertura y Reconocimiento como Ser de Luz Encarnado</a>
+    <a href="aspirantes_graduacion_dimensional.html">Aspirantes a la Graduación Dimensional</a>
+    <a href="enganos_oscuridad_universo.html">Engaños de la Oscuridad al Universo</a>
+    <a href="index.html">Volver al índice</a>
+  </div>
+</div>
+
+<footer>
+  <p>El Ser Uno · Biblioteca de Conocimiento Esotérico</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+</script>
+</body>
+</html>
