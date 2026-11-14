@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Trece Dimensiones de Oscuridad · El Ser Uno</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #07070e;
+  --surface: #0e0e1c;
+  --panel: #12121f;
+  --border: #1e1e35;
+  --border-h: #2e2e55;
+  --oro: #9fc9ff;
+  --oro-dim: #294a72;
+  --violeta: #1e3a68;
+  --violeta-c: #6fa3e0;
+  --blanco: #ddd8cc;
+  --gris: #7878a0;
+  --gris-c: #a0a0c0;
+  --teal: #3a8070;
+  --teal-pale: #8ad0bc;
+  --crimson: #b04040;
+  --crimson-pale: #e08080;
+  --ambar: #c09040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.star { position: absolute; background: var(--violeta-c); border-radius: 50%; animation: twinkle var(--dur) ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity:.08; transform:scale(1); } 50% { opacity:.85; transform:scale(1.4); } }
+
+.app { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 1.4rem 5rem; }
+
+/* HERO */
+.hero { min-height: 62vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:3rem 1rem 2rem; }
+.orb { position:relative; width:140px; height:140px; margin:0 auto 2rem; }
+.orb-ring { position:absolute; inset:0; border-radius:50%; border:1px solid rgba(192,144,64,.25); animation:giro 26s linear infinite; }
+.orb-ring::before { content:''; position:absolute; top:-3px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--ambar); box-shadow:0 0 10px var(--ambar); }
+.orb-ring-2 { inset:16px; border-color:rgba(157,127,212,.3); animation:giro 18s linear infinite reverse; }
+.orb-ring-2::before { background:var(--violeta-c); box-shadow:0 0 10px var(--violeta-c); }
+.orb-core { position:absolute; inset:32px; border-radius:50%; background:radial-gradient(circle, rgba(58,40,10,.85) 0%, rgba(7,7,14,.95) 70%); border:1px solid rgba(192,144,64,.4); display:flex; align-items:center; justify-content:center; font-size:1.8rem; }
+@keyframes giro { to { transform:rotate(360deg); } }
+
+h1 { font-family:'Cinzel Decorative', serif; font-size:clamp(1.1rem,3vw,1.6rem); font-weight:400; letter-spacing:.1em; color:var(--oro); text-shadow:0 0 40px rgba(200,168,75,.3); }
+.hero-sub { font-family:'Cinzel', serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-top:.6rem; }
+.hero-intro { max-width:600px; font-style:italic; color:var(--gris-c); font-size:.98rem; margin-top:1.4rem; }
+.hero-links { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.hero-cta { font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--oro); border:1px solid var(--oro-dim); padding:.7rem 1.6rem; text-decoration:none; cursor:pointer; background:none; transition:all .2s; }
+.hero-cta:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+/* CARDS */
+.card { background:var(--panel); border:1px solid var(--border); border-radius:4px; padding:1.6rem; margin-bottom:1.2rem; }
+.card-title { font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:1.1rem; display:flex; align-items:center; gap:.7rem; }
+.card-title .num { background:var(--surface); border:1px solid var(--oro-dim); border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:var(--oro); flex-shrink:0; }
+
+/* CAPAS DEL AURA */
+.capas-grid { display:grid; gap:.5rem; }
+.capa-row { display:flex; align-items:center; gap:1rem; padding:.8rem 1rem; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; cursor:pointer; transition:border-color .2s; }
+.capa-row:hover { border-color:var(--border-h); }
+.capa-row.checked { border-color:var(--teal); background:rgba(58,128,112,.08); }
+.capa-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; border:1.5px solid var(--gris); display:flex; align-items:center; justify-content:center; font-size:8px; transition:all .2s; }
+.capa-row.checked .capa-dot { background:var(--teal); border-color:var(--teal); color:#fff; }
+.capa-info { flex:1; }
+.capa-nombre { font-family:'Cinzel', serif; font-size:.78rem; letter-spacing:.06em; color:var(--violeta-c); margin-bottom:.15rem; }
+.capa-desc { font-size:.78rem; color:var(--gris-c); line-height:1.4; }
+
+/* SÍNTOMAS */
+.symptoms-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:.5rem; }
+.symptom-check { display:flex; align-items:flex-start; gap:.6rem; padding:.65rem .75rem; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:3px; cursor:pointer; transition:border-color .2s; }
+.symptom-check:hover { border-color:var(--border-h); }
+.symptom-check.checked { border-color:var(--ambar); background:rgba(192,144,64,.1); }
+.sym-box { width:15px; height:15px; border:1px solid var(--gris); border-radius:2px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; font-size:9px; transition:all .2s; }
+.symptom-check.checked .sym-box { background:var(--ambar); border-color:var(--ambar); color:#1a1206; }
+.sym-label { font-size:.78rem; line-height:1.4; color:var(--blanco); }
+
+/* CAUSAS */
+.causa-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.6rem; }
+.causa-btn { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:4px; padding:.85rem 1rem; cursor:pointer; transition:all .2s; text-align:left; color:var(--blanco); font-family:'Crimson Pro', serif; }
+.causa-btn:hover { border-color:var(--border-h); }
+.causa-btn.active { border-color:var(--oro); background:rgba(200,168,75,.07); }
+.causa-btn .c-name { font-family:'Cinzel', serif; font-size:.78rem; font-weight:600; color:var(--violeta-c); margin-bottom:.3rem; }
+.causa-btn .c-desc { font-size:.75rem; color:var(--gris-c); line-height:1.4; }
+
+/* BOVIS */
+.bovis-bar { height:12px; border-radius:6px; background:linear-gradient(90deg,#b04040 0%,#c09040 35%,#9fc9ff 60%,#3a8070 85%,#1e3a68 100%); position:relative; margin:.8rem 0; }
+.bovis-pointer { position:absolute; top:-4px; width:4px; height:20px; background:#fff; border-radius:2px; box-shadow:0 0 6px #fff; transform:translateX(-50%); transition:left 1s ease; }
+.bovis-labels { display:flex; justify-content:space-between; font-size:.62rem; color:var(--gris); margin-top:.3rem; }
+
+#diag-btn { display:block; width:100%; padding:1rem; background:linear-gradient(135deg, var(--violeta), #4a3470); border:1px solid var(--border-h); border-radius:4px; color:#fff; font-family:'Cinzel', serif; font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .25s; margin-top:1rem; }
+#diag-btn:hover { border-color:var(--oro); }
+
+#resultado { display:none; animation:fadeIn .5s ease; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.nivel-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem 1rem; border-radius:16px; font-size:.78rem; font-weight:600; margin-bottom:1rem; font-family:'Space Mono', monospace; }
+.nivel-limpia { background:rgba(58,128,112,.15); border:1px solid var(--teal); color:var(--teal-pale); }
+.nivel-leve { background:rgba(200,168,75,.12); border:1px solid var(--oro); color:var(--oro); }
+.nivel-sucia { background:rgba(192,144,64,.18); border:1px solid var(--ambar); color:#e0b070; }
+.nivel-saturada { background:rgba(176,64,64,.25); border:1px solid var(--crimson); color:var(--crimson-pale); }
+
+.protocol-phase { border-left:2px solid var(--violeta); padding-left:1.1rem; margin-bottom:1.3rem; position:relative; }
+.protocol-phase::before { content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px; background:var(--oro); border-radius:50%; box-shadow:0 0 6px var(--oro); }
+.phase-title { font-family:'Cinzel', serif; font-size:.78rem; color:var(--oro); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+.phase-content { font-size:.85rem; line-height:1.7; color:var(--gris-c); }
+.phase-content ul { list-style:none; padding:0; }
+.phase-content ul li { padding:.2rem 0 .2rem 1.1em; position:relative; }
+.phase-content ul li::before { content:'◆'; position:absolute; left:0; color:var(--violeta-c); font-size:.5rem; top:.5em; }
+
+.mantra-box { background:rgba(157,127,212,.08); border:1px solid var(--border-h); border-radius:4px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:.85rem; font-style:italic; color:var(--violeta-c); line-height:1.7; text-align:center; }
+
+.timer-section { text-align:center; padding:.6rem; }
+#timer-display { font-family:'Cinzel', serif; font-size:2.3rem; color:var(--oro); letter-spacing:.1em; }
+.timer-btns { display:flex; gap:.7rem; justify-content:center; margin-top:.7rem; flex-wrap:wrap; }
+.t-btn { padding:.4rem 1rem; border-radius:4px; border:1px solid var(--border-h); background:rgba(255,255,255,.02); color:var(--blanco); font-size:.78rem; cursor:pointer; font-family:'Crimson Pro', serif; transition:all .2s; }
+.t-btn:hover { border-color:var(--oro); }
+
+textarea { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:4px; color:var(--blanco); font-family:'Crimson Pro', serif; font-size:.85rem; padding:.85rem; resize:vertical; min-height:90px; outline:none; transition:border-color .2s; }
+textarea:focus { border-color:var(--border-h); }
+
+#export-btn { padding:.55rem 1.4rem; background:transparent; border:1px solid var(--oro-dim); border-radius:4px; color:var(--oro); font-family:'Cinzel', serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:all .2s; margin-top:1rem; }
+#export-btn:hover { background:rgba(200,168,75,.08); border-color:var(--oro); }
+
+footer { text-align:center; padding-top:2rem; color:var(--gris); font-size:.7rem; letter-spacing:.05em; }
+
+@media (max-width:560px){ .symptoms-grid,.causa-grid{ grid-template-columns:1fr; } }
+
+.nota-canon{border-color:var(--oro-dim)}
+.nota-canon p,.card p{font-size:.88rem;color:var(--gris-c);line-height:1.75}
+.nota-canon strong,.card strong{color:var(--blanco)}
+.bloque-t{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--violeta-c);margin:1.4rem 0 .6rem}
+details.dim{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:4px;margin-bottom:.5rem}
+details.dim[open]{border-color:var(--border-h)}
+details.dim summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.06em;color:var(--oro)}
+details.dim summary::-webkit-details-marker{display:none}
+details.dim .num{background:var(--surface);border:1px solid var(--oro-dim);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+.prop{margin-left:auto;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--ambar);border:1px solid var(--ambar);border-radius:10px;padding:.1rem .5rem}
+.dim-cuerpo{padding:.2rem 1.1rem 1.1rem}
+.dim-cuerpo .protocol-phase{margin-bottom:1rem}
+.dim-cuerpo .bovis-bar{margin-top:.2rem}
+</style>
+</head>
+<body>
+<div id="starfield"></div>
+<div class="app">
+<section class="hero">
+  <div class="orb"><div class="orb-ring"></div><div class="orb-ring orb-ring-2"></div><div class="orb-core">◐</div></div>
+  <h1>Las Trece Dimensiones de Oscuridad</h1>
+  <p class="hero-sub">El Ser Uno · Ataques y Defensa Energética</p>
+  <p class="hero-intro">La oscuridad no destruye la luz: la distorsiona hasta que el Ser de Luz la usa en contra de sí mismo. Cada dimensión toma una virtud y la invierte. Aquí se explica cómo ataca cada una, cómo se disfraza, cómo reconocerla y qué luz la contrarresta.</p>
+  <div class="hero-links">
+    <a href="jerarquia_seres_oscuridad.html" class="hero-cta">⬡ Jerarquía D-1 a D-8/9</a>
+    <a href="index.html" class="hero-cta">✦ Biblioteca</a>
+  </div>
+</section>
+<div class="card nota-canon">
+  <div class="card-title"><span class="num">◈</span>Nota de canon</div>
+  <p>Escala propia de trabajo de <strong>El Ser Uno</strong>, de trece dimensiones numeradas, sin terminología de otras tradiciones. Las dimensiones 11 a 13 son una propuesta de trabajo y están marcadas como tal. Esta escala es independiente de la escala D-1 a D-9 de jerarquías de oscuridad.</p>
+</div>
+<div class="card">
+  <div class="card-title"><span class="num">◈</span>Progresión y defensa</div>
+  <p><strong>Progresión:</strong> de lo cercano a lo abstracto. Dimensiones 1 a 4, psicológico y emocional; 5 a 8, del ego y el carácter; 9 a 12, contra la identidad misma; 13, contra el sentido de existir. La barra de cada ficha marca la profundidad.</p>
+  <p style="margin-top:.6rem"><strong>Defensa:</strong> es ante todo interior. Se verifica con <strong>radiestesia</strong> en la <strong>escala Bovis</strong> y se refuerza con el <strong>sellado áurico</strong>. Ninguna dimensión actúa sola: suelen encadenarse y entran por una debilidad propia aún no reconocida.</p>
+</div>
+<div class="card"><div id="lista"></div></div>
+<footer>
+  <p>El Ser Uno · Las Trece Dimensiones de Oscuridad</p>
+  <p style="margin-top:.3rem">Úsese con discernimiento</p>
+</footer>
+</div>
+<script>
+(function(){
+  const sf=document.getElementById('starfield');
+  for(let i=0;i<110;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sf.appendChild(s);
+  }
+})();
+const D=[
+["Dimensión de Oscuridad 1","","Inercia y materialismo","El ser olvida lo sagrado en lo cotidiano. La vida se vuelve rutina sin sentido y la dimensión material parece lo único real.","Cansancio “normal”, pragmatismo excesivo, desdén por lo espiritual.","Dejar de practicar sin motivo claro; sentir que “nada importa” pero sin dramatismo.","Presencia en lo simple: reencontrar lo sagrado en un gesto cotidiano.",0],
+["Dimensión de Oscuridad 2","","Ilusión y fantasía compulsiva","Visiones falsas e imaginación desbordada que confunden lo real con lo proyectado.","Experiencias “reveladoras” que halagan al ego y no pueden verificarse.","Mensajes que exigen secreto o urgencia; escapismo creciente.","Anclaje y verificación radiestésica; imaginación limpia.",0],
+["Dimensión de Oscuridad 3","","Engaño intelectual","Argumentos brillantes que suenan a verdad y conducen a la manipulación y al dogma.","Erudición, lógica impecable, “conocimiento superior”.","Conclusiones que separan, desprecian o exigen obediencia.","Honestidad radical con uno mismo.",0],
+["Dimensión de Oscuridad 4","","Apego y deseo disperso","El deseo elevado se desordena. La devoción se fragmenta en apegos, dependencias afectivas y búsqueda de sensación.","Pasión, inspiración, vínculos intensos.","Necesidad creciente de estímulo o de aprobación ajena.","Transmutar el deseo en creación y devoción.",0],
+["Dimensión de Oscuridad 5","","Falsa iluminación y orgullo espiritual","El ataque más sutil. Halaga al Ser de Luz con una iluminación que no ha integrado y lo vuelve vanidoso de su luz.","Elogios, títulos, sensación de estar “por encima”.","Crece la imagen pública y decrece la humildad.","Humildad y reconocimiento del Yo verdadero.",1],
+["Dimensión de Oscuridad 6","","Ira “justa”","Provoca un agravio real o aparente para que el ser responda con crueldad y se contamine.","Indignación moral, defensa de la verdad.","Deseo de castigar; disciplina convertida en dureza.","Coraje sereno: firmeza sin odio.",1],
+["Dimensión de Oscuridad 7","","Servicio como necesidad","La generosidad se vuelve voracidad. El servicio pasa a ser necesidad de ser necesitado.","Entrega sin límites, cuidado excesivo.","Agotamiento, resentimiento, dar para controlar.","Dar sin apego y poner límites sanos.",1],
+["Dimensión de Oscuridad 8","","Desesperanza y ceguera interior","La forma se vuelve cárcel. El ser pierde la guía interior y siente vacío, encierro o miedo a la muerte.","Realismo sombrío, “madurez”, silencio.","Dificultad para sentir la guía; todo se percibe sin salida.","El misterio aceptado: la oscuridad como matriz y no como muro.",1],
+["Dimensión de Oscuridad 9","","Dispersión del don creativo","La fuerza creadora pierde dirección. El don se diluye en ruido, proyectos inconclusos e impulsos sin propósito.","Entusiasmo, multiplicidad de ideas.","Mucho movimiento sin fruto; el don no llega a manifestarse.","Intención clara y un propósito sostenido.",2],
+["Dimensión de Oscuridad 10","","Dualidad y elección soberbia","La unidad se parte en dos polos enfrentados. El ser se cree “el elegido” frente a “los otros”.","Sentido de misión exaltado, lenguaje de nosotros contra ellos.","Se pierde la compasión hacia quien no despierta.","La unidad: reconocer un solo principio detrás de los opuestos.",2],
+["Dimensión de Oscuridad 11","","Conocimiento sin sabiduría","El saber acumulado sin integrar abre la puerta al Abismo y aleja del corazón.","Acumular información, secretos y fuentes.","Más datos, menos paz; la teoría reemplaza a la vivencia.","El saber integrado con humildad.",2],
+["Dimensión de Oscuridad 12","","Disolución del ego no integrado","Disuelve al ser que cruza sin haberse integrado, hasta la dispersión o la locura.","Una prueba “inevitable” que exige abandonar toda referencia.","Pérdida de identidad, voces contradictorias, desorientación.","El Yo integrado que atraviesa sin miedo; apoyo de seres de luz.",2],
+["Dimensión de Oscuridad 13","","Deslumbramiento","La luz ilimitada se vuelve éxtasis que ciega. El ser se pierde en la experiencia y abandona su misión.","Éxtasis, plenitud, ganas de no volver.","Rechazo a lo cotidiano y a la misión encarnada.","La luz que ilumina sin disolver.",3]
+];
+const B=["Psicológico y emocional","Del ego y el carácter","Metafísico: contra la identidad","Existencial: contra el sentido"];
+const G=[[0,3],[4,7],[8,11],[12,12]];
+let h="";
+G.forEach((g,i)=>{
+ h+=`<div class="bloque-t">${B[i]} · ${g[0]==g[1]?"dimensión "+(g[0]+1):"dimensiones "+(g[0]+1)+" a "+(g[1]+1)}</div>`;
+ for(let k=g[0];k<=g[1];k++){
+  const d=D[k],n=k+1,p=n>10?'<span class="prop">PROPUESTA</span>':'';
+  h+=`<details class="dim"><summary><span class="num">${n}</span>${d[0]}${p}</summary><div class="dim-cuerpo">
+  <div class="protocol-phase"><div class="phase-title">${d[2]}</div><div class="phase-content">${d[3]}</div></div>
+  <div class="protocol-phase"><div class="phase-title">Disfraz</div><div class="phase-content">${d[4]}</div></div>
+  <div class="protocol-phase"><div class="phase-title">Señal de discernimiento</div><div class="phase-content">${d[5]}</div></div>
+  <div class="protocol-phase"><div class="phase-title">Luz que contrarresta</div><div class="phase-content">${d[6]}</div></div>
+  <div class="bovis-bar"><div class="bovis-pointer" style="left:${Math.round(n/13*100)}%"></div></div>
+  <div class="bovis-labels"><span>Cercana</span><span>Profundidad</span><span>Abstracta</span></div>
+  </div></details>`;
+ }
+});
+document.getElementById('lista').innerHTML=h;
+</script>
+</body>
+</html>
